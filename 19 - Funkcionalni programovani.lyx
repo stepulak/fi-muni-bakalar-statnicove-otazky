@@ -437,30 +437,186 @@ Pro funkci func platí, že bere jeden parametr a a vrací částečně aplikova
 funcA :: b -> (c -> (d -> ...))
 \end_layout
 
+\begin_layout Standard
+
+\series bold
+Příklady funkcí vyššího řádu:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+map
+\series default
+ - Funkce, která na vstupu bere transformační funkci a seznam a vrací nový
+ seznam, který tak, že se transformační funkce aplikovala na každý prvek
+ vstupního seznamu.
+ Příklad: 
+\begin_inset Formula $map\,((*)\,9)\,[1..10]\rightsquigarrow[9,18,27,36,45,54,63,72,81,90]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+filter
+\series default
+ - Funkce, která bere predikátovou funkci a seznam.
+ Na výstup vrací nový seznam, který vznikl pouze s prvků vstupního seznamu,
+ pro které predikát platil.
+ Příklad: 
+\begin_inset Formula $filter\,(>\,5)\,[1..10]\rightsquigarrow[6,7,8,9,10]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+foldl/foldr
+\series default
+ - Agregační funkce, foldl prochází seznam zleva, foldr zprava.
+ Ekvivalentní funkcí pro foldl je std::accumulate (C++) nebo Aggregate (.NET
+ Linq).
+ Příklad: 
+\begin_inset Formula $foldl\,(*)\,1\,[1..5]\rightsquigarrow120$
+\end_inset
+
+ (faktoriál z pěti).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+flip
+\series default
+ - Na vstup bere binární funkci a dva argumenty, výsledkem je aplikace binární
+ funkce na argumenty v obráceném pořadí.
+ Příklad: 
+\begin_inset Formula $flip\,(-)\,5\,2\rightsquigarrow2-5\rightsquigarrow-3$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+(.)
+\series default
+ - Na vstup bere dvě binární funkce f, g a vstupní hodnotu x a vrací výraz
+ 
+\begin_inset Formula $f\,(g\,x)$
+\end_inset
+
+.
+ Má i infixový zápis 
+\begin_inset Formula $f\,.\,g$
+\end_inset
+
+.
+ Z matematického hlediska se jedná o ekvivalentní výraz pro symbol 
+\begin_inset Formula $\circ$
+\end_inset
+
+ (tzn.
+ 
+\begin_inset Formula $f\circ g$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+binární operátory (+), (-), (*), ...
+\end_layout
+
 \begin_layout Subsection*
 Lambda funkce
 \end_layout
 
 \begin_layout Standard
 Lambda funkce je tzv.
- anonymní funkce.
- 
+ anonymní funkce (bezejmenná funkce).
+ Využívá se v případech, kdy potřebujeme rychle zadefinovat novou funkci
+ na 
+\begin_inset Quotes eld
+\end_inset
+
+jedno použití
+\begin_inset Quotes erd
+\end_inset
+
+ (kterou předáme funkci vyššího řádu).
+\end_layout
+
+\begin_layout Standard
+V Haskellu má lambda funkce následující podobu: 
+\begin_inset Formula $\backslash x\ldots y\rightarrow\ldots$
+\end_inset
+
+.
+ Tzn.
+ za lomítkem následuje nenulový (!) počet vstupních parametrů a za šipkou
+ (->) tělo funkce.
+ Anonymní funkce, jako každá jiná v Haskellu, musí něco vracet na výstup.
+\end_layout
+
+\begin_layout Standard
+Příklady
 \end_layout
 
 \begin_layout Subsection*
 Elementární programování v Haskellu
 \end_layout
 
+\begin_layout Standard
+Definice agregační funkce foldl:
+\end_layout
+
+\begin_layout Quotation
+foldl :: (a -> b -> a) -> a -> [b] -> a
+\end_layout
+
+\begin_layout Quotation
+foldl f acc [x] = f acc x
+\end_layout
+
+\begin_layout Quotation
+foldl f acc (x:y:s) = foldl (f) (f acc x) (y:s)
+\end_layout
+
 \begin_layout Subsubsection*
 Způsoby použití funkcí v Haskellu
 \end_layout
 
-\begin_layout Standard
-globální definice
+\begin_layout Itemize
+Globální definice
 \end_layout
 
-\begin_layout Standard
-lokální definice
+\begin_layout Itemize
+Lokální definice - Pomocí výrazu 
+\begin_inset Formula $let\ldots in\ldots$
+\end_inset
+
+ (příklad: 
+\begin_inset Formula $let\,fac\,5=fac\,5\,in\,fac\,5\rightsquigarrow120$
+\end_inset
+
+), nebo pomocí 
+\begin_inset Formula $where\ldots=\ldots$
+\end_inset
+
+ (příklad: test' = fiveEqFive where fiveEqFive = (5 == 5) 
+\begin_inset Formula $\rightsquigarrow True$
+\end_inset
+
+)
 \end_layout
 
 \end_body
