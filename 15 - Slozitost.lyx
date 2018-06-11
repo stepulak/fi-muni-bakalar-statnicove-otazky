@@ -1,0 +1,713 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Složitost
+\end_layout
+
+\begin_layout Standard
+Pojmy z otázky č.
+ 14:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Složitost algoritmu
+\series default
+ - Náročnost algoritmu na systémové zdroje (paměť, procesor apod.)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Časová složitost algoritmu
+\series default
+ - Funkce, která popisuje závislost vstupu na (nejdelší možné) délce výpočtu
+ algoritmu.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Paměťová složitost algoritmu
+\series default
+ - Funkce, která popisuje závislost vstupu na (největší) potřebné paměti
+ pro výpočet.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Složitost problému
+\series default
+ - Náročnost optimálního algoritmu, jenž tento problém vyřeší.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Časová složitost problému
+\series default
+ - Časová složitost optimálního algoritmu, řešící tento problém.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Paměťová složitost problému
+\series default
+ - Paměťová složitost optimálního algoritmu, řešící tento problém.
+\end_layout
+
+\begin_layout Subsection*
+Složitosti Turingových strojů
+\end_layout
+
+\begin_layout Subsubsection*
+Časová složitost deterministického Turingova stroje
+\end_layout
+
+\begin_layout Standard
+Časová složitost deterministického Turingova stroje odpovídá počtu přechodů
+ (změn stavů, počtu kroků) během výpočtu.
+\end_layout
+
+\begin_layout Standard
+Nechť 
+\begin_inset Formula $t_{M}$
+\end_inset
+
+ je funkce, která počítá délku výpočtu úplného Turingova stroje 
+\begin_inset Formula $M$
+\end_inset
+
+ pro slovo 
+\begin_inset Formula $w$
+\end_inset
+
+ (TM je úplný, tzn.
+ výpočet je konečný).
+ Pak funkce 
+\begin_inset Formula $T_{M}$
+\end_inset
+
+ je definována jako 
+\begin_inset Formula $T_{M}=max\{t_{M}(w)|w\in\Sigma^{n}\}$
+\end_inset
+
+.
+ Tzn.
+ počítá maximální délku výpočtu (nejhorší případ) pro všechny možné vstupy
+ délky 
+\begin_inset Formula $n$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Časová složitost nedeterministického Turingova stroje
+\end_layout
+
+\begin_layout Standard
+Nedeterministický úplný TS při výpočtu může být v několika stavech zároveň,
+ a tak výpočet nemá lineární průběh (tzn.
+ ze stavu do stavu), avšak jeho vizuální podoba odpovídá stromovému grafickému
+ znázornění.
+ Samozřejmě platí, že výpočet je konečný, a tak každá větev stromu je ukončená.
+\end_layout
+
+\begin_layout Standard
+Pro NTS platí, že časová složitost výpočtu (odpovídá funkce 
+\begin_inset Formula $t_{M}$
+\end_inset
+
+ ) nad slovem 
+\begin_inset Formula $w$
+\end_inset
+
+ odpovídá délce nejdelší větve výpočtu.
+ Fukce 
+\begin_inset Formula $T_{M}$
+\end_inset
+
+ je definována stejně jako u deterministického TS.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/ts_computation_nts_vs_dts.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Vizualizace výpočtu nedeterministického a deterministického Turingova stroje.
+\end_layout
+
+\begin_layout Subsubsection*
+Paměťová složitost deterministického Turingova stroje
+\end_layout
+
+\begin_layout Standard
+Pro deterministický TS platí, že paměťová složitost odpovídá počtu obsazených
+ políček během výpočtu.
+ Nechť funkce 
+\begin_inset Formula $s_{M}$
+\end_inset
+
+ vrací počet obsazených políček během výpočtu pro slovo 
+\begin_inset Formula $w$
+\end_inset
+
+.
+ Pak pro funkci 
+\begin_inset Formula $S_{M}$
+\end_inset
+
+ udávající paměťovou složitost pro slova délky 
+\begin_inset Formula $n$
+\end_inset
+
+ platí, že 
+\begin_inset Formula $S_{M}=max\{s_{M}(w)|w\in\Sigma^{n}\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Paměťová složitost nedeterministického Turingova stroje
+\end_layout
+
+\begin_layout Standard
+U nedeterministického TS musíme opět brát v potaz, že výpočet může být v
+ několika stavech současně, tzn.
+ i velikost používané pásky je rozdílný.
+ 
+\begin_inset Formula $s_{M}$
+\end_inset
+
+ tedy označuje 
+\series bold
+maximální
+\series default
+ počet políček využitých během výpočtu TS nad slovem 
+\begin_inset Formula $w$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Funkce 
+\begin_inset Formula $S_{M}$
+\end_inset
+
+ je opět identická jako u deterministického Turingova stroje.
+\end_layout
+
+\begin_layout Subsection*
+Polynomiální redukce
+\end_layout
+
+\begin_layout Standard
+Problém 
+\begin_inset Formula $A\subseteq\Sigma^{*}$
+\end_inset
+
+ se polynomiálně redukuje na problém 
+\begin_inset Formula $B\subseteq\Phi^{*}$
+\end_inset
+
+ (značíme 
+\begin_inset Formula $A\leq_{P}B$
+\end_inset
+
+), pokud existuje totálně vyčíslitelná funkce 
+\begin_inset Formula $f:\Sigma^{*}\rightarrow\Phi^{*}$
+\end_inset
+
+, která pracuje v polynomiálním čase.
+\end_layout
+
+\begin_layout Subsection*
+Těžkost a úplnost
+\end_layout
+
+\begin_layout Standard
+Máme množinu problémů X.
+ Problém A je X-těžký, pokud platí: 
+\begin_inset Formula $\forall C\in X:\,C\leq_{P}A$
+\end_inset
+
+.
+ Pokud platí i vztah 
+\begin_inset Formula $A\in X$
+\end_inset
+
+, pak problém A je X-úplný.
+ Viz definice NP-těžkosti a NP-úplnosti na konci dokumentu.
+\end_layout
+
+\begin_layout Subsection*
+Složitostní třídy
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $TIME(f(n))=\{L|L\,je\,rozhodnutelný\,deterministickým\,TS\,s\,časovou\,složitostí\,T_{M}=\mathcal{O}(f(n))\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $NTIME(f(n))=\{L|L\,je\,rozhodnutelný\,nedeterministickým\,TS\,s\,časovou\,složitostí\,T_{M}=\mathcal{O}(f(n))\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Platí, že 
+\begin_inset Formula $TIME(f(n))\subseteq NTIME(f(n))$
+\end_inset
+
+, neboť deterministický TS je speciální případ nedeterministického TS.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $SPACE(f(n))=\{L|L\,je\,rozhodnutelný\,deterministickým\,TS\,s\,paměťovou\,složitostí\,S_{M}=\mathcal{O}(f(n))\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $NSPACE(f(n))=\{L|L\,je\,rozhodnutelný\,nedeterministickým\,TS\,s\,paměťovou\,složitostí\,S_{M}=\mathcal{O}(f(n))\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Platí, že 
+\begin_inset Formula $SPACE(f(n))\subseteq NSPACE(f(n))$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Další třídy
+\series default
+:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $P=\underset{k\in\mathbb{N}}{\cup}TIME(n^{k})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $NP=\underset{k\in\mathbb{N}}{\cup}NTIME(n^{k})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $EXPTIME=\underset{k\in\mathbb{N}}{\cup}TIME(2^{n})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $NEXPTIME=\underset{k\in\mathbb{N}}{\cup}NTIME(2^{n})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $PSPACE=\underset{k\in\mathbb{N}}{\cup}SPACE(n^{k})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $NPSPACE=\underset{k\in\mathbb{N}}{\cup}NSPACE(n^{k})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pro třídy PSPACE a NPSPACE platí, že máme neomezenou čas pro výpočet, omezující
+ je pouze paměť (polynomiální) a typ Turingova stroje.
+\end_layout
+
+\begin_layout Subsubsection*
+Složitostní třída P
+\end_layout
+
+\begin_layout Standard
+Obsahuje problémy (jazyky), které se dají vyřešit v polynomiálním čase na
+ deterministickém Turingově stroji.
+ Třída P je uzavřená na operace: 
+\series bold
+sjednocení, průnik, zřetězení a doplněk
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Příklady
+\series default
+: obecně známé algoritmy řazení, min, max, nejkratší cesta v grafu, minimální
+ kostra apod.
+\end_layout
+
+\begin_layout Subsubsection*
+Složitostní třída NP
+\end_layout
+
+\begin_layout Standard
+Obsahuje problémy (jazyky), které se dají vyřešit v polynomiálním čase na
+ nedeterministickém Turingově stroji.
+ Třída NP je uzavřená na 
+\series bold
+sjednocení a průnik
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Příklady
+\series default
+: Hamiltonovská cesta (existuje cesta mezi vrcholy u, v která prochází všemi
+ ostatními vrcholy právě jednou?), Rozklad složených čísel.
+\end_layout
+
+\begin_layout Subsubsection*
+Složitostní třída PSPACE
+\end_layout
+
+\begin_layout Standard
+Obsahuje problémy (jazyky), které se dají vyřešit s polynomiální pamětí
+ na deterministickém Turingově stroji.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Příklady PSPACE(-úplných) problémů
+\series default
+: Super Mario Bros., Sokoban, Reversi, Go apod.
+ (desktopové hry obecně).
+\end_layout
+
+\begin_layout Subsubsection*
+Vztahy mezi třídami
+\end_layout
+
+\begin_layout Standard
+Platí tvrzení:
+\end_layout
+
+\begin_layout Quotation
+\begin_inset Formula $P\subseteq NP\subseteq PSPACE=NPSPACE\subseteq EXPTIME\subseteq NEXPTIME$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Proč 
+\begin_inset Formula $PSPACE=NPSPACE$
+\end_inset
+
+? Neboť platí 
+\series bold
+Savitchova věta
+\series default
+: 
+\begin_inset Formula $NPSPACE(S(n))\subseteq PSPACE(S(n)^{2})$
+\end_inset
+
+, tudíž každý problém, jenž lze vyjádřit nedeterministickým TS a potřebuje
+ polynomiální paměť 
+\begin_inset Formula $S(n)$
+\end_inset
+
+, lze vyjádřit deterministickým TS pouze s kvadraticky větší pamětí 
+\begin_inset Formula $S(n)^{2}$
+\end_inset
+
+ (stále se jedná o polynomiální paměťovou složitost, a tak třídy jsou ekvivalent
+ní).
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/complexity_classes.png
+	lyxscale 30
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph*
+P=NP?
+\end_layout
+
+\begin_layout Standard
+Obecně se věří, že 
+\begin_inset Formula $P\neq NP$
+\end_inset
+
+, nicméně neexistuje důkaz, který by tohle potvrzoval.
+ Aby platilo 
+\begin_inset Formula $P=NP$
+\end_inset
+
+, museli bychom najít NP-úplný problém, který je zároveň v P.
+\end_layout
+
+\begin_layout Standard
+Pokud by 
+\begin_inset Formula $P=NP$
+\end_inset
+
+, dokázali bychom rozložit součin dvou prvočísel v polynomiálním čase na
+ běžném PC, tudíž by některé šifrovací algoritmy (jako např.
+ RSA) byly neefektivní.
+ Problém 
+\begin_inset Formula $P=NP$
+\end_inset
+
+ je jedním z nevyřešených otázek matematiky.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/p_np.png
+	lyxscale 50
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+NP-úplný (NP-complete)
+\end_layout
+
+\begin_layout Standard
+Každá NP-úplná úloha je NP-těžká úloha, která je zároveň v NP.
+ Tudíž platí, že NP-úlohy jsou tak 
+\begin_inset Quotes eld
+\end_inset
+
+těžké
+\begin_inset Quotes erd
+\end_inset
+
+ jako NP-těžké úlohy.
+ Všechny úlohy z NP se dají polynomiálně redukovat na NP-úplné úlohy (tudíž
+ pokud nalezneme rychlé řešení NP-úplné úlohy, máme i rychlé řešení NP úlohy).
+\end_layout
+
+\begin_layout Standard
+Pro NP-úplné úlohy platí následující věta:
+\end_layout
+
+\begin_layout Quote
+
+\series bold
+Jazyk B je NP-úplný, jesltiže platí: 
+\begin_inset Formula $B\in NP$
+\end_inset
+
+ a 
+\begin_inset Formula $\forall A\in NP:\,A\leq_{P}B$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Příklady
+\series default
+:
+\end_layout
+
+\begin_layout Itemize
+Problém SAT (množina splnitelných Booleovských formulí za pomocí konjunkce,
+ disjunkce a negace): 
+\begin_inset Formula $SAT=\{<\varphi>|\varphi\,je\,splnitelná\,Booleovská\,formule\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Problém obchodního cestujícího: Hledáme minimální Hamiltonovskou kružnici
+ v grafu.
+ Ham.
+ kručnice je Ham.
+ cesta z/do stejného vrcholu = taková cesta z vrcholu U, kdy se navštíví
+ všechny vrcholy grafu právě jednou.
+ U obchodního cestujícího se snažíme minimalizovat náklady na dopravu a
+ chceme vejít do všech měst (uzlů).
+\end_layout
+
+\begin_layout Itemize
+Problém batohu: Máme konečnou množinu věcí s určitou vahou a cenou a batoh
+ s konkrétní nosností.
+ Snažíme se vložit věci do batohu tak, aby suma hmotnosti věcí nepřekročila
+ nosnost batohu a zároveň by cena věcí v batohu byla co největší.
+ Tzn.
+ máme množinu věcí 
+\begin_inset Formula $M$
+\end_inset
+
+ a chceme vybrat podmnožinu 
+\begin_inset Formula $N\subseteq M$
+\end_inset
+
+ tak, aby 
+\begin_inset Formula $cost(N)\rightarrow max\land weight(N)\leq capacity$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+NP-těžké (NP-hard)
+\end_layout
+
+\begin_layout Standard
+U NP-těžké úlohy nevíme, zda-li je v NP nebo ne.
+ Taky platí, že se na ni redukuje každá NP-úplná úloha.
+\end_layout
+
+\begin_layout Standard
+Pro NP-těžké problémy platí věta:
+\end_layout
+
+\begin_layout Quote
+
+\series bold
+Problém B je NP-těžký, pokud 
+\begin_inset Formula $B\overset{\text{?}}{\in}NP$
+\end_inset
+
+ a 
+\begin_inset Formula $\forall A\in NP:\,A\leq_{P}B$
+\end_inset
+
+.
+\end_layout
+
+\end_body
+\end_document

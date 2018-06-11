@@ -1,0 +1,1232 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Vyčíslitelnost
+\end_layout
+
+\begin_layout Standard
+Vyčíslitelnost se zabývá algoritmickým řešením problémů.
+\end_layout
+
+\begin_layout Quote
+
+\series bold
+Church-Turingova teze
+\series default
+: Každý proces, který se dá nazvat algoritmem, lze popsat na Turingově stroji.
+\end_layout
+
+\begin_layout Standard
+Turingův stroj (TS) je matematický model výpočetního stroje.
+ Ten se skládá z pásky a výpočetního 
+\begin_inset Quotes eld
+\end_inset
+
+procesoru
+\begin_inset Quotes erd
+\end_inset
+
+ (jednotky popsána pomocí parciální přechodové funkce).
+\end_layout
+
+\begin_layout Standard
+Využíván pro rozpoznání jazyků 
+\series bold
+typu 0
+\series default
+ (generované 
+\series bold
+frázovými gramatikami
+\series default
+), jeho lineárně ohraničená verze (omezená páska) pak slouží k rozpoznání
+\series bold
+ kontextových jazyků
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+Rozlišujeme dva problémy řešitelné Turingovým strojem:
+\end_layout
+
+\begin_layout Itemize
+Má problém vůbec řešení?
+\end_layout
+
+\begin_layout Itemize
+Má problém řešení v určitém čase?
+\end_layout
+
+\begin_layout Subsection*
+Definice Turingova stroje
+\end_layout
+
+\begin_layout Standard
+Deterministický TS je devítice 
+\begin_inset Formula $M=(Q,\varSigma,\Gamma,\delta,\triangleright,\sqcup,q_{0},q_{A},q_{R})$
+\end_inset
+
+, kde
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $Q$
+\end_inset
+
+ je množina stavů 
+\begin_inset Formula $(Q=Q'\cup\{q_{0},q_{R},q_{A}\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\varSigma$
+\end_inset
+
+ je vstupní abeceda
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\varGamma$
+\end_inset
+
+ je pásková (pracovní) abeceda 
+\begin_inset Formula $(\varSigma\subseteq\Gamma)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\delta$
+\end_inset
+
+ je parciální přechodová funkce, definována jako zobrazení 
+\begin_inset Formula $\delta:\,(Q\backslash\{q_{A},q_{R}\})\times\Gamma\longrightarrow Q\times\Gamma\times\{L,R\}$
+\end_inset
+
+ (znaky L, R značí posunutí čtecí hlavy pásky směrem doleva (L) nebo doprava
+ (R))
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\triangleright$
+\end_inset
+
+ je symbol pro levý začátek pásky
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\sqcup$
+\end_inset
+
+ je prázdné políčko
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $q_{0}$
+\end_inset
+
+ je počáteční stav 
+\begin_inset Formula $(q_{0}\in Q)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $q_{R}$
+\end_inset
+
+ je zamítající stav (reject) 
+\begin_inset Formula $(q_{R}\in Q)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $q_{A}$
+\end_inset
+
+je akceptující stav (accept) 
+\begin_inset Formula $(q_{A}\in Q)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Další variantou Turingových strojů je například nedeterministický TS nebo
+ K-páskový TS.
+\end_layout
+
+\begin_layout Standard
+Nedeterministický TS se rozlišuje způsobem výpočtu a parciální přechodovou
+ funkcí:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta:\,(Q\backslash\{q_{acc},q_{rej}\})\times\Gamma\rightarrow2^{Q\times\Gamma\times\{L,R\}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+U K-páskového Turingova stroje musíme rozlišovat, na které pásce se momentálně
+ nacházíme:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta:\,(Q\backslash\{q_{acc},q_{rej}\})\times\Gamma^{k}\rightarrow Q\times\Gamma^{k}\times\{L,R\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Všechny typy mají stejnou vyjadřovací sílu, tudíž lze mezi nimi libovolně
+ přecházet.
+\end_layout
+
+\begin_layout Subsection*
+Konfigurace a výpočet Turingova stroje
+\end_layout
+
+\begin_layout Standard
+Konfigurace TS je trojice 
+\begin_inset Formula $C=(q,w,n)$
+\end_inset
+
+, kde 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $q$
+\end_inset
+
+ je stav TS 
+\begin_inset Formula $(q\in Q)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $w$
+\end_inset
+
+ je řetězec znaků na pásce 
+\begin_inset Formula $(w\in\Gamma^{*})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $n$
+\end_inset
+
+ je pozice čtecí hlavy na pásce 
+\begin_inset Formula $(n\in\mathbb{Z}^{+})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Počáteční konfigurace je ve tvaru 
+\begin_inset Formula $(q_{0},\triangleright y\sqcup^{\omega},0),\,\omega\in\mathbb{Z}^{+}\wedge\omega\rightarrow\infty$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+TS akceptuje, pokud je trojice ve tvaru 
+\begin_inset Formula $(q_{acc},w_{0},n_{0})$
+\end_inset
+
+ (tzn.
+ výpočet je konečný a poslední stav je akceptující).
+ Explicitně zamítá, pokud je trojice ve tvaru 
+\begin_inset Formula $(q_{rej},w_{0},n_{0})$
+\end_inset
+
+ (tzn.
+ výpočet je konečný, poslední stav je zamítající).
+ Turingův stroj cyklí, pokud je výpočet TS na slově w nekonečný.
+\end_layout
+
+\begin_layout Standard
+Výpočet TS je poslounost konfigurací 
+\begin_inset Formula $C_{1},\ldots,C_{n}$
+\end_inset
+
+, pro které platí 
+\begin_inset Formula $C_{i}\vdash_{M}\,C_{i+1}$
+\end_inset
+
+, kde 
+\begin_inset Formula $\vdash_{M}$
+\end_inset
+
+ je relace kroku výpočtu (podle parciální přechodové funkce).
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+Vytvoř TS pro jazyk 
+\begin_inset Formula $L=\{a^{i}b^{i}c^{i}|i\in\mathbb{N}_{0}\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Idea: Máme pásku ve tvaru 
+\begin_inset Formula $\triangleright aaaa...bbbb...cccc\sqcup\sqcup...$
+\end_inset
+
+.
+ Nejprve přepíšeme počáteční a za X a přepneme do stavu přepisování b.
+ Nalezneme první b, přepíšeme na X a přepneme do stavu přepisování c.
+ Nalezneme první c, přepíšeme na X a vrátíme se na začátek.
+ Program akceptuje, když je páska ve tvaru 
+\begin_inset Formula $\triangleright X^{*}\sqcup^{+}$
+\end_inset
+
+ (tzn.
+ konfigurace TS je ve tvaru 
+\begin_inset Formula $(q_{acc},\triangleright X^{*}\sqcup^{+},n)$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Parciální přechodová funkce bude definována ve tvaru tabulky:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\begin{array}{ccccccc}
+\delta: & \triangleright & a & b & c & \sqcup & X\\
+q_{0} & (q_{a},\triangleright,R) & - & - & - & - & -\\
+q_{a} & - & (q_{b},X,R) & (q_{rej},-,-) & (q_{rej},-,-) & (q_{acc},-,-) & (q_{a},X,R)\\
+q_{b} & - & (q_{rej},-,-) & (q_{c},X,R) & (q_{rej},-,-) & (q_{rej},-,-) & (q_{b},X,R)\\
+q_{c} & - & (q_{rej},-,-) & (q_{rej},-,-) & (q_{i},X,L) & (q_{rej},-,-) & (q_{c},X,R)\\
+q_{i} & (q_{a},\triangleright,R) & (q_{i},a,L) & (q_{i},b,L) & (q_{rej},-,-) & (q_{rej},-,-) & (q_{i},X,L)
+\end{array}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Turingův stroj je teda devítice: 
+\begin_inset Formula $(\{q_{0},q_{a},q_{b},q_{c},q_{i}\},\{a,b,c\},\{\triangleright,a,b,c,X,\sqcup\},\delta,\triangleright,\sqcup,q_{0},q_{acc},q_{rej})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Rekurzivní vs rekurzivně spočetné jazyky
+\end_layout
+
+\begin_layout Standard
+Jazyk L je 
+\series bold
+rekurzivní
+\series default
+, pokud je akceptován libovolným 
+\series bold
+úplným Turingovým strojem
+\series default
+ (
+\begin_inset Formula $L=L(M)$
+\end_inset
+
+).
+ 
+\series bold
+Úplný
+\series default
+ TS znamená, že libovolný vstup buď aceptuje nebo zamítne, 
+\series bold
+nikdy
+\series default
+ necyklí.
+\end_layout
+
+\begin_layout Standard
+Jazyk L je 
+\series bold
+rekurzivně spočetný (RE)
+\series default
+, pokud pro něj existuje
+\series bold
+ neúplný Turingův stroj
+\series default
+.
+ Pro něj platí, že pro slova, která nepatří do jazyka L, může buď 
+\series bold
+explicitně zamítat
+\series default
+ a nebo 
+\series bold
+cyklit
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+Platí, že
+\series bold
+ rekurzivní jazyk 
+\begin_inset Formula $\subseteq$
+\end_inset
+
+ rekurzivně spočetný
+\series default
+.
+\end_layout
+
+\begin_layout Subsection*
+Uzávěrové vlastnosti
+\end_layout
+
+\begin_layout Standard
+Rekurzivní jazyky jsou uzavřeny na (8 operací):
+\end_layout
+
+\begin_layout Itemize
+sjednocení
+\end_layout
+
+\begin_layout Itemize
+průnik
+\end_layout
+
+\begin_layout Itemize
+průnik s regulárním jazykem
+\end_layout
+
+\begin_layout Itemize
+iteraci
+\end_layout
+
+\begin_layout Itemize
+pozitivní iteraci
+\end_layout
+
+\begin_layout Itemize
+reverse
+\end_layout
+
+\begin_layout Itemize
+doplněk
+\end_layout
+
+\begin_layout Itemize
+zřetězení
+\end_layout
+
+\begin_layout Standard
+Rekurzivně spočetné jazyky jsou uzavřeny na operace jako rekurzivní jazyky,
+ mimo doplněk.
+\end_layout
+
+\begin_layout Subsection*
+Rozhodnutelnost problémů
+\end_layout
+
+\begin_layout Standard
+Problém P = jazyk L mající vlastnost P.
+ Jedná se tedy o množinu slov (objektů O), které mají vlastnost P: 
+\begin_inset Formula $L=\{<O>|O\,má\,vlasnost\,P\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Rozhodnutelný problém = jazyk je rekurzivní
+\series default
+.
+ To znamená, že pro jazyk existuje úplný TS, který všechna slova tohoto
+ jazyka akceptuje v konečném čase.
+ Pokud slovo z jazyka není, zamítne ho taky v konečném čase.
+ TS nikdy necyklí.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Nerozhodnutelný problém = jazyk není rekurzivní
+\series default
+.
+ To znamená, že může být
+\series bold
+ rekurzivně spočetný
+\series default
+, tudíž 
+\series bold
+částečně rozhodnutelný
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Částečně rozhodnutelný problém = jazyk je rekurzivně spočetný
+\series default
+.
+ Tudíž lze ho popsat neúplným TS, který může i cyklit.
+\end_layout
+
+\begin_layout Standard
+Příklady nerozhodnutelných problémů:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $HALT=\{<M,w>|M\,je\,TS\,a\,výpočet\,M\,na\,w\,je\,konečný\}$
+\end_inset
+
+ (důkaz viz dále)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $ACC=\{<M,w>|M\,je\,TS\,a\,M\,akceptuje\,w\}$
+\end_inset
+
+ (platí 
+\begin_inset Formula $HALT\leq_{m}ACC$
+\end_inset
+
+, viz dále).
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $NONEMPTY=\{<M>|M\,je\,TS\,a\,L(M)\neq\emptyset\}$
+\end_inset
+
+ (M akceptuje neprázdný jazyk, viz dále).
+\end_layout
+
+\begin_layout Subsubsection*
+Univerzální Turingův stroj
+\end_layout
+
+\begin_layout Standard
+Každý Turingův stroj lze zakódovat pomocí abecedy 
+\begin_inset Formula $\Sigma=\{0,1\}^{*}$
+\end_inset
+
+.
+ Nechť znak (terminál) 1 je naším separátorem.
+ Pak každý stav, znak pracovní abecedy a posun čtecí hlavy (doleva, doprava)
+ lze vyjádřit ve tvaru:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta(q_{0},z_{0})=(q_{1},z_{1},M)\Longleftrightarrow0^{i}10^{j}10^{k}10^{l}10^{m}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Univerzální TS (značený jako U) je pak takový Turingův stroj, který na vstupu
+ bere dvojice 
+\begin_inset Formula $<M,w>,\,ve\,tvaru\,(M\#w)$
+\end_inset
+
+, kde M je TS zakódovaný v binárním řetězci a w je slovo zakódované v binárním
+ řetězci a simuluje výpočet M nad w.
+\end_layout
+
+\begin_layout Standard
+Pokud M akceptuje slovo w, pak i U akceptuje 
+\begin_inset Formula $<M,w>$
+\end_inset
+
+.
+ Pokud M slovo w odmítne, pak i U odmítne dvojici 
+\begin_inset Formula $<M,w>$
+\end_inset
+
+.
+ Pokud M cyklí, pak i U cyklí.
+\end_layout
+
+\begin_layout Subsubsection*
+Halting problém (problém zastavení)
+\end_layout
+
+\begin_layout Standard
+Problém: Existuje obecný algoritmus, který by na vstupu vzal libovolný algoritmu
+s a libovolný vstup a pro tuto dvojici rozhodl, zda výpočet algoritmu skončí
+ v konečném čase?
+\end_layout
+
+\begin_layout Standard
+Odpověď: Ne.
+ Jedná se o algoritmicky nerozhodnutelný problém.
+\end_layout
+
+\begin_layout Standard
+Potřebujeme dokázat, že HALT není rekurzivní (ale je rekurzivně spočetný).
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Důkaz sporem
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+Předpokládáme tedy, že existuje úplný univerzální algoritmus (TS) 
+\begin_inset Formula $Rozhodni(program,slovo)$
+\end_inset
+
+, který spustí program (TS) na konkrétním slovu.
+ Pokud daný program dané slovo akceptuje, algoritmus vrátí ANO.
+ Pokud program slovo neakceptuje nebo cyklí, program vrátí NE (v konečném
+ čase podotýkám).
+\end_layout
+
+\begin_layout Standard
+Nyní si vytvoříme algoritmus 
+\begin_inset Formula $Paradox(program)$
+\end_inset
+
+, který spustí univerzální TS 
+\begin_inset Formula $Rozhodni(program,program)$
+\end_inset
+
+ a pokud univerzální TS vrátí ANO, začne program 
+\begin_inset Formula $Paradox$
+\end_inset
+
+ záměrně cyklet, pokud vrátí NE, okamžitě skončí.
+\end_layout
+
+\begin_layout Standard
+Otázka zní, jak se bude chovat výraz 
+\begin_inset Formula $Paradox(Paradox)$
+\end_inset
+
+?
+\end_layout
+
+\begin_layout Standard
+Pokud by TS 
+\begin_inset Formula $Rozhodni(Paradox,Paradox)$
+\end_inset
+
+ vrátil ANO, tak by musel TS 
+\begin_inset Formula $Paradox$
+\end_inset
+
+ akceptovat slovo 
+\begin_inset Formula $Paradox$
+\end_inset
+
+.
+ Nicméně výraz 
+\begin_inset Formula $Paradox(Paradox)$
+\end_inset
+
+ cyklí, pokud 
+\begin_inset Formula $Rozhodni$
+\end_inset
+
+ vrací ANO.
+ Zde jsme došli ke sporu.
+\end_layout
+
+\begin_layout Standard
+Pokud by TS 
+\begin_inset Formula $Rozhodni(Paradox,Paradox)$
+\end_inset
+
+ vrátil NE, tak program Paradox nad slovem Paradox neakceptuje nebo cyklí.
+ Paradox však cyklí pouze, pokud univerzální TS 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $Rozhodni(Paradox,Paradox)$
+\end_inset
+
+ vrací ANO.
+ Zde jsme opět došli ke sporu.
+\end_layout
+
+\begin_layout Standard
+Tudíž náš předpoklad, že existuje úplný univerzální algoritmus, který pro
+ libovolný program a libovolný vstup rozhodne, zda-li výpočet skončí v konečném
+ čase, neexistuje.
+\end_layout
+
+\begin_layout Subsection*
+Redukce
+\end_layout
+
+\begin_layout Standard
+Každý jednopáskový Turingův stroj lze vnímat jako funkci, kde její vstupní
+ parametr je obsah pásky na vstupu a její výstup je obsah pásky po skončení
+ TS.
+ Pokud tedy páska Turingova stroje M po skončení výpočtu (nad slovem w)
+ je ve tvaru 
+\begin_inset Formula $\triangleright y\sqcup^{\omega}$
+\end_inset
+
+, kde 
+\begin_inset Formula $\omega\in\mathbb{Z}^{+}\wedge\omega\rightarrow\infty$
+\end_inset
+
+, pak 
+\begin_inset Formula $y=M(w)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Definice redukce:
+\end_layout
+
+\begin_layout Standard
+Řekněme, že problém A se m-redukuje na problém B (píšeme pomocí 
+\begin_inset Formula $A\leq_{m}B$
+\end_inset
+
+), pokud existuje totálně vyčíslitelná funkce 
+\begin_inset Formula $f:\,\Sigma^{*}\rightarrow\Phi^{*}$
+\end_inset
+
+, pro kterou platí:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $w\in A\Longleftrightarrow f(w)\in B$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Funkce 
+\begin_inset Formula $f:\,\Sigma^{*}\rightarrow\Phi^{*}$
+\end_inset
+
+ je vyčíslitelná (spočitatelná), existuje-li nějaký TS 
+\begin_inset Formula $M$
+\end_inset
+
+, který zastaví na slově w, pokud f(w) je definována a 
+\begin_inset Formula $f(w)=M(w)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Funkce f je totálně vyčíslitelná, pokud je vyčíslitelná a totální (všechny
+ objekty v A zobrazí do B, vše co nepatří do A zobrazí mimo B).
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pokud 
+\begin_inset Formula $A\leq_{m}B$
+\end_inset
+
+, pak B 
+\begin_inset Quotes eld
+\end_inset
+
+dědí vlastnosti
+\begin_inset Quotes erd
+\end_inset
+
+ z A (platí implikace 
+\begin_inset Formula $A\,má\,vlastnost\,X\Longrightarrow B\,má\,vlatnost\,X$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Subsubsection*
+Příklady redukcí
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $HALT\leq_{m}ACC$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+Nechť f je totálně vyčíslitelná funkce, pro kterou platí:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $w\in HALT\Leftrightarrow f(w)\in ACC$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Pro redukční funkci f platí:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $f(x)=\begin{cases}
+x & pokud\,x\,není\,tvaru\,<M,w>\\
+<M',w> & pokud\,x\,je\,tvaru\,<M,w>
+\end{cases}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Turingův stroj M' vznikne ze stroje M tak, že všechny zamítající stavy stroje
+ M přesměruje do stavu akceptujícího.
+\end_layout
+
+\begin_layout Standard
+Tím máme zaručeno, že redukční funkce 
+\begin_inset Formula $f$
+\end_inset
+
+ je totální a vyčíslitelná (TVL funkce), tzn.
+ pokud slovo nepatří do problému HALT, tak nebude patřit ani do problému
+ ACC (první případ).
+ Pokud je ve tvaru Turingův stroj + slovo, tak může patřit do HALTu (druhý
+ případ).
+ Pokud patří, tak víme, že výpočet bude konečný (tudíž explicitně akceptuje
+ nebo zamítá), tudíž stačí přesměrovat zamítající stavy do akceptujícího,
+ a bude i v ACC.
+ Pokud výpočet cyklí (nepatří do HALTu), tak je jedno, jestli přesměrujeme
+ zamítající stavy, neboť v ACC nebude.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $ACC\leq_{m}HALT$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+Nechť f je totálně vyčíslitelná funkce, pro kterou platí:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $w\in ACC\Longleftrightarrow f(w)\in HALT$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $f(x)=\begin{cases}
+x & pokud\,x\,není\,tvaru\,<M,w>\\
+<M',w> & pokud\,x\,je\,tvaru\,<M,w>
+\end{cases}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Turingův stroj M' vznikne z M tak, že všechny zamítající stavy (
+\begin_inset Formula $q_{rej}$
+\end_inset
+
+) přesměruje přesměruje do stavu, který cyklí.
+\end_layout
+
+\begin_layout Standard
+Může nás napadnou otázka, proč v druhém případě nevrátit pouze dvojici 
+\begin_inset Formula $<M,w>$
+\end_inset
+
+? Potom by funkce f totiž nebyla totální.
+ Existují totiž dvojice TS a slovo, na kterých TS zastaví a neakceptuje.
+ Taková dvojice rozhodně nepatří do problému ACC.
+ Nicméně pouhým vrácením by patřila do HALT, což nechceme (musíme ji přesměrovat
+ do co-HALT).
+\end_layout
+
+\begin_layout Standard
+Dokázali jsme, že platí 
+\begin_inset Formula $ACC\leq_{m}HALT$
+\end_inset
+
+ a 
+\begin_inset Formula $HALT\leq_{m}ACC$
+\end_inset
+
+, tudíž i 
+\begin_inset Formula $ACC\equiv_{m}HALT$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $ACC\leq_{m}NONEMPTY$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+Nechť f je totálně vyčíslitelná funkce, pro kterou platí:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $w\in ACC\Leftrightarrow f(w)\in NONEMPTY$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Funkci f můžeme tedy definovat následovně:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $f(x)=\begin{cases}
+x & pokud\,x\,není\,ve\,tvaru\,<M,w>\\
+<M'> & pokud\,x\,je\,tvaru\,<M,w>
+\end{cases}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Turingův stroj M' vznikne tak, že se pouze předá slovo w na vstup Turingově
+ stroji M (a spustí).
+\end_layout
+
+\begin_layout Standard
+První případ, kdy x není tvaru dvojice stroj + slovo je snadný.
+ Problém nastane u druhého případu.
+ Pokud M akceptuje w, tak jistě patří do ACC, tudíž bude patřít i do NONEMPTY.
+ Může se stát, že M bude w zamítat, nebo na něm cyklit a stále bude stroj
+ M akceptovat neprázdný jazyk (tzn.
+ aspoň nějaké slovo).
+ Tento případ však můžeme ignorovat, neboť víme, že pokud M akceptuje nějaké
+ slovo w', pak tato dvojice již bude zahrnuta v ACC ve tvaru 
+\begin_inset Formula $<M,w'>$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Diagonalizace
+\end_layout
+
+\begin_layout Standard
+Diagonalizace je metoda, která umožňuje vytvořit takový jazyk, který není
+ rekurzivně spočetný.
+ Tudíž ho nelze definovat žádným TS, který by ho akceptoval.
+\end_layout
+
+\begin_layout Quote
+NOTE: Libovolný řetězec nad binární abecedou 
+\begin_inset Formula $\{0,1\}^{*}$
+\end_inset
+
+ je validní Turingův stroj.
+\end_layout
+
+\begin_layout Standard
+Postup:
+\end_layout
+
+\begin_layout Standard
+Vytvoříme dvourozměrnou tabulku, která bude nekonečně velká (hurá do toho!).
+ Na nejlevějším sloupci definujeme Turingovy stroje, tvořené nad binární
+ abecedou 
+\begin_inset Formula $\{0,1\}^{*}$
+\end_inset
+
+, uspořádané podle délky řetězce 
+\begin_inset Formula $M_{\varepsilon},M_{0},M_{1},M_{00},M_{01},M_{10},...$
+\end_inset
+
+ (tudíž Turingův stroj 
+\begin_inset Formula $M_{1001}$
+\end_inset
+
+ je tvořen pomocí binárního řetězce 1001).
+ Na nejvyšším řádku definujeme slova taky nad binární abecenou 
+\begin_inset Formula $\{0,1\}^{*}$
+\end_inset
+
+(
+\begin_inset Formula $w_{\varepsilon},w_{0},w_{1},w_{00},w_{01},w_{10},...$
+\end_inset
+
+).
+ Pro Turingův stroj 
+\begin_inset Formula $M_{X}$
+\end_inset
+
+ na i-tém řádku a slovo 
+\begin_inset Formula $w_{X}$
+\end_inset
+
+ na j-tém sloupci vložíme na pozici 
+\begin_inset Formula $[i.j]$
+\end_inset
+
+ jedničku, pokud 
+\begin_inset Formula $M_{X}$
+\end_inset
+
+ akceptuje slovo 
+\begin_inset Formula $w_{X}$
+\end_inset
+
+, jinak nulu.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula $\begin{array}{ccccccccc}
+ & w_{\varepsilon} & w_{0} & w_{1} & w_{00} & w_{01} & w_{10} & w_{11} & \ldots\\
+M_{\varepsilon} & 1 & 1 & 0 & 1 & 0 & 1 & 1 & \ldots\\
+M_{0} & 0 & 1 & 1 & 0 & 0 & 0 & 1 & \ldots\\
+M_{1} & 1 & 1 & 0 & 1 & 1 & 0 & 1 & \ldots\\
+M_{00} & 0 & 0 & 0 & 0 & 1 & 1 & 1 & \ldots\\
+M_{01} & 1 & 1 & 0 & 1 & 1 & 0 & 1 & \ldots\\
+M_{10} & 1 & 1 & 1 & 0 & 1 & 0 & 0 & \ldots\\
+M_{11} & 1 & 0 & 1 & 0 & 1 & 0 & 1 & \ldots\\
+\vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \vdots & \ddots
+\end{array}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nyní vytvoříme jazyk D, který bude složený ze slov 
+\begin_inset Formula $w_{X}$
+\end_inset
+
+, které Turingův stroj 
+\begin_inset Formula $M_{X}$
+\end_inset
+
+ neakceptoval (explicitně nebo cyklil).
+ Jedná se tedy o nuly na diagonále.
+\end_layout
+
+\begin_layout Standard
+Jaktože pro jazyk D neexistuje žádný Turingův stroj, který by jej akceptoval?
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Důkaz sporem:
+\end_layout
+
+\begin_layout Standard
+Nechť existuje TS 
+\begin_inset Formula $M_{X}$
+\end_inset
+
+, tvořený z binárního řetězce X nad abecedou 
+\begin_inset Formula $\{0,1\}^{*}$
+\end_inset
+
+, který akceptuje jazyk D.
+ Tudíž pokud jazyk D obsahuje slovo 
+\begin_inset Formula $w_{X}$
+\end_inset
+
+, musí jej Turingův stroj akceptovat.
+ Nicméně pokud jazyk D obsahuje slovo 
+\begin_inset Formula $w_{X}$
+\end_inset
+
+, tak 
+\begin_inset Formula $M_{X}$
+\end_inset
+
+ jej neakceptuje, neboť D je tvořen pouze slovy 
+\begin_inset Formula $w_{X}$
+\end_inset
+
+, pro které neexistuje akceptující TS 
+\begin_inset Formula $M_{X}$
+\end_inset
+
+ tvořený ze stejného řetězce.
+ Na druhou stranu, pokud 
+\begin_inset Formula $M_{X}$
+\end_inset
+
+ akceptuje 
+\begin_inset Formula $w_{X}$
+\end_inset
+
+, pak slovo není součástí jazyka D.
+ Tvrzení vyvráceno došli sme ke sporu.
+ Existuje tudíž jazyk, který není ani rekurzivně spočetný 
+\begin_inset Formula $\Longrightarrow$
+\end_inset
+
+ neexistuje pro něj ekvivalentní neúplný TS a ani nejde zapsat frázovou
+ gramatikou (typu 0).
+\end_layout
+
+\end_body
+\end_document

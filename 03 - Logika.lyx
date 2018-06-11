@@ -1,0 +1,1553 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Logika
+\end_layout
+
+\begin_layout Subsection*
+Výroková logika
+\end_layout
+
+\begin_layout Standard
+Výrok = tvrzení, o kterém můžeme rozhodnout, zda-li je pravdivé či nikoliv.
+ (Tím vylučujeme rozkazy, subjektivní názory, otázky, věty v rozporu apod.).
+ Výrok nemůže být současně pravdivý i nepravdivý.
+\end_layout
+
+\begin_layout Paragraph*
+Ukázky výroků:
+\end_layout
+
+\begin_layout Itemize
+Člověk je savec.
+ (pravdivý)
+\end_layout
+
+\begin_layout Itemize
+1 metr je 100 cm.
+ (pravdivý)
+\end_layout
+
+\begin_layout Itemize
+Jan Hus žil v 8.
+ století.
+ (nepravdivý)
+\end_layout
+
+\begin_layout Paragraph*
+Ukázky nevýroků:
+\end_layout
+
+\begin_layout Itemize
+Půjdeme ven?
+\end_layout
+
+\begin_layout Itemize
+Modrá barva je nejkrásnější.
+\end_layout
+
+\begin_layout Itemize
+Člověk, který mluví pravdu, tak vždy lže.
+\end_layout
+
+\begin_layout Subsubsection*
+Formule výrokové logiky
+\end_layout
+
+\begin_layout Paragraph*
+Definice
+\end_layout
+
+\begin_layout Standard
+Formule výrokové logiky je konečná posloupnost symbolů abecedy, jenž vyhovuje
+ následující induktivní konstrukci:
+\end_layout
+
+\begin_layout Enumerate
+Každá výroková proměnná je formule.
+\end_layout
+
+\begin_layout Enumerate
+Jeli A formule, pak i 
+\begin_inset Formula $\lnot A$
+\end_inset
+
+ je formule.
+\end_layout
+
+\begin_layout Enumerate
+Pokud je A i B formule, pak 
+\begin_inset Formula $A\wedge B$
+\end_inset
+
+, 
+\begin_inset Formula $A\vee B$
+\end_inset
+
+, 
+\begin_inset Formula $A\Rightarrow B$
+\end_inset
+
+, 
+\begin_inset Formula $A\Leftrightarrow B$
+\end_inset
+
+ jsou formule.
+\end_layout
+
+\begin_layout Standard
+Abedeca výrokové formule:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $(,),\lnot,\wedge,\vee,\Rightarrow,\Leftrightarrow$
+\end_inset
+
+ - závorky, negace, konjunkce, disjunkce, implikace, ekvivalence
+\end_layout
+
+\begin_layout Standard
+AND, OR, NOR, NAND, XOR ...
+ logické a (konjunkce), logické nebo (disjunkce), negace OR, negace AND,
+ negace ekvivalence
+\end_layout
+
+\begin_layout Subsubsection*
+Výrok 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ výrokovou formuli
+\end_layout
+
+\begin_layout Standard
+Nebude-li pršet, nezmoknem.
+ 
+\begin_inset Formula $\lnot p\Rightarrow\lnot z$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Není pravda, že uchazeč umí anglicky i německy.
+ 
+\begin_inset Formula $\lnot(a\land n)=\lnot a\vee\lnot n$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Věta:„Pokud rychle napíšeš úkoly a venku bude hezky, půjdeme na procházku
+ nebo pojedeme na koupaliště.“
+\end_layout
+
+\begin_layout Standard
+p — „rychle napíšeš úkoly“ r — „venku bude hezky“ s — „půjdeme na procházku“
+ t — „pojedeme na koupaliště“
+\end_layout
+
+\begin_layout Standard
+Výsledná reprezentace v symbolickém jazyce je: 
+\begin_inset Formula $(p\wedge r)\Rightarrow(s\vee t)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Pravdivostní funkce
+\end_layout
+
+\begin_layout Standard
+Pravdivostní funkce: funkce, která na místo n-tici pravdivostních hodnot
+ určitou pravdivostní hodnotu (
+\begin_inset Formula $0\wedge1\rightarrow0$
+\end_inset
+
+ apod.).
+\end_layout
+
+\begin_layout Standard
+Unární výroková spojka 
+\begin_inset Formula $\lnot$
+\end_inset
+
+ - negace.
+\end_layout
+
+\begin_layout Standard
+Binární výrokové spojky 
+\begin_inset Formula $\wedge,\vee,\Rightarrow,\Leftrightarrow$
+\end_inset
+
+, NOR, NAND, XOR.
+\end_layout
+
+\begin_layout Standard
+Každou výrokovou spojku lze vyjádřit tabulkou.
+ Tabulka má 
+\begin_inset Formula $2^{n}$
+\end_inset
+
+ řádků (n je počet proměnných).
+\end_layout
+
+\begin_layout Standard
+Počet vzájemně různých n-árních spojek je 
+\begin_inset Formula $2^{2^{n}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Tabulky si pamatuješ doufám!
+\end_layout
+
+\begin_layout Standard
+Pomocí NOR a NAND lze vytvořit úplný systém výrokových spojek.
+\end_layout
+
+\begin_layout Standard
+Taky pomocí 
+\begin_inset Formula $\lnot,\land,\lor$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Pravdivostní ohodnocení
+\end_layout
+
+\begin_layout Standard
+Interpretace = funkce, která všem atomickým formulím přiřazuje pravdivostní
+ hodnoty.
+ Definice: Zobrazení z množiny výroků v z V do množiny {0,1}.
+\end_layout
+
+\begin_layout Standard
+Valuace = rozšíření interpretace z atomických na všechny formule výrokových
+ spojek.
+\end_layout
+
+\begin_layout Standard
+Formule je 
+\series bold
+splnitelná
+\series default
+, pokud je splňována alespoň jednou interpretací.
+\end_layout
+
+\begin_layout Standard
+Pokud všechny monžé interpretace splňují formuli, jedná se o 
+\series bold
+tautologii
+\series default
+.
+ (Tautologií je nekonečně mnoho).
+\end_layout
+
+\begin_layout Standard
+Pokud není formule splnitelná (tzn.
+ neexistuje žádná interpretace která by splňovala formuli), tak se jedná
+ o 
+\series bold
+kontradikci
+\series default
+.
+ Negace tautologie je kontradikce.
+ Tudíž kontradikcí je taky nekonečně mnoho.
+\end_layout
+
+\begin_layout Standard
+Množina formulí T je 
+\series bold
+splnitelná
+\series default
+, pokud existuje interpretace I taková, že všechny formule jsou v interpretaci
+ pravdivé.
+ Tato interpretace je pak nazývána 
+\series bold
+modelem
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+Pokud o formuli A tvrdíme, že 
+\series bold
+logicky vyplývá
+\series default
+ z množiny formulí T (značíme 
+\begin_inset Formula $T\vDash A$
+\end_inset
+
+), tak pro každý model I množiny T musí být formule A příslušnou interpretací
+ I splňována (odvození od fungování výrokové spojky 
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+ ).
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Příklad: Zjisti, zda platí logické vyplývání, tzn.
+ platí 
+\begin_inset Formula $T\vDash A$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $T=\{(p\Rightarrow q)\wedge r,q\wedge r,r\Rightarrow s\},\,A=\lnot(p\wedge\lnot s)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+První postup: Vytvoření tabulky hodnot pro všechny proměnné, bohužel máme
+ 4 proměnné, tzn.
+ 
+\begin_inset Formula $2^{4}$
+\end_inset
+
+ možností.
+\end_layout
+
+\begin_layout Standard
+Druhý postup: Podiváme se na všechny modely množiny T a ověříme si, zda-li
+ je formule A v dané interpretaci taky splnitelná.
+\end_layout
+
+\begin_layout Standard
+Určitě platí, že 
+\begin_inset Formula $q=r=1$
+\end_inset
+
+.
+ Přepíšeme teda množinu T: 
+\begin_inset Formula $T=\{(p\Rightarrow1),1\Rightarrow s\}$
+\end_inset
+
+.
+ Dále plyne, že 
+\begin_inset Formula $s=1$
+\end_inset
+
+.
+ Můžeme přepsat i formuli 
+\begin_inset Formula $A=\lnot(p\wedge0)=1$
+\end_inset
+
+.
+ Zbývá formule 
+\begin_inset Formula $(p\Rightarrow1)$
+\end_inset
+
+.
+ Tato formule je vždy pravdivá, tudíž je celá množina splnitelná.
+ Formule A logicky vyplývá z množiny T.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Formální systém výrokové logiky 
+\end_layout
+
+\begin_layout Standard
+Tvořeno jazykem výrokové logiky a deduktivní soustavou, která je tvořena
+ odvozovacími pravidly a axiomy.
+\end_layout
+
+\begin_layout Standard
+Axiom je tvrzení, které je pravdivé a přijímáno bez důkazů.
+\end_layout
+
+\begin_layout Paragraph*
+Věta o implikaci (modus ponens)
+\end_layout
+
+\begin_layout Standard
+Jsou-li formule 
+\begin_inset Formula $A$
+\end_inset
+
+ a 
+\begin_inset Formula $A\Rightarrow B$
+\end_inset
+
+ tautologie, pak i formule 
+\begin_inset Formula $B$
+\end_inset
+
+ je tautologie.
+\end_layout
+
+\begin_layout Standard
+Aplikace věty o implikaci:
+\end_layout
+
+\begin_layout Standard
+Víme, že 
+\begin_inset Formula $p\Rightarrow p$
+\end_inset
+
+ i 
+\begin_inset Formula $(p\Rightarrow p)\Rightarrow(q\Rightarrow(p\Rightarrow p))$
+\end_inset
+
+ je tautologie, tak potom 
+\begin_inset Formula $(q\Rightarrow(p\Rightarrow p))$
+\end_inset
+
+ je tautologie.
+\end_layout
+
+\begin_layout Paragraph*
+Věta o dedukci (sémantická varianta)
+\end_layout
+
+\begin_layout Standard
+Platí, že 
+\begin_inset Formula $A_{1},\,A_{2},\ldots,\,A_{n-1},\,A_{n}\models B$
+\end_inset
+
+ právě když 
+\begin_inset Formula $A_{1},\,A_{2},\ldots,\,A_{n-1}\models A_{n}\Rightarrow B$
+\end_inset
+
+ , což je ekvivalentní po úpravě formuli 
+\begin_inset Formula $A_{1},\,A_{2},\ldots,\,A_{n-1}\models\lnot A_{n}\vee B$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\models A_{1}\lor A_{2}\vee...$
+\end_inset
+
+ je tautologie (prázdná konjunkce na levé straně je vždy pravdivá).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $A_{1},\,A_{2},\ldots\models$
+\end_inset
+
+ je kontradikce (prázdná disjunkce na pravé straně je vždy nepravdivá).
+\end_layout
+
+\begin_layout Standard
+Aplikace věty o dedukci:
+\end_layout
+
+\begin_layout Standard
+Víme, že platí 
+\begin_inset Formula $p\vee q,\,p\wedge\lnot q\models\lnot q$
+\end_inset
+
+.
+ Pak dvojí aplikací věty o dedukci dostaneme tatologii 
+\begin_inset Formula $\models(p\lor q)\Rightarrow((p\land\lnot q)\Rightarrow\lnot q)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Ověř, zda-li se opravdu jedná o tautologii.
+\end_layout
+
+\begin_layout Standard
+Upravíme 
+\begin_inset Formula $\models(p\lor q)\Rightarrow((p\land\lnot q)\Rightarrow\lnot q)$
+\end_inset
+
+ na 
+\begin_inset Formula $(p\lor q)\models\lnot(p\land\lnot q)\lor\lnot q$
+\end_inset
+
+ (nejprve jsme se zbavili hlavní implikace, poté jsme převedli formuli 
+\begin_inset Formula $(p\lor q)$
+\end_inset
+
+ a tím jsme se zbavili negace).
+ Můžeme dále převést první člen na pravé straně doleva, čímž se opět zbavíme
+ negace: 
+\begin_inset Formula $p\lor q,\,p\land\lnot q\models\lnot q$
+\end_inset
+
+.
+ Tato formule (logické vyplývání) je identická s platnou formulí ze zadání.
+\end_layout
+
+\begin_layout Standard
+Ověřit, zda-li se jedná o tautologii by šlo například obecnou rezolucí (po
+ převedení všech prvků na levou stranu).
+\end_layout
+
+\begin_layout Subsubsection*
+Důkaz
+\end_layout
+
+\begin_layout Standard
+Konečná posloupnost správně utvořených formulí, z niž formule je buď axiom
+ nebo odvozená formule (pomocí určitého pravidla) z předcházející správně
+ odvozené formule.
+\end_layout
+
+\begin_layout Standard
+Formule je 
+\series bold
+dokazatelná
+\series default
+ (symbol 
+\begin_inset Formula $\vdash$
+\end_inset
+
+) v určitém systému pouze, když v systému existuje důkaz, jehož je tato
+ formule členem.
+\end_layout
+
+\begin_layout Standard
+Pravdivost určité formule je dána 
+\series bold
+sémantikou
+\series default
+ (např.
+ pravdivostní tabulkou).
+ Dokazatelnost je dána 
+\series bold
+syntaxí
+\series default
+!
+\end_layout
+
+\begin_layout Subsection*
+Normální formy formulí
+\end_layout
+
+\begin_layout Subsubsection*
+Úplná normální konjunktivní forma (únkf)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $D=(x_{0}\vee...\lor x_{i})\wedge...\wedge(x_{0}\vee...\lor x_{i})$
+\end_inset
+
+, kdy 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ je literál (nedělitelný prvek, tzn.
+ atomická formule nebo její negace).
+\end_layout
+
+\begin_layout Standard
+Konstrukce ÚNKF pro formuli F: Vytvoříme tabulku pravdivostních hodnot.
+ Pro každý řádek, kde výsledek 0, vytvoříme disjunkci literálů (
+\begin_inset Formula $a=0,\,b=1$
+\end_inset
+
+ tak vytvoříme 
+\begin_inset Formula $a\vee\lnot b$
+\end_inset
+
+).
+ Tímto způsobem se zbavujeme všech možností, jenž nám produkují nepravdivé
+ hodnoty.
+\end_layout
+
+\begin_layout Standard
+Příklad: Vytvoř ÚKNF pro 
+\begin_inset Formula $a\wedge(a\Rightarrow b)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+a
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+b
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ 
+\begin_inset Formula $a\wedge(a\Rightarrow b)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pak ÚKNF: 
+\begin_inset Formula $(a\vee b)\wedge(a\vee\lnot b)\wedge(\lnot a\vee b)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Úplná normální disjunktivní forma (úndf)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $D=(x_{0}\wedge...\wedge x_{i})\lor...\lor(x_{0}\wedge...\wedge x_{i})$
+\end_inset
+
+, kdy 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ je literál (nedělitelný prvek, tzn.
+ atomická formule nebo její negace).
+\end_layout
+
+\begin_layout Standard
+Konstrukce ÚNDF je podobná jako u disjunktivní formy.
+ Opět vytvoříme tabulku pravdivostních hodnot.
+ Pro řádky, kde pravdivostní hodnota je 1, vytvoříme konjunkci literálů
+ (
+\begin_inset Formula $a=0,\,b=1$
+\end_inset
+
+ tak vytvoříme 
+\begin_inset Formula $\lnot a\lor b$
+\end_inset
+
+).
+ Tímto způsobem přidáváme případy, kdy je výsledek formule roven 1.
+\end_layout
+
+\begin_layout Standard
+Příklad: Vytvoř ÚKNF pro 
+\begin_inset Formula $\lnot a\wedge(a\Rightarrow b)$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+a
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+b
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ 
+\begin_inset Formula $\lnot a\wedge(a\Rightarrow b)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pak ÚKDF: 
+\begin_inset Formula $(\lnot a\wedge\lnot b)\vee(\lnot a\wedge b)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Rezoluce
+\end_layout
+
+\begin_layout Standard
+Formální systém logiky pro (strojové) dokazování.
+ Je založeno na vyvrácení - dokazujeme nesplnitelnost formulí.
+ Průběh rezolucí můžeme reprezentovat pomocí binárního rezolučního stromu.
+\end_layout
+
+\begin_layout Paragraph*
+Klauzule
+\end_layout
+
+\begin_layout Standard
+Konečná množina literálů (atomická formule nebo její negace), chápána jako
+ jejich disjunkce.
+ Je pravdivá, pokud je alespoň jeden prvek pravdivý.
+ Prázdná klauzule je vždy nepravdivá (kontradikce), označeno symbolem 
+\begin_inset Formula $\boxempty$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Příklad: 
+\begin_inset Formula $\{p,\lnot q,r\}$
+\end_inset
+
+ je 
+\begin_inset Formula $p\vee\lnot q\vee r$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Hornova klauzule: Klauzule s pozitivním (prvním) literálem, ostatní jsou
+ negativní.
+ Používají se u LI a SLD rezolucí.
+\end_layout
+
+\begin_layout Paragraph*
+Formule
+\end_layout
+
+\begin_layout Standard
+Množina klauzulí (ne nutně konečná), chápána jako jejich konjunkce.
+ Je pravdivá, pokud jsou všechny klauzule pravdivé.
+\end_layout
+
+\begin_layout Standard
+Příklad: 
+\begin_inset Formula $\{\{p,\lnot q,r\},\{q\},\{r\}\}$
+\end_inset
+
+ je 
+\begin_inset Formula $(p\vee\lnot q\vee r)\wedge q\land r$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph*
+Rezoluční pravidlo:
+\end_layout
+
+\begin_layout Standard
+Nechť 
+\begin_inset Formula $C_{1}=\{p\}\sqcup\dot{C}_{1}$
+\end_inset
+
+ a 
+\begin_inset Formula $C_{2}=\{\lnot p\}\sqcup\dot{C}_{2}$
+\end_inset
+
+ jsou klauzule, tak jejich rezolventou je 
+\begin_inset Formula $C=\dot{C}_{1}\cup\dot{C}_{2}$
+\end_inset
+
+.
+ Zachovává splnitelnost - libovolná valuace (resp.
+ interpretace), která splňuje 
+\begin_inset Formula $C_{1}$
+\end_inset
+
+ a 
+\begin_inset Formula $C_{2}$
+\end_inset
+
+ tak splňuje i C.
+\end_layout
+
+\begin_layout Paragraph*
+Rezoluční důkaz
+\end_layout
+
+\begin_layout Standard
+Klauzule C z formule S je konečná posloupnost klauzulí 
+\begin_inset Formula $C_{1},\,C_{2},\,C_{3},\ldots,C_{n}$
+\end_inset
+
+ (
+\begin_inset Formula $C=C_{n}$
+\end_inset
+
+), kdy 
+\begin_inset Formula $C_{k}$
+\end_inset
+
+ je rezolventou klauzulí 
+\begin_inset Formula $C_{i},\,C_{j}$
+\end_inset
+
+ pro 
+\begin_inset Formula $i,\,j<k$
+\end_inset
+
+.
+ Existuje-li tento důkaz, pak je C rezolučně dokazatelná z S, píšeme 
+\begin_inset Formula $C\vdash_{R}\,S$
+\end_inset
+
+ (tzn.
+ nesplitelná, vyvrátili jsme S 
+\begin_inset Formula $\boxempty$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Subsubsection*
+Typy rezolucí
+\end_layout
+
+\begin_layout Standard
+Obecná rezoluce - Klauzule jako množina, rezolvovat můžeme cokoli s kýmkoli
+ (klidně i několikrát použitou rezoluci, nebo byly vytvořeny během výpočtu).
+ Můžeme rezolvovat věci bokem, nejedná se o rezoluci s lineárním průběhem.
+ Ne každá cesta vede ke sporu, může cyklit.
+\end_layout
+
+\begin_layout Standard
+Lineární rezoluce - Podobně jako obecná rezoluce, avšak s lineárním průběhem.
+\end_layout
+
+\begin_layout Standard
+LI rezoluce - Lineární rezoluce s Hornovými klauzulemi.
+ Začíná s klauzulí, která má všechny literály negativní.
+\end_layout
+
+\begin_layout Standard
+SLD rezoluce - LI rezoluce, avšak místo množiny používá listy.
+ To znamená, že můžeme rezolvovat pouze první literál v každé klauzuli.
+\end_layout
+
+\begin_layout Section*
+Predikátová logika prvního řádu
+\end_layout
+
+\begin_layout Standard
+Predikátová logika využívá oproti výrokové logice tzv.
+ predikáty.
+ Predikát má vyšší vyjadřovací schopnost než výrokové symboly.
+ Predikát je chápán jako vztah nebo vlastnost mezi objekty.
+\end_layout
+
+\begin_layout Subsection*
+Formule predikátové logiky
+\end_layout
+
+\begin_layout Paragraph*
+Term
+\end_layout
+
+\begin_layout Itemize
+Každá proměnná a každá konstanta je term.
+\end_layout
+
+\begin_layout Itemize
+Je-li 
+\begin_inset Formula $f$
+\end_inset
+
+ funkční symbol a 
+\begin_inset Formula $t_{0},\,t_{1},\,\ldots$
+\end_inset
+
+ je term, pak 
+\begin_inset Formula $f(t_{0},t_{1},\ldots)$
+\end_inset
+
+ je term.
+\end_layout
+
+\begin_layout Itemize
+Nic jiného není term.
+\end_layout
+
+\begin_layout Paragraph*
+Atomická formule
+\end_layout
+
+\begin_layout Itemize
+Je-li P n-ární predikátový symbol a 
+\begin_inset Formula $t_{0},\,t_{1},\,\ldots$
+\end_inset
+
+ jsou termy, pak 
+\begin_inset Formula $P(t_{0},t_{1},\ldots)$
+\end_inset
+
+ je atomická formule.
+\end_layout
+
+\begin_layout Itemize
+Jsou-li 
+\begin_inset Formula $t_{0},t_{1}$
+\end_inset
+
+ termy, pak 
+\begin_inset Formula $t_{0}=t_{1}$
+\end_inset
+
+ je atomická formule.
+\end_layout
+
+\begin_layout Itemize
+Nic jiného není automická formule.
+\end_layout
+
+\begin_layout Subsubsection*
+Formule
+\end_layout
+
+\begin_layout Itemize
+Každá atomická formule je formule.
+\end_layout
+
+\begin_layout Itemize
+Jeli A formule, pak 
+\begin_inset Formula $\lnot A$
+\end_inset
+
+ je formule.
+\end_layout
+
+\begin_layout Itemize
+Jsou-li A, B formule, pak i 
+\begin_inset Formula $A\land B$
+\end_inset
+
+, 
+\begin_inset Formula $A\lor B$
+\end_inset
+
+, 
+\begin_inset Formula $A\Rightarrow B$
+\end_inset
+
+, 
+\begin_inset Formula $A\Leftrightarrow B$
+\end_inset
+
+ jsou formule.
+\end_layout
+
+\begin_layout Itemize
+Je-li x proměnná a A je formule, pak 
+\begin_inset Formula $\exists xA$
+\end_inset
+
+ a 
+\begin_inset Formula $\forall xA$
+\end_inset
+
+ jsou formule.
+\end_layout
+
+\begin_layout Itemize
+Nic jiného není formule.
+\end_layout
+
+\begin_layout Subsection*
+Kvantifikátory
+\end_layout
+
+\begin_layout Itemize
+Existenční kvantifikátor 
+\begin_inset Formula $\exists xP(x)$
+\end_inset
+
+ - pro alespoň jeden prvek platí predikát P (disjunkce).
+ Proměnná x je tzv.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+vázaná proměnná
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Každá proměnná která není vázaná, je volná.
+\end_layout
+
+\begin_layout Itemize
+Univerzální (obecný) kvantifikátor 
+\begin_inset Formula $\forall xP(x)$
+\end_inset
+
+ - pro všechny prvky platí predikát P (konjunkce).
+\end_layout
+
+\begin_layout Subsection*
+Sémantika
+\end_layout
+
+\begin_layout Subsubsection*
+Interpretace
+\end_layout
+
+\begin_layout Itemize
+Složená z libovolné (neprázdné) množiny D (obor interpretace)
+\end_layout
+
+\begin_layout Itemize
+Zobrazení 
+\begin_inset Formula $I(f):\,D^{n}\rightarrow D$
+\end_inset
+
+ pro každá n-ární funkční symbol
+\end_layout
+
+\begin_layout Itemize
+N-ární relace 
+\begin_inset Formula $I(P)\subseteq D^{n}$
+\end_inset
+
+pro každá n-ární predikátový symbol P, 
+\begin_inset Formula $n\geq1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Neformálně: Interpretace je přiřazení konkrétních významů všem predikátům,
+ funkcím a konstantám.
+\end_layout
+
+\begin_layout Subsubsection*
+Valuace
+\end_layout
+
+\begin_layout Standard
+Spočívá v přiřazení hodnot všem volným proměnným.
+\end_layout
+
+\begin_layout Subsubsection*
+Prenexová normální forma
+\end_layout
+
+\begin_layout Standard
+Cíl prenexové normální formy je vytvořit predikátovou formuli s kvantifikátory,
+ jenž budou umístěny na začátku formule a proměnné uprostřed (v KNF).
+ Příklad: 
+\begin_inset Formula $\exists x\forall y((P(y)\lor Q(x)\land(\lnot P(x)))$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Pro každou formuli existuje ekvivalentní formule v prenexové normální formě.
+\end_layout
+
+\begin_layout Standard
+Algoritmus převodu:
+\end_layout
+
+\begin_layout Itemize
+Eliminovat zbytečné (redundantní, nevyužité) kvantifikátory.
+\end_layout
+
+\begin_layout Itemize
+Přejmenovat proměnné tak, aby u každého kvantifikátoru byla jiná proměnná.
+\end_layout
+
+\begin_layout Itemize
+Eliminovat spojky různé od 
+\begin_inset Formula $\lnot,\land,\lor$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Přesunout negaci kvantifkátorů 
+\begin_inset Quotes eld
+\end_inset
+
+dovnitř
+\begin_inset Quotes erd
+\end_inset
+
+ (př.
+ 
+\begin_inset Formula $\lnot\forall xP(x)=\exists x\lnot P(x)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Přesunout kvantifikátory doleva.
+\end_layout
+
+\begin_layout Itemize
+Použít distributivní zákony pro převod do KNF.
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\forall x\exists y\lnot(P(x,y)\Rightarrow\forall zR(y))\lor\lnot\exists xQ(x)$
+\end_inset
+
+ (1)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\forall x\exists y\lnot(P(x,y)\Rightarrow R(y))\lor\lnot\exists xQ(x)$
+\end_inset
+
+ (2)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\forall x\exists y\lnot(P(x,y)\Rightarrow R(y))\lor\lnot\exists zQ(z)$
+\end_inset
+
+ (3)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\forall x\exists y\lnot(\lnot P(x,y)\lor R(y))\lor\lnot\exists zQ(z)$
+\end_inset
+
+ (4)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\forall x\exists y(P(x,y)\land\lnot R(y))\lor\forall z\lnot Q(z)$
+\end_inset
+
+ (5)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\forall x\exists y\forall z((P(x,y)\land\lnot R(y))\lor\lnot Q(z))$
+\end_inset
+
+ (6)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\forall x\exists y\forall z((P(x,y)\lor\lnot Q(z))\land(\lnot R(y)\lor\lnot Q(z)))$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Hornovy klauzule
+\end_layout
+
+\begin_layout Standard
+Hornova klauzule je speciální klazulule s jedním pozitivním literálem.
+ Používá se u LI a SLD rezolucí (Prolog).
+\end_layout
+
+\begin_layout Standard
+Zápis: 
+\begin_inset Formula $\lnot x_{1}\lor\lnot x_{2}\lor\ldots\lor y$
+\end_inset
+
+ je ekvivalentní s 
+\begin_inset Formula $x_{1}\land x_{2}\land\ldots\Rightarrow y$
+\end_inset
+
+.
+\end_layout
+
+\end_body
+\end_document

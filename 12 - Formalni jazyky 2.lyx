@@ -1,0 +1,1039 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Formální jazyky 2 - (bezkontextové jazyky)
+\end_layout
+
+\begin_layout Subsection*
+Bezkontextová gramatika (CFG = Context free grammar)
+\end_layout
+
+\begin_layout Standard
+Bezkontextová gramatika G (typ 2 v Chomského hierarchii gramatik) je opět
+ čtveřice: 
+\begin_inset Formula $G=(N,\Sigma,P,S)$
+\end_inset
+
+, kde
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $N$
+\end_inset
+
+ je množina neterminálů
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\Sigma$
+\end_inset
+
+ je množina terminálů (abeceda), platí 
+\begin_inset Formula $\Sigma\cap N=\emptyset$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $P$
+\end_inset
+
+ jsou pravidla gramatiky, nechť 
+\begin_inset Formula $V=\Sigma\cup N$
+\end_inset
+
+, pak 
+\begin_inset Formula $P\subseteq V^{*}NV^{*}\rightarrow V^{*}$
+\end_inset
+
+ (u CFG se jedná pouze o pravidla typu 
+\begin_inset Formula $A\rightarrow V^{*}$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $S$
+\end_inset
+
+ je počáteční neterminál (je opět povoleno 
+\begin_inset Formula $S\rightarrow\varepsilon$
+\end_inset
+
+, avšak S se nemůže vyskytovat na žádné pravé straně pravidla).
+\end_layout
+
+\begin_layout Standard
+Všechny regulární jazyky jsou implicitně bezkontextové (regularní jazyky
+ 
+\begin_inset Formula $\subseteq$
+\end_inset
+
+ bezkontextové jazyky).
+\end_layout
+
+\begin_layout Standard
+Gramatiku můžeme přepsat do jedno z možných kanonických tvarů.
+\end_layout
+
+\begin_layout Subsubsection*
+Kanonické tvary CFG
+\end_layout
+
+\begin_layout Paragraph*
+Redukované gramatiky
+\end_layout
+
+\begin_layout Standard
+Zde eliminujeme nedosažitelné a nenormované pravidla.
+ Nedosažitelné pravidlo je takové pravidlo X, pro které 
+\series bold
+neplatí
+\series default
+ 
+\begin_inset Formula $S\stackrel{*}{\Rightarrow}\alpha X\beta$
+\end_inset
+
+ (
+\begin_inset Formula $\alpha,\beta$
+\end_inset
+
+ jsou libovolné řetězce neterminálů a terminálů).
+ Nenormované pravidlo je takové pravidlo, které nelze uzavřít terminálem,
+ tzn.
+ 
+\series bold
+není
+\series default
+ ve tvaru 
+\begin_inset Formula $X\stackrel{*}{\Rightarrow}\alpha$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph*
+Gramatika bez epsilon pravidel
+\end_layout
+
+\begin_layout Standard
+Neobsahují standardně žádné pravidlo 
+\begin_inset Formula $A\rightarrow\varepsilon$
+\end_inset
+
+, ale pokud opravdu potřebují, tak pouze 
+\begin_inset Formula $S\rightarrow\varepsilon$
+\end_inset
+
+, přičemž S nemůže být na pravé straně pravidla.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Odstranění epsilon pravidel
+\series default
+ proběhne následovně: Máme-li pravidla ve tvaru 
+\begin_inset Formula $X\rightarrow\varepsilon|\gamma|\lambda|\ldots,\,Y\rightarrow\alpha X\beta$
+\end_inset
+
+ (
+\begin_inset Formula $\alpha,\beta,\gamma,\lambda$
+\end_inset
+
+ jsou libovolné řetězce neterminálů a terminálů), pak odstraníme pravidlo
+ 
+\begin_inset Formula $X\rightarrow\varepsilon$
+\end_inset
+
+ a pomocí substituce přesunem zbytek pravidla X do pravidla Y na tvar: 
+\begin_inset Formula $Y\rightarrow\alpha\gamma\beta|\alpha\lambda\beta|\alpha\ldots\beta$
+\end_inset
+
+ apod.
+\end_layout
+
+\begin_layout Paragraph*
+Gramatika bez jednoduchých pravidel
+\end_layout
+
+\begin_layout Standard
+Gramatika neobsahuje pravidla ve tvaru 
+\begin_inset Formula $X\rightarrow A$
+\end_inset
+
+, kde A je neterminál.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Odstranění jednoduchých pravidel
+\series default
+: Máme-li pravidlo 
+\begin_inset Formula $X\rightarrow A$
+\end_inset
+
+ a 
+\begin_inset Formula $A\rightarrow\alpha|\beta|\ldots$
+\end_inset
+
+, kde 
+\begin_inset Formula $\alpha,\beta$
+\end_inset
+
+ je řetězec terminálů a neterminálů, pak jednoduchým dosazením upravíme
+ pravidlo X: 
+\begin_inset Formula $X\rightarrow\alpha|\beta|\ldots$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph*
+Vlastní gramatika
+\end_layout
+
+\begin_layout Standard
+Gramatika bez epsilon pravidel, bez jednoduchých pravidel a je redukovaná
+ (má dosažitelná a normovaná pravidla).
+\end_layout
+
+\begin_layout Paragraph*
+Bez levé rekurze
+\end_layout
+
+\begin_layout Standard
+Gramatika nemá pravidla ve tvaru 
+\begin_inset Formula $A\rightarrow A\alpha$
+\end_inset
+
+, kde A je neterminál a 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ je libovolný řetězec terminálů a neterminálů.
+ Gramatika bez levé rekurze je vyžadována například u strojového parsování
+ syntaxe.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Odstranění levé rekurze
+\series default
+: Máme jednoduchou levou rekurzi ve tvaru 
+\begin_inset Formula $A\rightarrow AaB|b|c$
+\end_inset
+
+ (generuje slovo 
+\begin_inset Formula $b|c...(aB)*...$
+\end_inset
+
+).
+ Potřebujeme se zbavit neterminálu A na začátku pravidla: 
+\begin_inset Formula $A\rightarrow b|c|baB|caB|baBA'|caBA',\,A'\rightarrow aBA'|aB$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Chomského a Greibachova normální forma
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\series bold
+Chomského NF
+\series default
+ je ve tvaru:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $X\rightarrow AB$
+\end_inset
+
+, kde X,A,B jsou neterminály
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $X\rightarrow a$
+\end_inset
+
+, kde X je neterminál a 
+\begin_inset Formula $a$
+\end_inset
+
+ je terminál
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $S\rightarrow\varepsilon$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Převod do Chomského NF: Stačí, aby gramatika byla bez epsilon pravidel,
+ redukovaná, bez jednoduchých pravidel.
+ Poté gramatiku předevedem do CNF tak, že budeme provádět substituce 
+\begin_inset Formula $X\rightarrow a'A,\,a'\rightarrow a$
+\end_inset
+
+ za 
+\begin_inset Formula $X\rightarrow aA$
+\end_inset
+
+.
+ Pokud je pravidlo ve tvaru 
+\begin_inset Formula $Y\rightarrow aAb$
+\end_inset
+
+ (kde a,b jsou terminály), pak pravidlo převedeme následujícím způsobem:
+ 
+\begin_inset Formula $Y\rightarrow(aA)'b',\,b'\rightarrow b,(aA)'\rightarrow a'A,\,a'\rightarrow a$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+
+\series bold
+Greibachova NF
+\series default
+ je ve tvaru:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $X\rightarrow aY$
+\end_inset
+
+, kde a je terminál, X neterminál a Y řetězec neterminálů (mohou být prázdné)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $S\rightarrow\varepsilon$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Greibachova NF je nelevorekurzivní, tudíž nejprve odstraníme levou rekurzi.
+ Následně převádíme podobně jako u CNF.
+\end_layout
+
+\begin_layout Subsection*
+Typy zásobníkových automatů
+\end_layout
+
+\begin_layout Standard
+Máme několik druhý zásobníkových automatů, například nedeterministický zásobníko
+vý automat (PDA), deterministický zásobníkový automat (DPDA) a rozšířený
+ zás.
+ automat.
+\end_layout
+
+\begin_layout Subsubsection*
+Nedeterministický zásobníkový automat (PDA = PushDown Automata)
+\end_layout
+
+\begin_layout Standard
+Sedmice 
+\begin_inset Formula $PDA=(Q,\Sigma,\Gamma,\delta,q_{0},Z_{0},F)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Q je množina stavů
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\Sigma$
+\end_inset
+
+ je abeceda (množina přechodů)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\Gamma$
+\end_inset
+
+ je abeceda zásobníku
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\delta$
+\end_inset
+
+ je parciální přechodová funkce: 
+\begin_inset Formula $\delta:\,Q\times(\Sigma\cup\{\varepsilon\})\times\Gamma\longrightarrow P_{fin}(Q\times\Gamma^{*})$
+\end_inset
+
+, kde 
+\begin_inset Formula $P_{fin}$
+\end_inset
+
+ vrací konečnou množinu.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $q_{0}$
+\end_inset
+
+ je počáteční stav automatu
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $Z_{0}$
+\end_inset
+
+ je počáteční stav na zásobníku
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $F\subseteq Q$
+\end_inset
+
+ je množina koncových stavů
+\end_layout
+
+\begin_layout Subsubsection*
+Deterministický zásobníkový automat (DPDA)
+\end_layout
+
+\begin_layout Standard
+Zde je rozdíl v principu výpočtu.
+ Nedeterministický automat může být ve více stavech 
+\begin_inset Quotes eld
+\end_inset
+
+najednou
+\begin_inset Quotes erd
+\end_inset
+
+ (tzn.
+ může mít více větví výpočtu), dokonce i zásobník může mít několik různých
+ podob.
+\end_layout
+
+\begin_layout Standard
+Formální rozdíl mezi DPDA a PDA je ten, že přechodová funkce:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta(q_{1},\alpha,\beta)$
+\end_inset
+
+ je unikátní, a proto existuje jenom jeden průběh výpočtu (jedna možnost,
+ jak dále pokračovat).
+\end_layout
+
+\begin_layout Subsubsection*
+Rozšířený zásobníkový automat
+\end_layout
+
+\begin_layout Standard
+Hlavní rozdíl zde spočívá ve čtení zásobníku, můžeme z něj přečíst více
+ znaků najednou.
+\end_layout
+
+\begin_layout Standard
+Parciální přechodová funkce je následující 
+\begin_inset Formula $\delta:\,Q\times\Sigma\cup\{\varepsilon\}\times\Gamma^{*}\rightarrow P_{fin}(Q\times\Gamma^{*})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Metody akceptování
+\end_layout
+
+\begin_layout Standard
+PDA může akceptovat buď:
+\end_layout
+
+\begin_layout Itemize
+prázdným zásobníkem
+\end_layout
+
+\begin_layout Itemize
+určitým stavem
+\end_layout
+
+\begin_layout Itemize
+obojím
+\end_layout
+
+\begin_layout Standard
+Mezi styly akceptování lze převádět a jsou ekvivalentní (stejně silné při
+ výpočtu).
+\end_layout
+
+\begin_layout Subsection*
+Nedeterministická syntaktická analýza
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Derivační strom
+\series default
+ - takový strom, který zobrazuje průběh 
+\begin_inset Quotes eld
+\end_inset
+
+výpočtu
+\begin_inset Quotes erd
+\end_inset
+
+ gramatiky, než získáme požadované slovo.
+ Kořen stromu je počáteční neterminál (zpravidla S), terminály jsou listy
+ a neterminály vnitřní uzly stromu.
+\end_layout
+
+\begin_layout Standard
+Gramatika je pro jazyk L jednoznačná, pokud existuje právě jeden derivační
+ strom ke každém slovu z jazyka L.
+\end_layout
+
+\begin_layout Standard
+Pomocí deneterministické syntaktické analýzy určujeme, zda-li testované
+ slovo je součástí jazyka (resp.
+ gramatiky) a jak vypadá jeho 
+\begin_inset Quotes eld
+\end_inset
+
+výpočet
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Existují dvě analýzy, 
+\series bold
+shora dolů
+\series default
+ a 
+\series bold
+zdola nahoru
+\series default
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Shora dolů
+\end_layout
+
+\begin_layout Standard
+Nejprve vytvoříme derivační strom pro konkrétní slovo w.
+ Podle derivačního stromu bude provedena analýza shora dolů.
+ Analýza shora dolů je konečná posloupnost ve tvaru 
+\begin_inset Formula $xy,x\alpha\overset{x}{\vdash}y,\alpha$
+\end_inset
+
+ (kde xy je podslovo w a 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ je konečná posloupnost terminálů a neterminálů (utvoření pomocí gramatických
+ pravidel)) a tvaru 
+\begin_inset Formula $xy,\alpha\overset{\varepsilon}{\vdash}xy,\beta$
+\end_inset
+
+ (kde xy je podslovo w 
+\begin_inset Formula $\alpha,\beta$
+\end_inset
+
+ je konečná posloupnost terminálů a neterminálů, přičemž platí, že existuje
+ pravidlo 
+\begin_inset Formula $\alpha\longrightarrow\gamma$
+\end_inset
+
+ (
+\begin_inset Formula $\gamma\preceq\beta$
+\end_inset
+
+ - gamma je podřetězec bety)).
+\end_layout
+
+\begin_layout Standard
+Na řádek zapíšeme slovo w spolu s počátečním neterminálem (obvykle S).
+ Pomocí zápisů druhého tvaru upravíme S podle pravidel gramatiky na takový
+ tvar, abychom získali na začátku stejný počáteční neterminál.
+ Díky prvnímu tvaru neterminál eliminujeme a pokračujeme, dokud na obou
+ stranách nezůstane zápis 
+\begin_inset Formula $\vdash^{*}\varepsilon,\varepsilon$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph*
+Příklad
+\end_layout
+
+\begin_layout Standard
+Máme gramatiku 
+\begin_inset Formula $G=(\{S,A,B\},\{a,b\},P,S)$
+\end_inset
+
+, 
+\begin_inset Formula $P=\{S\rightarrow aAB,\,A\rightarrow Aa|\varepsilon,\,B\rightarrow SaA|b\}$
+\end_inset
+
+.
+ Analyzuj slovo aaba a otestuj, zda-li jej generuje gramatika G.
+\end_layout
+
+\begin_layout Standard
+Derivační strom:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename img/derivation_tree.png
+	lyxscale 50
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Analýza: 
+\begin_inset Formula $aaba,S\overset{\varepsilon}{\vdash}aaba,aAB\overset{a}{\vdash}aba,AB\overset{\varepsilon}{\vdash}aba,B\overset{\varepsilon}{\vdash}aba,SaA\overset{\varepsilon}{\vdash}aba,aABaA\overset{a}{\vdash}ba,ABaA\overset{\varepsilon}{\vdash}ba,BaA\overset{\varepsilon}{\vdash}ba,baA\overset{b}{\vdash}a,aA\overset{a}{\vdash}\varepsilon,A\overset{\varepsilon}{\vdash}\varepsilon,\varepsilon$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Vytvoříme ekvivalentní PDA:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta(y,a,\varepsilon)=\{(y,a)\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta(y,b,\varepsilon)=\{(y,b)\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta(y,\varepsilon,S)=\{(y,aAB)\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta(y,\varepsilon,A)=\{(y,Aa),(y,\varepsilon)\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta(y,\varepsilon,B)=\{(y,SaA),(y,b)\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta(y,a,a)=\{(y,\varepsilon)\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta(y,b,b)=\{(y,\varepsilon)\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Máme PDA: 
+\begin_inset Formula $M=(\{y\},\{a,b\},\{a,b,S,A,B\},\delta,y,S,\{y\})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Zdola nahoru
+\end_layout
+
+\begin_layout Standard
+Pro tuto analýzu je nutností vytvořit derivační strom pro analyzované slovo.
+ Analýza je opět konečná posloupnost ve tvaru 
+\begin_inset Formula $(y,a\alpha,\beta)\overset{a}{\vdash}(y,\alpha,\beta a)$
+\end_inset
+
+ (zásobník je zde složený na 
+\begin_inset Quotes eld
+\end_inset
+
+pravý bok
+\begin_inset Quotes erd
+\end_inset
+
+) a 
+\begin_inset Formula $(y,\alpha,\beta)\overset{\varepsilon}{\vdash}(y,\alpha,\gamma)$
+\end_inset
+
+, pokud existuje pravidlo 
+\begin_inset Formula $\gamma\rightarrow\beta$
+\end_inset
+
+.
+ To znamená, že výpočet probíhá 
+\begin_inset Quotes eld
+\end_inset
+
+obráceně
+\begin_inset Quotes erd
+\end_inset
+
+, ze řetězce terminálů a neterminálů na pravé straně pravidla převádíme
+ na neterminály, jenž jsou na levé straně pravidla.
+ Akceptujeme prázdným zásobníkem.
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+Máme gramatiku 
+\begin_inset Formula $G=(\{S,A,B\},\{a,b\},P,S)$
+\end_inset
+
+, 
+\begin_inset Formula $P=\{S\rightarrow aAB,\,A\rightarrow Aa|\varepsilon,\,B\rightarrow SaA|b\}$
+\end_inset
+
+.
+ Analyzuj slovo aaba a otestuj, zda-li jej generuje gramatika G.
+\end_layout
+
+\begin_layout Standard
+Derivační strom je stejný jako u analýzy shora dolů.
+ Jdeme zleva do prava..
+\end_layout
+
+\begin_layout Standard
+Analýza:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $(y,aaba,\perp)\overset{a}{\vdash}(y,aba,\perp a)\overset{\varepsilon}{\vdash}(y,aba,\perp aA)\overset{a}{\vdash}(y,ba,\perp aAa)\overset{\varepsilon}{\vdash}(y,ba,\perp aAaA)\overset{b}{\vdash}(y,a,\perp aAaAb)\overset{\varepsilon}{\vdash}(y,a,\perp aAaAB)\overset{\varepsilon}{\vdash}(y,a,\perp aAS)\overset{a}{\vdash}(y,\varepsilon,\perp aASa)\overset{\varepsilon}{\vdash}(y,\varepsilon,\perp aASaA)\overset{\varepsilon}{\vdash}(y,\varepsilon,\perp aAB)\overset{\varepsilon}{\vdash}(y,\varepsilon,\perp S)\overset{\varepsilon}{\vdash}(r,\varepsilon,\varepsilon)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Vytvoříme ekvivalentní PDA:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta(y,a,\varepsilon)=\{(y,a)\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta(y,b,\varepsilon)=\{(y,b)\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta(y,\varepsilon,\varepsilon)=\{(y,A)\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta(y,\varepsilon,Aa)=\{(y,A)\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta(y,\varepsilon,b)=\{(y,B)\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta(y,\varepsilon,SaA)=\{(y,B)\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta(y,\varepsilon,aAB)=\{(y,S)\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta(y,\varepsilon,\perp S)=\{(r,\varepsilon)\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Máme PDA: 
+\begin_inset Formula $M=(\{y,r\},\{a,b\},\{a,b,S,A,B\},\delta,y,\perp,\{r\})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Pumping lemma pro CFL
+\end_layout
+
+\begin_layout Standard
+Podobně jako pro regulární jazyky, pumping lemma pro bezkontextové jazyky
+ dokazuje, že jazyk není bezkontextový! Pomocí PL nedokážeme určit, zda-li
+ je jazyk kontextový.
+\end_layout
+
+\begin_layout Standard
+Definice:
+\end_layout
+
+\begin_layout Quote
+Nechť jazyk L je bezkontextový.
+ Pak existuje číslo 
+\begin_inset Formula $n\in\mathbb{Z}^{+}$
+\end_inset
+
+ a slovo 
+\begin_inset Formula $w\in L$
+\end_inset
+
+ takové, že 
+\begin_inset Formula $|w|\geq n$
+\end_inset
+
+ a lze ho zapsat ve tvaru w=uvwxy, přičemž platí že 
+\begin_inset Formula $|vwx|\leq n,\,vx\neq\varepsilon$
+\end_inset
+
+ a 
+\begin_inset Formula $w'=uv^{i}wx^{i}y$
+\end_inset
+
+ patří do L pro každé 
+\begin_inset Formula $i\in\mathbb{Z}^{+}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+Zjisti, zda-li je jazyk 
+\begin_inset Formula $L=\{a^{i}b^{i}c^{i}|i\in\mathbb{N}\}$
+\end_inset
+
+ bezkontextový.
+\end_layout
+
+\begin_layout Standard
+Pro naše slovo 
+\begin_inset Formula $w=uvwxy$
+\end_inset
+
+ a 
+\begin_inset Formula $n\in\mathbb{Z}^{+}$
+\end_inset
+
+ bude platit:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $u=a^{n},\,v=b,\,w=b^{n-2},x=b,y=c^{n}\Longrightarrow w=a^{n}bb^{n-2}bc^{n}\in L$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Nyní zvolíme pumpovací konstantu 
+\begin_inset Formula $i=2$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $w'=uv^{2}wx^{2}y=a^{n}b^{2}b^{n-2}b^{2}c^{n}=a^{n}b^{n+2}c^{n}\Longrightarrow$
+\end_inset
+
+ jazyk L není bezkontextový (pomocí zásobníku lze počítat pouze dvě různé
+ proměnné).
+\end_layout
+
+\begin_layout Subsection*
+Uzávěrové vlastnosti
+\end_layout
+
+\begin_layout Standard
+CFL jazyky 
+\begin_inset Formula $L_{1},\,L_{2}$
+\end_inset
+
+ jsou uzavřené na následující operace:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $L_{1}\cup L_{2}$
+\end_inset
+
+ - Vytvoříme dva PDA, které paralerne akceptují 
+\begin_inset Formula $L_{1}\,i\,L_{2}$
+\end_inset
+
+, ke koncovým stavům vytvoříme epsilon přechody do společného koncového
+ stavu.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $L_{1}\cdot L_{2}$
+\end_inset
+
+ - První PDA akceptuje 
+\begin_inset Formula $L_{1}$
+\end_inset
+
+, poté akceptuje 
+\begin_inset Formula $L_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Dále je uzavřený na 
+\begin_inset Formula $L_{1}^{*}$
+\end_inset
+
+, 
+\begin_inset Formula $L_{1}^{+}$
+\end_inset
+
+, průnik s regulárním jazykem (výsledek je regulární jazyk).
+\end_layout
+
+\begin_layout Itemize
+CFL nejsou uzavřené na doplněk, průnik, rozdíl.
+\end_layout
+
+\end_body
+\end_document

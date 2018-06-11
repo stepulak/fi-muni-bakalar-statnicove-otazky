@@ -1,0 +1,777 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Základní datové struktury
+\end_layout
+
+\begin_layout Subsection*
+Seznam
+\end_layout
+
+\begin_layout Standard
+Datová struktura, jenž může mít duplicitní prvky, které jsou poskládány
+ v řadě za sebou, umožňuje zpravidla následující operace:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Vytvoření seznamu (create_list)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Vložení/vymazání začátku/konce (push_front, push_back, pop_front, pop_back)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Nalezení prvku (find_node)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Smazání prvku uprostřed (remove_node)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Vložení prvku uprostřed (insert_node)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Získání počátečního/koncového prvku (front, back)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Velikost listu (size)
+\end_layout
+
+\begin_layout Subsubsection*
+Implementace pomocí spojeného seznamu (linked list)
+\end_layout
+
+\begin_layout Standard
+Spojený seznam je datová struktura, jenž umožňuje efektivní vkládání a mazání
+ prvků.
+ Spojený seznam se obvykle skládá z několika zřetězených uzlů (nodů), přičemž
+ se (v rámci seznamu) drží pouze ukazatele na počáteční uzel a koncový uzel
+ (hovoříme-li o double linked listu).
+\end_layout
+
+\begin_layout Standard
+Double linked list uzly mají zpravidla následující strukturu: 
+\begin_inset Formula $(previous\,node\,ptr,value,next\,node\,ptr)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Hovoříme-li o single linked listu, uzel obsahuje pouze ukazatel na následující
+ prvek.
+ V některých případech to může znamenat výhodu (úspora paměti apod.), avšak
+ z knihoven programovacích jazyků se využívají zpravidla implementace double
+ linked listů (C++ STL std::list, C# .NET LinkedList apod.).
+\end_layout
+
+\begin_layout Paragraph*
+Operace
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Vytvoření seznamu
+\series default
+ má konstantní časovou složitost 
+\begin_inset Formula $\mathcal{O}(1)$
+\end_inset
+
+, protože vytvoříme pouze seznam s prázdnými (null) ukazateli na počáteční
+ a koncový prvek.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Vložení prvku na začátek i na konec
+\series default
+ - konstantní časová složitost 
+\begin_inset Formula $\mathcal{O}(1)$
+\end_inset
+
+, pouze vytvoříme nový uzel a přenastavíme ukazatele (node.next = list.front,
+ node.previous = null, list.front.previous = node, list.front = node).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Smazání prvku na začátku či na konci
+\series default
+ - konstantní časová složitost 
+\begin_inset Formula $\mathcal{O}(1)$
+\end_inset
+
+, nutná úprava ukazatelů.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Nalezení prvku
+\series default
+ - lineární časová složitost vůči délce listu 
+\begin_inset Formula $\mathcal{O}(n)$
+\end_inset
+
+, musíme iterovat skrze celý list, dokud nenalezneme hledaný uzel.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Smazání prvku uprostřed
+\series default
+ - konstantní časová složitost 
+\begin_inset Formula $\mathcal{O}(1)$
+\end_inset
+
+, uzel se vyjme a přenastaví se ukazatele (node.previous.next = node.next,
+ node.next.previous = node.previous)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Vložení prvku uprostřed
+\series default
+ - opět konstantní časová složitost 
+\begin_inset Formula $\mathcal{O}(1)$
+\end_inset
+
+, přidáme nový uzel a nastavíme na něj ukazatele (previousnode = node, nextnode
+ = node.next, newnode.next = nextnode, newnode.previous = previousnode, previousnod
+e.next = newnode, nextnode.previous = newnode)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Získání počátečního/koncového uzlu
+\series default
+ - konstantní složitost 
+\begin_inset Formula $\mathcal{O}(1)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Velikost listu
+\series default
+ - zpravidla konstantní (pokud udržujeme počítadlo), jinak lineární časová
+ složitost (musíme spočítat počet uzlů).
+\end_layout
+
+\begin_layout Subsubsection*
+Implementace pomocí pole
+\end_layout
+
+\begin_layout Standard
+Pole je, co se týče alokace na RAM, sekvenční paměť (tzn.
+ v rámci jednoho celku).
+ Můžeme tedy s konstantní složitostí přistoupit k libovolnému prvku, neboť
+ platí, že i-tý prvek je na pozici 
+\begin_inset Formula $počátek+i*velikost\,prvku$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Pokud implementujeme seznam pomocí pole, nepotřebujeme řešit vztahy a ukazatele
+ na jednotlivé uzly.
+ Seznam si pouze drží ukazatel na začátek pole.
+\end_layout
+
+\begin_layout Standard
+List pomocí pole je využívanou datovou strukturou, například C++ STL std::vector
+, C# .NET ArrayList.
+\end_layout
+
+\begin_layout Paragraph*
+Operace
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Vytvoření seznamu
+\series default
+ má konstantní časovou složitost 
+\begin_inset Formula $\mathcal{O}(1)$
+\end_inset
+
+, stačí alokovat prázdné pole s konkrétní velikostí.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Vložení prvku na začátek
+\series default
+ - lineární časová složitost, musíme posunout všechny prvky o jednu pozici
+ doprava (nejlépe, když iterujeme od koncového prvku a i-tý prvek přesuneme
+ na 
+\begin_inset Formula $(i+1)$
+\end_inset
+
+-tou pozici).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Vložení prvku na konec
+\series default
+ - amortizovaně konstantní, avšak pokud je počet prvků 
+\begin_inset Formula $\geq$
+\end_inset
+
+ velikost pole, je nutná realokace (obvykle dvojnásobek velikosti starého
+ pole) a překopírování původního obsahu.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Smazání prvku na začátku
+\series default
+ - lineární časová složitost, nutné opět překopírovat prvky seznamu o jednu
+ pozici doleva.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Smazání prvku na konci
+\series default
+ - konstantní časová složitost, prvek prostě ignorujeme (snížíme akorát
+ čítač prvků).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Nalezení prvku
+\series default
+ - lineární časová složitost, pokud máme uspořádaný seznam podle velikosti,
+ i logaritmická (binární vyhledávání).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Smazání prvku uprostřed
+\series default
+ - lineárně časová složitost, nutné překopírovat všechny prvky napravo o
+ jednu pozici doleva (i-tý prvek na 
+\begin_inset Formula $(i-1)-tou$
+\end_inset
+
+ pozici)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Vložení prvku uprostřed
+\series default
+ - lineárně časová složitost, nutní překopírovat všechny prvky napravo o
+ jednu pozici doprava (i-tý prvek na 
+\begin_inset Formula $(i+1)-tou$
+\end_inset
+
+ pozici)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Získání počátečního/koncového prvku
+\series default
+ - konstantní časová složitost 
+\begin_inset Formula $\mathcal{O}(1)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Velikost listu
+\series default
+ - konstantní složitost (máme li čítač prvků).
+\end_layout
+
+\begin_layout Subsection*
+Množina (set)
+\end_layout
+
+\begin_layout Standard
+Z matematického hlediska se jedná o soubor prvků, nimiž je plně definována
+ (určena).
+ Nemůže obsahovat duplicitní prvky (multimnožina ano - viz například multigraf).
+\end_layout
+
+\begin_layout Standard
+Můžeme implementovat pomocí seznamu, avšak při každém zápisu nového prvku
+ musíme ověřovat duplicitu.
+ Vyšší řežie a vyšší časové složitost.
+ Vhodné implementace: pomocí 
+\series bold
+hashovací tabulky
+\series default
+, nebo 
+\series bold
+vyváženého stromu
+\series default
+ (RedBlack tree, AVL tree).
+\end_layout
+
+\begin_layout Paragraph*
+Operace pro hash set
+\end_layout
+
+\begin_layout Standard
+Viz hashovací tabulka níže.
+\end_layout
+
+\begin_layout Paragraph*
+Operace pro balanced trees
+\end_layout
+
+\begin_layout Standard
+Viz otázka datové struktury založené na stromech.
+\end_layout
+
+\begin_layout Subsection*
+Zásobník (stack)
+\end_layout
+
+\begin_layout Standard
+Jednoduchá datová struktura typu LIFO (last in first out), umožňující hlavně
+ dvě operace: push (vložení prvku) a pop (vybrání prvku).
+ Využívá se u DFS (Deep first seach), PDA (PushDown automata), či softwarového
+ zásobníku pro ukládání dat při volání funkcí (callstack).
+\end_layout
+
+\begin_layout Standard
+Máme dvě možné implementace, a to pomocí pole a spojeného seznamu.
+\end_layout
+
+\begin_layout Standard
+Implementace pomocí klasického pole je asi nejjednodušší řešení, problém
+ nastává pouze tehdy, pokud by mělo dojít k přetečení při vkládání prvku
+ (buffer overflow, musíme alokovat nový zásobník a překopírovat původní
+ pole).
+ Hlavu (poslední vložený prvek) určíme jednoduše pomocí indexu.
+\end_layout
+
+\begin_layout Standard
+Pomocí spojeného seznamu vkládáme nové prvky na začátek (stačí využít single
+ linked listy, 
+\end_layout
+
+\begin_layout Standard
+U obou implementací musíme kontrolovat, abychom nezavolali vícekrát pop
+ než push.
+\end_layout
+
+\begin_layout Paragraph*
+Složitost operací pro pole
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Pop
+\series default
+ - konstantní časová složitost, pouze snížíme index hlavy.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Push
+\series default
+ - amortizovaně konstantní, podobně jako u implementace seznamu pomocí pole,
+ musíme být obezřetní, aby nám nepřetekla paměť.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Velikost zásobníku
+\series default
+ - konstantní (stačí vrátit index hlavy).
+\end_layout
+
+\begin_layout Paragraph*
+Složitost operací pro spojeného seznamu
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Pop, push
+\series default
+ - konstantní složitost
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Velikost zásobníku
+\series default
+ - zpravidla konstantní
+\end_layout
+
+\begin_layout Subsection*
+Fronta (queue)
+\end_layout
+
+\begin_layout Standard
+Oproti zásobníku se jedná o datovou strukturu typu FIFO (first in, first
+ out).
+ Umožňuje hlavně dvě rozdílné operace: vklad prvku (
+\series bold
+enqueue
+\series default
+), výběr prvku (
+\series bold
+dequeue
+\series default
+).
+ Využití například u BFS, Dijsktry (avšak zde musíme počítat s kvadratickou
+ časovou složitostí) kruhového bufferu (např.
+ boost::circular_buffer) či některých typech vyrovnávacích pamětí (cache).
+\end_layout
+
+\begin_layout Standard
+Máme opět dvě rozdílné implementace, pomocí pole a spojeného seznamu.
+\end_layout
+
+\begin_layout Subsubsection*
+Implementace pomocí pole
+\end_layout
+
+\begin_layout Standard
+Využívá se tzv.
+ cyklické pole pro vyšší efektivitu (při operaci dequeue tak nemusíme přesouvat
+ celou frontu doleva).
+ Toto z hlediska paměti (fyzické úrovně) se jedná o standardní, lineárně
+ sekvenční pamět, avšak logicky na to nahlížíme jako na kružnici.
+ Cyklická fronta obsahuje dva ukazatele (indexy), první na prvek, který
+ se bude jako první vybírat (pomocí dequeue) a druhý na prvek, který je
+ čerstvě vložený (pomocí enqueue).
+ Ukázují-li tyto indexy na stejnou pozici, fronta je prázdná.
+\end_layout
+
+\begin_layout Standard
+Aby byla fronta cyklická, tak se indexy počítají pomocí následují funkce
+ 
+\begin_inset Formula $f(index)=index\,mod\,QueueSize$
+\end_inset
+
+, tudíž při vložení (enqueue) budeme počítat 
+\begin_inset Formula $index=f(index+1)$
+\end_inset
+
+, při vybrání počítáme 
+\begin_inset Formula $index=f(index-1)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Enqueue má konstantní časovou složitost 
+\begin_inset Formula $\mathcal{O}(1)$
+\end_inset
+
+, Dequeue amortizovanou konstantní časovou složitost (nemáme-li frontu s
+ pevnou velikostí).
+\end_layout
+
+\begin_layout Subsubsection*
+Implementace pomocí seznamu
+\end_layout
+
+\begin_layout Standard
+Zde stačí, podobně jako u zásobníku, využít single linked list k úsporu
+ paměti a režie.
+ Fronta musí držet dva ukazatele, na první a poslední uzel.
+ Při dequeue odstraňujeme první uzel listu (dequeued = queue.front, queue.front
+ = queue.front.next), při enqueue přidáváme poslední uzel listu (enqueued
+ = newlist, queue.back.next = enqueued, queue.back = enqueued).
+\end_layout
+
+\begin_layout Standard
+Obě operace mají konstantní časovou složitost 
+\begin_inset Formula $\mathcal{O}(1)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Hashovací tabulka
+\end_layout
+
+\begin_layout Standard
+Hashovací tabulka je je pevně daná tabulka, jež obsahuje seznam dvojic 
+\begin_inset Formula $(klíč,hodnota)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Využívá tzv.
+ hashovací funkci: 
+\begin_inset Formula $H:\,A\rightarrow B$
+\end_inset
+
+, kde A je libovolně dlouhá hodnota (vstup) a B je klíč s pevně danou velikostí.
+ Výpočet hashovací funkce je většinou konstantní, nebo lineární vzhledem
+ k délce vstupní hodnoty.
+ Hashovací funkce musí být konzistentní a s co nejmenším počtem kolizí (tzn.
+ aby platilo, že pro dvě různé hodnoty hashovací funkce nevracela stejný
+ klíč).
+ Inverze k dobré hashovací funkci neexistuje (hashovací funkce není injektivní).
+\end_layout
+
+\begin_layout Standard
+Příklad hashovací funkce pro libovolnou hodnotu:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $hash(x)=x\,mod\,|T|$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pro řetězec:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $hash(s)=(\stackrel[i=0]{n}{\Sigma s_{i}})\,mod\,|T|$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Mezi reálné využívané hashovací funkce patří: 
+\series bold
+MD5, SHA
+\series default
+, apod.
+\end_layout
+
+\begin_layout Subsubsection*
+Řešení kolizí
+\end_layout
+
+\begin_layout Paragraph*
+Zřetězení záznamů
+\end_layout
+
+\begin_layout Standard
+Několik různých hodnot se stejným hashem jsou zřetězeny pomocí linked listu.
+ Tyto hodnoty pak můžeme procházet sekvenčně.
+ Špatně škáluje (reakce na náhlé změny v systému), pokud máme špatnou hashovací
+ funkci, která vrací stejné hashe.
+ Tím vznikne mnoho linked listů, operace nad hashovací tabulkou jsou pak
+ neefektivní (i když stále amortizovaně konstantní).
+\end_layout
+
+\begin_layout Paragraph*
+Otevřená adresace (linear probing)
+\end_layout
+
+\begin_layout Standard
+Pokud se při vkladu prvku na adrese, kterou vrátila hashovací funkce, se
+ již vyskytuje nějaká hodnota, tak se pomocí sekundárního adresačního algoritmu
+ vrátí náhradní adresa (klidně i opakovaně).
+ Jako nejjednodušší náhradní adresační algoritmus si můžeme představit funkci,
+ která vrátí jako novou adresu 
+\begin_inset Formula $f(addr)=addr+1$
+\end_inset
+
+.
+ Zde však vzniká problém shlukování a při větším počtu shluků je nutné tabulku
+ rehashovat (pomocí jiné hashovací funkce).
+\end_layout
+
+\begin_layout Standard
+Pokud mažeme prvek v tabulce využívající otevřenou adresaci, tak místo musíme
+ označit speciálním symbolem, abychom tak rozlišili konec a mezeru v posloupnost
+i hodnot se stejným hashem.
+\end_layout
+
+\begin_layout Paragraph*
+Double hashing
+\end_layout
+
+\begin_layout Standard
+Využívá dvě hashovací funkce.
+ Pokud první hashovací funkce vrátí již obsazenou adresu, tak se využije
+ sekundární hashovací funkce, která je ve tvaru: 
+\begin_inset Formula $f(i,x)=i*hash_{2}(x)$
+\end_inset
+
+.
+ Pomocí této hashovací funkce vypočítáme náhradní adresu (i=1).
+ Pokud je i ta obsazená, inkrementujeme proměnnou i.
+\end_layout
+
+\begin_layout Standard
+Obecná hashovací funkce pro double hashing je ve tvaru 
+\begin_inset Formula $h(x,i)=[hash_{1}(x)+i*hash_{2}(x)]\,mod\,|T|$
+\end_inset
+
+, kde 
+\begin_inset Formula $i\in\mathbb{Z}^{+}$
+\end_inset
+
+ (počáteční index je roven nule) a 
+\begin_inset Formula $|T|$
+\end_inset
+
+ je velikost hashovací tabulky.
+\end_layout
+
+\begin_layout Subsubsection*
+Časové složitosti operací
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Vyhledávání prvku
+\series default
+: amortizovaná časová složitost je konstantní 
+\begin_inset Formula $\mathcal{O}(n)$
+\end_inset
+
+, avšak při worst case scenario je čas.
+ složitost až lineární (např.
+ při špatné hashovací funkci).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Odstranění prvku
+\series default
+: opět jako u vyhledávání.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Vložení prvku
+\series default
+: opět jako u vyhledávání.
+\end_layout
+
+\end_body
+\end_document

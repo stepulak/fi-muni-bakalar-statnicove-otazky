@@ -1,0 +1,1979 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Korektnost a složitost algoritmu
+\end_layout
+
+\begin_layout Subsubsection*
+Pojmy
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Algoritmus
+\series default
+ - Každý proces či postup, který se dá intuitivně nazvat algoritmem, lze
+ vyjádřit pomocí Turingova stroje (viz otázka 13.
+ Church-Turingova teze).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Vstupní podmínka algoritmu
+\series default
+ - určuje hodnoty, ne kterých je algoritmus definován.
+ Označeno jako 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ (fí).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Výstupní podmínka algoritmu
+\series default
+ - určuje jaké hodnoty algoritmus vrací, pokud mu byly na vstupu předány
+ hodnoty splňující vstupní podmíku.
+ Označeno jako 
+\begin_inset Formula $\psi$
+\end_inset
+
+ (psí).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Specifikace
+\series default
+ - vstupní a výstupní podmínka algoritmu.
+\end_layout
+
+\begin_layout Subsection*
+Konvergence a korektnost algoritmu
+\end_layout
+
+\begin_layout Subsubsection*
+Konvergence 
+\end_layout
+
+\begin_layout Standard
+Algoritmus je konvergentní, pokud jeho výpočet na datech splňující vstupní
+ podmínku je konečný.
+ (tj.
+ skončí pro všechna data splňující vstupní podmínku).
+ Jinak může cyklit.
+\end_layout
+
+\begin_layout Subsubsection*
+Parciální korektnost
+\end_layout
+
+\begin_layout Standard
+Algoritmus je parciálně korektní, pokud výpočet nad daty splňující vstupní
+ podmínku skončí a vrací správné výsledky.
+ (tj.
+ Algoritmus může libovolně cyklit, a to i nad daty splňující vstupní podmínky.
+ Pokud se však rozhodne něco vypočítat v konečném čase a spňuje vstupní
+ podmínku, výsledek splňuje výstupní podmínku).
+\end_layout
+
+\begin_layout Subsubsection*
+Totální korektnost
+\end_layout
+
+\begin_layout Standard
+Algoritmus je totálně korektní, pokud je parciálně korektní a konvergentní.
+ Jinými slovy, pokud přijme data splňující vstupní podmínku, tak musí skončit
+ a vrátit korektní data.
+\end_layout
+
+\begin_layout Subsection*
+Důkaz totální korektnosti algoritmu
+\end_layout
+
+\begin_layout Standard
+Snažíme se dokázat dvě věci:
+\end_layout
+
+\begin_layout Itemize
+Je algoritmus konečný?
+\end_layout
+
+\begin_layout Itemize
+Počítá algoritmus správně?
+\end_layout
+
+\begin_layout Standard
+Samotný důkaz totální korektnosti se odvíjí od typu algoritmu a použitého
+ paradigmatu.
+ Pokud je kód zapsán ve funkcionálním paradigmatu, nebo obsahuje rekurzi
+ (i imperativní kód), důkaz korektnosti probíhá za pomocí 
+\series bold
+matematické indukce
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+Pro imperativní algoritmy, obsahující cykly (ale neobsahují rekurzi), probíhá
+ důkaz za pomocí 
+\series bold
+invarianty cyklu
+\series default
+.
+ Invarianta cyklu je zjednodušeně tvrzení, které platí před cyklem, v průbehu
+ cyklu a po skončení cyklu.
+ Konvergence cyklických algoritmů se dokazuje podle tzv.
+ 
+\series bold
+varianty
+\series default
+, což je nezáporná proměnná, která se každou iterací přibližuje nule (a
+ to minimálně o jedničku).
+\end_layout
+
+\begin_layout Subsubsection*
+Příklady důkazů pomocí matematické indukce
+\end_layout
+
+\begin_layout Paragraph*
+1.
+ Příklad
+\end_layout
+
+\begin_layout Standard
+Máme definovanou funkci faktorial v jazyce C:
+\end_layout
+
+\begin_layout Quotation
+int factorial(int n) {
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+if (n == 0) return 1;
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+return n * factorial(n-1);
+\end_layout
+
+\begin_layout Quotation
+}
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Funkce je rekurzivní, takže použijeme matematickou indukci.
+ Nejprve určíme 
+\series bold
+specifikaci
+\series default
+ této funkce.
+ Pokud nevíme, co funkce dělá, tak si můžeme vytvořit tabulku (hodnota-výsledek)
+, kde zjistíme vztah těchto dvou veličin a můžeme jednoznačně určit výraz
+ této funkce.
+\end_layout
+
+\begin_layout Standard
+Tohle nicméně není potřeba, ani není potřeba testovat, pro které vstupní
+ hodnoty faktorial počítá správně (u triviálních funkcí je to zřejmé, u
+ složitějších by možná bylo potřeba udělat novou, testovací tabulku).
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Vstupní
+\series default
+ 
+\series bold
+podmínka
+\series default
+: 
+\begin_inset Formula $\varphi((n))=True\Leftrightarrow n\in\mathbb{N}_{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Výstupní podmínka:
+\series default
+ (pokud platí vstupní podmínka): 
+\begin_inset Formula $\psi((n),r)=True\Leftrightarrow r=n!$
+\end_inset
+
+.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Parciální korektnost
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Báze indukce
+\series default
+: pro 
+\begin_inset Formula $n=0$
+\end_inset
+
+ factorial počítá správně, triviálně platí 
+\begin_inset Formula $factorial(0)=0!$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Indukční krok
+\series default
+: Předpokládáme, že 
+\begin_inset Formula $factorial(n)$
+\end_inset
+
+ je korektní, chceme dokázat správnost 
+\begin_inset Formula $factorial(n+1)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Z definice je zřejmé, že 
+\begin_inset Formula $factorial(n+1)=(n+1)*factorial((n+1)-1)=(n+1)*factorial(n)$
+\end_inset
+
+.
+ Výraz 
+\begin_inset Formula $factorial(n)$
+\end_inset
+
+ je ovšem platný předpoklad, neboť platí 
+\begin_inset Formula $factorial(n)=n!$
+\end_inset
+
+, tudíž platí i 
+\begin_inset Formula $factorial(n+1)=(n+1)*n!=(n+1)!$
+\end_inset
+
+.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Konvergence
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+Opět pomocí indukce.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Báze
+\series default
+: Pro 
+\begin_inset Formula $n=0$
+\end_inset
+
+ je výpočet triviální a konečný.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Indukční krok
+\series default
+: Předpokládáme, že výpočet 
+\begin_inset Formula $factorial(n)$
+\end_inset
+
+ je konečný, chceme dokázat, že i 
+\begin_inset Formula $factorial(n+1)$
+\end_inset
+
+ je konečný (v principu hledáme analogii varianty, tzn.
+ hodnotu, která se přibližuje 
+\begin_inset Quotes eld
+\end_inset
+
+zastavovací
+\begin_inset Quotes erd
+\end_inset
+
+ klauzule, 
+\begin_inset Formula $n=0$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Víme však, že 
+\begin_inset Formula $factorial(n+1)=(n+1)*factorial(n)=(n+1)*n*factorial(n-1)$
+\end_inset
+
+ .
+ Proměnná 
+\begin_inset Formula $n$
+\end_inset
+
+ se každým novým zavoláním snižuje o jedničku, tudíž je jisté, že dosáhne
+ hodnoty nula.
+ Tímto jsme dokázali konvergenci funkce faktorial.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Totální korektnost
+\end_layout
+
+\begin_layout Standard
+Funkce je totálně korektní, protože je parciálně korektní a konvergentní.
+\end_layout
+
+\begin_layout Paragraph*
+2.
+ Příklad
+\end_layout
+
+\begin_layout Standard
+Máme definovanou funkci max v jazyce Haskell:
+\end_layout
+
+\begin_layout Quotation
+max :: (Int a) => [Int] -> Int
+\end_layout
+
+\begin_layout Quotation
+max [n] = n
+\end_layout
+
+\begin_layout Quotation
+max (x:y:s)
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+| x < y = max (y:s)
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+| otherwise = max (x:s)
+\end_layout
+
+\begin_layout Standard
+Funkce hledá maximální prvek v seznamu.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Specifikace
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Vstupní podmínka
+\series default
+: 
+\begin_inset Formula $\varphi((a_{n},\ldots,a_{0}))=True\Leftrightarrow n\in\mathbb{N}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Výstupní podmínka
+\series default
+: 
+\begin_inset Formula $\psi((a_{n},\ldots,a_{0}),r)=True\Leftrightarrow\forall x\in\{a_{n},\ldots,a_{0}\}:\,r\geq x$
+\end_inset
+
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Parciální korektnost
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Báze
+\series default
+: Pro jednoprovkový seznam triviálně platí, že 
+\begin_inset Formula $max\,[x]=x$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Indukční krok
+\series default
+: Předpokládáme, že max počítá správně pro n prvkový seznam (
+\begin_inset Formula $max\,[a_{n},\ldots,a_{0}]$
+\end_inset
+
+), chceme dokázat, že počítá korektně i pro n+1 prvků.
+\end_layout
+
+\begin_layout Standard
+Pro výraz 
+\begin_inset Formula $max\,[a_{n+1},a_{n},\ldots,a_{0}]$
+\end_inset
+
+ máme dvě možnosti.
+ První, že 
+\begin_inset Formula $a_{n+1}<a_{n}$
+\end_inset
+
+, tudíž platí, že maximum je ve výrazu 
+\begin_inset Formula $max\,[a_{n},a_{n-1},\ldots,a_{0}]$
+\end_inset
+
+ a 
+\begin_inset Formula $a_{n+1}$
+\end_inset
+
+ určitě není maximální prvek.
+ Druhá možnost, že 
+\begin_inset Formula $a_{n+1}\geq a_{n}$
+\end_inset
+
+.
+ Zde platí podobné tvrzení, maximum je vyjádřeno pomocí 
+\begin_inset Formula $max\,[a_{n+1},a_{n-1},a_{0}]$
+\end_inset
+
+ a pokud 
+\begin_inset Formula $a_{n}$
+\end_inset
+
+ je maximální prvek, tak i 
+\begin_inset Formula $a_{n+1}$
+\end_inset
+
+ je maximum.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Konvergence
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+Opět pomocí mat.
+ indukce.
+\end_layout
+
+\begin_layout Standard
+Báze: Pro jednoprvkový seznam triviálně platí, že skončí v konečném čase.
+\end_layout
+
+\begin_layout Standard
+Indukční krok: Předpokládáme, že 
+\begin_inset Formula $max\,[a_{n},\ldots a_{0}]$
+\end_inset
+
+ skončí v konečném čase.
+ Chceme dokázat, že i 
+\begin_inset Formula $max\,[a_{n+1},a_{n},\ldots a_{0}]$
+\end_inset
+
+ skončí v konečném čase.
+ Opět máme dvě možnosti (jako u důkazu parciální korektnosti), nicméně u
+ obou je zřejmé, že se velikost seznamu snižuje každým krokem o jedničku.
+ Tudíž pro libovolně velké 
+\begin_inset Formula $n$
+\end_inset
+
+ v konečném čase 
+\begin_inset Quotes eld
+\end_inset
+
+dojdeme
+\begin_inset Quotes erd
+\end_inset
+
+ do 
+\begin_inset Quotes eld
+\end_inset
+
+zastavovací
+\begin_inset Quotes erd
+\end_inset
+
+ klauzule 
+\begin_inset Formula $n=1$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Totální korektnost
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+Funkce je totálně korektní, neboť je konvergentní a parciálně korektní.
+\end_layout
+
+\begin_layout Subsubsection*
+Příklady důkazy pomocí invarianty cyklu
+\end_layout
+
+\begin_layout Paragraph*
+1.
+ Příklad
+\end_layout
+
+\begin_layout Standard
+Máme funkci v jazyce C factorial, která počítá factorial z čísla pomocí
+ cyklu:
+\end_layout
+
+\begin_layout Quotation
+int factorial(int n) {
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+int r = 1;
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+int i = 0;
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+while (i < n) {
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+i = i + 1;
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+r = r * i;
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+}
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+return r;
+\end_layout
+
+\begin_layout Quotation
+}
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Specifikace
+\series default
+ je stejná jako u rekurzivní varianty, netřeba řešit znovu.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Konvergence
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+Hledáme tzv.
+ variant, tj.
+ proměnná (či výraz), jež má nezápornou hodnotu a každým krokem se snižuje
+ o jedničku (až do nuly).
+ Zde je variantem triviální výraz 
+\begin_inset Formula $n-i$
+\end_inset
+
+, přičemž se tato hodnota snižuje po každé iteraci cyklu (ověřme, že pro
+ hraniční hodnotu 
+\begin_inset Formula $n=0$
+\end_inset
+
+ je variant nezáporný: 
+\begin_inset Formula $i=0\Rightarrow n-i=0\Rightarrow$
+\end_inset
+
+ je nezáporný.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Parciální korektnost
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+Zde je situace o trochu složitější.
+ Využijeme tzv.
+
+\series bold
+ invariant cyklu
+\series default
+.
+ Máme tedy tři situace, před začátkem cyklu, během cyklu a po skončení cyklu.
+ Nechť invariant cyklu je následující tvrzení 
+\begin_inset Formula $r=i!$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Před cyklem: Triválně platí, neboť 
+\begin_inset Formula $i=0\longrightarrow r=i!=0!=1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Během cyklu: 
+\begin_inset Formula $i_{0}$
+\end_inset
+
+ je i na začátku cyklu, 
+\begin_inset Formula $i_{1}$
+\end_inset
+
+ je i na konci cyklu (platí 
+\begin_inset Formula $i_{1}=i_{0}+1$
+\end_inset
+
+), stejně tak i 
+\begin_inset Formula $r_{0}\,a\,r_{1}$
+\end_inset
+
+.
+ Platí, že 
+\begin_inset Formula $r_{0}=i_{0}!$
+\end_inset
+
+ a 
+\begin_inset Formula $r_{1}=i_{1}i_{0}!=(i_{0}+1)!=i_{1}r_{0}=i_{1}!$
+\end_inset
+
+.
+ Tím je dokázána platnost invariantu.
+ 
+\end_layout
+
+\begin_layout Standard
+Po skončení cyklu: Zde opět platí, že 
+\begin_inset Formula $i=n\longrightarrow r=i!=n!$
+\end_inset
+
+ (podle výstupní podmínky).
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Totální korektnost
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+Algoritmus je totálně korektní, neboť platí, že je konvergentní a parciálně
+ korektní.
+\end_layout
+
+\begin_layout Paragraph*
+2.
+ Příklad
+\end_layout
+
+\begin_layout Standard
+Máme funkci power v jazyce C, která pro zadanou bázi a mocninu vypočte výraz
+ 
+\begin_inset Formula $b^{n}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Quotation
+int power(int b, int n) {
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+int r = 1;
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+int i = 0;
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+while (i < n) {
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+r = r * b;
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+i = i + 1;
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+}
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+return r;
+\end_layout
+
+\begin_layout Quotation
+}
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Specifikace
+\series default
+ je následující:
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Vstupní podmínka
+\series default
+: 
+\begin_inset Formula $\varphi((b,n))=True\Leftrightarrow n\in\mathbb{N}_{0}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Výstupní podmínka
+\series default
+: 
+\begin_inset Formula $\psi((b,n),r)=True\Leftrightarrow r=b^{n}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Konvergence
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+Variant je opět stejný jako v případě faktoriálu, a to 
+\begin_inset Formula $n-i$
+\end_inset
+
+.
+ Víme, že se tato hodnota snižuje o jedničku v každé iteraci cyklu, dokud
+ nedosáhne hodnoty nula.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Parciální korektnost:
+\end_layout
+
+\begin_layout Standard
+Hledáme invariant cyklu.
+ Nabízí se tvrzení 
+\begin_inset Formula $r=b^{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Před cyklem: Toto tvrzení triviálně platí, neboť 
+\begin_inset Formula $i=0\land r=1\longrightarrow r=b^{i}=b^{0}=1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Během cyklu: Označme 
+\begin_inset Formula $r_{0}$
+\end_inset
+
+ jako r na začátku cyklu, 
+\begin_inset Formula $r_{1}$
+\end_inset
+
+ jako r na konci cyklu.
+ Obdobně 
+\begin_inset Formula $i_{1},i_{0}$
+\end_inset
+
+.
+ Víme, že platí 
+\begin_inset Formula $r_{0}=b^{i_{0}}$
+\end_inset
+
+, tudíž můžeme vyjádřit 
+\begin_inset Formula $r_{1}=r_{0}*b=b^{i_{0}}*b=b^{i_{1}}$
+\end_inset
+
+.
+ Invariant dokázán.
+\end_layout
+
+\begin_layout Standard
+Po cyklu: Platí, že 
+\begin_inset Formula $i=n$
+\end_inset
+
+, a proto 
+\begin_inset Formula $r=b^{i}=b^{n}$
+\end_inset
+
+ (podle výstupní podmínky).
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Totální korektnost
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+Algoritmus je totálně korektní, neboť platí, že je konvergentní a parciálně
+ korektní.
+\end_layout
+
+\begin_layout Subsection*
+Složitost
+\end_layout
+
+\begin_layout Standard
+Několik pojmů:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Složitost algoritmu
+\series default
+ = náročnost algoritmu na systémové zdroje (paměť, procesor)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Složitost problému
+\series default
+ = náročnost optimálního algoritmu, jenž tento problém vyřeší.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Časová složitost algoritmu
+\series default
+ = funkce, která popisuje závislost velikosti vstupu na (nejdelší možné)
+ délce výpočtu algoritmu.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Paměťová složitost algoritmu
+\series default
+ = funkce, která popisuje závislost velikosti vstupu na (největší) potřebné
+ paměti pro výpočet.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Časová složitost problému
+\series default
+ = časová složitost optimálního algoritmu, řešící tento problém.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Paměťová složitost problému
+\series default
+ = paměťová složitost optimálního algoritmu, řešící tento problém.
+\end_layout
+
+\begin_layout Subsubsection*
+Rychlost růstu časové a prostorové náročnosti programů
+\end_layout
+
+\begin_layout Standard
+Uvedeme 3 různé metody měření rychlosti dané funkce 
+\begin_inset Formula $f:\,\mathbb{N}\rightarrow\mathbb{R}^{+}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $f(x)\in\mathcal{O}(g(x))$
+\end_inset
+
+ - Omikron - horní hranice pro funkci 
+\begin_inset Formula $f(x)$
+\end_inset
+
+.
+ Značí nejpomalejší (nejhorší) variantu výpočtu algoritmu.
+ Tzn.
+ hledáme takové 
+\begin_inset Formula $c>0,\,x_{0}$
+\end_inset
+
+, pro které platí: 
+\begin_inset Formula $\forall x>x_{0}:\,|f(x)|\leq|c*g(x)|$
+\end_inset
+
+.
+ Z definice je zřejmé, že funkce 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ proběhně asymptoticky rychleji (resp.
+ složitost kterou značí) či stejně jako 
+\begin_inset Formula $g(x)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $f(x)\in\Omega(g(x))$
+\end_inset
+
+ - Omega - dolní hranice pro funkci 
+\begin_inset Formula $f(x)$
+\end_inset
+
+.
+ Značí nejrychlejší možnou variantu výpočtu algoritmu.
+ Tzn.
+ hledáme takové 
+\begin_inset Formula $c>0,\,x_{0}$
+\end_inset
+
+, pro které platí: 
+\begin_inset Formula $\forall x>x_{0}:\,|f(x)|\geq|c*g(x)|$
+\end_inset
+
+.
+ Z definice je opět zřejmé, že funkce 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ proběhne asymptoticky pomaleji nebo stejně jako 
+\begin_inset Formula $g(x)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $f(x)\in\varTheta(g(x))$
+\end_inset
+
+ - Théta.
+ Horní a dolní hranice funkce 
+\begin_inset Formula $f(x)$
+\end_inset
+
+.
+ Platí, že 
+\begin_inset Formula $f(x)\in O(g(x))\land f(x)\in\Omega(g(x))$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Příklady:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $8n^{2}+log_{2}n+6\in\mathcal{O}(n^{2})$
+\end_inset
+
+ ANO (např.
+ pro 
+\begin_inset Formula $c=100000$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $11n+22\in\Omega(n^{13})$
+\end_inset
+
+ NE
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $5n^{3}\in\varTheta(n^{3})$
+\end_inset
+
+ ANO
+\end_layout
+
+\begin_layout Subsubsection*
+Asymptotická složitost
+\end_layout
+
+\begin_layout Standard
+Asymptotická složitost popisuje, jak je daný algoritmus rychlý (kolik provede
+ elementárních operací) v závislosti na velikosti (počtu) vstupních dat.
+\end_layout
+
+\begin_layout Standard
+Značení pomocí 
+\begin_inset Quotes eld
+\end_inset
+
+velkého Óčka
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset Formula $\mathcal{O}$
+\end_inset
+
+ (omikronu), jenž podle definice popisuje nejhorší (horní závoru) možnou
+ variantu časové složitosti programu.
+\end_layout
+
+\begin_layout Standard
+Obecně platí, že veškeré konstanty a mocniny nižších řádů než je mocnina
+ s nejvyšším řádem se ignorují (nebo-li se 
+\begin_inset Quotes eld
+\end_inset
+
+schovají do óčka
+\begin_inset Quotes erd
+\end_inset
+
+), protože platí, že mocnina s nejvyšším řádem vykazuje největší růst/pokles
+ při velkých změnách velikosti vstupních dat.
+ Dalším důvodem je fakt, že při porovnání 
+\begin_inset Formula $\mathcal{O}(n)$
+\end_inset
+
+ a 
+\begin_inset Formula $\mathcal{O}(2n)$
+\end_inset
+
+ platí, že u druhého případu stačí nechat algoritmus běžet na dvakrát rychlejším
+ stroji a algoritmy skončí za stejnou dobu (pro libovolně velký vstup 
+\begin_inset Formula $n$
+\end_inset
+
+).
+ To ovšem neplatí např.
+ pro 
+\begin_inset Formula $\mathcal{O}(n)$
+\end_inset
+
+ a 
+\begin_inset Formula $\mathcal{O}(n^{2})$
+\end_inset
+
+, protože pro různé 
+\begin_inset Formula $n$
+\end_inset
+
+ je rozdíl mezi časy nelineárně různý.
+\end_layout
+
+\begin_layout Standard
+Algoritmy se podle asymptotických složitostí sdružují do tzv.
+ složitostních tříd (seřazeno od nejlepší po nejhorší):
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathcal{O}(1)$
+\end_inset
+
+ - Konstantní časová složitost, nezáleží na velikosti vstupních dat.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathcal{O}(\log n)$
+\end_inset
+
+ - Logaritmická časová složitost.
+ Většinou to má co dočinění s půlením intervalů, binárními stromy apod.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathcal{O}(n)$
+\end_inset
+
+ - Lineární čas.
+ složitost.
+ Průchody polem.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathcal{O}(n*\log n)$
+\end_inset
+
+ - Řadící algoritmy s metodou rozděl a panuj.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathcal{O}(n^{2})$
+\end_inset
+
+ - Kvadratická, řadící algoritmy.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathcal{O}(n^{3})$
+\end_inset
+
+ - Kubická čas.
+ složitost.
+ Násobení matic.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathcal{O}(n^{k})$
+\end_inset
+
+ - Stále polynomiální časová složitost.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathcal{O}(2^{n})$
+\end_inset
+
+ - Exponenciální časová složitost.
+ Např.
+ backtracking.
+ V praxi málo časté a zde již narážíme na výpočetní náročnost.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathcal{O}(k^{n})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathcal{O}(n!)$
+\end_inset
+
+ - Fuj
+\end_layout
+
+\begin_layout Subsection*
+Příklady složitosti základních algoritmů
+\end_layout
+
+\begin_layout Subsubsection*
+Řadící algoritmy
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+In-situ
+\series default
+ = Algoritmus nepotřebuje k výpočtu alokovat novou paměť, vše dokáže provést
+ na paměti vstupních dat.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Stabilita
+\series default
+ = Algoritmus zachovává pořadí prvků se stejnou hodnotou.
+ (tj.
+ máme hodnotu 
+\begin_inset Formula $x_{5}$
+\end_inset
+
+ na pátém indexu a 
+\begin_inset Formula $y_{8}$
+\end_inset
+
+ na osmém indexu; platí, že 
+\begin_inset Formula $x_{5}=y_{8}$
+\end_inset
+
+; necháme celý seznam prvků uspořádat podle hodnoty; platí, že index hodnoty
+ 
+\begin_inset Formula $x_{5}$
+\end_inset
+
+ je menší jak 
+\begin_inset Formula $y_{8}$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Přirozenost
+\series default
+ = Algoritmus rychleji zpracuje již částečně seřazenou posloupnost (např.
+ Quicksort není přirozený, neboť špatný pivot nám může 
+\begin_inset Quotes eld
+\end_inset
+
+rozbít
+\begin_inset Quotes erd
+\end_inset
+
+ celé řazení).
+\end_layout
+
+\begin_layout Standard
+Příklady:
+\end_layout
+
+\begin_layout Itemize
+In-situ řadící algoritmy: Quicksort, Bubblesort
+\end_layout
+
+\begin_layout Itemize
+Stabilní řadící algoritmy: Bubblesort, Insert sort, Mergesort
+\end_layout
+
+\begin_layout Itemize
+Přirozené řadící algoritmy: Bubblesort, Mergesort
+\end_layout
+
+\begin_layout Paragraph*
+Bubblesort
+\end_layout
+
+\begin_layout Standard
+Časová složitost 
+\begin_inset Formula $\mathcal{O}(n^{2})$
+\end_inset
+
+.
+ Funguje na principu bublinkového řazení, tzn.
+ porovnává dva sousední prvky a přehazuje je, pokud je první prvek menší
+ jak druhý.
+ Je korektní z toho důvodu (moje úvaha), že díky dvěma vnitřním cyklům zaručí,
+ že se každý prvek porovná s ostatními právě n-krát (tzn.
+ v extrémním případě 
+\begin_inset Quotes eld
+\end_inset
+
+každý s každým
+\begin_inset Quotes erd
+\end_inset
+
+) a po n krocích ho dokážeme přeházet na potřebné místo.
+\end_layout
+
+\begin_layout Standard
+Kód:
+\end_layout
+
+\begin_layout Quotation
+BubbleSort(array):
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+for i = 0, i < array.length; i++:
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+for j = 0, j < array.length - 1; j++:
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+if array[j] < array[j+1] then swap(array[j], array[j+1])
+\end_layout
+
+\begin_layout Paragraph*
+Binární vyhledávání
+\end_layout
+
+\begin_layout Standard
+Časová složitost 
+\begin_inset Formula $\mathcal{O}(\log n)$
+\end_inset
+
+.
+ Je nutné mít seřazené pole podle velikosti.
+ Funguje na principu půlení intervalů.
+ Tzn.
+ a začátku si vezmeme prostřední prvek intervalu a zjistíme, zda-li je hledaný
+ jemu roven.
+ Pokud ano, skončím a vrátím pozici prvku.
+ Pokud ne, porovnám, zda-li je hledaný prvek menší jak prostřední, pokud
+ ano, provedu binární vyhledávání na intervalu od začátku po prostřední
+ prvek.
+ Pokud nikoli, provedu binární vyhledávání na intervalu od prostředního
+ prvku po konec.
+\end_layout
+
+\begin_layout Standard
+Časová složitost je logaritmická, protože ignorujeme 
+\begin_inset Formula $\frac{1}{2}n+\frac{1}{4}n+\frac{1}{8}n+\ldots$
+\end_inset
+
+ prvků a hledaný prvek nalezneme (pokud existuje) maximálně po 
+\begin_inset Formula $\log n$
+\end_inset
+
+ krocích.
+\end_layout
+
+\end_body
+\end_document

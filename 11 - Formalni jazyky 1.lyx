@@ -1,0 +1,1321 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Formální jazyky 1 - Regularní jazyky (hlavně)
+\end_layout
+
+\begin_layout Subsection*
+Základní pojmy
+\end_layout
+
+\begin_layout Subsubsection*
+Abeceda
+\end_layout
+
+\begin_layout Standard
+Konečná množina prvků (písmen, znaků či symbolů).
+ Obvykle se značí symbolem 
+\begin_inset Formula $\Sigma$
+\end_inset
+
+ (sígma).
+\end_layout
+
+\begin_layout Subsubsection*
+Slovo
+\end_layout
+
+\begin_layout Standard
+Konečná posloupnost prvků z abecedy (prvky se mohou opakovat).
+ Délka slova je počet znaků ve slově (neboli délka posloupnosti).
+ 
+\series bold
+Prázdné slovo
+\series default
+ je značeno symbolem 
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+ (epsilon) a má délku nula.
+ 
+\series bold
+Počet výskytů
+\series default
+ písmene a ve slově w značíme jako 
+\begin_inset Formula $\#_{a}(w)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Slova můžeme zřetězit:
+\end_layout
+
+\begin_layout Standard
+Máme slovo a,b, která jsou posloupností znaků 
+\begin_inset Formula $a=a_{1}\ldots a_{n}$
+\end_inset
+
+,
+\begin_inset Formula $b=b_{1}\ldots b_{m}$
+\end_inset
+
+, pak zřetězení je operace, kdy vznikne slovo 
+\begin_inset Formula $a\cdot b=ab=a_{1}\ldots a_{n}b_{1}\ldots b_{m}$
+\end_inset
+
+.
+ Pro prázdné slovo platí, že 
+\begin_inset Formula $a\cdot\varepsilon=a$
+\end_inset
+
+.
+ Zřetězení je asociativní, můžeme ho libovolně uzávorkovat.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Slovo můžeme umocňovat:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $a^{0}=\varepsilon,a^{n}=aa^{n-1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Slovo a je podslovem slova b , pokud existuje takové x,y, pro která platí:
+ b=xay.
+ Pokud 
+\begin_inset Formula $x$
+\end_inset
+
+ je prázdné slovo, a je 
+\series bold
+prefixem
+\series default
+ slova b.
+ Pokud y je prázdné slovo, a je 
+\series bold
+suffixem
+\series default
+ slova b.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Reverse slova
+\series default
+: 
+\begin_inset Formula $a=a_{1}\ldots a_{n}\Longrightarrow a^{R}=a_{n}\ldots a_{1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Jazyk
+\end_layout
+
+\begin_layout Standard
+Množina slov nad abecedou 
+\begin_inset Formula $\Sigma$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph*
+Zajímavé operace nad jazyky
+\end_layout
+
+\begin_layout Standard
+Zřetězení jazyků 
+\begin_inset Formula $A\cdot B=\{ab|a\in A,b\in B\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Reverse jazyka: 
+\begin_inset Formula $A^{R}=\{a^{R}|a\in A\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Umocňování jazyků: 
+\begin_inset Formula $A^{0}=\{\varepsilon\},\,A^{n}=AA^{n-1}$
+\end_inset
+
+.
+ Taky platí, že 
+\begin_inset Formula $\emptyset^{0}=\{\varepsilon\},\emptyset^{k}=\emptyset$
+\end_inset
+
+ (pro 
+\begin_inset Formula $k\in\mathbb{N}^{+}$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Iterace jazyka: 
+\begin_inset Formula $A^{*}=A^{0}\cup\ldots\cup A^{k},\,k\in\mathbb{N}^{+}\wedge k\rightarrow\infty$
+\end_inset
+
+.
+ Z definice umocňování jazyka platí, že 
+\begin_inset Formula $\emptyset^{*}=\{\varepsilon\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Pozitivní iterace jazyka 
+\begin_inset Formula $A^{+}=A^{1}\cup\ldots\cup A^{k},\,k\in\mathbb{N}^{+}\wedge k\rightarrow\infty$
+\end_inset
+
+.
+ Z definice umocňování jazyka platí, že 
+\begin_inset Formula $\emptyset^{+}=\{\}=\emptyset$
+\end_inset
+
+.
+ V některých případech platí, že 
+\begin_inset Formula $A^{+}=A^{*}\backslash\{\varepsilon\}$
+\end_inset
+
+ (platí pouze, pokud A explicitně neobsahuje prázdné slovo).
+\end_layout
+
+\begin_layout Standard
+Doplněk jazyka A vůči jazyku 
+\begin_inset Formula $\Sigma:$
+\end_inset
+
+ 
+\begin_inset Formula $co-A=\Sigma^{*}\backslash A$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Gramatika
+\end_layout
+
+\begin_layout Standard
+Gramatika G je čtveřice 
+\begin_inset Formula $G=(N,\Sigma,P,S)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+N je množina neterminálů (v principu se jedná o stavy gramatiky, které můžeme
+ substitučně nahrazovat).
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\Sigma$
+\end_inset
+
+ je množina znaků (tzn.
+ abeceda).
+ Platí, že 
+\begin_inset Formula $\Sigma\cap N=\emptyset$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+P jsou pravidla gramatiky.
+ Z obecné definice se jedná o relaci 
+\begin_inset Formula $P\subseteq V^{*}NV^{*}\rightarrow V^{*}$
+\end_inset
+
+, kde 
+\begin_inset Formula $V=\Sigma\cup N$
+\end_inset
+
+.
+ Samozřejmě záleži na typu gramatiky (viz.
+ Chomského hierarchie gramatik).
+\end_layout
+
+\begin_layout Itemize
+S je počáteční neterminál.
+\end_layout
+
+\begin_layout Subsection*
+Chomského hierarchie gramatik (jazyků)
+\end_layout
+
+\begin_layout Standard
+Platí vztah:
+\end_layout
+
+\begin_layout Standard
+Regulární gramatiky 
+\begin_inset Formula $\subseteq$
+\end_inset
+
+ bezkontextové gramatiky 
+\begin_inset Formula $\subseteq$
+\end_inset
+
+ kontextové gramatiky 
+\begin_inset Formula $\subseteq$
+\end_inset
+
+ gramatiky typu 0
+\end_layout
+
+\begin_layout Subsubsection*
+Regulární gramatiky
+\end_layout
+
+\begin_layout Standard
+Pravidlo má dva možné tvary: 
+\begin_inset Formula $A\rightarrow a|B$
+\end_inset
+
+, 
+\begin_inset Formula $A\rightarrow a$
+\end_inset
+
+.
+ A a B je libovolný neterminál, a je znak abecedy (terminál).
+ Regulární gramatiky generují regulární jazyk.
+ Je povoleno pravidlo 
+\begin_inset Formula $S\rightarrow\varepsilon$
+\end_inset
+
+, pokud se S nevyskytuje na žádné pravé straně pravidla.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Jazyk je regulární
+\series default
+, pokud platí následující vlastnost (v principu platí všechny, avšak logicky
+ stačí jedna):
+\end_layout
+
+\begin_layout Itemize
+Existuje k němu regulární gramatika.
+\end_layout
+
+\begin_layout Itemize
+Existuje k němu NFA (nedeterministický konečný automat) nebo DFA (deterministick
+ý konečný automat).
+\end_layout
+
+\begin_layout Itemize
+Lze ho popsat regulárním výrazem (regex = regular expression).
+\end_layout
+
+\begin_layout Subsubsection*
+Bezkontextové gramatiky (coffeine free)
+\end_layout
+
+\begin_layout Standard
+Pravidla gramatiky jsou ve tvaru 
+\begin_inset Formula $A\rightarrow\alpha$
+\end_inset
+
+, kde 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ je libovolná variace terminálů a neterminálů (tzn.
+ se jedná o 
+\begin_inset Formula $\alpha\in(\Sigma\cup N)^{*}$
+\end_inset
+
+).
+ Pravidlo 
+\begin_inset Formula $S\rightarrow\varepsilon$
+\end_inset
+
+ je znovu povoleno, pokud platí pravidlo jako u regulárních gramatik.
+ Jazyk je bezkontextový, pokud k němu existuje deterministický zásobníkový
+ automat.
+\end_layout
+
+\begin_layout Subsubsection*
+Kontextové gramatiky
+\end_layout
+
+\begin_layout Standard
+Pravidla gramatiky jsou ve tvaru 
+\begin_inset Formula $\alpha A\beta\rightarrow\gamma$
+\end_inset
+
+, kde A je neterminál a 
+\begin_inset Formula $\alpha,\beta,\gamma$
+\end_inset
+
+ jsou libovolné řetězce složené z terminálů a neterminálů.
+ Jazyk je kontextový, pokud k němu existuje ekvivalentní lineárně ohraničený
+ Turingův stroj (tzn.
+ s páskou o maximální délce N znaků) nebo kontextová gramatika.
+ Pravidlo 
+\begin_inset Formula $S\rightarrow\varepsilon$
+\end_inset
+
+ je znovu povoleno, S však nesmí být na pravé straně pravidla.
+\end_layout
+
+\begin_layout Subsubsection*
+Frázové gramatiky (gramatika typu nula)
+\end_layout
+
+\begin_layout Standard
+Tyto gramatiky jsou bez omezení, lze je vyjádřit pomocí obecného Turingova
+ stroje (TM = Turing machine) nebo frázové gramatiky.
+\end_layout
+
+\begin_layout Subsection*
+Chomského hierarchie jazyků
+\end_layout
+
+\begin_layout Standard
+(Od 
+\begin_inset Quotes eld
+\end_inset
+
+nejsilnějších
+\begin_inset Quotes erd
+\end_inset
+
+ jazyků po 
+\begin_inset Quotes eld
+\end_inset
+
+nejslabší
+\begin_inset Quotes erd
+\end_inset
+
+):
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+rekurzivně spočetný jazyk
+\series default
+ - generované frázovou gramatikou, rozpoznatelné TM, částečně rozhodnutelný
+ (není rekurzivně vyčíslitelný)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+rekurzivní jazyk
+\series default
+ - rozhodnutelný pomocí TM
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+kontextový jazyk
+\series default
+ - kontextová gramatika, lineárně ohraničený TM
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+bezkontextový jazyk
+\series default
+ - bezkontextová gramatika, PDA
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+bezkontextová deterministický jazyk
+\series default
+ - DPDA
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+regulární jazyk
+\series default
+ - FA, regulární gramatikou, regulárním výrazem
+\end_layout
+
+\begin_layout Subsection*
+Regulární jazyky, problémy a výrazy
+\end_layout
+
+\begin_layout Standard
+Regulární jazyk lze popsat pomocí konečného automatu (FA = finite automata).
+ Automat M akceptuje jazyk L (zápis L(M)), pokud všechny slova jazyka L
+ 
+\begin_inset Quotes eld
+\end_inset
+
+skončí
+\begin_inset Quotes erd
+\end_inset
+
+ v akceptujícím stavu automatu M.
+\end_layout
+
+\begin_layout Standard
+Abychom mohli říci, které slovo automat akceptuje, potřebujeme definovat
+ rozšířenou přechodovou funkci.
+\end_layout
+
+\begin_layout Paragraph*
+Rozšířená přechodová funkce
+\end_layout
+
+\begin_layout Standard
+Definujeme indukcí v závislosti na délce slova w.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\hat{\delta}:\,Q\times\Sigma^{*}\rightarrow Q$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\hat{\delta}(q,\varepsilon)=q$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\hat{\delta}(q,wa)=\delta(\hat{\delta}(q,w),a)$
+\end_inset
+
+, pokud je definována parciální přechodová funkce 
+\begin_inset Formula $\delta(q,a)$
+\end_inset
+
+ a rozšířená přechodová funkce 
+\begin_inset Formula $\hat{\delta}(q,w)$
+\end_inset
+
+, jinak neakceptumeje (symbol 
+\begin_inset Formula $\bot$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Subsubsection*
+Deterministický konečný automat (DFA)
+\end_layout
+
+\begin_layout Standard
+Pětice 
+\begin_inset Formula $DFA=(Q,\Sigma,\delta,q_{0},F)$
+\end_inset
+
+, kde:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $Q$
+\end_inset
+
+ je množina stavů (ve smyslu gramatiky se jedná o neterminály)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\Sigma$
+\end_inset
+
+ je množina přechodů (tzn.
+ abeceda)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\delta$
+\end_inset
+
+ je parciální přechodová funkce, definována jako (třetice?): 
+\begin_inset Formula $\delta:\,Q\times\Sigma\rightarrow Q$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $q_{0}$
+\end_inset
+
+ je počáteční stav
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $F$
+\end_inset
+
+ je množina akceptujících stavů 
+\begin_inset Formula $F\subseteq Q$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+DFA lze vyjádřit orientovaným ohodnoceným grafem.
+ Uzly (kolečka) reprezentují jednotlivé stavy (dvojité kolčeko je akceptující
+ stav), přechody reprezentují orientované hrany.
+ Ohodnocovací funkce podle definice je zde však 
+\begin_inset Formula $\omega:\,G(E)\rightarrow\Sigma$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Zobecněný FA
+\series default
+ může mít i epsilon přechody (
+\begin_inset Formula $\Longrightarrow\varepsilon\in\Sigma$
+\end_inset
+
+).
+ Epsilon přechody slouží k tomu, že se může libovolně přecházet mezi dvěma
+ stavy, přičemž čtečí hlava na vstupu zůstane na stejné pozici.
+\end_layout
+
+\begin_layout Standard
+Totální FA je takový FA, který má totální přechodovou funkci.
+ Pro ni platí, že existuje přechod mezi všemi stavy a všemi různými prvky
+ abecedy (přechody).
+ Jinak u výpočtu FA platí, že pokud neexistuje přechod ze stavu 
+\begin_inset Formula $q_{0}\rightarrow q_{1}$
+\end_inset
+
+, tak automat slovo neakceptuje.
+\end_layout
+
+\begin_layout Subsubsection*
+Nedeterministický konečný automat (NFA)
+\end_layout
+
+\begin_layout Standard
+Rozdíl mezi DFA a NFA je ten, že NFA může být během výpočtu v několika různých
+ stavech současně.
+ Pokud se během výpočtu dostaneme libovolným způsobem do akceptujícího stavu,
+ pak NFA slovo akceptuje.
+ Z toho plyne, že přechodová funkce je definována jako:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta:Q\times\Sigma\rightarrow2^{Q}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $2^{Q}$
+\end_inset
+
+ je potenční množina ke Q (tzn.
+ množina všech kombinací stavů).
+\end_layout
+
+\begin_layout Standard
+NFA lze opět vyjádřit pomocí orientovaného ohodnoceného grafu.
+\end_layout
+
+\begin_layout Standard
+Platí, že každý DFA je zároveň NFA.
+ Taky platí, že každý NFA lze převést do DFA.
+\end_layout
+
+\begin_layout Subsubsection*
+Převod NFA na DFA
+\end_layout
+
+\begin_layout Standard
+Hrozné vysvětlení, raději příklad:
+\end_layout
+
+\begin_layout Standard
+NFA:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\begin{array}{cccc}
+ & a & b & c\\
+\{1\} & \{3\} & \{1,2,3,4\} & \{3\}\\
+\{2\} & \{3\} & \{4\} & \{1,4\}\\
+\{3\} & \{1,3,4\} & \{1,4\} & \{1\}\\
+\{4\} & \{4\} & \{\} & \{1,4\}
+\end{array}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+DFA:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\begin{array}{cccc}
+ & a & b & c\\
+\rightarrow[2] & [3] & [4] & [1,4]\\{}
+[3] & [1,3,4] & [1,4] & [1]\\{}
+[4] & [4] & P & [1,4]\\{}
+[1,4] & [3,4] & [1,2,3,4] & [1,3,4]\\{}
+[1,3,4] & [1,3,4] & [1,2,3,4,P] & [1,3,4]\\{}
+[1] & [3] & [1,2,3,4] & [3]\\
+P & P & P & P\\{}
+[3,4] & [1,3,4] & [1,4,P] & [1,4]\\{}
+[1,2,3,4] & [1,2,3,4] & [1,2,3,4] & [1,3,4]
+\end{array}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Stav P je zde proto, abychom měli totální DFA (pokud neexistuje přechod
+ 
+\begin_inset Formula $\delta(q,p)$
+\end_inset
+
+: 
+\begin_inset Formula $q\in Q\,a\,p\in\Sigma$
+\end_inset
+
+, pak pro tento přechod platí: 
+\begin_inset Formula $\delta(q,p)=P$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Převod FA na regulární gramatiku
+\end_layout
+
+\begin_layout Standard
+Obecný princip: terminály jsou přechodné hrany, neterminály jsou stavy FA.
+ FA akceptuje tehdy, pokud pravidlo gramatiky je ve tvaru 
+\begin_inset Formula $A\rightarrow a$
+\end_inset
+
+, kde A je neterminál a 
+\begin_inset Formula $a$
+\end_inset
+
+ je terminál.
+ Pokud má FA první stav akceptující, je nutné přidat nový stav (neterminál,
+ např.
+ 
+\begin_inset Formula $S_{0}$
+\end_inset
+
+), který bude kopií prvního, avšak se nebude (podle definice) vyskytovat
+ na pravé straně pravidla.
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+Máme NFA:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\overset{\overset{b}{\curvearrowright}}{\odot}\stackrel[b]{a}{\rightleftarrows}\overset{\overset{a}{\curvearrowright}}{\bigcirc}\stackrel[c]{a}{\rightleftarrows}\overset{\overset{c}{\curvearrowright}}{\odot}\stackrel[a]{b}{\rightleftarrows}\bigcirc$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Chceme regulární gramatiku.
+\end_layout
+
+\begin_layout Standard
+Stavy pojmenujeme jako 
+\begin_inset Formula $\{Q_{1},...,Q_{4}\}$
+\end_inset
+
+, abeceda je {a,b,c}.
+ První stav je akceptující, je nutné přidat nové pravidlo s novým stavem
+ 
+\begin_inset Formula $Q_{0}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pravidla jsou tedy následující:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $P=\{Q_{0}\rightarrow b|bQ_{1}|aQ_{2}|\varepsilon,\,\,Q_{1}\rightarrow b|bQ_{1}|aQ_{2},\,\,Q_{2}\rightarrow aQ_{2}|aQ_{3}|a|b|bQ_{1},\,\,Q_{3}\rightarrow cQ_{2}|cQ_{3}|c|bQ_{4}|Q_{4}\rightarrow a|aQ_{3}\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Převod regulární gramatiky na FA
+\end_layout
+
+\begin_layout Standard
+Zde opět platí, že neterminály jsou stavy a terminály jsou přechody.
+ Abychom mohli převést regulární gramatiku na FA, potřebujeme vytvořit nový
+ stav G, do kterého budeme přesměrovávat všechny potenciální akceptující
+ stavy.
+ Tudíž máme-li pravidla 
+\begin_inset Formula $A\rightarrow aA|b$
+\end_inset
+
+, tak A je stavem, 
+\begin_inset Formula $a$
+\end_inset
+
+ je hranou (přechodem) a 
+\begin_inset Formula $b$
+\end_inset
+
+ je přechodem do akceptujícího stavu G (jedná se tedy v principu o pravidla
+ 
+\begin_inset Formula $A\rightarrow bG,\,G\rightarrow\varepsilon$
+\end_inset
+
+, bohužel regulární gramatika toto neumožňuje).
+\end_layout
+
+\begin_layout Standard
+Pravidla:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $P=\{S\rightarrow\varepsilon|aA,\,A\rightarrow a|bB,B\rightarrow bB|bA\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Máme tedy stavy a abecedu:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $Q=\{S,A,B,G\},\Sigma=\{a,b\},F=\{G\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Parciální přechová funkce:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta(S,\varepsilon)=G$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta(S,a)=A$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta(A,a)=G$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta(A,b)=B$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta(B,b)=B$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\delta(B,b)=A$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Regulární výrazy
+\end_layout
+
+\begin_layout Standard
+Regulární výraz, zkráceně 
+\begin_inset Formula $RE(\Sigma)$
+\end_inset
+
+, podle definice možné definovat induktivně:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\varepsilon,\emptyset$
+\end_inset
+
+ a znak 
+\begin_inset Formula $e\in\Sigma$
+\end_inset
+
+ jsou regulární výrazy
+\end_layout
+
+\begin_layout Itemize
+Jsou-li A,B regulární výrazy, pak 
+\begin_inset Formula $A\cdot B$
+\end_inset
+
+, 
+\begin_inset Formula $A^{*}$
+\end_inset
+
+,
+\begin_inset Formula $A+B$
+\end_inset
+
+ jsou regulární výrazy
+\end_layout
+
+\begin_layout Itemize
+Nic jiného není regulární výraz.
+\end_layout
+
+\begin_layout Standard
+Každý regulární výraz lze převést na deterministiký konečný automat, tudíž
+ i na regulární gramatiku.
+\end_layout
+
+\begin_layout Standard
+Kleeneho věta: Každý libovolný jazyk L lze převést na regulární výraz, pokud
+ k jazyku L existuje libovolný konečný automat (FA), který akceptuje všechna
+ slova z tohoto jazyka.
+\end_layout
+
+\begin_layout Subsubsection*
+Převod regulárního výrazu na DFA
+\end_layout
+
+\begin_layout Standard
+Máme regulární přechodový graf:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $M=(Q,Σ,\delta,I,F)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $Q$
+\end_inset
+
+je neprázdná konečná množina stavů
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\Sigma$
+\end_inset
+
+ je konečná vstupní abeceda
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\delta:Q\times Q\rightarrow RE(\Sigma)$
+\end_inset
+
+je parciální přechodová funkce
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $I\subseteq Q$
+\end_inset
+
+ je množina počátečních stavů
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $F\subseteq Q$
+\end_inset
+
+je množina akceptujících stavů
+\end_layout
+
+\begin_layout Standard
+K tomu máme několik pravidel:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $A\cdot B\Leftrightarrow\bigcirc\overset{A}{\longrightarrow}\bigcirc\overset{B}{\longrightarrow}\bigcirc$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $A+B\Leftrightarrow\bigcirc\stackrel[B]{A}{\rightrightarrows}\bigcirc\Leftrightarrow\bigcirc\overset{A,B}{\longrightarrow}\bigcirc$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $A^{*}\Leftrightarrow...\longrightarrow\overset{\overset{A}{\curvearrowright}}{\bigcirc}\longrightarrow...$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Převod probíhá tak, že si vytvoříme dva stavy, startovní a koncový a přechod
+ bude náš regulární výraz.
+ Pak podle pravidel upravujeme po jednom kroku regulární výraz na DFA.
+\end_layout
+
+\begin_layout Standard
+Další možnost je vytvořit DFA bez aplikací daných pravidel a dokázat, že
+ jak DFA tak reg.
+ výraz generují tentýž jazyk.
+\end_layout
+
+\begin_layout Subsubsection*
+Převod DFA na regulární výraz
+\end_layout
+
+\begin_layout Standard
+DFA zobecníme tím, že přidáme dva stavy, na začátek a na konec, přičemž
+ je spojíme epsilon hranou k počátku a konci.
+ Následně pomocí inverzních pravidel upravíme (opět po jednotkových krocích)
+ DFA zpět na regulární výraz.
+\end_layout
+
+\begin_layout Standard
+Inverzní pravidla:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\bigcirc\overset{A}{\longrightarrow}\bigcirc\overset{B}{\longrightarrow}\bigcirc\Leftrightarrow A\cdot B$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\bigcirc\overset{A}{\longrightarrow}\overset{\overset{F}{\curvearrowright}}{\bigcirc}\overset{B}{\longrightarrow}\bigcirc\Leftrightarrow A\cdot F^{*}\cdot B$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Pumping lemma
+\end_layout
+
+\begin_layout Standard
+Dýňové lemma dokazuje, že jazyk L je neregulární.
+ Toto lemma nedokazuje regularitu jazyka!
+\end_layout
+
+\begin_layout Standard
+Definice:
+\end_layout
+
+\begin_layout Quote
+Předpokládáme, že jazyk L je regulární.
+ Potom existuje 
+\begin_inset Formula $n\in\mathbb{N}$
+\end_inset
+
+ takové, že pro libovolné slovo 
+\begin_inset Formula $w\in L$
+\end_inset
+
+ délky alespoň 
+\begin_inset Formula $n$
+\end_inset
+
+ platí, že 
+\begin_inset Formula $w=xyz$
+\end_inset
+
+, kde 
+\begin_inset Formula $|xy|\leq n\wedge y\neq\varepsilon$
+\end_inset
+
+ a 
+\begin_inset Formula $wy^{i}z\in L$
+\end_inset
+
+ pro každé 
+\begin_inset Formula $i\in\mathbb{Z}^{+}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Definice je fuj, pojďme na příklad:
+\end_layout
+
+\begin_layout Standard
+Máme jazyk 
+\begin_inset Formula $L=\{bu^{m}bu^{m}|m\in\mathbb{N}\}$
+\end_inset
+
+ a chceme určit, zda-li je neregulární.
+\end_layout
+
+\begin_layout Standard
+Z definice dýňového lemmatu předpokládáme, že jazyk L je regulární.
+ 
+\end_layout
+
+\begin_layout Standard
+Zvolíme 
+\begin_inset Formula $n\in\mathbb{N}$
+\end_inset
+
+ a slovo 
+\begin_inset Formula $w=xyz$
+\end_inset
+
+, 
+\begin_inset Formula $x=bu^{k},\,k>0\wedge k<n$
+\end_inset
+
+, 
+\begin_inset Formula $y=u^{g},\,g>0\wedge g+k\leq n-1$
+\end_inset
+
+ (musíme uvažovat nad znakem b v x), 
+\begin_inset Formula $z=u^{n-g-k}bu^{n}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Slovo 
+\begin_inset Formula $w=xyz=bu^{k}u^{g}u^{n-g-k}bu^{n}$
+\end_inset
+
+.
+ Zvolíme takové 
+\begin_inset Formula $i\in\mathbb{Z}^{+}$
+\end_inset
+
+ (například i=2) a otestujeme 
+\begin_inset Formula $w=xy^{i}z=bu^{k}(u^{g})^{2}u^{n-g-k}bu^{n}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Ovšem 
+\begin_inset Formula $k+2g+n-g-k=n+g>n$
+\end_inset
+
+ (protože 
+\begin_inset Formula $g\neq0$
+\end_inset
+
+), z jazyka jsme utekli a tím jsme dokázali, že jazyk L není regulární.
+\end_layout
+
+\begin_layout Subsection*
+Uzavřenost regulárních jazyků
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $L_{1},L_{2}$
+\end_inset
+
+ jsou regulární jazyky.
+ Ty jsou pak uzavřené na:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $L_{1}\cup L_{2}$
+\end_inset
+
+ - vytvoříme dva paralerní NFA s epsilon hranami do počátečních a koncových
+ stavů.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $L_{1}\cap L_{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $L_{1}\backslash L_{2}\Leftrightarrow L_{1}\cap co-L_{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $co-L_{1}$
+\end_inset
+
+ - Zaměníme koncové stavy za nekoncové a naopak.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $L_{1}^{*}$
+\end_inset
+
+ - Vytvoříme epsilon přechody na začátek
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $L_{1}^{+}$
+\end_inset
+
+ - Podobně jako u iterace, avšak neakceptujeme prázdné slova
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $L_{1}\cdot L_{2}$
+\end_inset
+
+ - Automat akceptuje 
+\begin_inset Formula $L_{1}$
+\end_inset
+
+, poté akceptuje 
+\begin_inset Formula $L_{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $L_{1}^{R}$
+\end_inset
+
+ - Automat spustíme od konce.
+\end_layout
+
+\end_body
+\end_document

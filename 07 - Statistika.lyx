@@ -1,0 +1,632 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Statistika
+\end_layout
+
+\begin_layout Subsection*
+Statistický soubor
+\end_layout
+
+\begin_layout Standard
+Množina prvků (statistických jednotek), jenž jsou předmětem zkoumání.
+ Na statistických jednotkách se zjišťují jednotlivé statistické znaky.
+\end_layout
+
+\begin_layout Subsubsection*
+Statistický znak
+\end_layout
+
+\begin_layout Standard
+Vlasnost, jenž reprezentuje statistickou jednotku v předmětu zkoumání.
+\end_layout
+
+\begin_layout Paragraph*
+Kvantitativní
+\end_layout
+
+\begin_layout Standard
+Číselná hodnota (hmotnost, délka, cena, apod.), může být diskrétní (celočíselná)
+ nebo spojitá (v 
+\begin_inset Formula $\mathbb{R}$
+\end_inset
+
+, např.
+ nějaký interval).
+\end_layout
+
+\begin_layout Subsubsection*
+Kvalitativní
+\end_layout
+
+\begin_layout Standard
+Nemají číselný charakter, lze je vyjádřit slovně (barva, tvar apod.).
+ Mohou být ordinální (lze je uspořádat - např.
+ barva podle RGB) nebo nominální (nelze uspořádat).
+\end_layout
+
+\begin_layout Subsubsection*
+Statistický výběr
+\end_layout
+
+\begin_layout Standard
+Pokud je množina prvků (statistický soubor) příliž velký, je proveden tzv.
+ výběr - vybereme takové prvky, které dokáží být reprezentativní (poskytovat
+ informace bez omezení) a homogenní (neexistuje jasná hranice mezi výběrem).
+ Může však docházet ke skreslování výsledků.
+\end_layout
+
+\begin_layout Subsection*
+Aritmetický průměr
+\end_layout
+
+\begin_layout Standard
+Pro nevážené diskrétní veličiny: 
+\begin_inset Formula $\bar{x}=\frac{1}{n}\stackrel[i=0]{n}{\sum}x_{i}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pro vážené veličiny: 
+\begin_inset Formula $\bar{x}=\frac{w_{1}x_{1}+\ldots+w_{n}x_{n}}{w_{1}+\ldots+w_{n}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Střední hodnota
+\end_layout
+
+\begin_layout Standard
+Značí se jako E(X).
+ Označuje rozdělení náhodné veličiny.
+\end_layout
+
+\begin_layout Standard
+Při rovnoměrném rozdělení pravděpodobnosti se jedná o klasický aritmetický
+ průměr.
+\end_layout
+
+\begin_layout Standard
+Pro diskrétní veličiny má vzorec: 
+\begin_inset Formula $E(X)=\stackrel[i=0]{n}{\sum}p_{i}x_{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Pro spojité veličiny má vzorec: 
+\begin_inset Formula $E(X)=\stackrel[-\infty]{\infty}{\int}xf(x)\,dx$
+\end_inset
+
+, kdy f(x) je hustota pravděpodobnosti.
+ Přiřazuje každému reálnému x jeho pravděpodobnost.
+\end_layout
+
+\begin_layout Subsection*
+Medián
+\end_layout
+
+\begin_layout Standard
+Pro uspořádaný soubor prvků označí 
+\begin_inset Quotes eld
+\end_inset
+
+prostřední hodnotu
+\begin_inset Quotes erd
+\end_inset
+
+, tzn.
+ hodnotu, pro kterou platí, že je větší jak 50% prvků v souboru (všechny
+ prvky v levo) a menší jak 50% prvků (tzn.
+ všechny prvky vpravo).
+\end_layout
+
+\begin_layout Paragraph*
+Výpočet mediánu pro diskrétní hodnoty
+\end_layout
+
+\begin_layout Standard
+Výpočet mediánu pro lichý počet hodnot je jednoduchý, medián je roven prostřední
+mu prvku.
+\end_layout
+
+\begin_layout Standard
+Pro sudý počet hodnot se vezmou dva prostřední prvky a vypočítá se jejich
+ aritmetický průměr.
+\end_layout
+
+\begin_layout Subsubsection*
+Výpočet mediánu pro spojité hodnoty
+\end_layout
+
+\begin_layout Standard
+Hledáme takové m, pro které platí 
+\begin_inset Formula $\stackrel[-\infty]{m}{\int}f(x)\,dx=0,5$
+\end_inset
+
+ (kvantil je 0,5).
+\end_layout
+
+\begin_layout Subsubsection*
+Modus
+\end_layout
+
+\begin_layout Standard
+Nejčastěji vyskytující se prvek (statistická jednotka) v souboru prvků.
+\end_layout
+
+\begin_layout Standard
+Př.: Modus pro 
+\begin_inset Formula $M=\{1,2,2,2,4,5,6,6,6,6,6\}$
+\end_inset
+
+ je 6.
+\end_layout
+
+\begin_layout Subsection*
+Rozptyl
+\end_layout
+
+\begin_layout Standard
+Též jako variance, průměrná odchylka.
+ Značeno jako 
+\begin_inset Formula $var(X),\,D(X),\,\sigma^{2}$
+\end_inset
+
+.
+ Udává, jak moc jsou hodnoty ve statistickém souboru od sebe vzdálené.
+\end_layout
+
+\begin_layout Standard
+Pro diskrétní veličiny platí:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\sigma^{2}=D(X)=var(x)=\frac{1}{n}\stackrel[i=0]{n}{\sum}(x_{i}-E(X))^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pro spojité veličiny platí:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\sigma^{2}=D(X)=var(x)=\stackrel[-\infty]{\infty}{\int}(x-E(X))^{2}\,f(x)\,dx=\stackrel[-\infty]{\infty}{\int}x^{2}f(x)\,dx-E(X)^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+TODO
+\end_layout
+
+\begin_layout Standard
+Směrodatná odchylka
+\end_layout
+
+\begin_layout Standard
+Odmocnina z rozptylu (variance).
+\end_layout
+
+\begin_layout Subsection*
+Kovariance
+\end_layout
+
+\begin_layout Standard
+Statistická míra vzájemných rozdílů dvou veličin.
+\end_layout
+
+\begin_layout Standard
+Vzorec: 
+\begin_inset Formula $cov(X,Y)=E[(X-E(X))(Y-E(Y))]=E(XY)-E(X)E(Y)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Korelace
+\end_layout
+
+\begin_layout Standard
+Určuje míru lineární závislosti dvou veličin.
+ Pokud je mezi veličinami korelace, rozmístění je v přímce.
+ Pokud je korelace nulová, neexistuje lineární závislost mezi veličinami.
+\end_layout
+
+\begin_layout Standard
+Vzorec: 
+\begin_inset Formula $\rho_{X,Y}=\frac{cov(X,Y)}{\sqrt{var(X)var(Y)}}=\frac{cov(X,Y)}{\sigma_{X}\sigma_{Y}}=\frac{E(XY)-E(X)E(Y)}{\sqrt{E(X^{2})-E^{2}(X)}\sqrt{E(Y^{2})-E^{2}(Y)}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Odhady statistik a jejich spolehlivosti
+\end_layout
+
+\begin_layout Subsubsection*
+Bodový odhad
+\end_layout
+
+\begin_layout Standard
+Máme náhodný výběr 
+\begin_inset Formula $X_{1},X_{2},\ldots,X_{n}$
+\end_inset
+
+ a statistiku T.
+ Bodový odhad parametru 
+\begin_inset Formula $\theta$
+\end_inset
+
+ je pak číslo, které je velmi blízké tomuto parametru.
+\end_layout
+
+\begin_layout Standard
+Příkladem výpočtu bodového odhadu může být například aritmetický průměr
+ náhodného výběru.
+ Bodový odhad je pak výpočet průměru nad náhodným výběrem.
+ Bodový odhad může být odlišný vůči celkové populaci (tzn.
+ statistického souboru).
+ Pak určujeme míru odlišnosti tohoto odhadu pomocí tzv.
+
+\series bold
+ výběrové chyby
+\series default
+ (
+\begin_inset Formula $T-\theta$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Subsubsection*
+Intervalový odhad
+\end_layout
+
+\begin_layout Standard
+Interval hodnot 
+\begin_inset Formula $(T_{D},T_{H})$
+\end_inset
+
+, ve kterém lze očekávat výskyt určitého prvku s určitou pravděpodobností
+ (
+\begin_inset Formula $1-\alpha$
+\end_inset
+
+).
+ Tzn.
+ platí 
+\begin_inset Formula $P(T_{D}\leq\Theta\leq T_{H})=1-\alpha$
+\end_inset
+
+.
+ Meze intervalu 
+\begin_inset Formula $T_{D},\,T_{H}$
+\end_inset
+
+ jsou náhodné veličiny.
+\end_layout
+
+\begin_layout Paragraph*
+Příklady intervalových odhadů:
+\end_layout
+
+\begin_layout Itemize
+Interval spolehlivosti
+\end_layout
+
+\begin_layout Itemize
+Konfidenční interval
+\end_layout
+
+\begin_layout Subsection*
+Náhodná veličina
+\end_layout
+
+\begin_layout Standard
+Veličina, kterou lze u objektů opakovaně měřit.
+\end_layout
+
+\begin_layout Standard
+Definice: 
+\end_layout
+
+\begin_layout Standard
+Náhodná veličina je funkce 
+\begin_inset Formula $X:\varOmega\rightarrow\mathbb{R}$
+\end_inset
+
+, která každému elementárnímu jevu přiřadí reálné číslo (jeho pravděpodobnost
+ výběru).
+ Definičním oborem je tedy množina elementárních jevů 
+\begin_inset Formula $\varOmega$
+\end_inset
+
+ (tzn.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+hodím kostkou a co mi spadne
+\begin_inset Quotes erd
+\end_inset
+
+), oborem hodnot jsou reálná čísla.
+\end_layout
+
+\begin_layout Standard
+Zápisem 
+\begin_inset Formula $[X=x]$
+\end_inset
+
+ rozumíme takové elementární jevy, pro které platí 
+\begin_inset Formula $\omega\in\varOmega:\,X(\omega)=x$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Pravděpodobnostní funkce
+\series default
+ je definována jako 
+\begin_inset Formula $p(x)=P(X=x)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Distribuční funkce
+\end_layout
+
+\begin_layout Standard
+Často nás nezajímá pouze, jakou prst.
+ náhodná veličina nabyde konkrétní hodnotu, ale taky chceme určit, s jakou
+ prst bude menší než zadaná mez.
+ K tomu slouží distribuční funkce F, pro kterou platí 
+\begin_inset Formula $F(x)=P(X\leq x)=\underset{x_{i}<x}{\sum}P(X=x)$
+\end_inset
+
+ (diskrétní hodnoty), 
+\begin_inset Formula $F(x)=\stackrel[-\infty]{x}{\int}f(x)\,dx$
+\end_inset
+
+, kde f(x) je hustota pravděpodobnosti.
+\end_layout
+
+\begin_layout Subsection*
+Rozdělení náhodných veličin (příklady)
+\end_layout
+
+\begin_layout Subsubsection*
+Rovnoměrné rozdělení
+\end_layout
+
+\begin_layout Standard
+Přiřazuje všem hodnotám náhodné veličiny stejnou pravděpodobnost.
+\end_layout
+
+\begin_layout Standard
+Diskrétní rozdělení: 
+\begin_inset Formula $p_{i}=\frac{1}{n}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Spojité rozdělení pro interval 
+\begin_inset Formula $(a,b)$
+\end_inset
+
+: 
+\begin_inset Formula $f(x)=\begin{cases}
+\frac{1}{b-a} & pro\,x\in(a,b)\\
+0 & jinak
+\end{cases}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Distribuční funkce pro spojité hodnoty 
+\begin_inset Formula $F(x)=\begin{cases}
+0 & x\leq a\\
+\frac{x-a}{b-a} & x\in(a,b)\\
+1 & b\leq x
+\end{cases}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Příklad: Rozdělení pravděpodobnosti hodnoty kostky po jejím hodu.
+\end_layout
+
+\begin_layout Subsubsection*
+Binomické rozdělení
+\end_layout
+
+\begin_layout Standard
+Odpovídá n-krát nezávisle opakovanému pokusu, veličina X měří počet zdarů
+ jedné hodnoty.
+\end_layout
+
+\begin_layout Standard
+Pravděpodobnostní funkce (diskrétní): 
+\begin_inset Formula $p(x)=\begin{cases}
+\binom{n}{x}p^{x}(1-p)^{n-x} & pro\,x\in\mathbb{Z}^{+}\\
+0 & jinak
+\end{cases}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Distribuční funkce je ve tvaru 
+\begin_inset Formula $F(X)=\underset{x_{i}<x}{\sum}P(X=x_{i})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Příklad: Jaká je pravděpodobnost, že během 5 hodech kostkou padne dvakrát
+ číslo 1?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $X\sim Bi(5,\frac{1}{6}),\,x=2\Longrightarrow prst=\binom{n}{x}p^{x}(1-p)^{n-x}=\binom{5}{2}\left(\frac{1}{6}\right)^{2}(1-\frac{1}{6})^{5-2}\doteq0,16$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Gaussovo rozdělení (normální rozdělení)
+\end_layout
+
+\begin_layout Standard
+Normální znamená 
+\begin_inset Quotes eld
+\end_inset
+
+řídící se zákonem, předpisem nebo modelem
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Podle tohoto zákona se řídí některé fyzikální či technické velčiny.
+\end_layout
+
+\begin_layout Standard
+Vzorec hustoty pravděpodobnosti:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $N(\mu,\sigma^{2})=f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^{2}}{2\sigma^{2}}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Tvar závisí na parametru 
+\begin_inset Formula $\sigma$
+\end_inset
+
+, střed rozdělení je za pomocí parametru 
+\begin_inset Formula $\mu$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Distribuční funkce se spočítá jako integrál 
+\begin_inset Formula $F(x)=\stackrel[-\infty]{x}{\int}\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-u)^{2}}{2\sigma^{2}}}dx$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+FUJ!
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\end_body
+\end_document

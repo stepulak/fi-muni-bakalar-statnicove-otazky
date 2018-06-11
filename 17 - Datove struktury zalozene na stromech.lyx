@@ -1,0 +1,786 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Datové struktury založené na stromech
+\end_layout
+
+\begin_layout Subsection*
+Pojmy
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Strom
+\series default
+ - acyklický graf s jedinou komponentou souvislosti (jedná se o les bez
+ kružnice)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Binární strom
+\series default
+ - strom s aritou 2 (tzn.
+ každý uzel kromě listů má maximálně dva potomky)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Preorder průchod
+\series default
+ - Zpracuj kořen (resp.
+ aktuální uzel), jdi do levého podstromu a pak do pravého podstromu.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Inorder průchod
+\series default
+ - Zpracuj levý podstrom, pak kořen (aktuální uzel) a pak pravý podstrom.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Postorder průchod
+\series default
+ - Zpracuj levý podstrom, pak pravý podstrom a nakonec kořen.
+\end_layout
+
+\begin_layout Subsection*
+Implementace binárních stromů pomocí pole
+\end_layout
+
+\begin_layout Standard
+Binární stromy můžeme implementovat pomocí pole, neboť pozici předků a potomků
+ lze snadno indexovat:
+\end_layout
+
+\begin_layout Itemize
+levý potomek vrcholu na i-té pozici má index 
+\begin_inset Formula $2i+1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+pravý potomek vrcholu na i-té pozici má index 
+\begin_inset Formula $2i+2$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+index rodiče pro vrchol na i-té pozici je 
+\begin_inset Formula $\left\lfloor \frac{i-1}{2}\right\rfloor $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Binární pole je tedy umístěno na sekvenční (kontinuální) paměti.
+ Nevýhoda použití pole je ta, že si musíme dávat pozor, abychom nepřekročili
+ maximální velikost pole.
+ Pokud překročíme, je nutné alokovat novou paměť (zpravidla 2x větší) a
+ překopírovat starý obsah.
+ Další způsob je implementace pomocí uzlů a odkazů (každý uzel drží ukazatel
+ na svého rodiče, levého i pravého potomka).
+\end_layout
+
+\begin_layout Subsection*
+Binární vyhledávací strom (BVS)
+\end_layout
+
+\begin_layout Standard
+Datová struktura postavená na binárním stromě, přičemž jednotlivé vrcholy
+ reprezentují porovnatelné hodnoty.
+ Jedná se tedy o relaci uspořádání (na uspořádatelné množině).
+ Pro každý vrchol X platí, že všechny vrcholy levého podstromu jsou menší
+ než vrchol X a všechny vrcholy pravého podstromu jsou větší nebo rovny
+ jak X (vztah můžeme přetočit, pokud chceme seřazení od nejmenšího po největší).
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Vyhledávání
+\series default
+ probíhá tak, že se nejprve ověří, zda-li ve vrcholu X se nenalézá hledný
+ prvek.
+ Pokud ne, tak pokračujeme do levého podstromu, pokud je hledaný prvek menší
+ než X, jinak jdeme doprava.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Vkládání
+\series default
+ probíhá podobně jako vyhledávání, musíme nalézt takový vrchol, pro který
+ by platilo, že nemá na požadovaném místě potomka (je úplným nebo částečným
+ listem).
+ Tzn.
+ pokud vkládáme vrchol A a nalezli jsme vrchol B (přičemž 
+\begin_inset Formula $A<B$
+\end_inset
+
+), pro který platí, že B.left = null, tak přiřadíme B.left = A.
+ Pro 
+\begin_inset Formula $A\geq B$
+\end_inset
+
+ vkládáme obdobně do B.right.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Nalezení minima a maxima
+\series default
+ - Minimum je nejlevější prvek, maximum nejpravější (pokud máme uspořádání
+ od nejmenšího po největší).
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Smazání
+\series default
+ - nalezneme požadovaný vrchol X.
+ Pokud nemá potomky, můžeme smazat.
+ Pokud má pouze jednoho potomka (levý nebo pravý podstrom), tak na jeho
+ místo přidáme kořen daného podstromu.
+ Pokud má oba potomky (levý i pravý podstrom), tak na jeho pozici přesuneme
+ buď nejpravějšího vrcholu levého podstromu nebo nejlevější vrchol pravého
+ podstromu.
+\end_layout
+
+\begin_layout Standard
+Problém binárního vyhledávacího stromu je ten, že nemusí být vyvážený.
+ Může klidně vzniknout situace, kdy vkládáme hodnoty od největšího po nejmenší,
+ potom nám vznikne BVS, přičemž každý vrchol bude mít jenom pravého potomka.
+ Vyhledávání by pak v takovém případě (tzn.
+ v nejhorším případě) až lineární vůči počtu prvků.
+ V průměrném případě je vyhledávání, mazání a vkládání prvků logaritmické.
+\end_layout
+
+\begin_layout Subsection*
+Vyvážený BVS
+\end_layout
+
+\begin_layout Standard
+Pro vyvážený BVS platí, že pro každý uzel platí vztah: 
+\begin_inset Formula $|výška\,levého\,podstromu-výška\,pravého\,podstromu|\leq1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Tím zaručíme právě logaritmickou časovou složitost při vyhledávání, mazání
+ a vkládání prvků.
+\end_layout
+
+\begin_layout Standard
+Příklady vyvážených BVS: AVL, červeno-černý strom, B+ stromy.
+\end_layout
+
+\begin_layout Subsection*
+Červeno černý strom (Red black tree)
+\end_layout
+
+\begin_layout Standard
+Jeden z typů BVS.
+ Platí, že každý vrchol je buď černý nebo červený.
+\end_layout
+
+\begin_layout Standard
+Pro BVS platí několik pravidel:
+\end_layout
+
+\begin_layout Itemize
+Kořen stromu je černý.
+\end_layout
+
+\begin_layout Itemize
+Je-li vnitřní kořen červený, jeho následníci jsou černí.
+\end_layout
+
+\begin_layout Itemize
+Všechny větve (tzn.
+ jak levý tak pravý podstrom) obsahuje stejný počet černých vrcholů.
+\end_layout
+
+\begin_layout Itemize
+NULL 
+\begin_inset Quotes eld
+\end_inset
+
+uzly
+\begin_inset Quotes erd
+\end_inset
+
+ jsou černé.
+\end_layout
+
+\begin_layout Subsubsection*
+Přidání nového uzlu do RB stromu
+\end_layout
+
+\begin_layout Standard
+Nejprve přidáme nový vrchol X, podobně jako u BVS.
+ Každý nově přidaný vrchol je červený.
+ Pokud je rodič přidaného vrcholu černý, je nový vrchol červený a strom
+ je vyvážený.
+ Pokud je však rodič červený, musíme provést jednu z následujících operací:
+\end_layout
+
+\begin_layout Itemize
+přebarvení
+\end_layout
+
+\begin_layout Itemize
+rotace
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Přebarvení
+\series default
+ aplikujeme tehdy, pokud je strýc (tzn.
+ druhý potomek prarodiče) červený.
+ Poté rodiče i strýce přebarvíme na černo, prarodiče na červeno.
+ Poté obarvení spustíme rekurzivně i na prarodiči.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Rotace
+\series default
+ je složitější proces, máme 4 různé možnosti (v principu dvě, avšak zrcadlově
+ inverzní).
+ Předpokladem je fakt, že strýc je černý.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename img/rb_tree_rotations_left.png
+	lyxscale 50
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pro pravé podstromy je situace stejná, jen zrcadlově obrácená.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename img/rb_tree_rotations_right.png
+	lyxscale 50
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Časová složitost je 
+\begin_inset Formula $\mathcal{O}(n\log_{2}n)$
+\end_inset
+
+, kde n je počet prvků stromu.
+\end_layout
+
+\begin_layout Subsubsection*
+Odebrání uzlu z RB stromu
+\end_layout
+
+\begin_layout Standard
+Moc use-casů, ani prof.
+ Černá to nechtěla v testu! Časová složitost jako u vkládání, a to 
+\begin_inset Formula $\mathcal{O}(n\log_{2}n)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+B+ stromy
+\end_layout
+
+\begin_layout Standard
+B+ strom je datová struktura (nejedná se o binární strom), která umožňuje
+ efektivní vkládání, maxání a vyhledávání hodnot.
+\end_layout
+
+\begin_layout Standard
+Pro B+ strom platí následující vlastnosti:
+\end_layout
+
+\begin_layout Itemize
+Data jsou uložena pouze v listech, klíče jsou ve vnitřních uzlech.
+\end_layout
+
+\begin_layout Itemize
+Všechny listy jsou ve stejné hloubce.
+\end_layout
+
+\begin_layout Itemize
+Všechny uzly kromě kořene a listů mají minimálně 
+\begin_inset Formula $\left\lfloor \frac{N}{2}\right\rfloor $
+\end_inset
+
+ a maximálně N potomků (minimálně 
+\begin_inset Formula $\left\lfloor \frac{N}{2}\right\rfloor -1$
+\end_inset
+
+ a maximálně 
+\begin_inset Formula $N-1$
+\end_inset
+
+ klíčů).
+\end_layout
+
+\begin_layout Itemize
+Všechny klíče a hodnoty jsou v listech uspořádány.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename img/bplus_tree_example.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ukázka B+ stromu.
+ Hodnoty jsou uloženy v listech, ve vnitřních uzlech jsou pouze klíče.
+ Pro i-tý klíč platí, že na i-té pozici odkazu nalezneme hodnoty menší jak
+ klíč, na 
+\begin_inset Formula $(i+1)$
+\end_inset
+
+-té pozici jsou hodnoty větší nebo rovno danému klíči.
+\end_layout
+
+\begin_layout Subsubsection*
+Vložení prvku do B+ stromu
+\end_layout
+
+\begin_layout Standard
+Vkládáme-li klíč do listu, který má ještě volné místo, tak stačí nalézt
+ požadovanou pozici a korektně vložit.
+ Neprobíhá zde žádná úprava odkazů.
+\end_layout
+
+\begin_layout Standard
+Problém nastane, pokud není místo v listu.
+ Tím pádem musíme list rozdělit na dva samostatné listy (tím dodžíme podmínku,
+ že listy mají minimálně 
+\begin_inset Formula $\left\lfloor \frac{N}{2}\right\rfloor $
+\end_inset
+
+ hodnot).
+ V prvním listu bude první polovina hodnot, v druhém druhá polovina.
+ Z druhého listu se taky veme minimum (obvykle první prvek) a ten se vloží
+ do rodičovského uzlu jako klíč, přičemž se vytvoří nový odkaz na nově vytvořený
+ uzel.
+\end_layout
+
+\begin_layout Standard
+Problém ilustrujeme na následujícím příkladu:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/btree_before_10.png
+	lyxscale 30
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula $\Downarrow$
+\end_inset
+
+ (vkládáme 10)
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/btree_after_10.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pokud nemáme místo ve vnitřním uzlu pro vytvoření klíče, nastává komplikace
+ číslo dvě.
+ Vnitřní usel opět rozdělíme na dva (podobně jako listy) a upravíme odkazy
+ na potomky.
+ Z druhého uzlu vyjmeme (ne zkopírujeme) minimum (obvykle první prvek) a
+ ten vložíme do uzlu výše jako klíč.
+ Pokud však dělíme kořen, je nutné vyvořit kořen nový.
+\end_layout
+
+\begin_layout Standard
+Tento problém ilustrujeme na tomto příkladě:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/btree_before_12.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula $\Downarrow$
+\end_inset
+
+ (vkládáme 12)
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/btree_after_12.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Časová složitost vkládání je v nejhorším případě logaritmická 
+\begin_inset Formula $\mathcal{O}(log_{N}k)$
+\end_inset
+
+, kde N je řád stromu, k je počet prvků.
+\end_layout
+
+\begin_layout Subsubsection*
+Smazání prvku z B+ stromu
+\end_layout
+
+\begin_layout Standard
+Probíhá slučování listů, pokud je porušena pomínka, že vrcholy mají minimálně
+ 
+\begin_inset Formula $\left\lfloor \frac{N}{2}\right\rfloor $
+\end_inset
+
+ hodnot.
+ Hodnoty se mažou pouze v listech, klíče se stejnou hodnotou mohou zůstat
+ ve stromu.
+ Nutná rotace hodnot ve stromu.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/btree_delete_0.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula $\Downarrow$
+\end_inset
+
+ (odstraníme 15)
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/btree_delete_1.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula $\Downarrow$
+\end_inset
+
+ (odstraníme 1)
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/btree_delete_2.png
+	lyxscale 20
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Časová složitost smazání je v nejhorším případě opět logaritmická 
+\begin_inset Formula $\mathcal{O}(log_{N}k)$
+\end_inset
+
+, kde N je řád stromu, k je počet prvků.
+\end_layout
+
+\begin_layout Subsubsection*
+Vyhledávání v B+ stromu
+\end_layout
+
+\begin_layout Standard
+Vyhledávání je intuitivní a snad není třeba komentáře.
+ Vyhledávání je taky logaritmické.
+ Nepovažujeme-li vyhledávání hodnoty ve vrcholech za konstantní operaci,
+ pak i toto prohledávání je logaritmické (stačí použít binární vyhledávání).
+ Tudíž samotné vložení má časovou složitost 
+\begin_inset Formula $\mathcal{O}(\log_{N}k*\log_{2}N)$
+\end_inset
+
+ (viz např.
+ https://www.cs.helsinki.fi/u/mluukkai/tirak2010/B-tree.pdf).
+\end_layout
+
+\begin_layout Subsection*
+Binární halda
+\end_layout
+
+\begin_layout Standard
+V principu se nejedná o binární vyhledávací strom, avšak řadí se do rodiny
+ binárních stromů.
+ Bin.
+ halda (dále již jako halda) může být minimová, nebo maximová (záleží na
+ porovnávací funkci - comparátoru).
+ Pro každý vrchol minimové haldy platí, že hodnota ve vrcholu je menší než
+ hodnoty pravého i levého podstromu.
+ Díky tomu můžeme v 
+\series bold
+konstantním čase
+\series default
+ získat minimum (resp.
+ maximum) - je umístěn v kořenu stromu a s logaritmickou časovou složitostí
+ (díky použití vyváženého n-árního binárního stromu - rozdíly výšek jednotlivých
+ podstromá je maximálně jedna) máme zaručené přidávání a odebírání prvků.
+\end_layout
+
+\begin_layout Standard
+Birnání halda využívá dvě hlavní interní operace, a to 
+\series bold
+BubbleDown
+\series default
+ a 
+\series bold
+BubbleUp
+\series default
+.
+\end_layout
+
+\begin_layout Paragraph*
+BubbleDown
+\end_layout
+
+\begin_layout Standard
+BubbleDown se využívá při extrahování (vyjmutí) minima (maxima) z kořene.
+ Je to operace, při které se porovnává hodnota ve vrcholu X s hodnotami
+ v jeho přímých následnících (synech) Y a Z.
+ Pokud je hodnota vrcholu X menší jak Y a Z, hodnota zůstane ve vrcholu
+ a procedura skončila.
+ Jinak se přehodí hodnota ve vrcholu X s hodnotou ve vrcholu 
+\begin_inset Formula $min(Y\,value,Z\,value)$
+\end_inset
+
+.
+ Procedura se opakuje do té doby, dokud požadovaná hodnota maximálně 
+\begin_inset Quotes eld
+\end_inset
+
+neprobublá
+\begin_inset Quotes erd
+\end_inset
+
+ (tzn.
+ můžeme stále přehazovat hodnoty ve vrcholech) směrem k listům.
+ Časová složitost je logaritmická.
+\end_layout
+
+\begin_layout Subsubsection*
+BubbleUp
+\end_layout
+
+\begin_layout Standard
+Inverzní operace k BubbleDown.
+ Využívá se, když přidáváme novou hodnotu do haldy.
+ Má jednodušší proceduru, stačí ověřit, zda-li je hodnota v rodiči větší
+ než aktuální hodnota, pokud ano, swapneme je.
+ Proceduru opakujeme do doby, dokud můžeme swapovat (hodnota v rodičích
+ je větší jak probublávaná hodnota), případně dokud nedojdeme do kořene
+ stromu.
+ Časová složitost je logaritmická.
+\end_layout
+
+\begin_layout Subsubsection*
+Extract minimum/maximum
+\end_layout
+
+\begin_layout Standard
+Minimum/maximum nalezneme v kořenu.
+ Pokud jej chceme vyextrahovat, tak namísto něj vložíme hodnotu z nejpravějšího
+ možného listu v největší hloubce a na kořen zavoláme proceduru BubbleDown.
+ 
+\begin_inset Formula $\mathcal{O}(n\log_{2}n)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Insert value
+\end_layout
+
+\begin_layout Standard
+Hodnotu vložíme do vrcholu, který zařadíme jako nejpravější list v největší
+ hloubce, přičemž musí platit, že listy jdou 
+\begin_inset Quotes eld
+\end_inset
+
+za sebou
+\begin_inset Quotes erd
+\end_inset
+
+ a nevzniká mezi nima 
+\begin_inset Quotes eld
+\end_inset
+
+díra
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Poté na vrchol zavoláme proceduru BubbleUp, ta zajistí, že prvek probublá
+ na směrem vzhůru a bude tím zajištěna minimalita/maximalita haldy.
+ 
+\begin_inset Formula $\mathcal{O}(n\log_{2}n)$
+\end_inset
+
+.
+\end_layout
+
+\end_body
+\end_document

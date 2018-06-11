@@ -1,0 +1,645 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Part*
+Grafy
+\end_layout
+
+\begin_layout Subsubsection*
+Neorientovaný graf
+\end_layout
+
+\begin_layout Standard
+Neorientovaný graf je dvojice G=(V,E).
+ V je množina vrcholů a E je množina hran.
+ Jednotlivé hrany jsou reprezentovány dvouprvkovou množinou.
+ Hrany jsou neorientované, tzn.
+ že nezáleží na směru, oba uzly jsou vstupní a výstupní.
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $G=(\{a,b,c\},\{\{a,b\},\{b,c\},\{c,a\}\})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Rozšířením neorientovaného grafu je tzv.
+ 
+\series bold
+multigraf
+\series default
+.
+ Multigraf může obsahovat tzv.
+ smyčky - hrany jdoucí z/do stejného vrcholu a redundantní hrany.
+ Množinový zápis u neorientovaného grafu neumožňuje z principu zapsat redudantní
+ prvky, a tak je potřeba použít tzv.
+ 
+\series bold
+multimnožinu
+\series default
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Orientovaný graf
+\end_layout
+
+\begin_layout Standard
+Orientovaný graf je dvojice G=(V,E).
+ V je množina vrcholů a E je množina hran.
+ Jenotlivé hrany jsou zde naopak reprezentovány pomocí dvojic, přičemž zápis
+ dvojice (a,b) jednoznačně určuje směr hrany (jdoucí z a do b 
+\begin_inset Formula $\Longrightarrow$
+\end_inset
+
+ a je výstupní, b je vstupní hrana).
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $G=(\{a,b,c,d\},\{(a,b),(b,c),(c,d)\})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Tzn.
+ existuje cesta z a do d, avšak obráceně nikoliv.
+\end_layout
+
+\begin_layout Subsubsection*
+Ohodnocený graf
+\end_layout
+
+\begin_layout Standard
+Takový graf, kde jednotlivým hranám jsou přiřazeny číselná ohodnocení (která
+ většinou reprezentují vzdálenost mezi vrcholy).
+ Pokud graf ohodnocený není, můžeme předpokládat, že vzdálenost mezi vrcholy
+ je rovna 1.
+\end_layout
+
+\begin_layout Standard
+Z hlediska definice se jedná o dvojici, a to graf G(V,E) a ohodnocovací
+ funkci 
+\begin_inset Formula $\omega:\,G(E)\rightarrow\mathbb{R}$
+\end_inset
+
+, která všem hranám přiřadí reálné číslo.
+\end_layout
+
+\begin_layout Subsection*
+Pojmy v grafu
+\end_layout
+
+\begin_layout Subsubsection*
+Sled
+\end_layout
+
+\begin_layout Standard
+Taková posloupnost (propojených) vrcholů, kde se jednotlivé vrcholy můžou
+ opakovat.
+ Sled je i samostatný vrchol.
+\end_layout
+
+\begin_layout Subsubsection*
+Cesta
+\end_layout
+
+\begin_layout Standard
+Posloupnost vrcholů, kde se jednolivé vrcholy neopakují.
+\end_layout
+
+\begin_layout Subsubsection*
+Kružnice
+\end_layout
+
+\begin_layout Standard
+Taková 
+\begin_inset Quotes eld
+\end_inset
+
+cesta
+\begin_inset Quotes erd
+\end_inset
+
+, která začíná a končí ve stejném vrcholu.
+ Graf, který obsahuje kružnici, je cyklický.
+ Acyklický graf se nazývá strom.
+\end_layout
+
+\begin_layout Subsubsection*
+Stupeň vrcholu
+\end_layout
+
+\begin_layout Standard
+Pro 
+\series bold
+neorientovaný graf 
+\series default
+se jedná o počet hran, které jsou incidentní (
+\begin_inset Quotes eld
+\end_inset
+
+zasahují
+\begin_inset Quotes erd
+\end_inset
+
+) k danému vrcholu (tj.
+ počet hran, které obsahují tento vrchol).
+ Značí se 
+\begin_inset Formula $deg(v)$
+\end_inset
+
+.
+ Pro orientovaný graf se rozlišuje mezi vstupními hranami (značení 
+\begin_inset Formula $deg^{-}(v)$
+\end_inset
+
+) a výstupními hranami (značení 
+\begin_inset Formula $deg^{+}(v)$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Subsubsection*
+Regulární graf
+\end_layout
+
+\begin_layout Standard
+Regulární graf je takový graf, u kterého platí, že všechny jeho vrcholy
+ mají stejný stupeň.
+ Pokud vrcholy mají maximální stupeň (každý vrchol je spojený s každým),
+ jedná se o úplný graf.
+\end_layout
+
+\begin_layout Subsubsection*
+Izomorfní grafy
+\end_layout
+
+\begin_layout Standard
+Dva grafy 
+\begin_inset Formula $G,\,G'$
+\end_inset
+
+ jsou izomorfní, pokud existuje bijektivní zobrazení 
+\begin_inset Formula $f:\,V(G)\rightarrow V(G')$
+\end_inset
+
+, pro které platí, že 
+\begin_inset Formula $\{x,y\}\in G\Leftrightarrow\{f(x),f(y)\}\in G'$
+\end_inset
+
+.
+ Izomorfismus grafu zachovává vrcholy, hrany i stupeň vrcholů.
+ Laicky, dva grafy A,B jsou izomorfní, pokud se A dá 
+\begin_inset Quotes eld
+\end_inset
+
+přeskládat
+\begin_inset Quotes erd
+\end_inset
+
+ do B.
+\end_layout
+
+\begin_layout Subsubsection*
+Podgraf
+\end_layout
+
+\begin_layout Standard
+Máme-li graf 
+\begin_inset Formula $G(V,E)$
+\end_inset
+
+, pak 
+\begin_inset Formula $G'(V',E')$
+\end_inset
+
+ je jeho podgrafem (značí se 
+\begin_inset Formula $G'\subseteq G$
+\end_inset
+
+), pokud platí, že 
+\begin_inset Formula $E'\subseteq E$
+\end_inset
+
+ a 
+\begin_inset Formula $V'\subseteq V$
+\end_inset
+
+, přičemž E' obsahuje pouze hrany incidentní s vrcholy ve V'.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Úplný podgraf (taktéž indukovaný)
+\series default
+ je typ podgrafu, u kterého množina hran obsahuje všechny možné incidentní
+ hrany s vrcholy ve pouze ve V'.
+\end_layout
+
+\begin_layout Subsection*
+Stromy
+\end_layout
+
+\begin_layout Standard
+Strom je typ grafu, který neobsahuje kružnice a má jednu komponentu souvislosti.
+ Les je graf, z nichž každá komponenta souvislosti je stromem 
+\begin_inset Formula $\Longrightarrow$
+\end_inset
+
+ i samostatný strom je les.
+\end_layout
+
+\begin_layout Standard
+Kořenový strom je orientovaný strom, který obsahuje jeden vrchol, jenž se
+ nazývá kořenovým.
+ Pro takový vrchol platí, že z něj existuje cesta do všech vrcholů stromu.
+ Pro kořen stromu platí, že 
+\begin_inset Formula $deg^{+}(root)=0$
+\end_inset
+
+.
+ Listem se nazývá takový vrchol grafu, který již nemá další potomky (platí
+ 
+\begin_inset Formula $deg^{-}(leaf)=0$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Strom s n-vrcholy obsahuje právě n-1 hran (induktivní důkaz).
+ Pokud by obsahoval o hranu více, obsahoval by kružnici a nejednalo by se
+ o strom.
+\end_layout
+
+\begin_layout Standard
+Vrchol v je předkem vrcholu u (a u je následníkem v), pokud existuje cesta
+ z kořene do vrcholu u, přičemž v je součástí této cesty.
+\end_layout
+
+\begin_layout Subsubsection*
+Další stromové pojmy
+\end_layout
+
+\begin_layout Paragraph*
+Hloubka vrcholu
+\end_layout
+
+\begin_layout Standard
+Počet vrcholů z kořene do listu.
+ Nebo: počet hran z kořene do listu.
+\end_layout
+
+\begin_layout Paragraph*
+Výška stromu
+\end_layout
+
+\begin_layout Standard
+Maximální hloubka ze všech vrcholů
+\end_layout
+
+\begin_layout Paragraph*
+N-ární strom
+\end_layout
+
+\begin_layout Standard
+Strom, u kterého má každý vrchol maximálně n potomků.
+ Úplný n-ární strom je strom, u kterého má každý vrchol právě n potomků
+ a všechny listy jsou stejné hloubky.
+ Pro úplný n-ární strom platí, že počet vrcholů je roven 
+\begin_inset Formula $N^{m}-1$
+\end_inset
+
+, kde h je výška stromu (nebo 
+\begin_inset Formula $N^{m+1}-1$
+\end_inset
+
+ pokud je výška stromu definována jako počet hran od kořene k listu).
+\end_layout
+
+\begin_layout Paragraph*
+Binární strom
+\end_layout
+
+\begin_layout Standard
+Typ n-árního stromu s N=2.
+\end_layout
+
+\begin_layout Subsection*
+Reprezentace grafů
+\end_layout
+
+\begin_layout Standard
+Grafy můžeme reprezentovat například maticí sousednosti nebo seznamem sousedů.
+\end_layout
+
+\begin_layout Subsubsection*
+Matice sousednosti
+\end_layout
+
+\begin_layout Standard
+Jedná se o matici M o velikosti NxN, kde N je počet vrcholů grafu.
+ Pokud je mezi i-tým a j-tým uzlem hrana, je na pozici 
+\begin_inset Formula $M_{i,j}$
+\end_inset
+
+ buď jednička (pro neohodnocené grafy), ohodnocení hrany nebo pro multigrafy
+ počet hran (záleží na domluvě).
+ Pro neorientovaný graf je matice symetrická podle hlavní diagonály.
+ Vhodné pro husté grafy.
+ Paměťová složitost 
+\begin_inset Formula $\mathcal{O}(n^{2})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Seznam sousedů
+\end_layout
+
+\begin_layout Standard
+Graf je reprezentován dvěma seznamy - listy.
+ První list obsahuje index do druhého listu, na jehož pozici najdem seznam
+ vrcholů, s nimiž je spojen hranou.
+\end_layout
+
+\begin_layout Standard
+Tzn.
+ příklad (
+\begin_inset Formula $V={a,b,c,d}$
+\end_inset
+
+):
+\end_layout
+
+\begin_layout Standard
+1.
+ list 
+\begin_inset Formula $[0(a),2(b),3(c),5(d)]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+2.
+ list 
+\begin_inset Formula $[b,c,d,a,d,c]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Je identický s maticí sousednosti:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $M=\begin{array}{c}
+a\\
+b\\
+c\\
+d
+\end{array}\overset{\begin{array}{cccc}
+a & b & c & d\end{array}}{\left(\begin{array}{cccc}
+0 & 0 & 1 & 0\\
+1 & 0 & 0 & 0\\
+1 & 0 & 0 & 1\\
+0 & 0 & 1 & 0
+\end{array}\right)}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Souvislost grafu
+\end_layout
+
+\begin_layout Standard
+Pro neorientovaný graf platí, že je souvislý, pokud mezi všemi vrcholy existuje
+ cesta.
+\end_layout
+
+\begin_layout Standard
+Pro orientovaný graf platí, že je 
+\series bold
+slabě souvislý
+\series default
+, když nahradíme orientované hrany neorientovanými, bude souvislý.
+ 
+\series bold
+Silně souvislý
+\series default
+ je orient.
+ graf tehdy, když existuje orientovaná cesta mezi dvěma libovolnými vrcholy.
+\end_layout
+
+\begin_layout Subsection*
+Komponenty souvislosti grafu
+\end_layout
+
+\begin_layout Standard
+Máme neorientovaný graf G.
+ Relace ekvivalence 
+\begin_inset Formula $\sim$
+\end_inset
+
+ na vrcholech grafu G je právě tehdy, pokud mezi vrcholy u, v existuje cesta.
+ Tato ekvivalence vytvoří třídy ekvivalence a
+\series bold
+ komponenta souvislosti je jedna třída ekvivalence
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+Pro orientovaný graf G' platí, že relace ekvivalence 
+\begin_inset Formula $\approx$
+\end_inset
+
+ na vrcholech grafu G' je právě tehdy, pokud existuje cesta z vrcholu v
+ do vrcholu u a naopak.
+ Takto vytvoříme třídy ekvivalence reprezentující silné komponenty souvislosti.
+\end_layout
+
+\begin_layout Subsection*
+Prohledávání grafu do hloubky a do šířky
+\end_layout
+
+\begin_layout Standard
+Využití:
+\end_layout
+
+\begin_layout Itemize
+Hledání vrcholu v grafu.
+\end_layout
+
+\begin_layout Itemize
+Hledání cyklů.
+\end_layout
+
+\begin_layout Itemize
+Počítání komponent souvislosti grafu (iterativně pouštíme BFS nebo DFS na
+ vrcholech, které byly dosud nenavštíveny; počet takových spouštění je roven
+ počtu komponent souvislosti).
+\end_layout
+
+\begin_layout Itemize
+Testování silné souvislosti grafu: Po prvním průchodu obrátíme orientaci
+ hran.
+ Pokud navštívíme stejný počet vrcholů, jedná se o silně souvislou komponentu.
+\end_layout
+
+\begin_layout Subsection*
+Prohledávání do šírky (BFS)
+\end_layout
+
+\begin_layout Standard
+Použitá datová struktura typu FIFO (first in first out), neboli fronta.
+ Do fronty vložíme nejprve počáteční prvek (start).
+ V každé iteraci na začátku z fronty odebereme první prvek.
+ Všechny dosud nenavštívené sousední vrcholy vložíme do fronty.
+ Pokračujeme, dokud není fronta prázdná.
+\end_layout
+
+\begin_layout Standard
+Časová složitost: O(V+E), kde V je počet vrcholů a E počet hran.
+\end_layout
+
+\begin_layout Paragraph*
+Výhoda použití prohledání do šírky:
+\end_layout
+
+\begin_layout Standard
+Vrcholy jsou navštívené postupně v takovém pořadí, v jakém jsou počtem hopů
+ vzdálené od startovního uzlu.
+\end_layout
+
+\begin_layout Subsection*
+Prohledávání do hloubky (DFS)
+\end_layout
+
+\begin_layout Standard
+Použitá struktura typu LIFO (last in first out), neboli zásobník (lze realizovat
+ rekurzivně na SW zásobníku).
+ Implicitně jsou všechny vrcholu ve stavu FRESH (WHITE barva).
+ DFS se zavolá na startovacím prvku, který označí za OPEN (nebo GRAY barvou).
+ DFS se dále zavolá na všechny sousední vrcholy.
+ Pokud je aktuální výpočet na vrcholu A, který je označený jako OPEN, výpočet
+ se na vrcholu A zastaví.
+ Po vrácení se z rekurze se vrchol označí symbolem CLOSED (BLACK barvou).
+\end_layout
+
+\begin_layout Standard
+Časová složitost jako u BFS, a to 
+\begin_inset Formula $\mathcal{O}(V+E)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph*
+Výhoda použití prohledání do hloubky:
+\end_layout
+
+\begin_layout Standard
+Možnost detekce cyklů (tzv.
+ zpětných hran), pokud se v průchodu narazí již na vrchol označený jako
+ OPEN.
+\end_layout
+
+\begin_layout Paragraph*
+Nevýhoda:
+\end_layout
+
+\begin_layout Standard
+Nejbližší vrcholy se mohou navštívit jako poslední.
+\end_layout
+
+\end_body
+\end_document

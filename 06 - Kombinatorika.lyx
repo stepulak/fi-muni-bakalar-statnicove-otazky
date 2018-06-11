@@ -1,0 +1,779 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Elementární kombinatorika
+\end_layout
+
+\begin_layout Subsection*
+Pravidlo součtu
+\end_layout
+
+\begin_layout Standard
+Máme-li disjunktní množiny A, B, pak počet všech možných způsobů výběru
+ jednoho prvku je součtem velikostí těchto množin 
+\begin_inset Formula $|A|+|B|$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+Máme 6 červených míčků a 8 modrých míčků.
+ Tyto míčky vysypeme do jednoho osudí.
+ Kolik máme celkem možností, když budeme losovat jeden míček?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $A=6,B=8\Longrightarrow N=|A|+|B|=14$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Pravidlo součinu
+\end_layout
+
+\begin_layout Standard
+Počet uspořádaných k-tic, přičemž první prvek k-tice 
+\begin_inset Formula $n_{1}$
+\end_inset
+
+ značí počet možných způsobů výběru prvního členu, 
+\begin_inset Formula $n_{2}$
+\end_inset
+
+ značí počet možných způsobů výběru druhého členu (samozřejmě po výběru
+ 
+\begin_inset Formula $n_{1}$
+\end_inset
+
+) atd.
+ Celkový počet výběrů je pak roven 
+\begin_inset Formula $n_{1}n_{2}\ldots n_{k}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+Množina M obsahuje tři muže, množina Z obsahuje 4 ženy.
+ Kolik existuje různých párů muž-žena? 3*4=12.
+\end_layout
+
+\begin_layout Subsection*
+Variace
+\end_layout
+
+\begin_layout Standard
+Variace k-té třídy je uspořádaná k-tice z celkového počtu n prvků.
+ Používá se u případů, kdy nám u výběru záleží na pořadí.
+ Máme dvě různé typy variací, a to variace bez opakování a variace s opakováním.
+\end_layout
+
+\begin_layout Subsubsection*
+Variace bez opakování
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $V(k,n)=\frac{n!}{(n-k)!}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Příklad: 
+\end_layout
+
+\begin_layout Standard
+Mistrovství světa v hokeji hraje 18 mužstev.
+ Nejlepší můžou obsadit první tři místa, přičemž 1.
+ místo je cennější než 2.
+ apod.
+ Kolik existuje různých trojic hokejových mužstev, které by mohly získat
+ medaile?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $V(3,18)=\frac{18!}{(18-3)!}=\frac{18*17*16*15!}{15!}=4896$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Variace s opakováním
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $V'(k,n)=n^{k}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+Devítimístné telefonní číslo se skládá z číslic 0-9, přičemž první číslice
+ nemůže být 0.
+ Kolik existuje různých možností telefoních čísel?
+\end_layout
+
+\begin_layout Standard
+Pokud přeskočíme první číslici, pak osmimístné číslo má 
+\begin_inset Formula $V'(8,10)=10^{8}=100000000$
+\end_inset
+
+ variací.
+ První číslice tel.
+ čísla nemůže být nula, a tak počítáme pouze s 9 číslicemi.
+ Po aplikaci pravidla součinu je výsledek 
+\begin_inset Formula $9*V'(8,10)=900000000$
+\end_inset
+
+ možností.
+\end_layout
+
+\begin_layout Subsection*
+Permutace
+\end_layout
+
+\begin_layout Standard
+Permutace je speciální případ variace, kdy se počítá se všemi prvky.
+ Opět jsou dva případy, permutace s opakováním a bez opakování.
+\end_layout
+
+\begin_layout Subsubsection*
+Permutace bez opakování
+\end_layout
+
+\begin_layout Standard
+Jedná se o uspořádanou n-tici z n prvků.
+ 
+\begin_inset Formula $P(n)=V(n,n)=\frac{n!}{(n-n)!}=n!$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+Frontu na banány stojí za sebou 6 lidí.
+ Kolik existuje různých pořadí lidí, kteří tuto frontu stojí?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $P(6)=6!=720$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Zajímavost: Proč je faktoriál z nuly jedna? Štěpánova teorie: Protože permutace
+ prázdné množiny je množina obsahující prázdnou množinu.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $A=\emptyset,\,A!=\{\emptyset\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Permutace s opakováním
+\end_layout
+
+\begin_layout Standard
+Je uspořádaná k-tice, jež je sestavená z prvků množiny S tak, že se každý
+ prvek v ní vyskytuje
+\series bold
+\color black
+ alespoň jednou.
+\end_layout
+
+\begin_layout Standard
+Definováno jako: 
+\begin_inset Formula $P(p_{1},\ldots,p_{n})=\frac{(p_{1}+\ldots+p_{n})!}{p_{1}!*\ldots*p_{n}!}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+Kolik různých slov můžeme sestavit z písmen slova POPEL (podotýkám 5 místných)?
+\end_layout
+
+\begin_layout Standard
+P(počet P, počet E, počet O, počet L)=
+\begin_inset Formula $P(2,1,1,1)=\frac{(2+1+1+1)!}{2!1!1!1!}=\frac{5*4*3*2*1}{2}=5*4*3=60$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Kombinace
+\end_layout
+
+\begin_layout Standard
+k-členná kombinace je podmnožina 
+\begin_inset Formula $K\subseteq M$
+\end_inset
+
+, kdy M je množina všech prvků.
+ Díky tomu že se jedná o množinu, nezáleží nám na pořadí prvků.
+\end_layout
+
+\begin_layout Subsubsection*
+Kombinace bez opakování
+\end_layout
+
+\begin_layout Standard
+Vzorec podobný variaci, ovšem musíme odstranit takové k-tice, které obsahují
+ stejné prvky, jenom v jiném pořadí.
+ Těch je 
+\begin_inset Formula $k!$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Kombinace tedy bude mít vzorec: 
+\begin_inset Formula $C(k,n)=\frac{n!}{(n-k)!k!}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Kombinační číslo 
+\begin_inset Formula $\binom{n}{k}=C(k,n)$
+\end_inset
+
+.
+ Čte se taky jako 
+\begin_inset Quotes eld
+\end_inset
+
+n nad ká
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+Ve sportce se losuje 6 čísel od 1-49.
+ Urči počet různých kombinací losu.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $k=6,n=49\Longrightarrow\binom{49}{6}=\frac{49!}{43!6!}=\frac{49*48*47*46*45*44}{6*5*4*3*2}=13983816$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Kombinace s opakováním
+\end_layout
+
+\begin_layout Standard
+Vzorec: 
+\begin_inset Formula $C'(k,n)=\binom{n+k-1}{n-1}=\binom{n+k-1}{k}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+Kolika různými způsoby lze rozdělit 10 jablek a 20 banánů mezi 5 lidí?
+\end_layout
+
+\begin_layout Standard
+Celkem máme 30 kusů ovoce.
+ Ve skutečnosti přidělujeme lidi k ovoci, ne ovoce k lidem (ovoce se nemůže
+ opakovat, lidi ano).
+\end_layout
+
+\begin_layout Standard
+Proto platí: 
+\begin_inset Formula $C'(5,30)=\binom{30-5-1}{30-1}=\binom{30-5-1}{5}=\frac{24!}{19!5!}=\frac{24*23*22*21*20}{5*4*3*2}=42504$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph*
+Zajímavé vztahy
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\binom{n}{0}=\binom{n}{n}=\binom{0}{0}=1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\binom{n}{k}=\binom{n}{n-k}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+pokud k<n: 
+\begin_inset Formula $\binom{n}{k}+\binom{n}{k+1}=\binom{n+1}{k+1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Binomická věta
+\end_layout
+
+\begin_layout Standard
+Díky binomické větě se dá spočítat výsledek vzorce 
+\begin_inset Formula $(a+b)^{n}$
+\end_inset
+
+ bez roznásobování závorek.
+ Vzorec je následující:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $(a+b)^{n}=\stackrel[i=0]{n}{\sum}\binom{n}{i}a^{n-i}b^{i}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph*
+Pascalův trojúhelník
+\end_layout
+
+\begin_layout Standard
+Pomůcka ke spočítání rozvoje binomické věty.
+ Výsledek každého kombinačního čísla je roven součtu dvou předchozích hodnot
+ na předchozím řádku.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\,\,\,\,\,\,\,\binom{0}{0}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\,\,\,\,\,\binom{1}{0}\binom{1}{0}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\,\,\,\binom{2}{0}\binom{2}{1}\binom{2}{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\,\binom{3}{0}\binom{3}{1}\binom{3}{2}\binom{3}{3}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Pravděpodobnost
+\end_layout
+
+\begin_layout Standard
+Pravděpodobnost určuje, s jakou šancí nastane určitý jev.
+\end_layout
+
+\begin_layout Standard
+Rovnice prst je 
+\begin_inset Formula $P(A)=\frac{|A|}{|\omega|}$
+\end_inset
+
+, kdy 
+\begin_inset Formula $\omega$
+\end_inset
+
+ je množina všech náhodných pokusů a 
+\begin_inset Formula $A$
+\end_inset
+
+ je množina všech příznivých pokusů (jedná se o konečné množiny).
+ Dva jevy nemůžou nastat současně.
+ Prst každého jevu je stejný (tzn.
+ hážeme kostkou tak prst, že padne 1 je stejná, jako když padne číslo 6).
+\end_layout
+
+\begin_layout Standard
+Tato pravděpodobnost je v rozmezí 
+\begin_inset Formula $<0,1>$
+\end_inset
+
+.
+ Pokud je prst rovno 1, jedná se o jev jistý (
+\begin_inset Formula $\omega=A$
+\end_inset
+
+).
+ Pokud je prst rovno 0, jedná se o jev nemožný (
+\begin_inset Formula $A=\emptyset$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+Jaká je pravděpodobnost, že nám při hodu dvěma kostkami padne na obou stejné
+ číslo?
+\end_layout
+
+\begin_layout Standard
+Nejprve si musíme určit množinu všech náhodných jevů 
+\begin_inset Formula $\omega$
+\end_inset
+
+.
+ Jedná se o variaci, protože záleží na pořadí.
+ Čísla můžeme opakovat.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $|\omega|=V'(2,6)=6^{2}=36$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $A=\{(1,1),(2,2),(3,3),(4,4),(5,5),(6,6)\}=|A|=6$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $P(A)=6/36=1/6$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Doplňkový jev
+\end_layout
+
+\begin_layout Standard
+Doplňkový jev 
+\begin_inset Formula $A'$
+\end_inset
+
+ k jevu 
+\begin_inset Formula $A$
+\end_inset
+
+ je množina všech jevů, které mohou nastat ale nejsou v A.
+ 
+\begin_inset Formula $A'=\omega\backslash A$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Prst doplňkového jevu 
+\begin_inset Formula $A'$
+\end_inset
+
+ je v závislosti na prst jevu 
+\begin_inset Formula $A$
+\end_inset
+
+ definovaný jako 
+\begin_inset Formula $P(A')=1-P(A)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+Jaká je pravděpodobnost, že při hodu třemi kostkami nám padne alespoň jedna
+ šestka?
+\end_layout
+
+\begin_layout Standard
+Převedeme na 
+\begin_inset Quotes eld
+\end_inset
+
+nepadla ani jedna šestka
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Takových možností je 
+\begin_inset Formula $V'(3,5)=5^{3}=125$
+\end_inset
+
+.
+ Počet všech možností (i s šestkama) je 
+\begin_inset Formula $V'(3,6)=6^{3}=216$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $P(A')=\frac{125}{216}\Longrightarrow P(A)=\frac{91}{216}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Nezávislé jevy
+\end_layout
+
+\begin_layout Standard
+Dva jevy jsou nezávislé, pokud prst jednoho jevu nezávisí na psrt jevu druhého.
+ Tzn.
+ platí 
+\begin_inset Formula $P(A|B)=P(A)$
+\end_inset
+
+.
+ Pro dva nezávislé jevy platí, že
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $P(A\cap B)=P(A)*P(B)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Házíme třemi kostkami, jedna je bílá, druhá je černá, třetí je zelená.
+ Jaká je prst situace, že na bílé padne 1, černé 2 a zelené 3?
+\end_layout
+
+\begin_layout Standard
+Prst., že na bílé padne 1 je rovna 
+\begin_inset Formula $P(A)=\frac{1}{6}$
+\end_inset
+
+.
+ Obodobně pro černou i zelenou kostku.
+\end_layout
+
+\begin_layout Standard
+Prst.
+ všech tří nezávislých jevů zároveň platí 
+\begin_inset Formula $P(A\cap B\cap C)=P(A)*P(B)*P(C)=\frac{1}{216}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Podmíněná pravděpodobnost
+\end_layout
+
+\begin_layout Standard
+Prst jevu A, pokud nastal B je vyjádřeno jako 
+\begin_inset Formula $P(A|B)=\frac{|A\cap B|}{|B|}$
+\end_inset
+
+, přičemž musí platit 
+\begin_inset Formula $P(B)\neq0$
+\end_inset
+
+ (tzn.
+ jev není nemožný).
+ Vzorec lze převést taky do tvaru 
+\begin_inset Formula $P(A|B)=\frac{P(A\cap B)}{P(B)}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+Házíme dvěma kostkami, černou a bílou.
+ Jaká je pravděpodobnost, že na bílé kostce padla čtyřka, pokud je součet
+ obou hodnot roven sedmi? 
+\end_layout
+
+\begin_layout Standard
+A...
+ množina příznivých pokusů, pokud na bílé kostce padla čtyřka 
+\begin_inset Formula $A=\{(1,4),(2,4),(3,4),(4,4),(5,4),(6,4)\}\Longrightarrow|A|=6$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+B...
+ množina příznivých pokusů, kdy součet obou kostek je roven sedmi 
+\begin_inset Formula $B=\{(1,6),(2,5),(3,4),(4,3),(5,2),(6,1)\}\Longrightarrow|B|=6$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $P(A|B)=\frac{|A\cap B|}{|B|}=\frac{1}{6}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pro ověření:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $P(A|B)=\frac{P(A\cap B)}{P(B)}=\frac{\frac{1}{36}}{6}=\frac{1}{6}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Bayesova věta
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $P(A|B)=\frac{P(B|A)P(A)}{P(B)}$
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

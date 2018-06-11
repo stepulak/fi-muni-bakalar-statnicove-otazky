@@ -1,0 +1,1545 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Množiny, relace, zobrazení
+\end_layout
+
+\begin_layout Subsection*
+Množina 
+\end_layout
+
+\begin_layout Standard
+Soubor prvků, kterými je plně určena.
+ Na pořadí prvků nezáleží, nemůže obsahovat duplicitní prvky.
+ Množina může mít konečný nebo nekonečný počet prvků.
+ Množina může být prvkem další množiny.
+\end_layout
+
+\begin_layout Subsubsection*
+Zápisy
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $x\in M$
+\end_inset
+
+, x je součástí množiny M
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\emptyset$
+\end_inset
+
+ je prázdná množina
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\{a,b\}=\{b,a\}=\{a,b,a\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\{a,b\}\neq\{\{a,b\}\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\emptyset\in\{\emptyset\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\emptyset\notin\emptyset$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $M\,\cup\,\emptyset=M$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $M\,\cap\,\emptyset=\emptyset$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Podmnožina
+\end_layout
+
+\begin_layout Standard
+Množina A je podmnožinou množiny B, pokud všechny prvky množiny A jsou zároveň
+ obsaženy v množině B (
+\begin_inset Formula $\forall x:\,x\in A\implies x\in B$
+\end_inset
+
+).
+ Zapisuje se 
+\begin_inset Formula $A\subseteq B$
+\end_inset
+
+.
+ Tento vztah se taky označuje slovem inkluze.
+ Pokud platí 
+\begin_inset Formula $A\subseteq B\land B\subseteq A$
+\end_inset
+
+, tak se jedná o dvě stejné množiny, proto platí 
+\begin_inset Formula $A=B$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Pokud platí 
+\begin_inset Formula $A\subset B$
+\end_inset
+
+ (může být značeno taky jako
+\begin_inset Formula $A\subsetneq B$
+\end_inset
+
+), tak A je vlastní podmnožinou B, a proto 
+\begin_inset Formula $A\neq B$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Každá množina je svojí podmnožinou, ale ne vlastní.
+ Platí 
+\begin_inset Formula $A\subseteq A$
+\end_inset
+
+, ale ne 
+\begin_inset Formula $A\subset A$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Nekonečné množiny
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\mathbb{N},\mathbb{Z},\mathbb{Q},\mathbb{IQ}\mathbb{R},\mathbb{C}$
+\end_inset
+
+...
+ přirozená čísla, celá čísla, racionální čísla (dají se vyjádřit zlomky),
+ iracionální (nedají se vyjádřit zlomkem, nekonečný desetinný rozvor, který
+ se neopakuje, např.
+ 
+\begin_inset Formula $\sqrt{2},\pi$
+\end_inset
+
+), reálná čísla, komplexní čísla.
+\end_layout
+
+\begin_layout Standard
+Platí: 
+\begin_inset Formula $\mathbb{N}\subset\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}\subset\mathbb{C}$
+\end_inset
+
+, 
+\begin_inset Formula $\mathbb{Q}\cup\mathbb{IQ}=\mathbb{R}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Mohutnost množiny
+\end_layout
+
+\begin_layout Standard
+Označuje počet prvků v množině.
+ Značení 
+\begin_inset Formula $|M|$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Příklady
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $|\{0,1,2\}|=3$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $|\{c,\{a,b\}\}|=2$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Množinové operace
+\end_layout
+
+\begin_layout Subsubsection*
+Průnik: 
+\begin_inset Formula $A\cap B=\{x|x\in A\wedge x\in B\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Sjednocení: 
+\begin_inset Formula $A\cup B=\{x|x\in A\vee x\in B\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Rozdíl: 
+\begin_inset Formula $A\setminus B=\{x|x\in A\wedge x\notin B\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Symetrický rozdíl: 
+\begin_inset Formula $A\triangle B=(A\setminus B)\cup(B\setminus A)=\{x|(x\in A\vee x\in B)\wedge(x\notin A\cap B)\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Doplněk: 
+\begin_inset Formula $\bar{A}=M\setminus A=co-A=\{x|x\in M\wedge x\notin A\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pro doplněk platí vztah, že pro každé tři množiny A,B,C, přičemž 
+\begin_inset Formula $A\setminus(B\cup C)=(A\setminus B)\cup(A\setminus C)$
+\end_inset
+
+.
+ Uzavřenost množiny znamená, že různé operace nad danou množinou vrací výsledek,
+ který bude znovu patřit do původní množiny.
+\end_layout
+
+\begin_layout Subsubsection*
+Distributivita: 
+\begin_inset Formula $A\cap(B\cup C)=(A\cap B)\cup(A\cap C)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Asociativita: 
+\begin_inset Formula $A\cap(B\cap C)=(A\cap B)\cap C$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Komutativita: 
+\begin_inset Formula $A\cup B=B\cup A$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Potenční množina
+\end_layout
+
+\begin_layout Standard
+Množina, která vznikne sjednocením všech podmnožin množiny A.
+ Definována vztahem 
+\begin_inset Formula $P(A)=2^{A}=\{B|B\subseteq A\}$
+\end_inset
+
+.
+ Platí vztah 
+\begin_inset Formula $|2^{A}|=2^{|A|}$
+\end_inset
+
+.
+ Každá potenční množina obsahuje prázdnou množinu.
+\end_layout
+
+\begin_layout Standard
+Příklad: 
+\begin_inset Formula $A=\{a,b\}$
+\end_inset
+
+, 
+\begin_inset Formula $P(X)=2^{A}=\{\emptyset,\{a\},\{b\},\{a,b\}\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Počet prvků množinových operací při sjednocení
+\end_layout
+
+\begin_layout Standard
+Princip inkluze a exkluze.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $|A\cup B|=|A|+|B|-|A\cap B|$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $|A\cup B\cup C|=|A|+|B|+|C|-|A\cap B|-|A\cap C|-|B\cap C|+|A\cap B\cap C|$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Uspořádaná n-tice
+\end_layout
+
+\begin_layout Standard
+Seznam konečného počtu n prvků.
+ Prvky se můžou opakovat, závisí na pořadí prvků v seznamu.
+ Uspořádanou n-tici je možné taky definovat jako uspořádanou dvojici prvního
+ prvku a zbytku: 
+\begin_inset Formula $(a,b,c)=(a,(b,c))$
+\end_inset
+
+.
+ Uspořádná nultice je prázdná množina.
+\end_layout
+
+\begin_layout Subsection*
+Uspořádaná dvojice
+\end_layout
+
+\begin_layout Standard
+Možné definovat jako 
+\begin_inset Formula $(a,b)=\{\{a\},\{a,b\}\}$
+\end_inset
+
+ (pomocí axiomatické teorie množin).
+ Prvek, který není prvkem první množiny, je 2.
+ prvek dvojice.
+\end_layout
+
+\begin_layout Subsection*
+Kartézský součin
+\end_layout
+
+\begin_layout Standard
+Kartézský součin dvou množin A,B definujeme jako množinu všech uspořádaných
+ dvojic z množin A a B: 
+\begin_inset Formula $A\times B=\{(a,b)|a\in A,b\in B\}$
+\end_inset
+
+.
+ Každý prvek z první množiny se pojí s prvkem druhé množiny.
+ Časová složitost 
+\begin_inset Formula $\mathcal{O}(nm)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Příklad: 
+\begin_inset Formula $A=\{a,b,c\}$
+\end_inset
+
+, 
+\begin_inset Formula $B=\{1,2\}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $A\times B=\{(a,1),(a,2),(b,1),(b,2),(c,1),(c,2)\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $A\times\emptyset=\emptyset$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Posloupnosti a rekurentní vztahy
+\end_layout
+
+\begin_layout Standard
+Nekonečná posloupnost p je definována jako zobrazení (funkce) z oboru přirozenýc
+h čísel 
+\begin_inset Formula $\mathbb{N}$
+\end_inset
+
+ do oboru hodnot 
+\begin_inset Formula $\mathbb{H}$
+\end_inset
+
+ .
+ Můžeme ji tedy definovat jako 
+\begin_inset Formula $f:\,\mathbb{N}\rightarrow\mathbb{H}$
+\end_inset
+
+.
+ Uspořádané n-tice jsou taky nazývány konečnými posloupnostmi délky n.
+ Mohou vznikat seřazením (zřetězením) prvků neprázdné množiny s povolením
+ opakovat prvky.
+ Mimo funkční zápis ji můžeme definovat i výčtem prvků (neukončeným) nebo
+ vzorcem pro n-tý člen posloupnosti (indexová forma zápisu).
+ Posloupnost je rostoucí, pokud 
+\begin_inset Formula $p_{i+1}>p_{i}$
+\end_inset
+
+, či klesající, pokud 
+\begin_inset Formula $p_{i+1}<p_{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Příklady:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $p_{i}=2i+1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $p_{n}=(0,3,6,9,...)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph*
+Rekurentní vztah
+\end_layout
+
+\begin_layout Standard
+Označuje takovou definici (předpis, vzorec), který volá sám sebe.
+\end_layout
+
+\begin_layout Standard
+Například Fibonacciho posloupnost:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $f_{0}=0,\,f_{1}=1,\,f_{n}=f_{n-1}+f_{n-2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph*
+Aritmetická posloupnost
+\end_layout
+
+\begin_layout Standard
+Rekurentní vztah posloupnosti s konstantním přírůstkem: 
+\begin_inset Formula $a_{n+1}=a_{n}+d$
+\end_inset
+
+.
+ N-tý člen posloupnosti je 
+\begin_inset Formula $a_{n}=a_{1}+(n-1)*d$
+\end_inset
+
+.
+ Součet členů aritmetické posloupnosti: 
+\begin_inset Formula $s_{n}=n*\frac{a_{n}+a_{1}}{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Geometrická posloupnost
+\end_layout
+
+\begin_layout Standard
+Rekurentní vztah posloupnosti, přičemž dva sousední prvky 
+\begin_inset Formula $p_{n}$
+\end_inset
+
+ a 
+\begin_inset Formula $p_{n+1}$
+\end_inset
+
+ mají konstantní podíl 
+\begin_inset Formula $q$
+\end_inset
+
+.
+ Vztah je následující: 
+\begin_inset Formula $a_{n+1}=q*a_{n}$
+\end_inset
+
+.
+ N-tý člen posloupnosti: 
+\begin_inset Formula $a_{n}=a_{1}*q^{n-1}$
+\end_inset
+
+.
+ Součet geom.
+ posloupnosti se vypočítá podle následujícího vzorce: 
+\begin_inset Formula $s_{n}=a_{1}\frac{q^{n}-1}{q-1}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Můžeme mít taky nekonečnou gemeotrickou posloupnost.
+ Pokud 
+\begin_inset Formula $q>1$
+\end_inset
+
+, jedná se o divergentní posloupnost (součet je nekonečno).
+ Pro 
+\begin_inset Formula $|q|<1$
+\end_inset
+
+ označujeme posloupnost konvergentní (k 
+\begin_inset Formula $a_{1}$
+\end_inset
+
+).
+ Pokud je 
+\begin_inset Formula $q\leq-1$
+\end_inset
+
+, posloupnost osciluje.
+ 
+\end_layout
+
+\begin_layout Standard
+Pro nekonečnou konvergentní posloupnost počítáme součet pomocí vzorce: 
+\begin_inset Formula $s=\frac{a_{1}}{q-1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Relace
+\end_layout
+
+\begin_layout Standard
+Relace je podmnožina kartézského součinu.
+ Je to tedy množina uspořádaných n-tic.
+ Definice: 
+\begin_inset Formula $A:\,R\subseteq A_{1}\times\ldots\times A_{n}$
+\end_inset
+
+.
+ Pokud jsou všechny množiny stejné (tzn.
+ 
+\begin_inset Formula $A_{1}=\ldots=A_{n}$
+\end_inset
+
+), tak se jedná o n-ární relaci R na A.
+\end_layout
+
+\begin_layout Standard
+Speciální případy n-ární relace: binární, ternární a unární.
+ Unární relace ja každá podmnožina dané množiny.
+\end_layout
+
+\begin_layout Standard
+Příklady:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\{(1,a),(2,a),(2,b)\}$
+\end_inset
+
+ je relace mezi 
+\begin_inset Formula $A=\{1,2,3\}$
+\end_inset
+
+ a 
+\begin_inset Formula $B=\{a,b\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\{(2*i,2*i+1)|i\in\mathbb{Z}^{+}\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\{(3*x)|x\in\mathbb{N}\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Binární relace
+\end_layout
+
+\begin_layout Standard
+Speciální případ relace.
+ Binární relaci 
+\begin_inset Formula $R\subseteq M\times M$
+\end_inset
+
+ (tzn.
+ n-ární relaci R na M) lze znázornit například pomocí grafu.
+ Prvky množiny M jsou body v rovině, dvojice relace 
+\begin_inset Formula $R$
+\end_inset
+
+ jsou orientované hrany (šipky) z 
+\begin_inset Formula $a$
+\end_inset
+
+ do 
+\begin_inset Formula $b$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Vlastnosti binárních relací
+\end_layout
+
+\begin_layout Standard
+Nechť 
+\begin_inset Formula $R\subseteq M\times M$
+\end_inset
+
+.
+ Binární relace R je:
+\end_layout
+
+\begin_layout Itemize
+Reflexivní: pokud pro každé 
+\begin_inset Formula $a\in M$
+\end_inset
+
+ platí 
+\begin_inset Formula $(a,a)\in R$
+\end_inset
+
+ (příklady relací: 
+\begin_inset Quotes eld
+\end_inset
+
+je rovno
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+je větší nebo rovno
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+dělí
+\begin_inset Quotes erd
+\end_inset
+
+).
+ Prázdná relace není reflexivní!
+\end_layout
+
+\begin_layout Itemize
+Ireflexivní: pokud pro každé 
+\begin_inset Formula $a\in M$
+\end_inset
+
+ platí 
+\begin_inset Formula $(a,a)\notin R$
+\end_inset
+
+ (příklad: 
+\begin_inset Quotes eld
+\end_inset
+
+je větší než (ostře)
+\begin_inset Quotes erd
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+Symetrická: pokud pro každé 
+\begin_inset Formula $a,b\in M$
+\end_inset
+
+ platí 
+\begin_inset Formula $(a,b)\in R$
+\end_inset
+
+, tak platí také 
+\begin_inset Formula $(b,a)\in R$
+\end_inset
+
+ (matematicky: 
+\begin_inset Formula $(a,b)\in R\implies(b,a)\in R$
+\end_inset
+
+, neboli 
+\begin_inset Formula $aRb\implies bRa$
+\end_inset
+
+).
+ (příklady: 
+\begin_inset Quotes eld
+\end_inset
+
+je větší nebo rovno
+\begin_inset Quotes erd
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+Antisymetrická: 
+\begin_inset Formula $\forall a,b\in R:\,(a,b)\in R\wedge(b,a)\in R\implies a=b$
+\end_inset
+
+ (slabá antisymetričnost).
+ Není opak symetrické relace! Pokud je relace R antisymetrická, neobsahuje
+ cykly.
+ Prázdná množina relace je zároveň symetrická i antisymetrická.
+ (příklad: 
+\begin_inset Quotes eld
+\end_inset
+
+je rovno
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+je podmnožinou
+\begin_inset Quotes erd
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+Tranzitivní: 
+\begin_inset Formula $\forall a,b,c\in R:\,(a,b)\in R\wedge(b,c)\in R\implies(a,c)\in R$
+\end_inset
+
+ (příklady: 
+\begin_inset Quotes eld
+\end_inset
+
+je větší nebo rovno
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+je větší než (ostře)
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+je podmnožinou
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+dělí
+\begin_inset Quotes erd
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Subsubsection*
+Relace ekvivalence
+\end_layout
+
+\begin_layout Standard
+Platí, když relace je 
+\series bold
+reflexivní, symetrická, tranzitivní
+\series default
+.
+ Značí se pomocí 
+\begin_inset Formula $\sim,\,\approx$
+\end_inset
+
+.
+ Tzn.
+ relace ekvivalence 
+\begin_inset Formula $aRb$
+\end_inset
+
+ se značí jako 
+\begin_inset Formula $a\sim b$
+\end_inset
+
+.
+ Příklady relací ekvivalence: 
+\begin_inset Quotes eld
+\end_inset
+
+je rovno
+\begin_inset Quotes erd
+\end_inset
+
+ (nejmenší možná relace ekvivalence), 
+\begin_inset Quotes eld
+\end_inset
+
+je větší nebo rovno
+\begin_inset Quotes erd
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Proč reflexivní? Musí platit, že pro prvek 
+\begin_inset Formula $x\in M:\,x=x$
+\end_inset
+
+.
+ Tzn.
+ každý prvek v M je totožný sám se sebou.
+ Chleba má stejnou cenu jako chleba.
+\end_layout
+
+\begin_layout Standard
+Proč symetrická? Pokud má chleba stejnou cenu jako máslo tak máslo má stejnou
+ cenu jako chleba.
+\end_layout
+
+\begin_layout Standard
+Proč tranzitivni? Pokud má chleba stejnou cenu jak máslo a máslo stejnou
+ cenu jako nanuk, tak chleba má stejnou cenu jako nanuk.
+\end_layout
+
+\begin_layout Subsubsection*
+Rozklad množiny
+\end_layout
+
+\begin_layout Standard
+Nechť M je množina.
+ Rozklad na M je množina podmnožin 
+\begin_inset Formula $N\subseteq2^{M}$
+\end_inset
+
+, která splňuje následující tři požadavky:
+\end_layout
+
+\begin_layout Itemize
+Neprázdná množina není součástí N, tzn.
+ 
+\begin_inset Formula $\emptyset\notin N$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Pokud dvě množiny 
+\begin_inset Formula $A,B\in N$
+\end_inset
+
+, tak pak 
+\begin_inset Formula $A\cap B=\emptyset$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Sjednocením všech prvků N (podmnožin množiny M) získáme původní množinu
+ M.
+\end_layout
+
+\begin_layout Paragraph*
+Jednoduchý příklad:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $M=\{a,b,c,d\},\,N=\{\{a\},\{b,c\},\{d\}\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph*
+Složitější příklad:
+\end_layout
+
+\begin_layout Standard
+Rozklad množiny na třídy ekvivalence.
+ Nechť podmínka ekvivalence R je stejná délka slova.
+ Pak množina relací N vypadá následovně:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $N=\{\{a,i,o,u,...\},\{se,já,ty,on,....\},\{let,sen,Rút,...\},\{smrk,pivo,žíla,...\},...\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Jednotlivé množiny jsou vzájemně disjunktní, ani nejsou prázdné.
+ Sjednocením všech podmnožin dostaneme množinu M všech možných slov.
+\end_layout
+
+\begin_layout Subsubsection*
+Relace uspořádání (částečné uspořádání)
+\end_layout
+
+\begin_layout Standard
+Platí, pokud je relace reflexivní, antisymetrická a tranzitivní.
+ Značeno symboly 
+\begin_inset Formula $\sqsubseteq,\,\preceq$
+\end_inset
+
+ místo R.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+a je v relaci s b
+\begin_inset Quotes erd
+\end_inset
+
+: 
+\begin_inset Formula $a\sqsubseteq b$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Uspořádaná množina = množina, na které je definována relace uspořádání.
+\end_layout
+
+\begin_layout Standard
+Dva prvky 
+\begin_inset Formula $a,b\in M$
+\end_inset
+
+ jsou porovnatelné, pokud platí 
+\begin_inset Formula $a\leq b$
+\end_inset
+
+ nebo 
+\begin_inset Formula $a\geq b$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Relace souvislá: 
+\begin_inset Formula $x\neq y\implies[(x,y)\in R\vee(y,x)\in R]$
+\end_inset
+
+.
+ V grafu se souvislá relace pozná tak, že jsou každé dva různé vrcholy spojeny
+ hranou (v libovolném směru).
+\end_layout
+
+\begin_layout Standard
+Pokud je relace souvislá, reflexivní, asymetrická a tranzitivní, tak se
+ jedná o relaci lineárního uspořádání.
+\end_layout
+
+\begin_layout Subsubsection*
+Vlastnosti relace uspořádání
+\end_layout
+
+\begin_layout Standard
+Nechť 
+\begin_inset Formula $(M,\leq)$
+\end_inset
+
+ je uspořádaná množina.
+ Pak pro 
+\begin_inset Formula $a\in M$
+\end_inset
+
+ můžeme definovat:
+\end_layout
+
+\begin_layout Itemize
+a je maximální prvek, pokud pro 
+\begin_inset Formula $\forall b\in M$
+\end_inset
+
+ platí: 
+\begin_inset Formula $a>b$
+\end_inset
+
+ (tzn.
+ je sám v množině největších prvků)
+\end_layout
+
+\begin_layout Itemize
+a je minimální prvek, pokud pro 
+\begin_inset Formula $\forall b\in M$
+\end_inset
+
+ platí: 
+\begin_inset Formula $a<b$
+\end_inset
+
+ (tzn.
+ je sám v množině nejmenších prvků)
+\end_layout
+
+\begin_layout Itemize
+a je nejmenší prvek, pokud pro 
+\begin_inset Formula $\forall b\in M$
+\end_inset
+
+ platí: 
+\begin_inset Formula $a\leq b$
+\end_inset
+
+ (tzn.
+ může být více nejmenších prvků)
+\end_layout
+
+\begin_layout Itemize
+a je největší prvek, pokud pro 
+\begin_inset Formula $\forall b\in M$
+\end_inset
+
+ platí: 
+\begin_inset Formula $a\geq b$
+\end_inset
+
+ (tzn.
+ může být více největších prvků)
+\end_layout
+
+\begin_layout Itemize
+a je horní závora množiny 
+\begin_inset Formula $A\subseteq M$
+\end_inset
+
+, pokud 
+\begin_inset Formula $a\in M$
+\end_inset
+
+ a platí 
+\begin_inset Formula $\forall x\in A$
+\end_inset
+
+: 
+\begin_inset Formula $a\sqsubseteq x$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+a je dolní závora množiny 
+\begin_inset Formula $A\subseteq M$
+\end_inset
+
+, pokud 
+\begin_inset Formula $a\in M$
+\end_inset
+
+ a platí 
+\begin_inset Formula $\forall x\in A$
+\end_inset
+
+: 
+\begin_inset Formula $x\sqsubseteq a$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+a je infimum množiny 
+\begin_inset Formula $A\subseteq M$
+\end_inset
+
+, pokud a je největší horní závora množiny A
+\end_layout
+
+\begin_layout Itemize
+a je supremum množiny 
+\begin_inset Formula $A\subseteq M$
+\end_inset
+
+, pokud a je nejmenší horní závora množiny A
+\end_layout
+
+\begin_layout Paragraph*
+Kvaziuspořádání 
+\end_layout
+
+\begin_layout Standard
+Takové uspořádání, které je pouze reflexivní a tranzitivní.
+ Kritérium porovnání zde není pro všechny prvky jedinečné.
+ Oproti uspořádání zde vznikají tzv.
+ balíky tříd.
+\end_layout
+
+\begin_layout Subsubsection*
+Hasseův diagram
+\end_layout
+
+\begin_layout Standard
+Hasseův diagram slouží pro grafické znázornění uspořádané množiny 
+\begin_inset Formula $(M,\sqsubseteq)$
+\end_inset
+
+.
+ Každý prvek množiny M je zakreslen jako vrchol grafu.
+ Dva vrcholy x a y se spojí hranou, vedenou zdola nahoru, pokud pro ně platí
+ 
+\begin_inset Formula $x\leq y$
+\end_inset
+
+ a neexistuje libovolné z 
+\begin_inset Formula $(z\neq x\wedge z\neq y)$
+\end_inset
+
+, pro než by platilo 
+\begin_inset Formula $x\leq z\leq y$
+\end_inset
+
+.
+ To znamená, že ignorujeme tranzitivitu.
+\end_layout
+
+\begin_layout Subsection*
+Skládání relací, zobrazení
+\end_layout
+
+\begin_layout Paragraph*
+Inverzní relace
+\end_layout
+
+\begin_layout Standard
+Nechť 
+\begin_inset Formula $R\subseteq A\times B$
+\end_inset
+
+ je binární relace mezi A,B.
+ Inverzní relace 
+\begin_inset Formula $R^{-1}=\{(b,a)|(a,b)\in R\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Skládání relací
+\end_layout
+
+\begin_layout Standard
+Nechť 
+\begin_inset Formula $R\subseteq A\times B$
+\end_inset
+
+ a 
+\begin_inset Formula $S\subseteq B\times C$
+\end_inset
+
+.
+ Složení relací 
+\begin_inset Formula $S\circ R\subseteq A\times C$
+\end_inset
+
+ (
+\begin_inset Quotes eld
+\end_inset
+
+S po R
+\begin_inset Quotes erd
+\end_inset
+
+, nejprve aplikujeme relaci R, poté relaci S) je definována jako 
+\begin_inset Formula $S\circ R=\{(a,b)|(a,x)\in R\wedge(x,b)\in S\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Příklad: 
+\begin_inset Formula $A=\{a,b\},\,B=\{1,2\},\,C=\{X,Y\},\,R=\{(a,1),(b,1),(b,2)\},\,S=\{(1,X)\}$
+\end_inset
+
+, složením 
+\begin_inset Formula $S\circ R$
+\end_inset
+
+ vznikne 
+\begin_inset Formula $\{(a,X),\,(b,X)\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Vlastnosti funkcí (zobrazení)
+\end_layout
+
+\begin_layout Standard
+Funkce (totální) je relace z množiny A do množiny B, že pro každé 
+\begin_inset Formula $x\in A$
+\end_inset
+
+ existuje právě jedno 
+\begin_inset Formula $y\in B$
+\end_inset
+
+ takové, že 
+\begin_inset Formula $(x,y)\in f$
+\end_inset
+
+, resp.
+ 
+\begin_inset Formula $f(x)=y$
+\end_inset
+
+.
+ Množina A je definiční obor, množina B je obor hodnot.
+ Funkcím se taky říká zobrazení, neboť je možné ji definovat jako 
+\begin_inset Formula $f:\,A\rightarrow B$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Parciální funkce znamená, že pro každé x z A existuje nanejvýš jedno y z
+ B takové, že f(x)=y.
+ Pro nedefinovanou hodnotu používáme znak 
+\begin_inset Formula $\bot$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Př.
+ 
+\begin_inset Formula $f:\,Z\rightarrow N$
+\end_inset
+
+, 
+\begin_inset Formula $f=\{(x,3+x)|x\in N\}$
+\end_inset
+
+.
+ Předpis parciální funkce je: 
+\begin_inset Formula $f=\begin{cases}
+3+x & jestliže\,x\geq0\\
+\bot & jinak
+\end{cases}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Surjekce, bijekce, injekce
+\end_layout
+
+\begin_layout Itemize
+Injektivní (PROSTÁ) je funkce 
+\begin_inset Formula $f:\,A\rightarrow B$
+\end_inset
+
+ tehdy, pokud pro každé 
+\begin_inset Formula $x,y\in A$
+\end_inset
+
+, přičemž 
+\begin_inset Formula $x\neq y$
+\end_inset
+
+, neexistuje 
+\begin_inset Formula $f(x)=f(y)$
+\end_inset
+
+.
+ Jinými slovy, každý prvek z definičního oboru se zobrazí právě do jednoho
+ prvku oboru hodnot.
+ K prosté (injektivní) funkci můžeme vytvořit inverzní relaci v celém definičním
+ oboru.
+\end_layout
+
+\begin_layout Itemize
+Surjektivní je taková funkce 
+\begin_inset Formula $f:\,A\rightarrow B$
+\end_inset
+
+, že pro každé 
+\begin_inset Formula $y\in B$
+\end_inset
+
+ existuje právě jedno 
+\begin_inset Formula $x\in A$
+\end_inset
+
+.
+ Jinými slovy, neexistuje žádný prvek v množině oboru hodnot, na který by
+ 
+\begin_inset Quotes eld
+\end_inset
+
+neukazoval
+\begin_inset Quotes erd
+\end_inset
+
+ prvek z definičního oboru.
+ V cílové množině není prvek bez spojení.
+ Příklad nesurjektivní funkce 
+\begin_inset Formula $f(x)=x+1$
+\end_inset
+
+, jedná se o zobrazení z oboru přirozených čísel do oboru přirozených čísel.
+\end_layout
+
+\begin_layout Itemize
+Bijektivní je taková funkce, která je injektivní a surjektivní zároveň.
+ Například 
+\begin_inset Formula $f(x)=x$
+\end_inset
+
+ v oboru reálných čísel.
+\end_layout
+
+\begin_layout Standard
+Tyto vlastnosti můžeme použít při porovnání velikostí množin (a to i nekonečných
+):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $|A|=|B|$
+\end_inset
+
+, pokud existuje bijekce z A do B (a to i naopak).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $|A|\leq|B|$
+\end_inset
+
+, pokud existuje injekce z A do B.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $|A|<|B|$
+\end_inset
+
+, pokud existuje injekce z A do B ale neexistuje bijekce (tzn.
+ je injektivní ale není surjektivní).
+ Například 
+\begin_inset Formula $\mathbb{R}$
+\end_inset
+
+ je striktně větší než libovolná spočetná množina (Kantorův paradox).
+\end_layout
+
+\begin_layout Subsubsection*
+Skládání funkcí
+\end_layout
+
+\begin_layout Standard
+Máme funkce 
+\begin_inset Formula $f:\,A\rightarrow B$
+\end_inset
+
+ a 
+\begin_inset Formula $g:\,B\rightarrow C$
+\end_inset
+
+ s předpisem 
+\begin_inset Formula $f(x)=x^{2}+5$
+\end_inset
+
+ a 
+\begin_inset Formula $g(x)=2x-1$
+\end_inset
+
+.
+ Složením funkcí vzninke zobrazení 
+\begin_inset Formula $g\circ f:\,A\rightarrow C$
+\end_inset
+
+ s předpisem 
+\begin_inset Formula $g(f(x))=2(x^{2}+5)-1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Izomorfismus
+\end_layout
+
+\begin_layout Standard
+Dva grafy jsou izomorfní, pokud existuje nějaké bijektivní zobrazení 
+\begin_inset Formula $f:\,V(G)\rightarrow V(G')$
+\end_inset
+
+, pro kterou platí: 
+\begin_inset Formula $\forall\{x,y\}\in G\Leftrightarrow\{f(x),f(y)\}\in G'$
+\end_inset
+
+.
+ Jednoduše řečeno, dva grafy jsou izomorfní, pokud se dají 
+\begin_inset Quotes eld
+\end_inset
+
+přeskládat
+\begin_inset Quotes erd
+\end_inset
+
+ tak, že jeden graf bude identitou druhého.
+\end_layout
+
+\end_body
+\end_document

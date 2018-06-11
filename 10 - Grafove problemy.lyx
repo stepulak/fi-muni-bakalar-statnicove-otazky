@@ -1,0 +1,485 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Grafové problémy
+\end_layout
+
+\begin_layout Subsubsection*
+Ohodnocený graf
+\end_layout
+
+\begin_layout Standard
+Dvojice graf G(V,E) a ohodnocovací funkce 
+\begin_inset Formula $\omega:\,G(E)\rightarrow\mathbb{R}$
+\end_inset
+
+, která všem hranám přiřadí reálné číslo (váhu).
+\end_layout
+
+\begin_layout Standard
+Ohodnocený orientovaný graf je ohodnocený graf, přičemž všechny jeho hrany
+ mají daný směr.
+\end_layout
+
+\begin_layout Standard
+Možné reprezentovat jak maticí sousednosti, tak i seznamem sousedů.
+\end_layout
+
+\begin_layout Subsection*
+Nejkratší cesta v grafu a její hledání
+\end_layout
+
+\begin_layout Standard
+Nejkratší cesta mezi vrcholy u,v v ohodnoceném grafu je taková cesta (resp.
+ sled), jejíž součet ohodnocení (váhy) je minimální.
+ Nejkratší cesta v grafu mezi vrcholy u, v existuje vždy, pokud neobsahuje
+ cyklus záporné délky.
+\end_layout
+
+\begin_layout Standard
+Hledání nejkratších cest se řeší například pomocí Dijkstrova algoritmu,
+ Bellman-Fordem nebo Floyd-Warshallem.
+\end_layout
+
+\begin_layout Subsubsection*
+Dijkstrův algoritmus
+\end_layout
+
+\begin_layout Standard
+Dokáže najít nejkratší cestu v orientovaném ohodnoceném grafu bez hran záporné
+ délky.
+ Existuje několik různých implementací, kde záleží na typu použité prioritní
+ fronty (klasická fronta, binární halda nebo fibonacciho halda).
+\end_layout
+
+\begin_layout Standard
+Kód algoritmu:
+\end_layout
+
+\begin_layout Enumerate
+Všem vrcholům přiřaď nekonečnou vzdálenost od začátku a vlož je do prioritní
+ fronty.
+\end_layout
+
+\begin_layout Enumerate
+Startu přiřad vzdálenost nula.
+\end_layout
+
+\begin_layout Enumerate
+Dokud prioritní fronta není prázdná tak opakuj:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+V 
+\begin_inset Formula $\leftarrow$
+\end_inset
+
+ vrchol s minimální vzdáleností od startu
+\end_layout
+
+\begin_layout Enumerate
+Pokud vzdálenost V je nekonečno, skonči
+\end_layout
+
+\begin_layout Enumerate
+Pro všechny sousedy S pro V: Relaxuj hranu H z V do S
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Relaxace hrany (hrany H z vrcholu V do S) je procedura, která má následující
+ pseudokód:
+\end_layout
+
+\begin_layout Enumerate
+Pokud je součet vzdálenosti vrcholu V a délky hrany H menší jak vzdálenost
+ S:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Vzdálenost S je součet vzdálenosti vrcholu V a délky hrany H
+\end_layout
+
+\begin_layout Enumerate
+Předek S je vrchol V
+\end_layout
+
+\begin_layout Enumerate
+Aktualizuj vzdálenost vrcholu S v prioritní frontě
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Dijkstrův algoritmus navštíví každý vrchol právě jednou a každou hranu taky
+ právě jednou.
+ Výběr minima a aktualizace vzdálenosti vrcholu v prioritní frontě je závislé
+ na implementaci.
+ Pro obyč.
+ frontu lze lineárně vyhledávat minimum, aktualizace vzdálenosti u relaxace
+ je konstantní.
+ Pro binární haldu jsou obojí procedury logaritmické.
+\end_layout
+
+\begin_layout Standard
+Paměťová složitost je 
+\begin_inset Formula $\mathcal{O}(n)$
+\end_inset
+
+.
+ Časová složitost při použití binární haldy je 
+\begin_inset Formula $\mathcal{O}(V\log_{2}V+E\log_{2}V)=\mathcal{O}((V+E)\log_{2}V)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Bellman-Fordův algoritmus
+\end_layout
+
+\begin_layout Standard
+Taky dokáže najít cestu v orientovaném ohodnoceném grafu, který neobsahuje
+ záporný cyklus (může mít však hranu záporné délky - rozdíl oproti Dijkstrovi).
+ Hlavní princip spočívá v proceduře zvané relaxace hrany (podobně jako u
+ Dijkstrova algoritmu).
+ Všechny hrany se relaxují právě 
+\begin_inset Formula $V-1$
+\end_inset
+
+ krát (kde V je počet vrcholů grafu), protože nejdelší cesta (sled) v grafu
+ může mít maximálně V-1 hran.
+\end_layout
+
+\begin_layout Standard
+Implementace algoritmu:
+\end_layout
+
+\begin_layout Enumerate
+Pro všechny vrcholy označ vzdálenost od startu nekonečno
+\end_layout
+
+\begin_layout Enumerate
+Pro startovní vrchol označ vzdálenost nula
+\end_layout
+
+\begin_layout Enumerate
+Pro 
+\begin_inset Formula $\forall k\in\{1,\ldots,V-1\}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Pro všechny hrany 
+\begin_inset Formula $e\in G(E)$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Relaxuj(e)
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Dále taky po skončení algoritmu můžeme otestovat, zda-li graf neobsahuje
+ cyklus záporné délky.
+ To se provede tak, že se pokusíme relaxovat všechny hrany ještě jednou.
+ Pokud je provedena relaxace, graf obsahuje záporný cyklus (viz tvrzení,
+ že cesta v grafu o V vrcholech může mít maximálně V-1 hran).
+\end_layout
+
+\begin_layout Standard
+Relaxace probíhá podobně jako u Dijkstry:
+\end_layout
+
+\begin_layout Enumerate
+Pokud je součet vzdálenosti vrcholu V a délky hrany H menší jak vzdálenost
+ S:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Vzdálenost S je součet vzdálenosti vrcholu V a délky hrany H
+\end_layout
+
+\begin_layout Enumerate
+Předek S je vrchol V
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Časová složitost je očividně 
+\begin_inset Formula $\mathcal{O}(V*E)$
+\end_inset
+
+, paměťová je lineární vůči grafu.
+\end_layout
+
+\begin_layout Subsubsection*
+Floyd-Warshallův algoritmus
+\end_layout
+
+\begin_layout Standard
+Tento algoritmus hledá nejkratší vzdálenosti (ne cesty!) mezi všemi vrcholy
+ v grafu.
+ Vzdálenosti si ukládá do matice D (o rozměru NxN), která je na začátku
+ inicializovaná nulami, a pokud mezi i-tým a j-tým vrcholem existuje hrana,
+ tak 
+\begin_inset Formula $D_{i,j}=ohodnocení\,hrany$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Implementace:
+\end_layout
+
+\begin_layout Enumerate
+Pro 
+\begin_inset Formula $\forall k\in\{1,\ldots,V\}$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Pro 
+\begin_inset Formula $\forall i\in\{1,\ldots,V\}$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Pro 
+\begin_inset Formula $\forall j\in\{1,\ldots,V\}$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Formula $D_{i,j}=min(D_{i,j},D_{i,k}+D_{k,j})$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_deeper
+\begin_layout Standard
+Časová složitost je 
+\begin_inset Formula $\mathcal{O}(V^{3})$
+\end_inset
+
+, paměťová je kvadratická vůči velikosti matice vzdáleností.
+\end_layout
+
+\begin_layout Subsection*
+Minimální kostra grafu
+\end_layout
+
+\begin_layout Standard
+Kostra grafu K pro graf G je podgraf (
+\begin_inset Formula $K\subseteq G$
+\end_inset
+
+), jenž je stromem, který obsahuje všechny vrcholy z grafu G.
+ Kostra je minimální, pokud součet ohodnocení hran kostry je minimální (některé
+ grafy mají dvě a více koster).
+\end_layout
+
+\begin_layout Standard
+Algoritmy pro hledání minimální kostry: Jarník-primův algoritmus, Kruskalův
+ algoritmus.
+\end_layout
+
+\begin_layout Subsubsection*
+Jarník-primův algoritmus
+\end_layout
+
+\begin_layout Standard
+Funguje na principu postupému přidávání vrcholů s nejmenší vzdáleností ke
+ kostře.
+\end_layout
+
+\begin_layout Standard
+Implementace:
+\end_layout
+
+\begin_layout Enumerate
+Zvolíme libovolný vrchol jako začátek kostry a vytvoříme množinu vrcholů
+ X, kteří jsou sousedé začátku kostry.
+\end_layout
+
+\begin_layout Enumerate
+Dokud jsme nepropojili všechny vrcholy tak opakuj:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Zvolíme takový vrchol z množiny X, jehož vzdálenost od kostry je minimální
+ a vložíme ho do kostry.
+\end_layout
+
+\begin_layout Enumerate
+Tento vrchol z množiny X odstraníme.
+\end_layout
+
+\begin_layout Enumerate
+Aktualizujeme množinu sousedů X, do množiny vložíme všechny dosud nepřidané
+ sousedy nově přidaného vrcholu.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Časová složitost se odvíjí od složitosti výběru nejbližšího vrcholu.
+ Pro binární haldu platí, že výběr je logaritmický a přidání nového prvku
+ taky.
+ Přidání i výběr prvku je právě E-krát (E je počet hran grafu), protože
+ projdeme všechny hrany.
+ Časová složitost je tedy 
+\begin_inset Formula $\mathcal{O}(V\log_{2}V)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Kruskalův algoritmus
+\end_layout
+
+\begin_layout Standard
+Funguje na principu spojování stromů v rámci lesa.
+\end_layout
+
+\begin_layout Standard
+Nechť každý vrchol v grafu G je samostatný strom, tudíž graf G je lesem.
+ Algoritmus probíhá tak, že seřadí všechny hrany vzestupně podle ohodnocení
+ a postupně (od první hrany) slučuje dva různé stromy do jednoho.
+ Pokud sloučíme všechny stromy do jednoho, vytvoříme tím minimální hranu.
+\end_layout
+
+\begin_layout Standard
+Implementace:
+\end_layout
+
+\begin_layout Enumerate
+Z vrcholů grafu G vytvoř množinu stromů, každému dej unikátní číslo.
+\end_layout
+
+\begin_layout Enumerate
+Seřaď všechny hrany vzestupně podle velikosti.
+\end_layout
+
+\begin_layout Enumerate
+Dokud existuje nějaká neotestovaná hrana (testujeme od nejmenší po největší):
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Vezmi hranu h a zkus spojit vrcholy, které tato hrana propojuje.
+ Pokud se jedná o dva různé stromy (zjistíme podle id), propoj dané stromy
+ do jednoho (a přepiš id druhého stromu).
+\end_layout
+
+\begin_layout Enumerate
+Pokud hrana h propojuje stejný strom, ignoruj ji (jinak bychom vytvořili
+ cyklus).
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Časová složitost algoritmu závisí na typu řadícího algoritmu.
+ Pokud zvolíme efektivní řadící algoritmus, můžeme se dostat i na 
+\begin_inset Formula $\mathcal{O}(E\log_{2}E)$
+\end_inset
+
+.
+ Vytvoření kostry má pak lineární čas.
+ složitost.
+\end_layout
+
+\end_body
+\end_document

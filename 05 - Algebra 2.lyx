@@ -1,0 +1,1216 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Vlastní čísla a vlastní vektory
+\end_layout
+
+\begin_layout Standard
+Vlastní číslo 
+\begin_inset Formula $\lambda\in\mathbb{C}$
+\end_inset
+
+ k matici A (o rozměru 
+\begin_inset Formula $n\times n$
+\end_inset
+
+) je číslo, pro které platí: 
+\begin_inset Formula $A*x=\lambda x$
+\end_inset
+
+, přičemž 
+\begin_inset Formula $x$
+\end_inset
+
+ je nenulový vektor taky v 
+\begin_inset Formula $\mathbb{C}^{n}$
+\end_inset
+
+.
+ Tento vektor se nazývá vlastní vektor matice A příslušný k hodnodě 
+\begin_inset Formula $\lambda$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Pro vlastní vektor platí, že pokud na něj aplikujeme transformaci matící
+ A, tak se jeho směr nemění.
+ Vlastní číslo je pak koeficient změny velikosti daného vektoru.
+\end_layout
+
+\begin_layout Standard
+Pro vlastní číslo musí z první rovnice po vytknutí x platit 
+\begin_inset Formula $(A-\lambda I)v=0$
+\end_inset
+
+, kde I je jednotková matice.
+ Pokud je matice A singulární (nemá maximální hodnotu, tzn.
+ není regulární, má závislé vektory
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+determinant je roven nule), tak platí 
+\begin_inset Formula $det(A-\lambda I)=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+Vlastní číslo k matici 
+\begin_inset Formula $\left(\begin{array}{cc}
+1 & 2\\
+2 & 1
+\end{array}\right)$
+\end_inset
+
+ vypočítáme následovně:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $A'=\left(\begin{array}{cc}
+1 & 2\\
+2 & 1
+\end{array}\right)-\lambda\left(\begin{array}{cc}
+1 & 0\\
+0 & 1
+\end{array}\right)=\left(\begin{array}{cc}
+1-\lambda & 2\\
+2 & 1-\lambda
+\end{array}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $det(A)=(1-\lambda)^{2}-4=-3-2\lambda+\lambda^{2}=(3-\lambda)(1+\lambda)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Přičemž musí platit 
+\begin_inset Formula $det(A)=0$
+\end_inset
+
+, tzn.
+ máme 2 vlastní čísla, a to 
+\begin_inset Formula $\lambda=3$
+\end_inset
+
+, 
+\begin_inset Formula $\lambda=-1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section*
+Vektorový prostor, podprostor
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Vektorový prostor 
+\series default
+je množina V, jejíž prvky jsou vektory.
+ Tyto vektory jsou na množině V uzavřené (+ popiš jejich operace, komutativnost,
+ asociativitu apod.).
+ Viz kapitola 4.
+\end_layout
+
+\begin_layout Subsection*
+Vektorový podprostor
+\end_layout
+
+\begin_layout Standard
+Vektorový podprostor je podmnožina vektorového prostoru (
+\begin_inset Formula $W\subseteq V$
+\end_inset
+
+), přičemž je stále uzavřena na sčítání a násobení vektorů skalárem.
+ 
+\end_layout
+
+\begin_layout Standard
+Tzn.
+ platí:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\forall x,y\in W:\,x+y\in W$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\forall x\in W:\,a*x\in W$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pro dva vektorové podprostory 
+\begin_inset Formula $W_{1},W_{2}\subseteq V$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Itemize
+Jejich průnik je vektorový podprostor 
+\begin_inset Formula $W_{3}\subseteq V$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Sjednocením nevznikne nutně vektorový prostor V.
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+Nechť vektorový prostor je 
+\begin_inset Formula $\mathbb{R}^{3}$
+\end_inset
+
+ a jeho podprostor ve tvaru 
+\begin_inset Formula $(a,a,a)$
+\end_inset
+
+.
+ Je tento podprostor uzavřený na sčítání a násobení skalárem?
+\end_layout
+
+\begin_layout Standard
+Sčítání 
+\begin_inset Formula $(a,a,a)+(b,b,b)=(a+b,a+b,a+b)$
+\end_inset
+
+ platí.
+ Násobení 
+\begin_inset Formula $k(a,a,a)=(ka,ka,ka)$
+\end_inset
+
+ taky platí.
+\end_layout
+
+\begin_layout Subsection*
+Lineární obal
+\end_layout
+
+\begin_layout Standard
+Množina, která vznikla lineární kombinací všech vektorů z vektorového prostoru,
+ značí se 
+\begin_inset Formula $\left\langle X\right\rangle $
+\end_inset
+
+.
+ Tzn.
+ pokud máme vektory 
+\begin_inset Formula $x_{0},\ldots,x_{n}$
+\end_inset
+
+ z vektorového prostoru V, pak lineární obal bude tvořen vektory: 
+\begin_inset Formula $u=\alpha_{0}x_{0}+\ldots+\alpha_{n}x_{n}$
+\end_inset
+
+, přičemž 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ jsou různé reálné koeficienty (je jich nekonečně mnoho).
+\end_layout
+
+\begin_layout Standard
+Formálně je lineární obal pro vektorový prostor V definovaný jako:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\left\langle x_{0},\ldots,x_{n}\right\rangle =\{\alpha_{0}x_{0}+\ldots+\alpha_{n}x_{n}|\alpha_{0},\ldots,\alpha_{n}\in\mathbb{R},\,x_{0},\ldots,x_{n}\in V\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph*
+Vlastnosti lineárních obalů
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $V\subseteq\left\langle W\right\rangle $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\left\langle W\right\rangle =\left\langle \left\langle W\right\rangle \right\rangle $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $W_{1},W_{2}\subseteq V$
+\end_inset
+
+ a platí 
+\begin_inset Formula $W_{1}\subseteq W_{2}\Longrightarrow\left\langle W_{1}\right\rangle \subseteq\left\langle W_{2}\right\rangle $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $V=\{(1,2,3),(5,4,8),(5,7,1)\}$
+\end_inset
+
+.
+ Každý vektor lineárního obalu 
+\begin_inset Formula $\left\langle V\right\rangle $
+\end_inset
+
+ je ve tvaru:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\left\langle V\right\rangle =\{(1\alpha_{0}+5\alpha_{1}+5\alpha_{2},2\alpha+4\alpha_{1}+7\alpha_{2},3\alpha_{0}+8\alpha_{1}+1\alpha_{2})|\alpha_{k}\in\mathbb{R}\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Báze vektorového prostoru
+\end_layout
+
+\begin_layout Standard
+Báze vektorového prostoru V je možnina B, pro kterou platí 
+\begin_inset Formula $B\subseteq V$
+\end_inset
+
+ a 
+\begin_inset Formula $\left\langle B\right\rangle =V$
+\end_inset
+
+.
+ To znamená, že lineární kombinací bazických vektorů dokážeme generovat
+ celý vektorový prostor V.
+ Například pro vektorový prostor 
+\begin_inset Formula $\mathbb{R}^{n}$
+\end_inset
+
+ jsou bazické vektory ve tvaru n-tic 
+\begin_inset Formula $(1,0,0\ldots),(0,1,0,\ldots),(0,0,1,\ldots)$
+\end_inset
+
+.
+ Lineární obal těchto bazických vektorů pak tvoří prostor 
+\begin_inset Formula $\mathbb{R}^{n}$
+\end_inset
+
+ .
+\end_layout
+
+\begin_layout Standard
+Vlastnosti bází
+\end_layout
+
+\begin_layout Itemize
+Každý lineární prostor má bázi s vyjímkou triviálního prostoru, který má
+ pouze nulový vektor.
+\end_layout
+
+\begin_layout Itemize
+Každá lineárně nezávislá množina 
+\begin_inset Formula $B_{0}\subseteq V$
+\end_inset
+
+ je buď báze vektoru V, nebo lze na bázi doplnit (přídáním lineárně nezávislých
+ vektorů).
+\end_layout
+
+\begin_layout Itemize
+Báze vektoru není určena jednoznačně k vektorovému prostoru V, vždy existuje
+ více bází.
+ (například pro 
+\begin_inset Formula $\mathbb{R}^{3}$
+\end_inset
+
+ existuje několik bází, například 
+\begin_inset Formula $B_{A}=\{(1,0,0),(0,1,0),(0,0,1)\},\,B_{B}=\{(2,0,0),(0,2,0),(0,0,2)\}$
+\end_inset
+
+).
+ Pokud bázové vektory zapíšeme do matice, tak k-násobek této matice je vždy
+ bázovým vektorem vůči vektoru V.
+\end_layout
+
+\begin_layout Itemize
+Všechny báze vektorového prostoru mají vždystejný počet vektorů anebo jsou
+ nekonečné.
+\end_layout
+
+\begin_layout Subsection*
+Dimenze vektorového prostoru
+\end_layout
+
+\begin_layout Standard
+Rovna počtu bazických vektorů vůči tomuto vektorového prostoru.
+ Pokud je báze nekonečná, je i dimenze nekonečná.
+ Obecně lze říci, že 
+\begin_inset Formula $dim(V)=|B_{V}|$
+\end_inset
+
+.
+ Pro reálná čísla platí 
+\begin_inset Formula $dim(\mathbb{R}^{n})=n$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Vlastnosti dimenzí
+\end_layout
+
+\begin_layout Itemize
+V je vektorový prostor a W je jeho podprostor 
+\begin_inset Formula $W\subseteq V$
+\end_inset
+
+.
+ Pak platí 
+\begin_inset Formula $dim(W)\leq dim(V)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+V je vektorový prostor a W je jeho podprostor 
+\begin_inset Formula $W\subset V$
+\end_inset
+
+.
+ Pak platí 
+\begin_inset Formula $dim(W)<dim(V)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Pokud má vek.
+ prostor V dimenzi n, pak libovolných n lineárně nezávislých vektorů tvoří
+ bázi prostoru V.
+\end_layout
+
+\begin_layout Subsection*
+Ortogonální a ortonormální báze
+\end_layout
+
+\begin_layout Standard
+Báze B vektorového prostoru V je ortogonální, pokud je skalární součin libovlnýc
+h dvou bazických vektorů nulový (tzn.
+ že jsou na sebe kolmé).
+ Pokud skalární součin dvou bazických vektorů je nulový, pak i skalární
+ součin všech bazických vektorů je nulový.
+ Ortonormální báze je taková báze, která je ortogonální a pro libovolný
+ bazický vektor b platí 
+\begin_inset Formula $|b|=1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Matice přechodu
+\end_layout
+
+\begin_layout Standard
+Máme dvě různé báze 
+\begin_inset Formula $X,Y$
+\end_inset
+
+ (tzn.
+ lineárně nezávislé), které generují stejný podprostor V.
+ K tomu, abychom mohli mezi dvěma bázemi přecházet, slouží tzv.
+ matice přechodu 
+\begin_inset Formula $M_{X\rightarrow Y}$
+\end_inset
+
+.
+ Máme-li nějaký vektor, který vznikne lineární kombinací bazických vektorů
+ 
+\begin_inset Formula $X$
+\end_inset
+
+, tak po vynásobení maticí přechodu nám vznikne vektor, který je lineární
+ kombinací bazických vektorů 
+\begin_inset Formula $Y$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Matice přechodu se vytvoří pomocí zápisu 
+\begin_inset Formula $M=(Y|X)$
+\end_inset
+
+ a pomocí elementárních úprav (jenž se používají např.
+ u Gaussovy eliminační techniky mimo přehazování řádků) upraví na cílový
+ tvar 
+\begin_inset Formula $M=(I|M_{X\rightarrow Y})$
+\end_inset
+
+, kde I je jednotková matice a 
+\begin_inset Formula $AM_{X\rightarrow Y}=$
+\end_inset
+
+je vypočítaná matice přechodu o rozměru 
+\begin_inset Formula $n\times n$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section*
+Afinní objekty
+\end_layout
+
+\begin_layout Subsection*
+Afinní prostor
+\end_layout
+
+\begin_layout Standard
+Afinní prostor je prostor, na který je uzavřený na sčítání bodu a vektoru.
+ Podle definice se jedná o množinu vektorů (bodů) A, pro kterou platí 
+\begin_inset Formula $A=R^{n}$
+\end_inset
+
+, přičemž pro každý bod 
+\begin_inset Formula $A_{n}=(a_{1},\ldots,a_{n})\in A$
+\end_inset
+
+ a každý vektor 
+\begin_inset Formula $v=(v_{1},\ldots,v_{n})\in V$
+\end_inset
+
+ platí, že 
+\begin_inset Formula $A_{n}+v=(a_{1}+v_{1},\ldots,a_{n}+v_{n})\in A$
+\end_inset
+
+ (resp.
+ 
+\begin_inset Formula $\mathbb{R}^{n}$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Pro afinní prostor platí:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $X+0=A$
+\end_inset
+
+, tzn.
+ existuje nulový vektor 0
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $(X+v)+w=X+(v+w)$
+\end_inset
+
+, tzn.
+ platí asociativita.
+\end_layout
+
+\begin_layout Itemize
+Pro každé dva body 
+\begin_inset Formula $X,Y\in A$
+\end_inset
+
+ platí, že existuje vektor v: 
+\begin_inset Formula $X+v=Y$
+\end_inset
+
+.
+ Tento vztah můžeme rozepsat 
+\begin_inset Formula $v=Y-X=\overrightarrow{YX}$
+\end_inset
+
+, avšak sčítání či odčítání vektorů není v afinním prostoru definováno!
+\end_layout
+
+\begin_layout Standard
+Afinní prostor je zobecněním Euklidovského prostoru.
+ 
+\series bold
+Euklidovský prostor
+\series default
+ je afinní prostor, na kterém je definován ještě skalární součin dvou vektorů
+ (tzn.
+ můžeme rozhodnou o kolmosti vektorů v prostoru).
+\end_layout
+
+\begin_layout Subsection*
+Afinní objekty
+\end_layout
+
+\begin_layout Standard
+Mezi objekty afinního prostoru můžeme zahrnout bod (dimenze 0), přímku (dimenze
+ 1) či rovinu (dimenze 2), protože se jedná o množiny bodů 
+\begin_inset Formula $M\subseteq A$
+\end_inset
+
+.
+ Kružnici, vzdálenost bodů ani úhel vektorů nelze v afinním prostoru zkonstruova
+t či vypočítat.
+\end_layout
+
+\begin_layout Subsection*
+Přímka
+\end_layout
+
+\begin_layout Standard
+Přímku je možné definovat parametricky (pro 
+\begin_inset Formula $\mathbb{R}^{2}$
+\end_inset
+
+ i 
+\begin_inset Formula $\mathbb{R}^{3}$
+\end_inset
+
+) nebo obecně (jen v 
+\begin_inset Formula $\mathbb{R}^{2}$
+\end_inset
+
+).
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Parametrická přímka
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $X=A+\overrightarrow{u}t$
+\end_inset
+
+, kde A je bod ležící na přímce, 
+\begin_inset Formula $\overrightarrow{u}$
+\end_inset
+
+ je směrový vektor a t je parametr přímky (pomocí něj dokážeme generovat
+ všechny body přímky).
+\end_layout
+
+\begin_layout Standard
+Pro afinní prostor 
+\begin_inset Formula $\mathbb{R}^{2}$
+\end_inset
+
+ platí:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $X_{X}=A_{X}+\overrightarrow{u}_{X}t$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $X_{Y}=A_{Y}+\overrightarrow{u}_{Y}t$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pro afinní prostor 
+\begin_inset Formula $\mathbb{R}^{3}$
+\end_inset
+
+ platí:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $X_{X}=A_{X}+\overrightarrow{u}_{X}t$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $X_{Y}=A_{Y}+\overrightarrow{u}_{Y}t$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $X_{Z}=A_{Z}+\overrightarrow{u}_{Z}t$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Obecná přímka
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ax+by+c=0$
+\end_inset
+
+, kde (a,b) je normálový (kolmý) vektor k přímce, c je volný parametr a
+ x, y jsou body přímky.
+ Obecná rovnice přímky v 
+\begin_inset Formula $\mathbb{R}^{3}$
+\end_inset
+
+ neexistuje!
+\end_layout
+
+\begin_layout Paragraph*
+Normálový a směrový vektor
+\end_layout
+
+\begin_layout Standard
+Pro normálový vektor 
+\begin_inset Formula $(a,b)$
+\end_inset
+
+ v 
+\begin_inset Formula $\mathbb{R}^{2}$
+\end_inset
+
+ platí, že přehozením prvků vektoru a přídání záporného znaménka k jednomu
+ prvku vznikne směrový vektor 
+\begin_inset Formula $(-b,a)$
+\end_inset
+
+.
+ Pro trojrozměrný prostor je postup složitejší, kolmých vektorů k vektoru
+ (a,b,c) je nekonečně mnoho (jedná se totiž o rovinu), a proto si vymyslíme
+ dva parametry a třetí dopočítáme.
+\end_layout
+
+\begin_layout Paragraph*
+Přecházení mezi parametrickou a obecnou definicí přímky
+\end_layout
+
+\begin_layout Standard
+Mezi obecnou definicí přímky a parametrickou lze snadno přecházet.
+ 
+\end_layout
+
+\begin_layout Standard
+Máme-li parametrickou přímku a chceme obecnou, stačí ze směrového vektoru
+ vytvořit normálový vektor a dosadit bod parametrické přímky do rovnice
+ obecné přímky.
+ Tím vypočítáme parametr c.
+\end_layout
+
+\begin_layout Standard
+Máme-li obecnou přímku a chceme parametrickou, vyjádříme směrový vektor
+ z normálového.
+ Poté najdeme takový bod, který na této přímce leží (tzn.
+ vymyslíme x složku bodu a y složku dopočítáme).
+\end_layout
+
+\begin_layout Paragraph*
+Vzájemná poloha přímek
+\end_layout
+
+\begin_layout Itemize
+p je rovnoběžné s q (
+\begin_inset Formula $p||q$
+\end_inset
+
+) pokud platí, že 
+\begin_inset Formula $p\cap q=\emptyset$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+p je různoběžné s q (
+\begin_inset Formula $p\times q$
+\end_inset
+
+) pokud platí, že 
+\begin_inset Formula $p\cap q=B$
+\end_inset
+
+, kde B je bod z afinního prostoru
+\end_layout
+
+\begin_layout Itemize
+p je totožné s q (
+\begin_inset Formula $p=q$
+\end_inset
+
+), pokud plaží, že 
+\begin_inset Formula $p\cap q=p=q$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Rovina
+\end_layout
+
+\begin_layout Standard
+O rovině v 
+\begin_inset Formula $\mathbb{R}^{2}$
+\end_inset
+
+ se nemá smysl bavit.
+ Rovinu lze vyjádřiž parametricky i obecně.
+ Pro výjádření roviny v prostoru potřebujeme jedno z těchto informací a
+ můžeme vyjádřit buď obecnou nebo parametrickou rovnici roviny v prostoru:
+\end_layout
+
+\begin_layout Itemize
+bod a normálový vektor
+\end_layout
+
+\begin_layout Itemize
+přímku a bod, který na přímce neleží
+\end_layout
+
+\begin_layout Itemize
+dvě různoběžné přímky
+\end_layout
+
+\begin_layout Itemize
+bod a dva směrové vektory
+\end_layout
+
+\begin_layout Itemize
+tři body, přičemž nesmí ležet v jedné přímce
+\end_layout
+
+\begin_layout Subsubsection*
+Parametrická rovina
+\end_layout
+
+\begin_layout Standard
+Podobně jako u rovnice parametrické přímky je definice následující:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $X=A+\overrightarrow{u}t+\overrightarrow{v}r$
+\end_inset
+
+, A je bod roviny, 
+\begin_inset Formula $\overrightarrow{u},\overrightarrow{v}$
+\end_inset
+
+ jsou dva směrové vektory, t a r jsou parametry roviny.
+ Pro každou složku (x,y,z) můžeme vytvořit soustavu rovnic:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $X_{X}=A_{X}+\overrightarrow{u}_{X}t+\overrightarrow{v}_{X}r$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $X_{Y}=A_{Y}+\overrightarrow{u}_{Y}t+\overrightarrow{v}_{Y}r$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $X_{Z}=A_{Z}+\overrightarrow{u}_{Z}t+\overrightarrow{v}_{Z}r$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Obecná rovina
+\end_layout
+
+\begin_layout Standard
+Pro ni stačí znát normálový vektor a bod, který v rovině leží:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ax+by+cz+d=0$
+\end_inset
+
+, kde 
+\begin_inset Formula $(a,b,c)$
+\end_inset
+
+ je normála k rovině, 
+\begin_inset Formula $(x,y,z)$
+\end_inset
+
+ je bod roviny a d je parametr.
+\end_layout
+
+\begin_layout Paragraph*
+Převody mezi rovnicemi
+\end_layout
+
+\begin_layout Standard
+Převod mezi parametrickou rovinou a obecnou je jednoduchý, stačí pomocí
+ vektorového součinu spočítat normálu ke směrovým vektorům a dosadit bod
+ parametrické rovnice.
+\end_layout
+
+\begin_layout Standard
+Pro obecnou rovinu na parametrickou stačí nalézt tři body roviny A,B,C tak,
+ aby když z nich vytvoříme dva směrové vektory 
+\begin_inset Formula $\overrightarrow{AB}$
+\end_inset
+
+ a 
+\begin_inset Formula $\overrightarrow{AC}$
+\end_inset
+
+ platilo, že tyto dva vektory nejsou lineární kombinací druhého (tzn.
+ neexistuje 
+\begin_inset Formula $k\in\mathbb{R}$
+\end_inset
+
+ takové, aby 
+\begin_inset Formula $k*\overrightarrow{AB}=\overrightarrow{AC}$
+\end_inset
+
+).
+ Parametrických vyjádření je nekonečně mnoho.
+\end_layout
+
+\begin_layout Paragraph*
+Vzájemná poloha rovin
+\end_layout
+
+\begin_layout Itemize
+dvě roviny p a q jsou rovnoběžné, pokud platí 
+\begin_inset Formula $p\cap q=\emptyset$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+dvě roviny p a q jsou různoběžné, pokud platí 
+\begin_inset Formula $p\cap q=r$
+\end_inset
+
+, kde r je přímka
+\end_layout
+
+\begin_layout Itemize
+dvě roviny p a q nemohou být nikdy mimoběžky
+\end_layout
+
+\begin_layout Subsection*
+Afinní transformace
+\end_layout
+
+\begin_layout Standard
+Afinní transformace je typ lineárního zobrazení 
+\begin_inset Formula $f:A\rightarrow B$
+\end_inset
+
+ z jednoho afinního prostoru A do druhého B (lineární zobrazení zachovává
+ pro vektorové prostory uzavřenost na operace sčítání a násobení skalárem)
+\end_layout
+
+\begin_layout Standard
+Mezi afinní transformace patří posunutí (translace), rotace, změna měřítka
+ (scaling) či zkosení (shearing).
+\end_layout
+
+\begin_layout Standard
+Abychom mohli zapisovat afinní transformace pomocí maticového zápisu (a
+ mohli tak aplikovat afinní transformace například na grafické kartě), potřebuje
+me definovat tzv.
+ homogenní souřadnice.
+ Pro bod definovaný za pomocí homogenních souřadnic platí: 
+\begin_inset Formula $X=[\frac{x}{w},\frac{y}{w},w]$
+\end_inset
+
+, kde w je tzv.
+ váha bodu.
+ Tato váha řeší například problém rovnoběžnosti přímek v nekonečnu v perspektivn
+í projekci (viz.
+ OpenGL a Direct3D).
+\end_layout
+
+\begin_layout Subsubsection*
+Translace
+\end_layout
+
+\begin_layout Standard
+Označuje posunutí bodu A ve směru příslušného vektoru X.
+\end_layout
+
+\begin_layout Standard
+Matice pro 
+\begin_inset Formula $\mathbb{R}^{2}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $T=\left[\begin{array}{ccc}
+1 & 0 & 0\\
+0 & 1 & 0\\
+X_{X} & X_{Y} & 1
+\end{array}\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+pro 
+\begin_inset Formula $\mathbb{R}^{3}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $T=\left[\begin{array}{cccc}
+1 & 0 & 0 & 0\\
+0 & 1 & 0 & 0\\
+0 & 0 & 1 & 0\\
+X_{X} & X_{Y} & X_{Z} & 1
+\end{array}\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Rotace
+\end_layout
+
+\begin_layout Standard
+Označuje rotaci bodu A kolem počátku systému souřadnic 
+\begin_inset Formula $($
+\end_inset
+
+
+\begin_inset Formula $\mathbb{R}^{2}$
+\end_inset
+
+), nebo kolem příslušné osy 
+\begin_inset Formula $(\mathbb{R}^{3})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $X'=Xcos\alpha-Ysin\alpha$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $Y'=Xsin\alpha+Ycos\alpha$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Příslušná matice:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $R=\left[\begin{array}{ccc}
+cos\alpha & -sin\alpha & 0\\
+sin\alpha & cos\alpha & 0\\
+0 & 0 & 1
+\end{array}\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Pro trojdimenzionální prostor jsou tři různé rotační matice, které si doufám
+ nemusíme pamatovat.
+\end_layout
+
+\begin_layout Subsubsection*
+Scale
+\end_layout
+
+\begin_layout Standard
+Označuje změnu měřítka pro různé osy.
+\end_layout
+
+\begin_layout Standard
+Matice pro 
+\begin_inset Formula $\mathbb{R}^{2}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $S=\left[\begin{array}{ccc}
+k_{x} & 0 & 0\\
+0 & k_{y} & 0\\
+0 & 0 & 1
+\end{array}\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+pro 
+\begin_inset Formula $\mathbb{R}^{3}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $S=\left[\begin{array}{cccc}
+k_{x} & 0 & 0 & 0\\
+0 & k_{y} & 0 & 0\\
+0 & 0 & k_{z} & 0\\
+0 & 0 & 0 & 1
+\end{array}\right]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Skládání transformací
+\end_layout
+
+\begin_layout Standard
+Transformace lze skládat tak, že vynásobíme dvě různé matice.
+ Pozor, skládání není komutativní, je rozdíl, pokud nejprve bod posuneme
+ a poté orotujeme a naopak.
+ Pokud chceme umístit do soustavy souřadnic na konkrétní pozici orotovaný
+ objekt , tak logicky dává smysl prvek nejprve orotovat, poté posunout (local-ba
+sed přístup).
+ Ovšem v grafických knihovnách funguje tzv.
+ global-based přístup, tzn.
+ nejprve posuneme, poté orotujeme.
+ Proč tomu tak je? Zde totiž netransformujeme objekt, ten zůstává statický,
+ ovšem tzv.
+ model-view matici, tzn.
+ všechno ostatní kolem (svět).
+\end_layout
+
+\end_body
+\end_document

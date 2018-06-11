@@ -1,0 +1,1773 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Elementární teorie čísel
+\end_layout
+
+\begin_layout Subsection*
+Dělitelnost
+\end_layout
+
+\begin_layout Standard
+Celé číslo a dělí celé číslo b (značíme 
+\begin_inset Formula $a|b$
+\end_inset
+
+), jinými slovy číslo b je dělitelné číslem a, právě když existuje celé
+ číslo c tak, že platí 
+\begin_inset Formula $a*c=b$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Platí několik tvrzení:
+\end_layout
+
+\begin_layout Itemize
+Nulu lze dělit libovolným nenulovým číslem 
+\begin_inset Formula $a|0$
+\end_inset
+
+.
+ Výraz 
+\begin_inset Formula $\frac{0}{0}$
+\end_inset
+
+ je v matematice nedefinovaný!
+\end_layout
+
+\begin_layout Itemize
+Každé číslo dělí sebe sama.
+\end_layout
+
+\begin_layout Itemize
+U dělitelnosti platí tranzitivita: 
+\begin_inset Formula $a|b$
+\end_inset
+
+ a 
+\begin_inset Formula $b|c$
+\end_inset
+
+ implikuje 
+\begin_inset Formula $a|c$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Pokud a dělí b i c, tak dělí i jejich 
+\series bold
+součty a rozdíly.
+\end_layout
+
+\begin_layout Itemize
+Pokud 
+\begin_inset Formula $c\neq0$
+\end_inset
+
+ a a dělí b, tak platí i 
+\begin_inset Formula $ac|bc$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Pokud 
+\begin_inset Formula $a|b\wedge b>0\Rightarrow a\leq b$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Dělení se zbytkem
+\end_layout
+
+\begin_layout Standard
+Máme číslo 
+\begin_inset Formula $a\in\mathbb{N}$
+\end_inset
+
+ a 
+\begin_inset Formula $b\in\mathbb{Z}$
+\end_inset
+
+, tak pro ně existují jednoznačně určená čísla 
+\begin_inset Formula $c\in\mathbb{Z}$
+\end_inset
+
+ a 
+\begin_inset Formula $r\in\{0,\ldots,a-1\}$
+\end_inset
+
+, přičemž platí 
+\begin_inset Formula $b=ca+r$
+\end_inset
+
+.
+ Číslo c se nazývá neúplný podíl, číslo r se nazývá zbytek při dělení čísla
+ b číslem a.
+\end_layout
+
+\begin_layout Subsection*
+Euklidův algoritmus
+\end_layout
+
+\begin_layout Standard
+Používá se pro estimaci GCD (greatest common divisor), 
+\series bold
+největšího společného dělitele
+\series default
+.
+ Nechť číslo d je největším společným dělitelem čísel a,b.
+ Pak platí, že 
+\begin_inset Formula $d=max\{x|a\,mod\,x=0\land b\,mod\,x=0\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Funguje na principu postupného zmenšování vstupních čísel a, b, přičemž
+ dbá důraz na to, aby se neměnil dělitel.
+\end_layout
+
+\begin_layout Standard
+Algoritmus:
+\end_layout
+
+\begin_layout Standard
+Máme vstupní čísla a, b.
+ Chceme najít největší společný dělitel těchto čísel.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $while(b!=0):$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\,\,r=a\,mod\,b$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\,\,a=b$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\,\,b=r$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Výsledek je uložen v proměnné a.
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+GCD(14,35): 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+35
+\series default
+=2*
+\series bold
+14
+\series default
++7
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+14
+\series default
+=2*
+\series bold
+7
+\series default
++0
+\end_layout
+
+\begin_layout Standard
+GCD(14,35)=7
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+GCD(24,54):
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+54
+\series default
+=2*
+\series bold
+24
+\series default
++6
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+24
+\series default
+=4*
+\series bold
+6
+\series default
++0
+\end_layout
+
+\begin_layout Standard
+GCD(24,54)=6
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+GCD(35,4):
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+35
+\series default
+=8*
+\series bold
+4
+\series default
++3
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+4
+\series default
+=1*
+\series bold
+3
+\series default
++1
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+3
+\series default
+=3*
+\series bold
+1
+\series default
++0
+\end_layout
+
+\begin_layout Standard
+GCD(34,4)=1 (jedná se o nesoudělná čísla)
+\end_layout
+
+\begin_layout Paragraph*
+Nesoudělná čísla
+\end_layout
+
+\begin_layout Standard
+Taková čísla, jejiž GCD je 1.
+\end_layout
+
+\begin_layout Subsubsection*
+Nejmenší společný násobek
+\end_layout
+
+\begin_layout Standard
+Rozklad čísel a, b na součin prvočísel ve tvaru 
+\begin_inset Formula $p_{1}^{m_{1}}*\ldots*p_{n}^{m_{n}}$
+\end_inset
+
+.
+ Nejmenší společný násobek je pak součinem všech těchto prvočísel, přičemž
+ u společných prvočísel se vybere maximum z exponentu.
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $52=2*2*13=2^{2}*13$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $16=2*2*2*2=2^{4}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+LCM (least common multiple)=
+\begin_inset Formula $2^{4}*13=208$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Modulární operace
+\end_layout
+
+\begin_layout Standard
+Modulo je operace, která vrací výsledek po dělení čísla a číslem b.
+ Pokud čísla x, y mají po dělení číslem m stejný zbytek r, tak se nazývají
+ 
+\series bold
+konguruentní
+\series default
+.
+ Konguruentnost se zapisuje 
+\begin_inset Formula $a\equiv b\,(mod\,m)$
+\end_inset
+
+.
+ Pokud čísla a, b nejsou konguruentní, zapisují se 
+\begin_inset Formula $a\not\equiv b\,(mod\,m)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Základní vlastnosti modulární aritmetiky:
+\end_layout
+
+\begin_layout Standard
+(a mod m + b mod m) mod m = (a+b) mod m
+\end_layout
+
+\begin_layout Standard
+(a mod m - b mod m) mod m = (a+b) mod m
+\end_layout
+
+\begin_layout Standard
+(a mod m * b mod m) mod m = (a*b) mod m
+\end_layout
+
+\begin_layout Subsubsection*
+Zbytková třída
+\end_layout
+
+\begin_layout Standard
+Množina všech celých čísel, jenž dávají po dělení m stejný zbytek.
+ Například třída po dělení modulo 10: 
+\begin_inset Formula $\{2,12,22,32,\ldots\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Čínská zbytková věta
+\end_layout
+
+\begin_layout Standard
+Vytvořené čínským matematikem na počátku 3.
+ století Sun`c.
+ Nechť 
+\begin_inset Formula $m_{1},...,m_{k}\in\mathbb{N}$
+\end_inset
+
+, kdy libovolná dvě čísla m jsou nesoudělná a 
+\begin_inset Formula $a_{1},...,a_{k}\in\mathbb{Z}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Pak soustava:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $x\equiv a_{1}\,(mod\,m_{1})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $x\equiv a_{k}\,(mod\,m_{k})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Má jedno řešení v modulo 
+\begin_inset Formula $M=m_{1}*...*m_{k}$
+\end_inset
+
+.
+ Čínská zbytková věta se používá například v dešifrování RSA.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Příklad z Wikipedie:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Quotes eld
+\end_inset
+
+Pokud vojáky seřadíme do 5 řad, zbudou 4.
+ Pokud je seřadíme do 7 řad, zbude 1.
+ Kolik je vojáků?
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Nechť m je počet vojáků.
+ Potom můžeme vytvořit dvě rovnice:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $m=5*a+4$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $m=7*b+1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Víme taky, že:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $m=4\,(mod\,5)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $m=1\,(mod\,7)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Po substituci dosadíme:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $5a+4=1\,(mod\,7)$
+\end_inset
+
+ (+3)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $5a+0=4\,(mod\,7)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Chceme aby 
+\begin_inset Formula $k*5*a\,mod\,7=1\Rightarrow k\text{=3}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $1a=5\,(mod\,7)\Longrightarrow m=5*5+4=29$
+\end_inset
+
+ vojáků
+\end_layout
+
+\begin_layout Standard
+Druhá substituce:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $7b+1=4\,(mod\,5)$
+\end_inset
+
+ (+4)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $7b+0=3\,(,mod\,5)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Chceme, aby 
+\begin_inset Formula $k*7b\,mod\,5=1$
+\end_inset
+
+, víme však, že 
+\begin_inset Formula $14b\,mod\,5=-1$
+\end_inset
+
+, a proto 
+\begin_inset Formula $14^{2}b\,mod\,5=(-1)^{2}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $196b=3*28\,(mod\,5)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $1b=9\,(mod\,5)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $1b=4\,(mod\,5)\Longrightarrow m=7*4+1=29$
+\end_inset
+
+ vojáků
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Prvočíselnost
+\end_layout
+
+\begin_layout Standard
+Prvočíslo 
+\end_layout
+
+\begin_layout Subsubsection*
+Malá Fermatova věta
+\end_layout
+
+\begin_layout Standard
+Tato věta tvrdí, že pro každé prvočíslo p, které není soudělné s číslem
+ a platí:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $a^{p-1}\equiv1\,(mod\,p)\Longrightarrow a^{p}\equiv a\,(,mod\,p)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Z toho plyne vztah, že číslo 
+\begin_inset Formula $a^{p}-a$
+\end_inset
+
+ je dělitelné prvočíslem p.
+ Jinými slovy 
+\begin_inset Formula $a\,mod\,p=a^{p}\,mod\,p$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $p=7$
+\end_inset
+
+, 
+\begin_inset Formula $a=3$
+\end_inset
+
+.
+ Z MFV plyne, že 
+\begin_inset Formula $3^{7-1}\,mod\,7\,=1$
+\end_inset
+
+ (729 mod 7 je opravdu 1) a 
+\begin_inset Formula $3^{7}-3\,mod\,7\,\text{=0}$
+\end_inset
+
+ (2185 je dělitelná 7).
+\end_layout
+
+\begin_layout Subsubsection*
+Eulerova věta
+\end_layout
+
+\begin_layout Standard
+Jedná se o zobecnění malé fermatovy věty.
+ Eulerova věta říká, že 
+\begin_inset Formula $a^{\varphi(m)}\equiv1\,(mod\,m)$
+\end_inset
+
+, kde 
+\begin_inset Formula $\varphi(m)$
+\end_inset
+
+ je Eulerova funkce a GCD(a,m)=1 (jako v případně Malé Fermatovy věty platí,
+ že prvočíslo m a hodnota a jsou nesoudělná).
+\end_layout
+
+\begin_layout Subsubsection*
+Eulerova funkce
+\end_layout
+
+\begin_layout Standard
+Eulerova funkce je definována jako:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\varphi(1)=1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\varphi(p)=p-1$
+\end_inset
+
+ (pokud p je prvočíslo)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\varphi(p^{m})=(p-1)p^{m-1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dále platí následující vztah:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\varphi(xy)=\varphi(x)*\varphi(y)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Díky tomuto vztahy dokážeme rozložit libovolné složené číslo na součin prvočísel.
+\end_layout
+
+\begin_layout Subsubsection*
+Testování prvočíselnosti
+\end_layout
+
+\begin_layout Standard
+Elementární test hrubou silou.
+ Každé prvočíslo větší jak 3 lze zapsat ve formátu 
+\begin_inset Formula $6k\pm1$
+\end_inset
+
+.
+ Proto nejprve vyzkoušíme modulo 2 a 3.
+ Poté zkoušíme dělit číslo n všemi čísly od 
+\begin_inset Formula $4$
+\end_inset
+
+ do 
+\begin_inset Formula $\sqrt{n}$
+\end_inset
+
+ (Pokud je testované číslo složené, tak lze zapsat pomocí a*b.
+ Máme tedy 3 možnosti, a<b,a=b,a>b.
+ U všech případů stačí testovat do minimálního činitele, v tomto případě
+ to bude odmocnina z testovaného čísla).
+ Výpočetně velmi náročné.
+\end_layout
+
+\begin_layout Subsubsection*
+Fermatův test prvočíselnosti
+\end_layout
+
+\begin_layout Standard
+Založený na Malé Fermatově větě.
+ Nedostatkem Fermatova testu je existence tzv.
+ Carmichaelových čísel - Fermatova pseudoprvočísla, která vyhoví Fermatovu
+ testu na libovolné bázi (a).
+ Tato Carmichaelova čísla nejsou prvočísla, ale čísla složená.
+\end_layout
+
+\begin_layout Standard
+Pokud Malá Fermatová věta neplatí, tak číslo 
+\series bold
+určitě
+\series default
+ není prvočíslem.
+ Pokud platí, tak dané číslo prvočíslem 
+\series bold
+možná
+\series default
+ je.
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+Test čísla 53:
+\end_layout
+
+\begin_layout Standard
+Zvolíme nesoudělné číslo a, aby GCD(a,53)=1.
+ Např.
+ 
+\begin_inset Formula $a=2$
+\end_inset
+
+.
+ Musí platit vztah:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $2^{\varphi(53)}\equiv1\,(mod\,53)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $2^{52}\equiv1\,(mod\,53)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $(2^{6})^{8}*2^{4}\equiv1\,(mod\,53)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $11^{8}*2^{4}\equiv1\,(mod\,53)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $15^{4}*2^{4}\equiv1\,(mod\,53)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $13^{2}*2^{4}\equiv1\,(mod\,53)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $160\equiv1\,(mod\,53)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $1\equiv1\,(mod\,53)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Číslo může být prvočíslo.
+ Pokud by na levé straně vyšlo číslo různé od 1, nejedná se o prvočíslo.
+\end_layout
+
+\begin_layout Subsubsection*
+Eratosthenovo síto
+\end_layout
+
+\begin_layout Standard
+Jednoduchý algoritmus pro nalezení všech prvočísel menších jak zadaná mez.
+ Na začátku obsahuje množina všechna přirozená čísla v rozmezí 
+\begin_inset Formula $1<x<h$
+\end_inset
+
+.
+ Po spuštění algoritmu se z množiny iterativně odstraňují k-násobky čísel
+ 2,3,...,h-1 (přičemž 
+\begin_inset Formula $k>1$
+\end_inset
+
+).
+ V množině zůstanou pouze prvočísla (jednonásobky sebe samého).
+\end_layout
+
+\begin_layout Subsection*
+Aplikace teorie čísel
+\end_layout
+
+\begin_layout Standard
+Využití v asymetrické kryptografii s veřejným a privátním klíčem.
+ Hlavní účel kryptografie - šifrování a podepisování dat.
+ Šifrování dat probíhá tak, že odesílatel zašifruje zprávu veřejným klíčem
+ adresáta.
+ Adresát může tuto zprávu rozšifrovat pouze za pomocí svého privátního klíče.
+\end_layout
+
+\begin_layout Standard
+Podepisování - zpráva je zašifrována pomocí soukromého klíče odesílatele.
+ Příjemce zprávy si může zprávu rozšifrovat pomocí jeho veřejného klíče.
+\end_layout
+
+\begin_layout Standard
+Přiklady šifrovacích algoritmů - RSA a ElGamal.
+ (MB104)
+\end_layout
+
+\begin_layout Subsubsection*
+RSA
+\end_layout
+
+\begin_layout Standard
+Máme dvojice klíčů veřejný V=(n,e) a privátní P=(n,d).
+ Alice a Bob chtěji komunikovat pomocí RSA.
+ Alice si vyrobí dvojici klíčů, postup:
+\end_layout
+
+\begin_layout Enumerate
+Alice si zvolí dvě prvočísla p a q, nejlépe daleko od sebe.
+\end_layout
+
+\begin_layout Enumerate
+Alice spočítá součin n=p*q.
+\end_layout
+
+\begin_layout Enumerate
+Alice spočítá Eulerovu funkci 
+\begin_inset Formula $\varphi(n)=\varphi(p)*\varphi(q)=(p-1)(q-1)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Alice zvolí číslo e takové, že bude nesoudělné s 
+\begin_inset Formula $\varphi(n)$
+\end_inset
+
+ (tzn.
+ GCD(
+\begin_inset Formula $\varphi(n),\,e$
+\end_inset
+
+) = 1) a bude 
+\begin_inset Formula $e<\varphi(n)$
+\end_inset
+
+.
+ Tím získá veřejný klíč V=(n,e).
+\end_layout
+
+\begin_layout Enumerate
+Alice nalezne takové číslo d, aby platilo 
+\begin_inset Formula $d*e\equiv1\,(mod\,\varphi(n))$
+\end_inset
+
+ a tím získá privátní klíč P=(n,d).
+\end_layout
+
+\begin_layout Paragraph
+Zašifrování zprávy: 
+\begin_inset Formula $encrypted=msg^{e}\,mod\,n\,\,(m<n)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Rozšifrování zprávy: 
+\begin_inset Formula $decrypted=encrypted^{d}\,mod\,n$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Příklad:
+\end_layout
+
+\begin_layout Standard
+Zvolíme prvočísla p=11, q=13.
+ Součin n=p*q=143.
+ První část klíčů V i P je hotová.
+ Spočítáme 
+\begin_inset Formula $\varphi(n)=\varphi(p)\varphi(q)=10*12=120$
+\end_inset
+
+.
+ Nyní zvolíme takové e, aby platilo 
+\begin_inset Formula $GCD(\varphi(n),e)=1$
+\end_inset
+
+ a 
+\begin_inset Formula $e<\varphi(n)$
+\end_inset
+
+.
+ Tuto podmínku splňuje e=7.
+ Věřejný klíč V=(143,7).
+ Nyní hledáme takové d, aby platilo: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $d*e\equiv1\,(mod\,\varphi(n))$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $d*7\equiv1\,(mod\,\varphi(n))$
+\end_inset
+
+ (*103)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $d*721\equiv103\,(mod\,\varphi(n))$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $d\equiv103\,(mod\,\varphi(n))\Longrightarrow d=103$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Privátní klíč je tedy roven P=(143,103).
+\end_layout
+
+\begin_layout Standard
+Zkusíme zašifrovat zprávu m=5:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $encrypted=5^{7}\,mod\,143=47$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Po rozšifrování:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $m=47^{103}\,mod\,143=27^{12}47^{7}\,(mod\,143)=27^{\text{2}}47^{7}\,(mod\,143)=5$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Diskrétní logaritmus
+\end_layout
+
+\begin_layout Standard
+Máme přirozená čísla Y, g, k, p, pro která platí: 
+\begin_inset Formula $Y\equiv g^{k}\,(mod\,p)$
+\end_inset
+
+.
+ Vypočítat Y v závislosti na znalosti proměnných g, k, p je snadné, ovšem
+ výpočet proměnné k, kdy známe Y, g, p je výpočetně náročné (exponenciálně
+ složité).
+\end_layout
+
+\begin_layout Subsubsection*
+ElGamal
+\end_layout
+
+\begin_layout Standard
+Nástroj pro asymetrické šifrování využívající problém diskrétního logaritmu.
+ Postup:
+\end_layout
+
+\begin_layout Enumerate
+Máme veřejnou bázi a a modulo N.
+ Chceme zašifrovat a rozšifrovat zprávu m.
+\end_layout
+
+\begin_layout Enumerate
+Alice zvolí náhodné číslo r a vypočítá 
+\begin_inset Formula $k_{r}\equiv a^{r}\,(mod\,N)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Bob zvolí náhodné číslo p a vypočítá 
+\begin_inset Formula $k_{p}\equiv a^{p}\,(mod\,N)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Alice i Bob si vymění 
+\begin_inset Formula $k_{r}\,i\,k_{p}$
+\end_inset
+
+, r a p zůstává skryto.
+\end_layout
+
+\begin_layout Enumerate
+Bob vypočíte 
+\begin_inset Formula $(k_{r})^{p}$
+\end_inset
+
+, Alice naopak 
+\begin_inset Formula $(k_{p})^{r}$
+\end_inset
+
+.
+ Nyní oba dva mají 
+\begin_inset Formula $a^{rp}\,mod\,N$
+\end_inset
+
+, přičemž ani r, ani p nebylo vyměněno!
+\end_layout
+
+\begin_layout Enumerate
+Zašifrování zprávy m se vypočte jako 
+\begin_inset Formula $c\equiv a^{rp}*m\,(mod\,N)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Dešifrování zprávy je naopak inverzní operace: 
+\begin_inset Formula $m\equiv(a^{rp})^{-1}m\,(mod\,N)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Příklad:
+\end_layout
+
+\begin_layout Standard
+Zašifruj a rozšifruj číslo m=35, pokud báze a=5 a modulo N=89.
+\end_layout
+
+\begin_layout Standard
+Zvolíme náhodná čísla r=8, p=13.
+\end_layout
+
+\begin_layout Standard
+Vypočteme 
+\begin_inset Formula $k_{r}\equiv5^{8}\,(mod\,89)\equiv4\,(mod\,89)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Vypočteme 
+\begin_inset Formula $k_{p}\equiv5^{13}\,(mod\,89)\equiv40\,(mod\,89).$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Vypočítáme 
+\begin_inset Formula $a^{pr}=(k_{r})^{13}\,(mod\,89)\equiv16$
+\end_inset
+
+ a ověříme správnost 
+\begin_inset Formula $(k_{p})^{8}\,(mod\,89)\equiv16$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Zašifrujeme 
+\begin_inset Formula $c\equiv35*16\,(mod\,89)\equiv26$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Rozšifrujeme podobně: 
+\begin_inset Formula $16m\equiv26\,(mod\,89)$
+\end_inset
+
+, 
+\begin_inset Formula $96m\equiv6*26\,(mod\,89)$
+\end_inset
+
+, 
+\begin_inset Formula $7m\equiv6*26\,(mod\,89)$
+\end_inset
+
+, 
+\begin_inset Formula $2m\equiv16*6*26\,(mod\,89)$
+\end_inset
+
+, 
+\begin_inset Formula $m\equiv45*13*6*26\,(mod\,89)$
+\end_inset
+
+, 
+\begin_inset Formula $m\equiv35\,(mod\,89)$
+\end_inset
+
+.
+ Výpočet proběhl v pořádku.
+\end_layout
+
+\begin_layout Subsubsection*
+DSA
+\end_layout
+
+\begin_layout Standard
+DSA značí Digital Signature Algorithm.
+ Využívaná k digitálnímu podpisu.
+ Založený na principu diskrétního logaritmu.
+ Podobný algoritmu ElGamal.
+ Z každé zprávy se vytvoří hash s pevnou délkou, který je podepsán soukromým
+ klíčem odesílatele a přiložen ke zprávě.
+ Tato zpráva se spolu s hashem se odešle adresátovi.
+ Adresát odemkne hash veřejným klíčem a zahashuje i přijatou zprávu.
+ Pokud se dva hashe neliší, nedošlo k narušení integrity odeslaného dokumentu.
+\end_layout
+
+\begin_layout Subsection*
+Lineární a polynomiální kódy
+\end_layout
+
+\begin_layout Standard
+Kódování slouží ke zjištění, zda-li při přenosu nedošlo k porušení integrity
+ přenášené zprávy.
+ Pokud došlo, tak se budeme snažit chybu opravit.
+ Proto ke zprávě přidáváme několik dodatečných bitů.
+ Pokud je n celková délka zprávy a k pouze délka informace, tak hovoříme
+ o (n,k)-kódech.
+ Počet opravných bitů je zde n-k.
+\end_layout
+
+\begin_layout Standard
+Nejjednodušší detekce je poslání paritního bitu.
+ Tento bit detekuje jeden typ chyby, ovšem nezareaguje na záměnu bitů na
+ různých pozicích.
+\end_layout
+
+\begin_layout Standard
+Další možností je zdvojit každý zaslaný bit.
+ Dokáže detekovat chyby, nedokáže je opravit.
+ Ztrojnásobení zaslané zprávy zaručí opravu 1 bitu.
+\end_layout
+
+\begin_layout Subsubsection*
+Lineární kódy
+\end_layout
+
+\begin_layout Standard
+Lineární kód je typ blokového kódu pro detekci a opravu chyb.
+ Formální definice: Zobrazení 
+\begin_inset Formula $g:\,(\mathbb{Z}_{2})^{k}\rightarrow(\mathbb{Z}_{2})^{n}$
+\end_inset
+
+.
+ Neformální definice: Lineární kód je kód, kde lineární kombinace dvou a
+ více kódových slov je opět kódové slovo.
+\end_layout
+
+\begin_layout Standard
+U lineárních kódů potřebujeme tzv.
+ generující matici G, která se skládá ze zakódovaných bázových vektorů.
+ Tato matice G dokáže vygenerovat všechny kódové slova w z množiny C (zapisujeme
+ jako w=c*G, c je řádkový vektor, existuje mezi w a c bijekce).
+ Ve standartním tvaru je G definována jako 
+\begin_inset Formula $G=\left(\begin{array}{c}
+libovolná\,matice\,P,\,k\times(n-k)\\
+jednotková\,matice\,k\times k
+\end{array}\right)$
+\end_inset
+
+.
+ Kontrolní matice je poté definována jako: 
+\begin_inset Formula $H=(\begin{array}{cc}
+jednotková\,matice\,(n-k)^{2} & P\end{array})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Hammingova vzdálenost
+\end_layout
+
+\begin_layout Standard
+Definuje počet bitových pozic, ve které se liší odeslaná a přijatá zpráva.
+ Hammingova vzdálenost pro dva řežezce je definována jako:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $d_{H}(a,b)=\sum|a_{i}-b_{i}|$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Minimální Hammingova vzdálenost pro několik různých řetězců z množiny C
+ je definována jako: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $d_{H_{min}}=\{d_{H}(a,b)|a,b\in C,a\neq b\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Polynomiální kódy
+\end_layout
+
+\begin_layout Standard
+Polynomiální kódy jsou speciálním typem lineárních kódů, kdy generující
+ matici a generovaná slova dokážeme 
+\begin_inset Quotes eld
+\end_inset
+
+vyrobit
+\begin_inset Quotes erd
+\end_inset
+
+ z určitého polynomu.
+\end_layout
+
+\begin_layout Standard
+Polynom p je ve tvaru 
+\begin_inset Formula $p(x)=x^{k}+x^{k-1}+\ldots+1$
+\end_inset
+
+.
+ Členy polynomu p můžeme pro zjednodušení zapsat i v množinovém tvaru: 
+\begin_inset Formula $P=\{x^{i}|0\leq i\leq k\}$
+\end_inset
+
+.
+ Výsledný polynom je potom 
+\begin_inset Formula $p=sum(P)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Všechna generovaná slova vytvoříme pomocí násobení polynomu p zvlášť s veškerými
+ prvky potenční množiny 
+\begin_inset Formula $2^{P}$
+\end_inset
+
+, přičemž na koeficienty aplikujem operaci modulo 2 (pohybujeme se v binární
+ soustavě).
+ Tím získáme všechny kódová slova generované polynomem p.
+\end_layout
+
+\begin_layout Standard
+Abychom mohli vytvořit generující matici G, potřebujeme získat kódování
+ všech bázových vektorů.
+ Počet bázových vektorů je k a jsou ve formátu 
+\begin_inset Formula $x^{i}$
+\end_inset
+
+ kde 
+\begin_inset Formula $0\leq i\leq k$
+\end_inset
+
+.
+ Kódování bázových vektorů vypočteme podle následujícího schématu:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $V_{b}=\{x^{n-k+i}+x^{n-k+i}\,mod\,p(x)|0\leq i\leq k\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Generující matice je tedy soubor kódování bázových vektorů, přičemž jejich
+ kódování jsou v matici umístěny 
+\begin_inset Quotes eld
+\end_inset
+
+na délku
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Příklad generující matice G pro kódování (5,3):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $G_{5,3}=\left(\begin{array}{ccc}
+b_{a1} & b_{b1} & b_{c1}\\
+b_{a2} & b_{b2} & b_{c2}\\
+b_{a3} & b_{b3} & b_{c3}\\
+b_{a4} & b_{b4} & b_{c4}\\
+b_{a5} & b_{b5} & b_{c5}
+\end{array}\right)$
+\end_inset
+
+, přičemž 
+\begin_inset Formula $b_{a3},b_{b4},\,b_{c5}=1$
+\end_inset
+
+, 
+\begin_inset Formula $b_{b3}b_{c3},b_{a4},b_{c4},b_{a5},b_{c5}=0$
+\end_inset
+
+, tzn.
+ jednotková matice.
+\end_layout
+
+\begin_layout Standard
+Kontrolní matice pak bude ve tvaru:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $H=\left(\begin{array}{ccccc}
+1 & 0 & b_{a1} & b_{b1} & b_{c1}\\
+0 & 1 & b_{a2} & b_{b2} & b_{c2}
+\end{array}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+Uvažme (7,4) kód nad 
+\begin_inset Formula $\mathbb{Z}_{2}$
+\end_inset
+
+ generovaný polynomem 
+\begin_inset Formula $x^{3}+x+1$
+\end_inset
+
+.
+ Vypiš všechna kódová slova, vytvoř generující matici a matici kontroly
+ parity.
+\end_layout
+
+\begin_layout Standard
+Kódové slova:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $0*p(x)=0000000$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $1*p(x)=1101000$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $x*p(x)=0110100$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $x^{2}*p(x)=0011010$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $x^{3}*p(x)=0001101$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $(x+1)*p(x)=1011100$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $(x^{2}+1)*p(x)=1010010$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $(x^{2}+x)*p(x)=0101110$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $(x^{3}+1)*p(x)=1100101$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $(x^{3}+x)*p(x)=0111001$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $(x^{3}+x^{2})*p(x)=0010111$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $(x^{2}+x+1)*p(x)=1100110$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $(x^{3}+x+1)*p(x)=1100001$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $(x^{3}+x^{2}+x)*p(x)=0100011$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $(x^{3}+x^{2}+1)*p(x)=1111111$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $(x^{3}+x^{2}+x+1)*p(x)=1001011$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Kódování bázových slov:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $x^{3}\equiv x+1\,(mod\,p(x))$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $x^{4}\equiv xx^{3}\equiv x^{2}+x\,(mod\,p(x))$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $x^{5}\equiv xx^{4}\equiv x^{3}+x^{2}\equiv x^{2}+x+1\,(mod\,p(x))$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $x^{6}\equiv xx^{5}\equiv x^{3}+x^{2}+x\equiv x^{2}+1\,(mod\,p(x))$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\Downarrow$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $1\mapsto x^{3}+x+1=1101000$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $x\mapsto x^{4}+x^{2}+x=0110100$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $x^{2}\mapsto x^{5}+x^{2}+x+1=1110010$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $x^{3}\mapsto x^{6}+x^{2}+1=1010001$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Z čehož plyne, že kontrolní matice G je rovna:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $G=\left(\begin{array}{cccc}
+1 & 0 & 1 & 1\\
+1 & 1 & 1 & 0\\
+0 & 1 & 1 & 1\\
+1 & 0 & 0 & 0\\
+0 & 1 & 0 & 0\\
+0 & 0 & 1 & 0\\
+0 & 0 & 0 & 1
+\end{array}\right)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Paritní kontrolní matice H:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $H=\left(\begin{array}{ccccccc}
+1 & 0 & 0 & 1 & 0 & 1 & 1\\
+0 & 1 & 0 & 1 & 1 & 1 & 0\\
+0 & 0 & 1 & 0 & 1 & 1 & 1
+\end{array}\right)$
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
