@@ -1,0 +1,467 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Funkcionální programování
+\end_layout
+
+\begin_layout Subsubsection*
+Pojmy
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Funkcionální paradigma
+\series default
+ - deklarativní paradigma, které využívá ke svému zápisu výrazy a funkce.
+ Nejdůležitejšími prvky jsou tedy funkce a jejich aplikace na různé argumenty.
+ Celý program je tedy reprezetován jedním výrazem.
+ Výpočet probíhá úpravou a zjednodušováním výrazu až na triviální výraz,
+ který již dále nejde zjednodušit.
+ Příklady funkcionálních jazyků: Haskell, F#, Erlang, Ocaml atd.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Deklarativní paradigma
+\series default
+ - popisuje, jak má výsledek vypadat, ne jak se počítá (imperativní paradigma).
+ Deklarativní zápis algoritmu již svým způsobem reprezentuje výsledek algoritmu.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Výraz
+\series default
+ - validní část (podčást) funkcionálního výrazu.
+ Obsahuje konstanty, proměnné, funkce a lokální definice.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Redukční krok
+\series default
+ - je elementární úprava výrazu, kdy se určitý jeho podvýraz nahradí zjednodušen
+ým podvýrazem.
+ Upravovaný podvýraz (redex) má tvar aplikace funkce na parametry, upravený
+ podvýraz má tvar pravé strany definice této funkce.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Redukční strategie
+\series default
+ - je předpis, který určuje, jaký podvýraz se bude zjednodušovat (nahrazovat)
+ podvýrazem novým v následujícím redukčním kroku.
+\end_layout
+
+\begin_layout Subsection*
+Typy redukčních strategií
+\end_layout
+
+\begin_layout Subsubsection*
+Striktní redukce
+\end_layout
+
+\begin_layout Standard
+Máme výraz F X, striktní redukce neprve upraví výraz X a poté se přesune
+ na celý výraz F X.
+ Úprava výrazu tedy probíhá zevnitř.
+ Podle 
+\series bold
+věty o perpetualitě
+\series default
+ striktní redukce je nejméně bezpečná (co se týče zacyklení), ale pokud
+ striktní redukce necyklí, tak necyklí již žádná jiná redukce.
+ Tato strategie se využívá v programovacím jazyce Lisp.
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+Máme funkci 
+\begin_inset Formula $sq\,x=x*x$
+\end_inset
+
+ a chceme zjednodušit výraz 
+\begin_inset Formula $sq(sq\,3))\rightsquigarrow sq(3*3)\rightsquigarrow sq(9)\rightsquigarrow9*9\rightsquigarrow81$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Normální redukce
+\end_layout
+
+\begin_layout Standard
+Máme výraz F X, normální redukce upravuje celý výraz F X.
+ Pokud již neexistuje další možnost úpravy, může upravit i výraz X, ale
+ jen do té doby, dokud nebude možné pokračovat v úpravě F X.
+ Podle
+\series bold
+ věty o normalizaci
+\series default
+ platí, že normální redukce je z hlediska zacyklení nejbezpečnější, tudíž
+ pokud cyklí pro normální redukci, bude cyklit pro všechny ostatní redukce.
+ Pokud necyklí s některou další redukční strategií, necyklí ani s normální
+ redukcí.
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+Máme funkci 
+\begin_inset Formula $sq\,x=x*x$
+\end_inset
+
+ a chceme zjednodušit výraz 
+\begin_inset Formula $sq(sq\,3)\rightsquigarrow sq\,3*sq\,3\rightsquigarrow(3*3)*sq\,3\rightsquigarrow9*sq\,3\rightsquigarrow9*(3*3)\rightsquigarrow9*9\rightsquigarrow81$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Líná redukce
+\end_layout
+
+\begin_layout Standard
+Líná redukce je podobná normální redukci, s tím rozdílem, že si pamatuje
+ již dříve upravované výrazy, a tak je rovnou nahradí výsledkem.
+ Díky tomu je líná redukce rychlejší variantou normální redukce.
+ Tato redukční strategie se využívá v programovacím jazyce Haskell.
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+Máme funkci 
+\begin_inset Formula $sq\,x=x*x$
+\end_inset
+
+ a chceme zjednodušit výraz 
+\begin_inset Formula $sq(sq\,3)\rightsquigarrow sq\,3*sq\,3\rightsquigarrow(3*3)*sq\,3\rightsquigarrow9*sq\,3\rightsquigarrow9*9\rightsquigarrow81$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Díky líné redukci můžeme v Haskellu tvořit funkce, které se 
+\begin_inset Quotes eld
+\end_inset
+
+zdánlivě
+\begin_inset Quotes erd
+\end_inset
+
+ vykonají s exponenciální časovou složitostí, nicméně díky líné redukci
+ je jejich výpočet lineární.
+ Například funkce pro výpočet n-tého Fibonacciho čísla:
+\end_layout
+
+\begin_layout Quotation
+fibonacci :: Integer -> Integer
+\end_layout
+
+\begin_layout Quotation
+fibonacci 0 = 0
+\end_layout
+
+\begin_layout Quotation
+fibonacci 1 = 1
+\end_layout
+
+\begin_layout Quotation
+fibonacci n = fibonacci (n-2) + fibonacci (n-1)
+\end_layout
+
+\begin_layout Subsubsection*
+Eta redukce
+\end_layout
+
+\begin_layout Standard
+Je založena na principu odstranění (v principu) redundantních podvýrazů
+ na levé i pravé straně výrazu.
+\end_layout
+
+\begin_layout Standard
+Příklad (v jazyce Haskell):
+\end_layout
+
+\begin_layout Quotation
+plus :: Integer -> Integer -> Integer
+\end_layout
+
+\begin_layout Quotation
+plus x y = (+) x y
+\end_layout
+
+\begin_layout Standard
+Je ekvivalentní s funkcí:
+\end_layout
+
+\begin_layout Quotation
+plus :: Integer -> Integer -> Integer
+\end_layout
+
+\begin_layout Quotation
+plus = (+)
+\end_layout
+
+\begin_layout Subsection*
+Vlastnosti redukčních strategií
+\end_layout
+
+\begin_layout Subsubsection*
+Church-Rosseova věta
+\end_layout
+
+\begin_layout Standard
+Tato věta pojednává o ekvivalenci různých redukčních strategií.
+ Máme dvě rozdílne redukční strategie X, Y (jedna je méně bezpečná než druhá).
+ Pokud obě při úpravě výrazu nezacyklí a skončí v konečném čase (časy i
+ postupy se mohou lišit), výsledek úprav obou strategií je stejný.
+\end_layout
+
+\begin_layout Subsubsection*
+Věta o perpetualitě
+\end_layout
+
+\begin_layout Standard
+Věta o perpetualitě říká, že striktní strategie je nejnebezpečnější.
+ Z toho plyne, že pokud se nezacyklí striktní strategie, nezacyklí se ani
+ další redukční strategie.
+\end_layout
+
+\begin_layout Subsubsection*
+Věta o normalizaci
+\end_layout
+
+\begin_layout Standard
+Věta o normalizaci říká, že normální strategie je nejbezpečnější.
+ Z toho plyne, že pokud se zacyklí normální strategie, zacyklí se i další
+ redukční strategie.
+\end_layout
+
+\begin_layout Subsection*
+Funkce vyšších řádů
+\end_layout
+
+\begin_layout Standard
+Funkce vyššího řádu je taková funkce, která buď bere jako vstupní parametr,
+ nebo vrací jako výsledek nějakou funkci.
+ V Haskellu platí, že každou funkci, která má minimálně dva parametry, lze
+ brát jako funkci (tj.
+ funkce s předpisem: a -> b).
+\end_layout
+
+\begin_layout Standard
+Programovací jazyk Haskell taky umožnuje tzv.
+ částečnou aplikaci funkce na parametry.
+ Máme například funkci 
+\begin_inset Formula $volume$
+\end_inset
+
+, pro kterou platí:
+\end_layout
+
+\begin_layout Quotation
+volume :: Integer -> Integer -> Integer -> Integer
+\end_layout
+
+\begin_layout Quotation
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+volume x y z = x * y * z
+\end_layout
+
+\begin_layout Standard
+Díky částečné aplikaci funkce na parametry si můžeme napsat vlastní funkci
+ 
+\begin_inset Formula $volume3x4$
+\end_inset
+
+, která bude brát pouze jeden parametr (
+\begin_inset Formula $z$
+\end_inset
+
+) a bude vracet částečně aplikovanou funkci 
+\begin_inset Formula $volume$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Quotation
+volume3x4 :: Integer -> Integer
+\end_layout
+
+\begin_layout Quotation
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+volume3x4 = volume 3 4
+\end_layout
+
+\begin_layout Standard
+Každý předpis v jazyce Haskellu lze, pokud není uvedeno explicitně, uzávorkovat
+ do tvaru:
+\end_layout
+
+\begin_layout Quotation
+func :: a -> (b -> (c -> (d -> ...)))
+\end_layout
+
+\begin_layout Standard
+Což je ekvivalentní s:
+\end_layout
+
+\begin_layout Quotation
+func :: a -> b -> c -> d -> ...
+\end_layout
+
+\begin_layout Standard
+Pro funkci func platí, že bere jeden parametr a a vrací částečně aplikovanou
+ funkci s předpisem:
+\end_layout
+
+\begin_layout Quotation
+funcA :: b -> (c -> (d -> ...))
+\end_layout
+
+\begin_layout Subsection*
+Lambda funkce
+\end_layout
+
+\begin_layout Standard
+Lambda funkce je tzv.
+ anonymní funkce.
+ 
+\end_layout
+
+\begin_layout Subsection*
+Elementární programování v Haskellu
+\end_layout
+
+\begin_layout Subsubsection*
+Způsoby použití funkcí v Haskellu
+\end_layout
+
+\begin_layout Standard
+globální definice
+\end_layout
+
+\begin_layout Standard
+lokální definice
+\end_layout
+
+\end_body
+\end_document
