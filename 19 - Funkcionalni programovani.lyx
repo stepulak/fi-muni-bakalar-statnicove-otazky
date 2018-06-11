@@ -591,12 +591,219 @@ foldl f acc [x] = f acc x
 foldl f acc (x:y:s) = foldl (f) (f acc x) (y:s)
 \end_layout
 
+\begin_layout Standard
+Pomocí foldl můžeme definovat mnoho dalších funkcí, jako například factoriál,
+ hledání minima, maxima, map, filter aj.
+\end_layout
+
+\begin_layout Standard
+Např.:
+\end_layout
+
+\begin_layout Quotation
+let factorial n = foldl (*) 1 [1..n]
+\end_layout
+
+\begin_layout Quotation
+let max (x:s) = foldl (
+\backslash
+acc y -> if acc > y then acc else y) x s
+\end_layout
+
+\begin_layout Quotation
+let filter f s = foldr (
+\backslash
+y acc -> if f y then y:acc else acc) [] s
+\end_layout
+
+\begin_layout Standard
+Funkci filter lze napsat kratším stylem pomocí generování seznamu pomocí
+ predikátů:
+\end_layout
+
+\begin_layout Quotation
+let filter' f s = [x | x <- s, f x]
+\end_layout
+
+\begin_layout Standard
+Jazyk Haskell díky líné redukční strategii umožňuje tvorbu nekonečných seznamů:
+\end_layout
+
+\begin_layout Quotation
+infi = 1 : infi (nekonečný seznam jedniček)
+\end_layout
+
+\begin_layout Quotation
+infi = 1 : (map (+1) infi) (nekonečný seznam 1,2,3,...)
+\end_layout
+
+\begin_layout Standard
+Pattern matching v Haskellu:
+\end_layout
+
+\begin_layout Quotation
+factorial :: Integer -> Integer
+\end_layout
+
+\begin_layout Quotation
+factorial 0 = 1
+\end_layout
+
+\begin_layout Quotation
+factorial n = n * factorial (n-1)
+\end_layout
+
+\begin_layout Standard
+Nebo lze použít tzv.
+ pattern guardy:
+\end_layout
+
+\begin_layout Quotation
+factorial :: Integer -> Integer
+\end_layout
+
+\begin_layout Quotation
+factorial n 
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+| n == 0 = 1
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+| otherwise = n * factorial (n-1)
+\end_layout
+
+\begin_layout Standard
+Funkce take vezme prvních n prvků ze seznamu:
+\end_layout
+
+\begin_layout Quotation
+take :: Integer -> [a] -> [a]
+\end_layout
+
+\begin_layout Quotation
+take 0 s = []
+\end_layout
+
+\begin_layout Quotation
+take n (x:s) = (:) x $ take (n-1) s 
+\end_layout
+
+\begin_layout Standard
+Pomocí Haskellu snadno napíšeme Eratosthenovo síto:
+\end_layout
+
+\begin_layout Quotation
+let erath (x:s) = x:[y | y <- (erath s), y `mod` x /= 0]
+\end_layout
+
+\begin_layout Quotation
+take 10 $ erath [2..] 
+\begin_inset Formula $\rightsquigarrow$
+\end_inset
+
+[2,3,5,7,11,13,17,19,23,29] 
+\end_layout
+
+\begin_layout Standard
+Operátor dolar umožní nejprve vypočítat pravou stranu výrazu, jedná se o
+ ekvivalentní zápis s 
+\begin_inset Formula $take\,10\,(erath\,[2..])$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Funkce curry bere na vstup funkci a dva parametry, parametry zabalí do dvojice
+ a předá je na vstup dané funkci:
+\end_layout
+
+\begin_layout Quotation
+curry (fst) 1 2 
+\begin_inset Formula $\rightsquigarrow1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quotation
+curry (snd) 'a' "hello" 
+\begin_inset Formula $\rightsquigarrow$
+\end_inset
+
+ "hello"
+\end_layout
+
+\begin_layout Standard
+Funkce zip veme dva seznamy a vrací seznam dvojic z těchto seznamů:
+\end_layout
+
+\begin_layout Quotation
+zip [1..5] ['a'..'e'] 
+\begin_inset Formula $\rightsquigarrow$
+\end_inset
+
+ [(1,11),(2,12),(3,13),(4,14),(5,15),(6,16),(7,17),(8,18),(9,19),(10,20)]
+\end_layout
+
+\begin_layout Standard
+Zip může být definován třeba následovně:
+\end_layout
+
+\begin_layout Quotation
+myzip :: [a] -> [b] -> [(a,b)]
+\end_layout
+
+\begin_layout Quotation
+myzip [] _ = []
+\end_layout
+
+\begin_layout Quotation
+myzip _ [] = []
+\end_layout
+
+\begin_layout Quotation
+myzip (x:s) (y:t) = (x,y) : (myzip s t)
+\end_layout
+
 \begin_layout Subsubsection*
 Způsoby použití funkcí v Haskellu
 \end_layout
 
 \begin_layout Itemize
-Globální definice
+Globální definice - pomocí předpisu + definice funkce
 \end_layout
 
 \begin_layout Itemize
