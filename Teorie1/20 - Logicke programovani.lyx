@@ -469,7 +469,161 @@ TODO alespoň 2x
 \end_layout
 
 \begin_layout Standard
-TODO
+Řez je speciální výraz, který je vždy pravdivý.
+ Značí se symbolem ! a může být umístěn do programu libovolně jako samostatný
+ term.
+ Tento term má speciální funkci, a to takovou, že ořazává výpočetní větve.
+ Pokud se ve výpočtu vyskytne řez (a výpočet k němu 
+\begin_inset Quotes eld
+\end_inset
+
+dojde
+\begin_inset Quotes erd
+\end_inset
+
+), tak se ořežou všechny výpočetní větve napravo jdoucí z výrazu, který
+ řez obsahuje (jinak se také nazývá 
+\series bold
+prořezání
+\series default
+) a taky se ořežou všechny větve z výrazu (opět umístěny napravo), který
+ 
+\begin_inset Quotes eld
+\end_inset
+
+vyvolal
+\begin_inset Quotes erd
+\end_inset
+
+ daný výraz z řezem (
+\series bold
+upnutí
+\series default
+).
+ Funguje tedy jako jakási jednosměrná 
+\begin_inset Quotes eld
+\end_inset
+
+stopka
+\begin_inset Quotes erd
+\end_inset
+
+, breakpoint pro daný predikát.
+\end_layout
+
+\begin_layout Standard
+Ukázka:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/cuts1_prolog.gif
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/cuts2_prolog.png
+	lyxscale 30
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Řez napravo se nazývá upnutí, nalevo prořezání.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Řezy mohou být dvojího typu, a to 
+\series bold
+zelený
+\series default
+ a 
+\series bold
+červený
+\series default
+ 
+\series bold
+řez
+\series default
+.
+ Pro 
+\series bold
+zelený řez
+\series default
+ platí, že je řezem sloužící k vyšší efektivitě programu.
+ Pokud by se odstranil, tak by výpočet běžel déle, ovšem funkčnost by byla
+ stejná.
+ 
+\series bold
+Červený řez
+\series default
+ je řezem, který pokud bychom odstranili, tak by nebyl výpočet korektní.
+\end_layout
+
+\begin_layout Standard
+Viz následující příklad.
+ Oba kódy jsou ekvivalentní, co se týče správnosti výsledku, ovšem průběh
+ výpočtu je odlišný.
+\end_layout
+
+\begin_layout Quotation
+max1(X,Y,X):-X>Y,!.
+ 
+\end_layout
+
+\begin_layout Quotation
+max1(X,Y,Y).
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quotation
+max2(X,Y,X):-X>Y,!.
+ 
+\end_layout
+
+\begin_layout Quotation
+max2(X,Y,Y):-Y>=X.
+\end_layout
+
+\begin_layout Standard
+U predikátu max1 jsme použili červený řez.
+ Pokud bychom ho odstranili, tak by se v každém případě unifikoval i druhý
+ predikát (a to i přes to, že první skončil úspěšně).
+ Výpočet by tedy pro výraz vypadal následovně 
+\begin_inset Formula $max1(2,1,R)\rightsquigarrow R=2;R=1.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+U predikátu max2 byl naopak použit zelený řez.
+ Po odstranění by průbeh výpočtu byl delší, ovšem stále korektní (neboť
+ manuálně ověřujeme nerovnost i ve druhém případě).
 \end_layout
 
 \begin_layout Subsection*
@@ -550,8 +704,14 @@ Operátory -
  (negace).
 \end_layout
 
+\begin_layout Subsubsection*
+
+\series bold
+Příklady programů
+\end_layout
+
 \begin_layout Standard
-Příklady programů:
+Výpočet délky seznamu:
 \end_layout
 
 \begin_layout Quotation
@@ -570,6 +730,10 @@ length_([_|X],R) :- length_(X,R2), R is R2+1.
 
 \end_layout
 
+\begin_layout Standard
+Extrakt posledního prvku seznamu:
+\end_layout
+
 \begin_layout Quotation
 last_([X|[]],X) :- !.
  
@@ -584,6 +748,10 @@ last_([_|X],R) :- last_(X,R).
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Zřetězení seznamů:
 \end_layout
 
 \begin_layout Quotation
@@ -602,6 +770,10 @@ concat_([X|A],B,[X|R]) :- concat_(A,B,R).
 
 \end_layout
 
+\begin_layout Standard
+Zjištění, zdali je hodnota prvkem seznamu.
+\end_layout
+
 \begin_layout Quotation
 element_(Elem, [Elem|_]) :- !.
  
@@ -616,6 +788,10 @@ element_(Elem, [_|A]) :- element_(Elem, A).
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Výpočet faktoriálu:
 \end_layout
 
 \begin_layout Quotation
@@ -634,6 +810,10 @@ factorial_(N, R) :- N2 is N-1, factorial_(N2, R2), R is R2 * (N2+1).
 
 \end_layout
 
+\begin_layout Standard
+Výpočet mocniny:
+\end_layout
+
 \begin_layout Quotation
 power_(_, 0, 1) :- !.
  
@@ -648,6 +828,10 @@ power_(Base, N, R) :- N2 is N-1, power_(Base, N2, R2), R is R2 * Base.
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Suma seznamu:
 \end_layout
 
 \begin_layout Quotation
@@ -666,6 +850,10 @@ sum_([X|A], R) :- sum_(A, R2), R is R2 + X.
 
 \end_layout
 
+\begin_layout Standard
+Výpočet průměrné hodnoty v seznamu:
+\end_layout
+
 \begin_layout Quotation
 average_(A, R) :- sum_(A, Sum), length_(A, Len), R is Sum/Len.
 \end_layout
@@ -675,6 +863,10 @@ average_(A, R) :- sum_(A, Sum), length_(A, Len), R is Sum/Len.
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Výpočet n-tého Fibonacciho čísla:
 \end_layout
 
 \begin_layout Quotation
@@ -690,13 +882,6 @@ fibonacci_(1, 1) :- !.
 \begin_layout Quotation
 fibonacci_(N, R) :- N2 is N-1, N3 is N-2, fibonacci_(N2, R2), fibonacci_(N3,
  R3), R is R2 + R3.
-\end_layout
-
-\begin_layout Quotation
-\begin_inset VSpace medskip
-\end_inset
-
-
 \end_layout
 
 \end_body
