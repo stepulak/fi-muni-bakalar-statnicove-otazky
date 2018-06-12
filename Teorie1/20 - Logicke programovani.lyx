@@ -1,4 +1,4 @@
-#LyX 2.3 created this file. For more info see http://www.lyx.org/
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
 \lyxformat 508
 \begin_document
 \begin_header
@@ -140,7 +140,7 @@ příkazem
 \begin_inset Formula $pravidlo(Proměnná):-\ldots$
 \end_inset
 
- (příklad: jeAutoRychle(Auto):-jeAuto(Auto),maOsmivalcovyMotor(Auto).).
+ (příklad: jeAutoRychle(Auto) :- jeAuto(Auto), maOsmivalcovyMotor(Auto).).
  Pravidla v prologu odpovídají Hornovým klauzulím: 
 \begin_inset Formula $A_{1}:-A_{2},\ldots A_{n}\Leftrightarrow A_{1}\Leftarrow A_{2}\wedge\ldots\land A_{n}$
 \end_inset
@@ -187,6 +187,90 @@ Výpočet je korektní, pokud je dokázáno (resp.
 
 ),výpočet končí a je vráceno false.
  Může se stát, že výpočet se zacyklí (rezoluce má nekonečně dlouhou větev).
+\end_layout
+
+\begin_layout Standard
+Příklady:
+\end_layout
+
+\begin_layout Standard
+Máme Prologovský program:
+\end_layout
+
+\begin_layout Quotation
+r(a,b).
+\end_layout
+
+\begin_layout Quotation
+r(a,c).
+\end_layout
+
+\begin_layout Quotation
+z(a).
+\end_layout
+
+\begin_layout Quotation
+f(X) :- r(X,Y), z(X).
+\end_layout
+
+\begin_layout Quotation
+f(X) :- r(X,X).
+\end_layout
+
+\begin_layout Standard
+Výpočetní strom vypadá následovně:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/sld_tree_prolog.png
+	lyxscale 50
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Máme Prologovský program (s řezem, o nich více později):
+\end_layout
+
+\begin_layout Quotation
+r(a,b).
+\end_layout
+
+\begin_layout Quotation
+r(a,c).
+\end_layout
+
+\begin_layout Quotation
+z(a).
+\end_layout
+
+\begin_layout Quotation
+f(X) :-r(X,Y), !, z(X).
+\end_layout
+
+\begin_layout Quotation
+f(X) :- r(X,X).
+\end_layout
+
+\begin_layout Standard
+Výpočetní strom pak vypadá následovně:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/sld_tree2_prolog.png
+	lyxscale 50
+	scale 60
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection*
@@ -480,8 +564,8 @@ dojde
 \series bold
 prořezání
 \series default
-) a taky se ořežou všechny větve z výrazu (opět umístěny napravo), který
- 
+) a taky se ořežou všechny větve z cílového výrazu (opět umístěny napravo),
+ který 
 \begin_inset Quotes eld
 \end_inset
 
@@ -489,7 +573,7 @@ vyvolal
 \begin_inset Quotes erd
 \end_inset
 
- daný výraz z řezem (
+ daný výraz d řezem (
 \series bold
 upnutí
 \series default
@@ -503,6 +587,10 @@ stopka
 \end_inset
 
 , breakpoint pro daný predikát.
+ Tzn.
+ u prořezání fixujeme pravidla před řezem (provedena maximálně jedna možná
+ unifikace), u upnutí nebereme v potaz další pravidla a fakta cíle, který
+ řez vyvolal.
 \end_layout
 
 \begin_layout Standard
