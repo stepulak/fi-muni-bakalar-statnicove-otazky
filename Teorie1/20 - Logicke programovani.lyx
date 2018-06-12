@@ -1,0 +1,703 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Logické programování
+\end_layout
+
+\begin_layout Subsubsection*
+Pojmy
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Logické paradigma 
+\series default
+- Založeno na matematické logice a systematickém odvozování pomocí rezolucí.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Prolog
+\series default
+ - Nejpoužívanější jazyk pro logické programování.
+ Je postavený na SLD rezolucích, přičemž každé pravidlo (formule) je Hornova
+ klauzule.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+SLD rezoluce
+\series default
+ - Lineární typ rezolucí, které jsou zapsány pomocí seznamu.
+ Má jeden pozitivní literál, ostatní jsou negativní.
+ Můžeme rezolvovat vždy první prvek rezoluce.
+ Počáteční klauzule je vždy ve tvaru disjunkce negativních literálů, zbylé
+ jsou Hornovy klauzule.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Hornova klauzule
+\series default
+ - Typ klauzule s jedním pozitivní literálem, ostatní jsou negativní.
+\end_layout
+
+\begin_layout Subsection*
+Princip výpočtu Prologu
+\end_layout
+
+\begin_layout Standard
+Program v prologu je soubor faktů a pravidel.
+ Za každým 
+\begin_inset Quotes eld
+\end_inset
+
+příkazem
+\begin_inset Quotes erd
+\end_inset
+
+ se píše tečka.
+ Fakta jsou ve tvaru 
+\begin_inset Formula $vlastnost(objekt).$
+\end_inset
+
+ (příklad: jeAuto(audi).), pravidla ve tvaru 
+\begin_inset Formula $pravidlo(Proměnná):-\ldots$
+\end_inset
+
+ (příklad: jeAutoRychle(Auto):-jeAuto(Auto),maOsmivalcovyMotor(Auto).).
+ Pravidla v prologu odpovídají Hornovým klauzulím: 
+\begin_inset Formula $A_{1}:-A_{2},\ldots A_{n}\Leftrightarrow A_{1}\Leftarrow A_{2}\wedge\ldots\land A_{n}$
+\end_inset
+
+.
+ Proměnné jsou psány počátečními velkými písmeny.
+\end_layout
+
+\begin_layout Standard
+Cíl dotazu je ve tvaru: 
+\begin_inset Formula $?-cíl(Proměnné).$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Smyslem výpočtu je 
+\series bold
+unifikovat
+\series default
+ všechny volné proměnné (přiřadit jim hodnotu podle pravidel a faktů), z
+ hlediska predikátové logiky se jedná o proces 
+\series bold
+valuace
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+Výpočet je korektní, pokud je dokázáno (resp.
+ vyvráceno 
+\begin_inset Formula $\boxempty$
+\end_inset
+
+) pomocí SLD rezoluce dotazované pravidlo 
+\begin_inset Formula $\Longrightarrow$
+\end_inset
+
+ dotaz vyplývá a je vráceno true.
+ Pokud dotaz nevyplývá (z hlediska unifikace se jedná o 
+\begin_inset Formula $FAIL$
+\end_inset
+
+),výpočet končí a je vráceno false.
+ Může se stát, že výpočet se zacyklí (rezoluce má nekonečně dlouhou větev).
+\end_layout
+
+\begin_layout Subsubsection*
+Příklad jednoduchého Prolog programu:
+\end_layout
+
+\begin_layout Standard
+U Prologovského programu obecně platí, že fakta jdou před pravidla.
+\end_layout
+
+\begin_layout Quotation
+jeAuto(skoda).
+ 
+\end_layout
+
+\begin_layout Quotation
+jeAuto(audi).
+ 
+\end_layout
+
+\begin_layout Quotation
+jeAuto(lada).
+\end_layout
+
+\begin_layout Quotation
+jePrakticke(skoda).
+ 
+\end_layout
+
+\begin_layout Quotation
+jePrakticke(lada).
+\end_layout
+
+\begin_layout Quotation
+jeProParadu(audi).
+ 
+\end_layout
+
+\begin_layout Quotation
+jeProParadu(skoda).
+\end_layout
+
+\begin_layout Quotation
+jeDoTerenu(lada).
+\end_layout
+
+\begin_layout Quotation
+jeDrahe(audi).
+\end_layout
+
+\begin_layout Quotation
+jeSUV(Auto):-jePrakticke(Auto),jeDoTerenu(Auto).
+\end_layout
+
+\begin_layout Quotation
+jeRodinne(Auto):-jePrakticke(Auto),jeProParadu(Auto).
+\end_layout
+
+\begin_layout Quotation
+jeProBohate(Auto):-jeProParadu(Auto),jeDrahe(Auto).
+\end_layout
+
+\begin_layout Standard
+Pro následující dotazy platí:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $?-jeSUV(X).\,\rightsquigarrow\,X=lada.$
+\end_inset
+
+ (jaké auto je SUV?)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $?-jeRodinne(X)\,\rightsquigarrow\,X=skoda.$
+\end_inset
+
+ (jaké auto je pro rodinu?)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $?-jeProBohate(X)\,\rightsquigarrow\,X=audi.$
+\end_inset
+
+ (jaké auto je pro bohaté lidi?)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $?-jePrakticke(X)\,\rightsquigarrow\,X=skoda;\,X=lada.$
+\end_inset
+
+ (jaké auto je praktické?)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $?-jeDoTerenu(skoda)\,\rightsquigarrow\,false$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Unifikace
+\end_layout
+
+\begin_layout Standard
+Dva termy (nebo predikáty) jsou unifikovatelné, pokud mají stejnou a-ritu,
+ stejný název a lze do nich dosadit proměnné tak, že budou oba termy identické.
+ Unifikace slouží k nalezení hodnot do volných proměnných (jedná se o proces
+ valuace; vázaná proměnná je proměnná s explicitně přiřazenou hodnotou).
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Quotation
+jeCerveny(notebook).
+\end_layout
+
+\begin_layout Quotation
+jeCerveny(auto).
+ 
+\end_layout
+
+\begin_layout Quotation
+jeCerveny(ubrus).
+\end_layout
+
+\begin_layout Quotation
+jeCerveny(plast).
+ 
+\end_layout
+
+\begin_layout Quotation
+jeModry(auto).
+\end_layout
+
+\begin_layout Quotation
+jeModry(obloha).
+\end_layout
+
+\begin_layout Quotation
+jeModry(plast).
+\end_layout
+
+\begin_layout Quotation
+jeBily(snih).
+\end_layout
+
+\begin_layout Quotation
+jeBily(plast).
+\end_layout
+
+\begin_layout Quotation
+jeBily(zed).
+\end_layout
+
+\begin_layout Quotation
+jeBily(notebook).
+\end_layout
+
+\begin_layout Quotation
+jsouStejneBarvy(X,Y):-jeCerveny(X),jeCerveny(Y);jeModry(X),jeModry(Y);jeBily(X),
+jeBily(Y).
+ (středník značí disjunkci).
+\end_layout
+
+\begin_layout Standard
+Pro dotaz 
+\begin_inset Formula $?-jsouStejneBarvy(notebook,Y).$
+\end_inset
+
+ platí, že X=notebook je vázaná proměnná a Y=Y je volná proměnná.
+ Výsledek dotazu je: Y=notebook, auto, ubrus, plast, snih, zed.
+ Tedy platí, že jeCerveny(notebook) je unifikovatelný s jeCerveny(X), nebo
+ jeBily(Y) je unifikovatelný s jeBily(snih), jeBily(plast) apod.
+\end_layout
+
+\begin_layout Standard
+Nelze unifikovat například následující predikáty:
+\end_layout
+
+\begin_layout Itemize
+a(X), b(X) - stejná arita, ovšem jiná jména predikátů.
+\end_layout
+
+\begin_layout Itemize
+a(X,Y), a(kolo,auto,Z) - stejná jména, jiná arita.
+\end_layout
+
+\begin_layout Itemize
+a(X,X), a(Ahoj, svete) - stejná arita i jména predikátů, ovšem nedokážeme
+ dosadit do proměnné X tak, aby oba predikáty byly identické (X=Ahoj, X=svete
+ nelze!).
+\end_layout
+
+\begin_layout Itemize
+S(1,a(X,g(X))), S(W,a(Z,Z)) - nelze, neboť nedokážeme unifikovat dvě stejné
+ proměnné Z do X a g(X).
+\end_layout
+
+\begin_layout Itemize
+apod.
+\end_layout
+
+\begin_layout Standard
+Lze unifikovat například následující predikáty:
+\end_layout
+
+\begin_layout Itemize
+S(1,a(X,g(w))), S(Y,a(2,Z)) - Y=1, X=2, Z=g(w).
+\end_layout
+
+\begin_layout Itemize
+a(2,3), a(X,Y) - X=2, Y=3
+\end_layout
+
+\begin_layout Itemize
+a(2,2), a(X,X) - X=2
+\end_layout
+
+\begin_layout Itemize
+apod.
+\end_layout
+
+\begin_layout Subsection*
+Konstrukce výpočetních stromů
+\end_layout
+
+\begin_layout Standard
+Prolog používá SLD výpočetní strom tak, že prohledává do hloubky (tzn.
+ nejprve nejlevější možnou větev).
+ Pokud je dotaz konečný, vrací se směrem nahoru (o tolik uzlů, než najde
+ nějaký výraz, který lze unifikovat jinak) a počítá znovu (z hlediska prohledává
+ní grafu se jedná o DFS, resp.
+ formu 
+\series bold
+backtrackingu
+\series default
+).
+\end_layout
+
+\begin_layout Standard
+Pokud je dotaz konečný, tak se buď unifikace zdařila (jedná se v principu
+ o logické vyvrácení dotazu, tzn.
+ kontradikci 
+\begin_inset Formula $\boxempty$
+\end_inset
+
+) nebo nezdařila (nedokázali jsme unifikovat proměnné, FAIL).
+ Výpočet může být nekonečný, v tom případě máme špatná pravidla (výraz se
+ 
+\begin_inset Quotes eld
+\end_inset
+
+nezmenšuje
+\begin_inset Quotes erd
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Příklad unifikace:
+\end_layout
+
+\begin_layout Standard
+TODO alespoň 2x
+\end_layout
+
+\begin_layout Subsection*
+Řezy
+\end_layout
+
+\begin_layout Standard
+TODO
+\end_layout
+
+\begin_layout Subsection*
+Elementární programování v Prologu
+\end_layout
+
+\begin_layout Subsubsection*
+Operátory:
+\end_layout
+
+\begin_layout Itemize
+Konjunkce - čárka 
+\begin_inset Formula $A(X):-B(X),C(X)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Disjunkce - středník (málo používaný, neboť lze ekvivalentně zapsat pomocí
+ nového pravidla: 
+\begin_inset Formula $A(X):-B(X);C(X).\Longleftrightarrow A(X):-B(X).\,A(X):-C(X).$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Seznamy - jediná vestavěná datová struktura v Prologu.
+ Zapisuje se podobně jako v Haskellu, a to ve tvaru [Hlava|Telo].
+\end_layout
+
+\begin_layout Itemize
+Operátory - 
+\begin_inset Formula $:-$
+\end_inset
+
+ (definice pravidla), 
+\begin_inset Formula $?-$
+\end_inset
+
+ (dotaz), 
+\begin_inset Formula $,$
+\end_inset
+
+ (konjunkce), 
+\begin_inset Formula $;$
+\end_inset
+
+ (disjunkce), 
+\begin_inset Formula $is$
+\end_inset
+
+ (vyčíslení), 
+\begin_inset Formula $=$
+\end_inset
+
+ (unifikace), 
+\begin_inset Formula $<,>,=<,>=$
+\end_inset
+
+ (porovnání), 
+\begin_inset Formula $=:=,=\backslash=$
+\end_inset
+
+ (číselné porovnání s evaluací), 
+\begin_inset Formula $==,\backslash==$
+\end_inset
+
+ (porovnání termů!), 
+\begin_inset Formula $+,-,*,/,mod,div$
+\end_inset
+
+ (standardní matematické operace), 
+\begin_inset Formula $not$
+\end_inset
+
+ (negace).
+\end_layout
+
+\begin_layout Standard
+Příklady programů:
+\end_layout
+
+\begin_layout Quotation
+length_([],0).
+ 
+\end_layout
+
+\begin_layout Quotation
+length_([_|X],R) :- length_(X,R2), R is R2+1.
+\end_layout
+
+\begin_layout Quotation
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quotation
+last_([X|[]],X) :- !.
+ 
+\end_layout
+
+\begin_layout Quotation
+last_([_|X],R) :- last_(X,R).
+\end_layout
+
+\begin_layout Quotation
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quotation
+concat_([],R,R).
+ 
+\end_layout
+
+\begin_layout Quotation
+concat_([X|A],B,[X|R]) :- concat_(A,B,R).
+\end_layout
+
+\begin_layout Quotation
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quotation
+element_(Elem, [Elem|_]) :- !.
+ 
+\end_layout
+
+\begin_layout Quotation
+element_(Elem, [_|A]) :- element_(Elem, A).
+\end_layout
+
+\begin_layout Quotation
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quotation
+factorial_(0, 1) :- !.
+ 
+\end_layout
+
+\begin_layout Quotation
+factorial_(N, R) :- N2 is N-1, factorial_(N2, R2), R is R2 * (N2+1).
+\end_layout
+
+\begin_layout Quotation
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quotation
+power_(_, 0, 1) :- !.
+ 
+\end_layout
+
+\begin_layout Quotation
+power_(Base, N, R) :- N2 is N-1, power_(Base, N2, R2), R is R2 * Base.
+\end_layout
+
+\begin_layout Quotation
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quotation
+sum_([X], X) :- !.
+ 
+\end_layout
+
+\begin_layout Quotation
+sum_([X|A], R) :- sum_(A, R2), R is R2 + X.
+\end_layout
+
+\begin_layout Quotation
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quotation
+average_(A, R) :- sum_(A, Sum), length_(A, Len), R is Sum/Len.
+\end_layout
+
+\begin_layout Quotation
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quotation
+fibonacci_(0, 0) :- !.
+ 
+\end_layout
+
+\begin_layout Quotation
+fibonacci_(1, 1) :- !.
+ 
+\end_layout
+
+\begin_layout Quotation
+fibonacci_(N, R) :- N2 is N-1, N3 is N-2, fibonacci_(N2, R2), fibonacci_(N3,
+ R3), R is R2 + R3.
+\end_layout
+
+\begin_layout Quotation
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
