@@ -1,0 +1,1046 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Objektově orientované programování 1.
+\end_layout
+
+\begin_layout Standard
+OOP je programovací paradigma, které představuje koncepci programování kolem
+ tzv.
+ objektů.
+ Cílem OOP je vytváření objektů, jenž reprezentují malé a samostatné celky,
+ které mezi sebou komunikují.
+ Hlavní výhodou OOP je znovupoužitelnost těchto objektů (ať již v rámci
+ nové aplikace nebo nového objektu, který je na původním objektu 
+\begin_inset Quotes eld
+\end_inset
+
+postavený
+\begin_inset Quotes erd
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+OOP stojí na třech základních pilířích: 
+\series bold
+zapozdření
+\series default
+ (encapsulation), 
+\series bold
+dědičnost
+\series default
+ (inheritance) a 
+\series bold
+polymorfismus
+\series default
+ (polymorphism).
+\end_layout
+
+\begin_layout Standard
+OOP jazyky, nebo jazyky které umožňují programovat objektově: C++, Java,
+ C#, Python, Smalltalk (průkopník OOP, které je odlišné od OOP známé např.
+ z Javy), aj.
+\end_layout
+
+\begin_layout Subsubsection*
+Objekt
+\end_layout
+
+\begin_layout Standard
+Základní jednotka OOP programování.
+ Jedná se o 
+\begin_inset Quotes eld
+\end_inset
+
+směsici
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\series bold
+atributů
+\series default
+ a 
+\series bold
+metod
+\series default
+, jenž jsou součástí určitého logického celku.
+ Z hlediska programu se jedná o instanci třídy.
+\end_layout
+
+\begin_layout Subsubsection*
+Třída
+\end_layout
+
+\begin_layout Standard
+Představuje programovou definici objektu (tj.
+ abstraktní datový typ), tj.
+ atributy (a jejich typy) a metody, které s danými atributy pracují.
+ Objekt se vytváří 
+\series bold
+instancializací
+\series default
+ (vytvoření 
+\series bold
+instance
+\series default
+ pro) libovolné třídy, tak vzniká objekt typu dané třídy.
+ Můžeme mít více objektů stejné třídy.
+\end_layout
+
+\begin_layout Quotation
+Třída objekt = new Třída(); // Java, voláme bezparametrický konstruktor
+\end_layout
+
+\begin_layout Quotation
+Třída object; // C++, vytvoření objektu na zásobníku
+\end_layout
+
+\begin_layout Quotation
+auto object = make_unique<Třída>(); // Vytvoření objektu na haldě pomocí
+ RAII konceptu v C++
+\end_layout
+
+\begin_layout Subsubsection*
+Atribut
+\end_layout
+
+\begin_layout Standard
+Jedná se o proměnnou v rámci konkrétního objektu (třídy).
+ Má typ a jméno.
+ Veškeré metody patřící danému objektu ho mohou využívat.
+\end_layout
+
+\begin_layout Subsubsection*
+Metody
+\end_layout
+
+\begin_layout Standard
+Metoda je v principu funkce, která pracuje s atributy daného objektu (můžeme
+ samozřejmě předat i hodnoty na vstupu).
+ Například máme objekt třídy Auto, které má definované metody zastav(),
+ otevriDvere(), jed(), zhasniSvetla() apod.
+\end_layout
+
+\begin_layout Subsubsection*
+Konstruktor, destruktor
+\end_layout
+
+\begin_layout Standard
+Jedná se o metody, které se volají implicitně v rámci konstrukce a destrukce
+ objektu.
+ Konstruktor se volá při tvoření instance určitého objektu, může být parametrick
+ý či bezparametrický (můžeme jej i přetěžovat).
+\end_layout
+
+\begin_layout Standard
+Destruktor se volá, když se objekt ničí.
+ V rámci garbage collected (mechanismus pro automatické uvolňování již nepoužíva
+né paměti) jazyků je destruktor volaný nedeterministicky.
+ V C++ je veškeré chování deterministické, tzn.
+ životnost objektu končí na konci bloku (alokace na zásobníku + RAII), při
+ explicitní uvolnění paměti apod.
+\end_layout
+
+\begin_layout Subsubsection*
+Viditelnost atributů a metod (řízení přístupu)
+\end_layout
+
+\begin_layout Standard
+Máme tři typy viditelnosti, a to 
+\series bold
+private, protected a public
+\series default
+.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Private
+\series default
+ znamená, že atribut/metoda (dále již jako AM) není přístupná cizím objektům
+ (jiného typu, tedy pokud neprogramujeme v C++ a nepoužíváme friend classy/funkc
+e) nebo vně programu.
+ Přístup má pouze objekt třídy, která jej explicitně zadefinovala.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Protected
+\series default
+ značí, že pro vnějšek objektu není AM přístupná.
+ V rámci dedičnosti jsou však AM přístupné potomkům dané třídy.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Public
+\series default
+ značí veřejné AM, můžeme je volat i z vně objektu.
+ V rámci zapouzdření se nedoporučuje mít veřejné nekonstantní (a nestatické)
+ atributy.
+\end_layout
+
+\begin_layout Subsubsection*
+Statické metody a atributy
+\end_layout
+
+\begin_layout Standard
+Jsou nezávislé na konkrétním objektu a jsou přístupné všem instancím dané
+ třídy.
+ Nedokáží však pracovat s nestatickými AM, neboť není vytvořena jejich instance.
+ Můžeme je volat i v rámci samotné třídy (není potřeba vytvářet instanci
+ objektu).
+\end_layout
+
+\begin_layout Subsubsection*
+Virtuální metody
+\end_layout
+
+\begin_layout Standard
+Metoda je virtuální, pokud je označena klíčovým slovíčkem 
+\series bold
+virtual
+\series default
+.
+ Pro ni platí, že její definice (tj.
+ tělo funkce) může být přepsáno u některého potomka (viz dědičnost).
+\end_layout
+
+\begin_layout Standard
+Tělo virtuálních metod můžeme definovat, ale taky nemusíme (pak hovoříme
+ o abstraktních metodách).
+\end_layout
+
+\begin_layout Standard
+Příklady v C++:
+\end_layout
+
+\begin_layout Quotation
+virtual void foo() const { boo(); } // Pouze virtuální
+\end_layout
+
+\begin_layout Quotation
+virtual void fooabstract() const = 0; // I abstraktní, nemůžeme vytvořit
+ instanci dané třídy
+\end_layout
+
+\begin_layout Subsubsection*
+Abstraktní třída
+\end_layout
+
+\begin_layout Standard
+Taková třída, pro kterou nelze vytvořit instanci objektu.
+ Tato třída je specifická tím, že většinou má nějakou abstraktní metodu,
+ nebo je explicitně označená jako abstraktní.
+\end_layout
+
+\begin_layout Subsubsection*
+Rozhraní (interface)
+\end_layout
+
+\begin_layout Standard
+Jedná se o speciální abstraktní třídu, která obsahuje pouze předpis metod
+ (tyto metody jsou abstraktní, nelze definovat jejich tělo).
+ Využívá se v rámci dědičnosti a polymorfismu.
+\end_layout
+
+\begin_layout Standard
+Některé jazyky obsahují klíčové slovo interface, kterým rozhraní dokážeme
+ explicitně vytvořit (např.
+ Java, C#).
+\end_layout
+
+\begin_layout Subsubsection*
+Namespace
+\end_layout
+
+\begin_layout Standard
+Jmenné prostory.
+ Umožňují rozčlenit program na více logických celků (např.
+ ve jmenném prostoru Cars budou třídy jednotlivých Aut, třeba ICar, SportsCar
+ : ICar, UtilityCar : ICar, SUVCar : SportsCar, UtilityCar apod.)
+\end_layout
+
+\begin_layout Standard
+V Javě existují ještě tzv.
+ balíky, tyto balíky člení zdrojové kódy ještě v rámci fyzického celku (tj.
+ hierarchie zdrojových kódů na disku).
+\end_layout
+
+\begin_layout Subsection*
+Zapouzdření (encapsulation)
+\end_layout
+
+\begin_layout Standard
+Jedná se o techniku, styl programování, kdy se snažíme o maximální skrytí
+ atributů a metod.
+ Tedy se jedná o styl s myšlenkou: 
+\begin_inset Quotes eld
+\end_inset
+
+Pokud to ostatní nepotřebují, dej to jako private
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Jiný objekt by neměl měnit atribut jiného objektu bez jeho vědomí.
+\end_layout
+
+\begin_layout Standard
+Všechny atributy bývají standardně private/protected a píší se k nim samostatné
+ getter a setter metody.
+ Díky těmto metodám můžeme ověřit platnost a přiřazených/vrácených hodnot.
+ Tímto jsou programy méně náchylné na chyby, přičemž programátor nemusí
+ vědět, jak daný objekt vnitřně funguje.
+\end_layout
+
+\begin_layout Standard
+Taky platí, že pokud vracíme pomocí getterů různé další objekty, které jsou
+ privátními atributy dané třídy, dobré je, v rámci zapouzdření, je vrátit
+ jako konstantní referenci (v C++) nebo je 
+\begin_inset Quotes eld
+\end_inset
+
+zabalit
+\begin_inset Quotes erd
+\end_inset
+
+ do ReadOnlyTřídy (například kolekce apod.).
+ Samozřejmě závisí na použití a typu případu.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+Máme objekt Auto, které má následující tři atributy: objem motoru, rychlost
+ a spotřeba benzínu.
+ Všechny atributy jsou vzájemně provázané, rychlost a spotřeba se odvíjí
+ od objemu motoru.
+\end_layout
+
+\begin_layout Standard
+Ve strukturovaném programování (v C například) bychom museli nastavit všechny
+ parametry správně a pohlídat si taky jejich vzájemnou závislost.
+ U OOP stačí napsat setter, který tyto věci řeší již sám uvnitř (a může
+ taky kontrolovat validitu hodnot), a tak programátor, který danou třidu
+ (resp.
+ objekt) využívá, nepotřebuje vědět tyto vztahy mezi třemi atributy.
+\end_layout
+
+\begin_layout Standard
+Tímto zamezíme chybám programu, neočekávaným stavům apod.
+\end_layout
+
+\begin_layout Quotation
+class Car {
+\end_layout
+
+\begin_layout Quotation
+public:
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+int getEngineVolume() const { return _vol; }
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+int getVelocity() const { return _vel; }
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+int getConsumption() const { return _cons; }
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+void setEngineVolume(int v) { _vol = v; _vel = _vol * 2; _cons = 0.1 * _vol;
+ }
+\end_layout
+
+\begin_layout Quotation
+private:
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+int _vol;
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+int _vel;
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+double _cons;
+\end_layout
+
+\begin_layout Quotation
+};
+\end_layout
+
+\begin_layout Subsection*
+Dědičnost (inheritance)
+\end_layout
+
+\begin_layout Standard
+Třída A dědí z třídy B, pokud je A potomkem B a B rodičem A.
+ U dědičnosti je specifické, že potomek získává (dědí) public a protected
+ AM z předka, které může využívat a považovat za své.
+ Taky je možné děděné virtuální metody redefinovat.
+ Díky dědičnosti můžeme psát kratší a robustnější programy, nebo již stávající
+ snadno rozšířit.
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+Máme 3 třídy: Administrator, Uzivatel, Host.
+ Tyto třídy obsahují metody Login() a Logout(), jejiž implementace je totožná
+ pro všechny třídy.
+ Proto vytvoříme pro tyto tři třídy předka, novou třídu Osoba, která implementuj
+e dané metody Login a Logout.
+\end_layout
+
+\begin_layout Quotation
+class Osoba {
+\end_layout
+
+\begin_layout Quotation
+public:
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+void Login(const string& passwd) {/*BODY*/}
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+void Logout() {/*BODY*/}
+\end_layout
+
+\begin_layout Quotation
+};
+\end_layout
+
+\begin_layout Quotation
+class Administrator : public Osoba { /* BODY */ };
+\end_layout
+
+\begin_layout Quotation
+class Uzivatel : public Osoba { /* BODY */ };
+\end_layout
+
+\begin_layout Quotation
+class Host : public Osoba { /* BODY */ }
+\end_layout
+
+\begin_layout Standard
+Pokud tedy pro objekt třídy Uzivatel zavoláme uzivatel.Login(
+\begin_inset Quotes eld
+\end_inset
+
+1234
+\begin_inset Quotes erd
+\end_inset
+
+), tak se zavolá metoda definovaná ve třídě Osoba.
+ 
+\end_layout
+
+\begin_layout Standard
+Příklad redefinování virtuální metody:
+\end_layout
+
+\begin_layout Quotation
+class A {
+\end_layout
+
+\begin_layout Quotation
+public:
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+virtual void Foo() { cout << 
+\begin_inset Quotes eld
+\end_inset
+
+A
+\begin_inset Quotes erd
+\end_inset
+
+ << endl; }
+\end_layout
+
+\begin_layout Quotation
+};
+\end_layout
+
+\begin_layout Quotation
+class B : public A {
+\end_layout
+
+\begin_layout Quotation
+public:
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+void Foo() override { cout << 
+\begin_inset Quotes eld
+\end_inset
+
+B
+\begin_inset Quotes erd
+\end_inset
+
+ << endl; }
+\end_layout
+
+\begin_layout Quotation
+};
+\end_layout
+
+\begin_layout Quotation
+A a; a.Foo(); // vypise A
+\end_layout
+
+\begin_layout Quotation
+B b; b.Foo(); // vypise B
+\end_layout
+
+\begin_layout Standard
+U C++ je specifické, že pro dědičnost můžeme explicitně uvést viditelnost
+ předka (class X : visibility Y).
+ Pokud uvedeme private, tak všechny public a protected AM se stanou implicitně
+ private.
+ Uvedeme-li protected, tak všechny public AM se stanou protected a u public
+ dědí standardním způsobem.
+\end_layout
+
+\begin_layout Subsubsection*
+Vícenásobná dědičnost
+\end_layout
+
+\begin_layout Standard
+Vícenásobná dědičnost je specifická vlastnost C++, kdy třída může dědit
+ z více předků:
+\end_layout
+
+\begin_layout Quotation
+class A {};
+\end_layout
+
+\begin_layout Quotation
+class B {};
+\end_layout
+
+\begin_layout Quotation
+class C : public A, public B {}; // Dedi vsechny vlastnost z A, B
+\end_layout
+
+\begin_layout Standard
+Nevýhoda tohoto použití je příliš velká složitost a konflikt jmen (A dědí
+ z B, C, které obsahují metodu foo(); odkud dědí A metodu foo?).
+ U Javy a C# je vícenásobná dědičnost řešena pomocí implementace vícero
+ rozhraní.
+\end_layout
+
+\begin_layout Subsection*
+Polymorfismus (polymorphism)
+\end_layout
+
+\begin_layout Standard
+Polymorfismus je vlastnot objektů v rámci OOP, že dokážeme jednoduše přetypováva
+t potomka A na předka B (a naopak, pokud je třída B potomek A), přičemž
+ definice přepsaných virtuálních metod zůstávají stejné (a jejich funkcionalita).
+\end_layout
+
+\begin_layout Standard
+Nejlépe si to ukážeme na následujícím příkladě:
+\end_layout
+
+\begin_layout Quotation
+class I {
+\end_layout
+
+\begin_layout Quotation
+public:
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+virtual int Foo() const { return _foo; }
+\end_layout
+
+\begin_layout Quotation
+private:
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+int _foo = 0;
+\end_layout
+
+\begin_layout Quotation
+};
+\end_layout
+
+\begin_layout Quotation
+class A : public I {
+\end_layout
+
+\begin_layout Quotation
+public:
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+int Foo() const { return _foo; }
+\end_layout
+
+\begin_layout Quotation
+private:
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+int _foo = 10;
+\end_layout
+
+\begin_layout Quotation
+};
+\end_layout
+
+\begin_layout Quotation
+class B : public I {
+\end_layout
+
+\begin_layout Quotation
+public:
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+int Foo() const { return _foo; }
+\end_layout
+
+\begin_layout Quotation
+private:
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+int _foo = 20;
+\end_layout
+
+\begin_layout Quotation
+};
+\end_layout
+
+\begin_layout Quotation
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quotation
+void CallFoo(const I& obj) { cout << obj.Foo() << endl; }
+\end_layout
+
+\begin_layout Quotation
+A a;
+\end_layout
+
+\begin_layout Quotation
+CallFoo(a); // Vypise 10
+\end_layout
+
+\begin_layout Quotation
+B b;
+\end_layout
+
+\begin_layout Quotation
+CallFoo(b); // Vypise 20
+\end_layout
+
+\begin_layout Quotation
+I i;
+\end_layout
+
+\begin_layout Quotation
+CallFoo(i); // Vypise 0
+\end_layout
+
+\begin_layout Standard
+Jak lze vypozorovat, tak i přes přetypování z A/B na předka I se zavolá
+ příslušná metoda z A/B vracející správnou hodnotu z atributu.
+ Je to z toho důvodu, že OOP jazyky využívají tzv.
+ late-binding, kdy se o použité metodě rozhoduje až za běhu programu, ne
+ během kompilace.
+\end_layout
+
+\begin_layout Standard
+Přetypování z předka na potomka (C++, nutné vytvořit virtuální destruktor
+ u předka k povolení polymorfismu):
+\end_layout
+
+\begin_layout Quotation
+A a;
+\end_layout
+
+\begin_layout Quotation
+I& ia = dynamic_cast<I&>(a); // Projde 
+\end_layout
+
+\begin_layout Quotation
+A& aa = dynamic_cast<A&>(ia); // Projde
+\end_layout
+
+\begin_layout Quotation
+B b;
+\end_layout
+
+\begin_layout Quotation
+I& ib = dynamic_cast<I&>(b); // Projde
+\end_layout
+
+\begin_layout Quotation
+A& ab = dynamic_cast<A&>(ib); // std::bad_cast, neprojde runtime checkem
+\end_layout
+
+\end_body
+\end_document

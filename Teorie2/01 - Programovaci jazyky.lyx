@@ -1,0 +1,1100 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Programovací jazyky
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Imperativní jazyky
+\series default
+ - Popisuje jak se co má spočítat.
+ Jedná se tudíž o posloupnost příkazů, které jsou postupně prováděny.
+ Stav prostředí se během provádění příkazů mění.
+ Příklady imperativních jazyků: C, Pascal, Fortran apod.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Deklarativní jazyky
+\series default
+ - Popisuje, jak má výsledek vypadat, neuvádí postup výpočtu.
+ Samotný popis výsledku je defacto výsledek v určitém tvaru.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Výpočet
+\begin_inset Quotes erd
+\end_inset
+
+ probíhá úpravou a zjednodušováním výrazů (záleží na redukční strategii).
+ Příklady: Haskell, Ocaml, F#.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Strukturované programování
+\series default
+ - Technika, kdy se algoritmus rozdělí na dílčí úlohy, které se spojují
+ v jeden celek.
+ Každý celek se může skládat z menších bloků.
+ Za nejnižší úroveň se označují elementární příkazy z programovacího jazyka.
+\end_layout
+
+\begin_layout Subsection*
+Datové struktury programovacích jazyků
+\end_layout
+
+\begin_layout Standard
+Slouží k ukládání paměti a organizaci dat pro efektivní používání.
+\end_layout
+
+\begin_layout Subsubsection*
+Dynamické datové struktury
+\end_layout
+
+\begin_layout Standard
+Mohou měnit svou velikost za běhu programu.
+ Například různé kolekce z high level programovacích jazyků nebo jen paměť,
+ která je alokovaná na haldě za běhu programu pomocí malloc (a uvolněná
+ pomocí free).
+\end_layout
+
+\begin_layout Subsubsection*
+Statické datové struktury
+\end_layout
+
+\begin_layout Standard
+Velikost je známa již během kompilace a není možné ji za běhu programu měnit.
+ Například statické pole, proměnné (int, float, double), struct z C apod.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Datové struktury z hlediska různosti datových typů:
+\end_layout
+
+\begin_layout Itemize
+Homogenní - všechny elementy v datové struktuře jsou stejného typu (např.
+ int array[10])
+\end_layout
+
+\begin_layout Itemize
+Heterogenní - elementy v datové struktuře jsou různého typu (struct { int
+ x; float y; double z; })
+\end_layout
+
+\begin_layout Subsection*
+Řídící struktury programovacích jazyků
+\end_layout
+
+\begin_layout Standard
+Jsou to konstrukce, které rozhodují o provádění dalších částí programu.
+\end_layout
+
+\begin_layout Subsubsection*
+Složený příkaz (blok)
+\end_layout
+
+\begin_layout Standard
+Uvnitř bloku je konečný počet příkazů, deklarace nových proměnných je platná
+ pouze v rámci bloku.
+\end_layout
+
+\begin_layout Quotation
+{
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+prikaz1;
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+prikaz2;
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+....
+\end_layout
+
+\begin_layout Quotation
+}
+\end_layout
+
+\begin_layout Subsubsection*
+Větvení
+\end_layout
+
+\begin_layout Standard
+Tyto konstrukty umožňují rozhodovat, na který příkaz se přesune výpočet
+ programu.
+\end_layout
+
+\begin_layout Standard
+Příklady: 
+\end_layout
+
+\begin_layout Quotation
+if (podmínka) blok příkazů po splnění podmínky;
+\end_layout
+
+\begin_layout Quotation
+if (podmínka) blok příkazů po splnění podmínky; else blok příkazů po nesplnění
+ podm.;
+\end_layout
+
+\begin_layout Standard
+Některé programovací jazyky mají ještě tzv.
+ elseif (elif apod.).
+ V principu se jedná o pouhé vnoření konstruktu if-else:
+\end_layout
+
+\begin_layout Quotation
+if (podmínka1) blok1;
+\end_layout
+
+\begin_layout Quotation
+elif (podmínka2) blok2;
+\end_layout
+
+\begin_layout Quotation
+else blok3;
+\end_layout
+
+\begin_layout Standard
+Je ekvivalentní se zápisem:
+\end_layout
+
+\begin_layout Quotation
+if (podmínka1) blok1;
+\end_layout
+
+\begin_layout Quotation
+else {
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+if (podmínka2) blok2;
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+else blok3;
+\end_layout
+
+\begin_layout Quotation
+}
+\end_layout
+
+\begin_layout Standard
+Složené závorky můžeme v zápise vynechat vynechat.
+\end_layout
+
+\begin_layout Subsubsection*
+Vícenásobné větvení (Switch)
+\end_layout
+
+\begin_layout Standard
+Konstrukt:
+\end_layout
+
+\begin_layout Quotation
+switch(proměnná) {
+\end_layout
+
+\begin_layout Quotation
+case hodnota1:
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+blok1;
+\end_layout
+
+\begin_layout Quotation
+break;
+\end_layout
+
+\begin_layout Quotation
+case hodnota2:
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+blok2;
+\end_layout
+
+\begin_layout Quotation
+break;
+\end_layout
+
+\begin_layout Quotation
+....
+\end_layout
+
+\begin_layout Quotation
+default:
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+blokN;
+\end_layout
+
+\begin_layout Quotation
+}
+\end_layout
+
+\begin_layout Standard
+Je ekvivalentní se zápisem pomocí if-else:
+\end_layout
+
+\begin_layout Quotation
+if (proměnná == hodnota1) blok1;
+\end_layout
+
+\begin_layout Quotation
+else if (proměnná == hodnota2) blok2;
+\end_layout
+
+\begin_layout Quotation
+....
+\end_layout
+
+\begin_layout Quotation
+else blokN;
+\end_layout
+
+\begin_layout Standard
+Tj.
+ konstrukt switch je syntaktický cukr pro konstrukt if-else.
+\end_layout
+
+\begin_layout Subsubsection*
+Nepodmíněný skok (goto)
+\end_layout
+
+\begin_layout Standard
+Umožňuje 
+\begin_inset Quotes eld
+\end_inset
+
+skákat
+\begin_inset Quotes erd
+\end_inset
+
+ mezi příkazy programu.
+ U programování v assembleru je goto a skákání mezi instrukcemi celkem typycké
+ (jmp, longjmp apod.), dnes se již moc nepoužívá a jeho použití je ve vysokoúrovň
+ovém programování buď nedostupné, nebo nedoporučené.
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+blok1;
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+goto prikazy_bloku_3;
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+blok2;
+\end_layout
+
+\begin_layout Quotation
+prikazy_bloku_3:
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+blok3;
+\end_layout
+
+\begin_layout Standard
+Blok2 se tudíž vůbec nevykoná a jeho výpočet bude přeskočen.
+\end_layout
+
+\begin_layout Subsubsection*
+Cyklus
+\end_layout
+
+\begin_layout Standard
+Cyklus je konstrukt běžných imperativních programovacích jazyků, umožňuje
+ vykonávat blok příkazů opakovaně (pokud je platná určitá podmínka).
+ Nejdůležitějším konstruktem je cyklus:
+\end_layout
+
+\begin_layout Quotation
+while(podmínka) blok_příkazů;
+\end_layout
+
+\begin_layout Standard
+Dalším konstruktem je zápis pomocí for cyklu:
+\end_layout
+
+\begin_layout Quotation
+for(inicializace; podmínka; krok) blok_příkazů.
+\end_layout
+
+\begin_layout Standard
+Což je ekvivalentní se zápisem pomocí while:
+\end_layout
+
+\begin_layout Quotation
+initializace;
+\end_layout
+
+\begin_layout Quotation
+while(podmínka) { blok_příkazů; krok; }
+\end_layout
+
+\begin_layout Standard
+Posledním konstruktem je tzv.
+ do-while cyklus.
+ Hlavní myšlenka spočívá v tom, že podmínka se ověřuje až na konci každého
+ průchodu cyklem, ne na začátku.
+\end_layout
+
+\begin_layout Standard
+Konstrukty cyklů mohou využít následující příkazy:
+\end_layout
+
+\begin_layout Itemize
+break - nepodmíněně ukončí právě prováděný cyklus
+\end_layout
+
+\begin_layout Itemize
+continue - přeruší aktuální průchod cyklem a přejde na nové opakování
+\end_layout
+
+\begin_layout Standard
+Každý cyklus ve tvaru 
+\shape italic
+while(podmínka) blok_příkazů
+\shape default
+; lze zapsat ekvivalentně pomocí nepodmíněného skoku:
+\end_layout
+
+\begin_layout Quotation
+start:
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+blok_příkazů;
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+if (podmínka) goto start;
+\end_layout
+
+\begin_layout Subsubsection*
+Funkce
+\end_layout
+
+\begin_layout Standard
+Funkce je speciální (a velmi používaná) řídící struktura každého programovacího
+ jazyka.
+ Je tvořena blokem příkazů.
+ U každé funkce je nutné specifikovat vstupní parametry (může jich být několik)
+ a výstupní datový typ (int, char, struct, void pokud nic nevrací).
+\end_layout
+
+\begin_layout Standard
+Např.
+ v jazyce Pascal máme dvě typy 
+\begin_inset Quotes eld
+\end_inset
+
+funkcí
+\begin_inset Quotes erd
+\end_inset
+
+, první je klasická funkce, jenž vrací hodnotu a dále tzv.
+ procedura, neboli funkce, jenž vrací void (tj.
+ nevrací nic).
+\end_layout
+
+\begin_layout Standard
+Příklad (jazyk C):
+\end_layout
+
+\begin_layout Quotation
+int sum(int* array, int n) { 
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+return (n>0) ? *array + sum(array+1, n-1) : 0; 
+\end_layout
+
+\begin_layout Quotation
+}
+\end_layout
+
+\begin_layout Subsection*
+Datové typy
+\end_layout
+
+\begin_layout Standard
+Datové typy určují z matematického hlediska doménu (tj.
+ množinu) možných hodnot.
+ Pro každý neabstraktní typ je definováno, jaké operace lze na nich provádět
+ a jak jsou implementovány (viz celočíselná aritmetika a aritmetika s plovoucí
+ desetinnou čárkou).
+\end_layout
+
+\begin_layout Standard
+Datové typy mohou být 
+\series bold
+jednoduché
+\series default
+ (int, float, char, bool apod.), nebo 
+\series bold
+složené
+\series default
+ (struct, string apod.).
+\end_layout
+
+\begin_layout Standard
+Každý programovací jazyk má svůj typový systém.
+ Některé programovací jazyky jsou 
+\series bold
+staticky/silně
+\series default
+ typované (najdeme spolehlivě chyby v době překladu) nebo 
+\series bold
+dynamicky/slabě 
+\series default
+(menší režie kontroly typů).
+\end_layout
+
+\begin_layout Standard
+Obecně platí, že u silně typových jazyků je nutné znát typ proměnné v době
+ překladu, u slabě typových jazyků se tohle vyhodnocuje až v době překladu.
+\end_layout
+
+\begin_layout Subsubsection*
+Jednoduché datové typy
+\end_layout
+
+\begin_layout Standard
+Pro jednoduché datové typy jsou většinou implementovány matematické operace
+ v úrovni samotného CPU.
+ Tj.
+ můžeme je ukládat do registrů, zde je atomicky upravovat (násobení, dělení,
+ sčítání apod.).
+ Ovšem každý datový typ má různou spotřebu paměti (záleží na architektuře
+ CPU a specifikaci jazyka), např.
+ char 1 byte, celočíselný int většinou 4 byte, long 4/8 byte, float 4 byte,
+ double 8 byte, bool můžeme reprezentovat pomocí jedného bitu (praxe je
+ jiná).
+\end_layout
+
+\begin_layout Standard
+Celočíselné datové typy využívají ALU (aritmeticko logická jednotka), desetinné
+ dat.
+ typy FPU (float point unit; dříve v rámci matematického koprocesoru).
+\end_layout
+
+\begin_layout Standard
+Je dobré dodat, že pokud existuje matematická operace pro konkrétní datový
+ typ, tak je většinou na něm i uzavřená (nedostaneme desetinné číslo při
+ dělení dvou celočíselných hodnot, pokud jsme explicitně nepřetypovali).
+\end_layout
+
+\begin_layout Subsubsection*
+Složené datové typy
+\end_layout
+
+\begin_layout Standard
+Používáme k uchování více hodnot 
+\begin_inset Quotes eld
+\end_inset
+
+najednou
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Složený datový typ je většinou heterogenní datová struktura, neboť obsahuje
+ více datových typů najednou.
+ Proměnné v rámci jednoho složeného datového typu většinou spolu úzce souvisí.
+\end_layout
+
+\begin_layout Standard
+Složený datový typ můžeme v jazyce C definovat například pomocí struct:
+\end_layout
+
+\begin_layout Quotation
+struct circle {
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+int x;
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+int y;
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+unsigned int radius;
+\end_layout
+
+\begin_layout Quotation
+}
+\end_layout
+
+\begin_layout Subsubsection*
+Pole
+\end_layout
+
+\begin_layout Standard
+Pole datová struktura, jehož objekty jsou uloženy kontinuální (souvislé)
+ paměti.
+ Je homogenní, tzn.
+ datový typ je jednoho typu (ovšem datový typ může být uvnitř heterogenní,
+ tzn.
+ můžeme mít pole sheterogenních struktur).
+\end_layout
+
+\begin_layout Standard
+Jelikož jsou prvky uloženy za sebou v kontinuální paměti, tak dokážeme v
+ konstantním čase určit pozici n-tého prvku (jazyk C): 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $array[n]\Leftrightarrow array+n*sizeof(^{*}array)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Řetězec (string)
+\end_layout
+
+\begin_layout Standard
+Většinou se jedná o složený datový typ (C++), avšak existují jiné jazyky,
+ jenž je string přímo součástí jazyka (Lua, Python apod.).
+\end_layout
+
+\begin_layout Standard
+Většinou je implementován nad polem charů (nebo intů v UTF-*).
+ String má většinou dostupných několik základních funkcionalit, jako je
+ například zjistěné délky řetězce pomocí length(), indexace charAt(index),
+ spojení řetězců pomocí concat() aj.
+\end_layout
+
+\begin_layout Standard
+V některých jazycích (C#, Java) je řetězec standardně immutable.
+\end_layout
+
+\begin_layout Subsubsection*
+Abstraktní datové typy (ADT)
+\end_layout
+
+\begin_layout Standard
+Jedná se o datové typy, které jsou nezávisle implementované na použitém
+ typu (jenž je definován samostatně).
+ Z vyšších programovacích jazyků se jedná například o kolekce (Zásobnik,
+ Fronta, Halda, List apod.).
+ Abstraktní datové typy lze snadno vytvářet s prgramovacím jazykem, jenž
+ umožňuje tzv.
+ template (šablona) metaprogramování (C++, C#, Java), např.
+ std::vector<int> v C++ nebo List<int> v C#.
+ V jazyce C lze tohoto docílit například ukazatelem na void.
+\end_layout
+
+\begin_layout Subsubsection*
+Další datové typy:
+\end_layout
+
+\begin_layout Itemize
+ukazatel - speciální datový typ, jenž drží ukazatel na paměť (tj.
+ číslo v paměti).
+ Máme-li 32-bitový CPU, je ukazatel většinou 32 bitový (můžeme alokovat
+ fyzicky maximálně 2^32 bytů), u x64 je ukazatel 64 bitový.
+ Ukazatele jsou velmi používané v jazyce C.
+\end_layout
+
+\begin_layout Itemize
+union - speciální datový typ, má zápis jako struktura, ovšem může držet
+ v paměti maximálně jednu možnou hodnotu.
+\end_layout
+
+\begin_layout Itemize
+bitové pole - jazyk C umožňuje definovat i tzv.
+ bitové pole, tj.
+ datový typ s určitým počtem bitů.
+ Málo přenosné a platformově závislé.
+ Příklad: struct { int array : 7; unsigned int sign: 1; }.
+\end_layout
+
+\begin_layout Subsection*
+Kompilace vs interpretace
+\end_layout
+
+\begin_layout Subsubsection*
+Kompilace
+\end_layout
+
+\begin_layout Standard
+Překlad zdrojového kódu z vyššího programovacího jazyka programu do binární
+ (strojové) reprezentace nebo do tzv.
+ bytekódu (kód spustitelný na virtuálních strojích - JVM, CLI).
+\end_layout
+
+\begin_layout Standard
+Takový přeložený program je nezávislý na počítači, avšak je závislý na architekt
+uře (tzn.
+ zkompilovaný program pro x64 nespustíme na ARMu).
+ Výpočet je velmi rychlý, odvíjí se od optimalizací kompilátoru, zdrojového
+ kódu a použitého hardware.
+\end_layout
+
+\begin_layout Paragraph*
+Kompilační kroky v jazyce C:
+\end_layout
+
+\begin_layout Standard
+Preprocesor (řeší makra) 
+\begin_inset Formula $\Longrightarrow$
+\end_inset
+
+ Kompilátor (překlad programu *.c do objektového kódu *.o) 
+\begin_inset Formula $\Longrightarrow$
+\end_inset
+
+ Linker (řeší závislosti na dalších knihovnách, úprava adres funkcí apod.)
+ 
+\begin_inset Formula $\Longrightarrow$
+\end_inset
+
+ spustitelný program
+\end_layout
+
+\begin_layout Paragraph*
+Kroky v kompilátoru:
+\end_layout
+
+\begin_layout Standard
+Zdrojový kód 
+\begin_inset Formula $\Longrightarrow$
+\end_inset
+
+ Lexikální analyzátor (pomocí reg.
+ výrazů získáme tzv.
+ lexémy, klíčové prvky jazyka - většinou klíčová slova) 
+\begin_inset Formula $\Longrightarrow$
+\end_inset
+
+ Syntaktický parser (zpracuje jazyk do tzv.
+ PARSER TREE, ověřuje správnost programu a pořadí prováděných operací) 
+\begin_inset Formula $\Longrightarrow$
+\end_inset
+
+ Sémantický parser (typová kontrola, kontrola významu operací, korektnosti
+ výpočtu) 
+\begin_inset Formula $\Longrightarrow$
+\end_inset
+
+ Generátor mezikódu (překlad do instrukcí, jež jsou lineárně uspořádány)
+ 
+\begin_inset Formula $\Longrightarrow$
+\end_inset
+
+ Optimalizace 
+\begin_inset Formula $\Longrightarrow$
+\end_inset
+
+ Strojový kód
+\end_layout
+
+\begin_layout Paragraph*
+Příklady kompilovaných jazyků:
+\end_layout
+
+\begin_layout Standard
+C, Pascal, Fortran, C++, Java (kompilace do bytekódu, nutný interpreter
+ pro spuštění bytekódu), C# (bytekód, viz Java) aj.
+\end_layout
+
+\begin_layout Subsubsection*
+Interpretace
+\end_layout
+
+\begin_layout Standard
+Interpretace je proces, kdy se spustí zdrojový kód (více méně i bytekód)
+ programu v nějakém druhém programu.
+ Využívá tzv.
+ interpreter, což je program, který umožňuje spouštět programy zapsané v
+ interpretovaném programovacím jazyce.
+ Interpreter po načtení a zpracování kódu program okamžitě spustí.
+\end_layout
+
+\begin_layout Standard
+Výhodou je snadná přenositelnost (kód je spustitelný tam, kde je interpreter),
+ nevýhodou je menší rychlost (zavedení programu + výpočet), tedy pokud nevyužívá
+me tzv.
+ JIT (just in time) kompilaci - na základě architektury a výpočtu dokážeme
+ zkompilovat dodaný zdrojový kód a hodně optimalizovat výpočet programu
+ za běhu - některé programy tak pomocí JIT bývají někdy rychlejší jak v
+ C/C++!
+\end_layout
+
+\begin_layout Standard
+Z hlediska Turingových strojů je interpretace spuštění nějakého Turingova
+ stroje M se vstupem W na univerzálním Turingově stroji T.
+\end_layout
+
+\begin_layout Paragraph*
+Příklady interpretovaných jazyků:
+\end_layout
+
+\begin_layout Standard
+Python, Lua, Perl, Ruby, Java (tj.
+ její bytekód, C# (jeho bytekód).
+\end_layout
+
+\end_body
+\end_document
