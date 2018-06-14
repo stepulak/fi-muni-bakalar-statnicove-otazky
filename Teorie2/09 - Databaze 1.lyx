@@ -1011,9 +1011,8 @@ Zelná
 \begin_layout Standard
 A INNER JOIN B (ON A.ID=B.ID) =
 \begin_inset Tabular
-<lyxtabular version="3" rows="3" columns="7">
+<lyxtabular version="3" rows="3" columns="6">
 <features tabularvalignment="middle">
-<column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -1025,7 +1024,7 @@ A INNER JOIN B (ON A.ID=B.ID) =
 \begin_inset Text
 
 \begin_layout Plain Layout
-A.id
+id
 \end_layout
 
 \end_inset
@@ -1053,15 +1052,6 @@ přijmení
 
 \begin_layout Plain Layout
 věk
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-B.id
 \end_layout
 
 \end_inset
@@ -1126,15 +1116,6 @@ Novák
 \begin_inset Text
 
 \begin_layout Plain Layout
-1
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
 Brno
 \end_layout
 
@@ -1183,15 +1164,6 @@ Jana
 
 \begin_layout Plain Layout
 21
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-3
 \end_layout
 
 \end_inset
