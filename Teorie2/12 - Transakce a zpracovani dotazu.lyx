@@ -1,0 +1,645 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Transakce a zpracování dotazů
+\end_layout
+
+\begin_layout Standard
+Transakce je posloupnost operací, která připisuje a aktualizuje data (v
+ kritické části).
+ Transakce pracuje s konzistentní databází, tzn.
+ že před zápisem je databáze konzistentní a po zápisu také.
+ Transakce řeší výpadky systému a neočekávané chyby během spuštění transakce.
+\end_layout
+
+\begin_layout Standard
+Příklad jednoduché transakce, převod peněz z účtu A do B:
+\end_layout
+
+\begin_layout Quotation
+penízeA = stav_peněz(A)
+\end_layout
+
+\begin_layout Quotation
+penízeA -= X
+\end_layout
+
+\begin_layout Quotation
+aktualizuj_peníze(A, penízeA)
+\end_layout
+
+\begin_layout Quotation
+penízeB = stav_peněz(B)
+\end_layout
+
+\begin_layout Quotation
+penízeB += X
+\end_layout
+
+\begin_layout Quotation
+aktualizuj_peníze(B, penízeB)
+\end_layout
+
+\begin_layout Subsection*
+Transakční vlastnosti
+\end_layout
+
+\begin_layout Standard
+Každá transakce splňuje tzv.
+ 
+\series bold
+ACID
+\series default
+ pravidlo:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Atomicita (Atomicity)
+\series default
+ - Transakce se buď provede celá (nelze ji 
+\begin_inset Quotes eld
+\end_inset
+
+rozkouskovat
+\begin_inset Quotes erd
+\end_inset
+
+) nebo vůbec.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Konzistence (Consistency)
+\series default
+ - Databáze je před a po zápisu konzistentní (tzn.
+ pokud převádíme X peněz z A do B, tak nemůže nastat, že odepíšeme X peněz
+ z A a nezapíšeme je do B) 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Izolovanost (Isolation)
+\series default
+ - Transakce je izolovaná v tom smyslu, že o jejích operacích nemůže vědět
+ další transakce.
+ Tudíž žádní transakce nemůže vědět, že běží paralerně nějaká jiná.
+ Transakce můžeme paralerizovat, nicméně jsou zde jistá omezení.
+ Izolovanost lze dosáhnout serializací transakcí (transakce A,B,C,...; spustíme
+ A, počkáme na dokončení; spustíme B, počkáme na dokončení....)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Trvalost (Durability)
+\series default
+ - Pokud se jednou zapíšou změny do konzistentní databáze, tak jsou trvale
+ uloženy a nemohou být ztraceny ani při výpadku.
+\end_layout
+
+\begin_layout Subsection*
+Stavy transakcí
+\end_layout
+
+\begin_layout Standard
+Představíme-li si transakci jako jednoduchý automat, tak může být v následujícíc
+h stavech:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Aktivní
+\series default
+ - Počáteční stav před transakcí.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Částečně potvrzená 
+\series default
+- Aktivuje se po dokončení poslední operace transakce.
+ Testujeme, zda-li byla úspěšná.
+ Pokud ano, přesuneme se do potvrzená, jinak do chybující.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Potvrzená
+\series default
+ - Transakce byla úspěšná, změny jsou trvalé (databáze je konzistentní).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Chybující
+\series default
+ - Transakce neproběhla úspěšně, nutný rollback databáze (do stavu před
+ transakcí).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Zrušená
+\series default
+ - Proběhl rollback, databáze je v konzistentním stavu před provedením transakce.
+ Transakci můžeme/nemusíme znovu spustit.
+\end_layout
+
+\begin_layout Standard
+TODO obrázek
+\end_layout
+
+\begin_layout Subsubsection*
+Implementace atomičnosti a trvanlivosti
+\end_layout
+
+\begin_layout Standard
+Používáme tzv.
+ 
+\series bold
+stínovou databázi
+\series default
+ - kopie celé původní databáze.
+ Transakci provádíme na stínové databázi.
+ Pokud je transakce úspěšná (tzn.
+ potvrzená), stínová se stane konzistentní a původní je smazána.
+ Tento postup je vhodný např.
+ pro textové editory (které si udržují kopii dokumentu pro případ výpadku
+ či špatného zavření aplikace) ale ne pro relační databáze.
+\end_layout
+
+\begin_layout Standard
+Mé řešení: Vytvoříme pouze kopii tabulek, se kterými nutně pracujeme (databáze
+ je navržená tak, že máme mnoho relačních tabulek malé velikosti).
+ Zde již umíme vytvořit jednoduše jejich stínovou kopii.
+ Po dokončení transakce (aby se stala potvrzenou), musíme atomicky (nebo
+ tak, aby při rollbacku po výpadku systém nahrál původní tabulky) nahradit
+ všechny původní tabulky námi vytvořenými stínovými kopiemi.
+\end_layout
+
+\begin_layout Subsubsection*
+Paralelní zpracování transakcí
+\end_layout
+
+\begin_layout Standard
+Zde vzniká problém transakcí využívající stejné tabulky databáze.
+ Můžeme provést tak, že jednotlivé tabulky budeme zamykat (něco ve stylu
+ zamykání mutexů), avšak musíme předejít tvorbě deadlocků (A čeká na B,
+ B čeká na A) - to se řeší zrušením jedné transakce.
+ Transakce pracující nad plně nezávislými tabulkami je možné s jistými omezeními
+ spustit paralerně.
+\end_layout
+
+\begin_layout Standard
+Paralelizace transakcí je řešena pomocí tzv.
+ plánů pořadí provádění operací v transakci.
+ Musí zachovávat pořadí zpracování operací, tak jak jsou v transakci.
+ Ideální plán je serializovatelný (dokážeme jej upravit tak, že jednotlivé
+ transakce serializujeme za sebou, viz výše).
+\end_layout
+
+\begin_layout Subsection*
+Základní principty vyhodnocování dotazů
+\end_layout
+
+\begin_layout Standard
+Máme několik kroků:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Lidská analýza dotazu
+\series default
+ - přeložení dotazu (transakce) např.
+ do relační algebry, otestování, zda-li je validní (sémantika) a má správnou
+ syntaxi.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Optimalizace
+\series default
+ - Nalezneme nejlevnější plán (nejrychlejší a nejméně áročný na výpoetní
+ výkon stroje) k provedení transakce.
+ Například porovnáme efektivitu následujících operací 
+\begin_inset Formula $\sigma_{jmeno="Novak"}(\Pi_{ucet.jmeno}(A))$
+\end_inset
+
+ a 
+\begin_inset Formula $\Pi_{ucet.jmeno}(\sigma_{jmeno="Novak"}(A))$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Vyhodnocení (evaluace)
+\series default
+ - Máme stroj, který na vstup vezme plán pro vyhodnocení dotazu, spustí
+ jej a vrátí výsledky dotazu.
+\end_layout
+
+\begin_layout Subsubsection*
+Míry nákladů dotazů
+\end_layout
+
+\begin_layout Standard
+Náklady můžeme měřit například v čase využití CPU, nebo počtu diskových
+ operací apod.
+ Nejsnáze měříme přístupy na disk (tzn.
+ přenosy bloků dat v rámci disku apod.) a tyto náklady většinou převažují
+ (disk je nejpomalejší jednotka, nejslabší IO).
+\end_layout
+
+\begin_layout Standard
+Další možností, jak měřit náklady dotazů, je matematický odhad složitosti.
+\end_layout
+
+\begin_layout Standard
+Máme vnitřní spojení (SQL: inner join) 
+\begin_inset Formula $\bowtie$
+\end_inset
+
+, kdy dvě n-tice z tabulek 
+\begin_inset Formula $a,b$
+\end_inset
+
+ se spojí, pokud splňují podmínku 
+\begin_inset Formula $f:D(a)\times D(b)\rightarrow\{0,1\}$
+\end_inset
+
+.
+ Je-li inner join implementováno jako 2 nested loops (dva vnořené cykly),
+ kdy při každém průchodu cyklem ověřujeme podmínku 
+\begin_inset Formula $f$
+\end_inset
+
+ a pokud platí, přidáme právě ověřované n-tice do výsledku.
+\end_layout
+
+\begin_layout Standard
+Naměříme, že ověření podmínky stojí čas 
+\begin_inset Formula $t_{f}=2$
+\end_inset
+
+, iterace v jedné tabulce 
+\begin_inset Formula $t_{i}=1$
+\end_inset
+
+ a přidání nového záznamu čas 
+\begin_inset Formula $t_{+}=3$
+\end_inset
+
+, pak odhad nákladů (nejhorší možnost) na tuto operaci je následující: 
+\begin_inset Formula $N=|a|*|b|*(t_{f}+t_{i}+t_{+})$
+\end_inset
+
+ (známe-li velikost tabulek a, b, můžeme vyčíslit).
+\end_layout
+
+\begin_layout Subsection*
+Indexace
+\end_layout
+
+\begin_layout Standard
+Vyhledávání položek v rámci velké databáze je pomalé - výhodnější je využít
+ tzv.
+ indexaci.
+ Tzn.
+ pro každou hodnotu (nebo určitou podskupinu se společnými prvky) existuje
+ index na její záznam.
+ Takto je možné indexy držet v paměti a efektivněji vyhledávat v rámci databáze.
+ Často stačí v paměti držet jen určitou podmnožinu klíčů (viz.
+ například B+ stromy).
+\end_layout
+
+\begin_layout Standard
+Forma indexu: 
+\series bold
+{ vyhledávací klíč; ukatel na záznam }
+\end_layout
+
+\begin_layout Standard
+Typy indexů:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Řádné indexy
+\series default
+ - Máme husté a řídké indexy.
+ Pro 
+\series bold
+husté indexy 
+\series default
+platí, že musí existovat alespoň jeden index pro každý záznam, který má
+ stejný primární klíč (například máme tabulku adres, primární klíč je ulice;
+ hustá indexace vytvoří indexy pro každou ulici).
+ U 
+\series bold
+řídkých indexů 
+\series default
+naopak platí, že u záznamů se stejným primárním klíčem nemusí existovat
+ unikátní index.
+ Řídké indexy se používají pouze tam, kde jsou záznamy uspořádány (tzn.
+ jeden řídký index odkazuje na skupinu záznamů adres, které jsou uspořádány
+ lexikograficky podle počátečního písmene; řídký klíč máme pro každé X-té
+ písmeno abecedy).
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Stromové indexy 
+\series default
+- viz B+ stromy
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Hashovací indexy 
+\series default
+- viz hashování
+\end_layout
+
+\begin_layout Subsubsection*
+B+ stromy
+\end_layout
+
+\begin_layout Standard
+Více v otázce č.
+ 17.
+ B+ stromy.
+\end_layout
+
+\begin_layout Standard
+B+ strom je stromová datová struktura, která má následující pravidla:
+\end_layout
+
+\begin_layout Itemize
+Záznamy (hodnoty) jsou umístěny pouze v listech, klíče jsou ve vnitřních
+ uzlech a kořenu.
+\end_layout
+
+\begin_layout Itemize
+Listy mají minimálně 
+\begin_inset Formula $\left\lfloor \frac{N}{2}\right\rfloor -1$
+\end_inset
+
+ záznamů a maximálně 
+\begin_inset Formula $N-1$
+\end_inset
+
+ záznamů.
+\end_layout
+
+\begin_layout Itemize
+Vnitřní uzly mohou odkazovat na minimálně 
+\begin_inset Formula $\left\lfloor \frac{N}{2}\right\rfloor $
+\end_inset
+
+ a maximálně 
+\begin_inset Formula $N$
+\end_inset
+
+ uzlů (potomků).
+\end_layout
+
+\begin_layout Itemize
+Všechny listy jsou stejné úrovně.
+\end_layout
+
+\begin_layout Itemize
+Hodnoty v listech jsou uspořádány.
+\end_layout
+
+\begin_layout Standard
+Vkládání a obrázky viz.
+ otázka č.
+ 17.
+\end_layout
+
+\begin_layout Subsubsection*
+Hashování
+\end_layout
+
+\begin_layout Standard
+Více v otázce č.
+ 16.
+ hashovací tabulka.
+\end_layout
+
+\begin_layout Standard
+Hashovací funkce je ve tvaru 
+\begin_inset Formula $hash:\,N\rightarrow D$
+\end_inset
+
+, kde N je libovolně dlouhý vstup a D je výstup fixní délky (klíč).
+\end_layout
+
+\begin_layout Standard
+Hashovací funkce má několik žádaných vlastností:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Determinismus
+\series default
+ (pro vstup X vrací vždy výstup Y)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Minimum kolizí
+\series default
+ (tedy chceme hashovací funkci, která má pro libovolnou doménu vstupů minimum
+ kolizí)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Rychlost
+\series default
+ (časová složitost max.
+ asymptoticky lineární vůči délce vstupu)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Pokrývá prostor 
+\begin_inset Formula $R_{D}$
+\end_inset
+
+ rovnoměrně
+\series default
+ (tzn.
+ výstupem hashovací funkce není pouze specifická oblast výstupu)
+\end_layout
+
+\begin_layout Standard
+Hodnoty se vkládají podle klíče do tabulky fixní velikosti (většinou).
+ Může se stát, že hashovací funkce vrací pro dvě stejné hodnoty jeden společný
+ klíč (hashovací funkce není injektivní!), tento případ se nazývá kolize.
+\end_layout
+
+\begin_layout Standard
+Časové složistosti vkládání/hledání/odstranění jsou amortizovaně konstantní,
+ tj.
+ v některých případech (kolize) musíme lineárně prohledávat podprostor tabulky.
+\end_layout
+
+\begin_layout Subsubsection*
+Řešení kolizí:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Zřetězení záznamů 
+\series default
+- hashovací tabulka má pro každý klíč odkaz na zřetězený seznam (linked
+ list), kde se ukládají hodnoty se stejným klíčem.
+ Při hledání či odstranění hodnoty však musíme lineárně tento seznam projít
+ (avšak v rámci hashovací tabulky se jedná o amortizovaně konstantní časovou
+ složitost).
+ Pokud hashovací funkce má mnoho kolizí, může se stát, že zřetězené seznamy
+ se stanou obrovskými a hashovací tabulka bude neefektivní.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Otevřená adresace (lineární hashování, linear probing)
+\series default
+ - Nastane-li pro dva klíče kolize, tak se pro nově přidávaný klíč vypočítá
+ nová adresa (např.
+ ke klíči přičteme jedničku).
+ Vzniká problém shlukování (veškeré klíče jsou v jedné oblasti).
+ Při hledání a odstraňování prvků z tabulky musíme lineárně procházet její
+ podprostor až do té doby, dokud nenarazíme na klíč jiný.
+ Při odstranění musíme označit speciálním symbolem, aby algoritmus věděl,
+ že v posloupnosti dále existují hodnoty se stejným klíčem.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Double hashing (dvojité hashování)
+\series default
+ - Máme dvě hashovací funkce, jedna je primární a druhá je sekundární.
+ Výpočet hashe se počítá podle následujícího vzorce: 
+\begin_inset Formula $hash(x,i)=[primaryhash(x)+i*secondaryhash(x)]\,mod\,|T|$
+\end_inset
+
+.
+ Proměnná i označuje čítač (neúspěšného) hashování.
+ Tj.
+ sekundární hashovací funkce se využije pouze v případech, kdy funkce primaryhas
+h(x) vrací klíč, který je již obsazen.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Dynamické zřetězení záznamů
+\series default
+ - K výpočtu adresy se použije pouze prvních i bitů.
+ Toto i se dynamicky mění v závislosti na počtu prvků.
+ Jeli tabulka řídká, je i nízké a naopak.
+ Pokud dochází k tomu, že zřetězené seznamy se zaplňují, tak dojde ke štěpení
+ - zvýší se proměnná i a probíhá rehash (lineární záznamy se změnší, je
+ jich však více).
+\end_layout
+
+\end_body
+\end_document
