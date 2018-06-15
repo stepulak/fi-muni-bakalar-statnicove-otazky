@@ -1,0 +1,641 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+SQL
+\end_layout
+
+\begin_layout Standard
+SQL = structured query language, jazyk pro tvorbu dotazů nad SQL (relační)
+ databází.
+ 
+\end_layout
+
+\begin_layout Standard
+Jazyk SQL se dělí do čtyř základních skupin:
+\end_layout
+
+\begin_layout Itemize
+DDL (Data Definition Language) - pro tvorbu, aktualizaci a úpravu tabulek
+\end_layout
+
+\begin_layout Itemize
+DML (Data Manipulation Language) - pro manipulaci s tabulkami
+\end_layout
+
+\begin_layout Itemize
+DCL (Data Control Language) - správa transakcí, řízení a údržba databáze
+ (ROLLBACK, COMMIT apod.)
+\end_layout
+
+\begin_layout Itemize
+speciální příkazy
+\end_layout
+
+\begin_layout Subsection*
+Syntaxe a sémantika příkazů
+\end_layout
+
+\begin_layout Standard
+Syntaxe jazyka SQL je psána anglicky, je operátory a klíčová slova SQL je
+ vhodné psát velkými písmeny.
+ Komentáře začínají dvěma pomlčkami 
+\begin_inset Formula $--$
+\end_inset
+
+.
+ SQL má celkem 7 typů operátorů:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+=,<=,>=,<>,<,>
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+BETWEEN
+\series default
+ interval rozsahu hodnot (BETWEEN 1 AND 50)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+LIKE
+\series default
+ shoda s nějakým vzorem (řetězec LIKE 
+\begin_inset Quotes eld
+\end_inset
+
+Karel%
+\begin_inset Quotes erd
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+IN
+\series default
+ součástí n-tice hodnot (hodnota in (1,2,3,4))
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+IS, IS NOT
+\series default
+ slouží k porovnání s NULL (jmeno IS NOT NULL)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+AS
+\series default
+ přejmenování během SQL dotazu (SELECT jmeno AS jmeno_uzivatele)
+\end_layout
+
+\begin_layout Standard
+A dále mnoho dalších příkazů a klazulí:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+FROM
+\series default
+ - Výběr řádků z konkrétní tabulky.
+ Příklad: SELELECT jmeno, prijmeni FROM uzivatele.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+DISTINCT
+\series default
+ - eliminuje duplikáty (výstupem SQL dotazu není množina ale multimnožina!).
+ Například: SELECT DISTINCT * FROM Y.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+WHERE
+\series default
+ - Podmínková klauzule, vybírá takové řádky, které splňují podmínku.
+ Příklad: SELECT jmeno FROM uzivatele WHERE jmeno LIKE 
+\begin_inset Quotes eld
+\end_inset
+
+Karel%
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+ORDER BY
+\series default
+ - Seřazení výstupu podle parametru.
+ Příklad: SELECT * FROM uzivatele ORDER BY zustatek_na_uctu ASC (výstupem
+ je tabulka uživatelů seřazené vzestupně podle zůstatku peněz na účtu).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+GROUP BY
+\series default
+ - V principu se jedná o rozkouzkování tabulky (dotazu) do samostatných
+ skupin podle určitého atributu.
+ Například: SELECT AVG(cena), typ_polozky FROM nabidky GROUP BY typ_polozky
+ - Dotaz vrátí průměrnou cenu pro všechny typy různých položek v databázi
+ (tj.
+ máme-li v DB například: ovoce: 11, 24, 54; pecivo: 21, 3, 5, tak výstupem
+ bude: {{29.66, ovoce},{9.66, pecivo}}.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+JOIN
+\series default
+ - NATURAL JOIN, (INNER) JOIN, LEFT (OUTER) JOIN, RIGHT (OUTER) JOIN, FULL
+ (OUTER) JOIN.
+ Spojení dvou tabulek v SQL.
+ Více v otázce 09 - relační algebra.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+HAVING 
+\series default
+- Podobné jako WHERE, avšak se používá s agregačními funkcemi.
+ Například: SELECT COUNT(PocetNavstevniku), Misto FROM NarodniPamatky GROUP
+ BY Misto HAVING COUNT(PocetNavstevniku)>100 - Vrátí výstupy (dvojic počet
+ návštěvníků, místo) pro památky seskupené podle místa (může být unikátní),
+ kde počet návštěvíků je minimálně 101.
+\end_layout
+
+\begin_layout Subsection*
+Příkazy pro práci s tabulkami
+\end_layout
+
+\begin_layout Subsubsection*
+SELECT
+\end_layout
+
+\begin_layout Standard
+Většina SQL dotazů pro manipulaci s tabulkami (DML) jsou ve tvaru: SELECT
+ X FROM Y (WHERE P apod.) - výběr n-tic (řádků) ve tvaru X z tabulky Y podle
+ určité podmínky P.
+ Dále se na tento konstrukt 
+\begin_inset Quotes eld
+\end_inset
+
+nabalují
+\begin_inset Quotes erd
+\end_inset
+
+ další operátory a konstrukty, díky kterým dokážeme získat jiný výsledek.
+ Klauzule WHERE je optional, místo ní můžou být klauzule jiné.
+\end_layout
+
+\begin_layout Paragraph*
+Možné tvary X 
+\end_layout
+
+\begin_layout Standard
+Pokud za X dosadíme *, výstupem jsou řádky podle relačního schématu tabulky
+ Y.
+\end_layout
+
+\begin_layout Standard
+Můžeme vyjmenovat jednotlivé atributy (jenž jsou podmnožinou relačního schématu)
+, výstupem bude relace s novým relačním schématem X.
+\end_layout
+
+\begin_layout Standard
+Můžeme taky provést agregaci nad vybranými daty, více viz agregační funkce.
+\end_layout
+
+\begin_layout Subsubsection*
+Agregační funkce
+\end_layout
+
+\begin_layout Standard
+Máme několik agregačních funkcí, a to 
+\series bold
+COUNT, AVG, MIN, MAX, SUM
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+COUNT - spočítá počet záznamů (řádků) v tabulce.
+\end_layout
+
+\begin_layout Itemize
+AVG - spočítá průměrnou hodnotu atributu v tabulce.
+\end_layout
+
+\begin_layout Itemize
+MIN - vrátí minimální hodnotu atributu v tabulce.
+\end_layout
+
+\begin_layout Itemize
+MAX - vrátí maximální hodnotu atributu v tabulce.
+\end_layout
+
+\begin_layout Itemize
+SUM - spočítá sumu hodnot určitého atributu v tabulce.
+\end_layout
+
+\begin_layout Standard
+Příklady:
+\end_layout
+
+\begin_layout Standard
+SELECT SUM(stav_uctu) FROM zakaznici
+\end_layout
+
+\begin_layout Standard
+SELECT AVG(stav_uctu) FROM zakaznici
+\end_layout
+
+\begin_layout Standard
+SELECT MAX(stav_uctu) FROM zakaznici WHERE jmeno LIKE 
+\begin_inset Quotes eld
+\end_inset
+
+%Karel%
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+UPDATE
+\end_layout
+
+\begin_layout Standard
+Upraví libovolný počet záznamů v jedné tabulce.
+ Syntaxe ve tvaru UPDATE tabulka SET atribut1 = hodnota1, ...
+ WHERE podmínka.
+ Pokud není specifikována podmínka, vykonají se úpravy pro atributy na všech
+ řádcích.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Příklad
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+Přičteme 500Kč na každý účet v bance, který je starší 1 roku:
+\end_layout
+
+\begin_layout Standard
+UPDATE zakaznici SET stav_uctu = stav_uctu + 500 W WHERE datum_zalozeni
+ < NOW() - 1 YEAR
+\end_layout
+
+\begin_layout Subsubsection*
+DELETE
+\end_layout
+
+\begin_layout Standard
+Smaže libovolný počet záznamů z jedné tabulky.
+ Syntaxe je ve tvaru DELETE FROM tabule WHERE podmínka.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Příklad
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+Odstraníme zákazníky, kteří mají záporný stav účtu (něco dluží):
+\end_layout
+
+\begin_layout Standard
+DELETE FROM zakaznici WHERE stav_uctu < 0
+\end_layout
+
+\begin_layout Subsubsection*
+INSERT
+\end_layout
+
+\begin_layout Standard
+Vloží záznam do tabulky.
+ Syntaxe ve tvaru INSERT INTO tabulka VALUES n-tice.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Příklad
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+INSERT INTO zakaznici VALUES (
+\begin_inset Quotes eld
+\end_inset
+
+stepan
+\begin_inset Quotes erd
+\end_inset
+
+,666,NOW())
+\end_layout
+
+\begin_layout Standard
+kdy tabulka zakaznici má relační schéma ve tvaru zakaznici=(jmeno_zakaznika,stav
+_uctu,datum_zalozeni).
+\end_layout
+
+\begin_layout Subsubsection*
+CREATE
+\end_layout
+
+\begin_layout Standard
+Vytvoří novou tabulku.
+ Syntax ve tvaru CREATE TABLE název_tabulky relační _schéma.
+\end_layout
+
+\begin_layout Standard
+Například: CREATE TABLE zakaznici (jmeno varchar(100) NOT NULL, stav_uctu
+ BIGINT NOT NULL, datum_zalozeni TIME PRIMARY KEY(jmeno))
+\end_layout
+
+\begin_layout Subsubsection*
+ALTER
+\end_layout
+
+\begin_layout Standard
+Úprava relačního schématu v databázi.
+ Syntax ve tvaru: 
+\end_layout
+
+\begin_layout Standard
+ALTER TABLE název_tabulky ADD název_atributu typ
+\end_layout
+
+\begin_layout Standard
+ALTER TABLE název_tabulky DROP COLUMN název atributu
+\end_layout
+
+\begin_layout Subsubsection*
+DROP
+\end_layout
+
+\begin_layout Standard
+Smazání tabulky.
+ Syntax ve tvaru: DROP TABLE název tabulky
+\end_layout
+
+\begin_layout Subsection*
+Triggery
+\end_layout
+
+\begin_layout Standard
+Triggery, nebo-li spouštěče, jsou specifické procedury, které se spustí,
+ pokud se aktivuje nějaká definovaná událost (event), jako například vložení
+ nebo smazání dat.
+ V hodně případech slouží triggery ke kontrole integrity databáze.
+\end_layout
+
+\begin_layout Standard
+CREATE TRIGGER název_triggeru ON tabulka FOR název_operace AS kód_triggeru
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+CREATE TRIGGER smaz_dluhy ON zakaznici FOR 
+\end_layout
+
+\begin_layout Standard
+TODO mrknout na internet
+\end_layout
+
+\begin_layout Subsection*
+Uložené procedury
+\end_layout
+
+\begin_layout Standard
+Procedura je v principu SQL funkce, která se může spouštět nad databází.
+ Procedura je ve tvaru posloupnosti SQL dotazů.
+ Můžou se dávkovat (spouštět za sebou).
+ Používání procedur oproti používání typických dotazům je rychlejší, neboť
+ pravidelná spuštění se optimalizují (vznikají plány pro výpočet) na základě
+ aktivity vyrovnávací paměti apod.
+\end_layout
+
+\begin_layout Standard
+Procedura má následující syntax:
+\end_layout
+
+\begin_layout Quotation
+CREATE PROCEDURE název_procedury (parametry) AS
+\end_layout
+
+\begin_layout Quotation
+BEGIN
+\end_layout
+
+\begin_layout Quotation
+posloupnost SQL dotazů
+\end_layout
+
+\begin_layout Quotation
+END
+\end_layout
+
+\begin_layout Standard
+Procedura se spouší pomocí příkazu: execute název_procedury.
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Quotation
+CREATE PROCEDURE najdi_odpoved_na_otazku_zivota_a_vesmiru(seznam_odpovedi)
+\end_layout
+
+\begin_layout Quotation
+AS BEGIN
+\end_layout
+
+\begin_layout Quotation
+SELECT DISTINCT * FROM seznam_odpovedi WHERE odpoved=
+\begin_inset Quotes erd
+\end_inset
+
+42
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quotation
+END
+\end_layout
+
+\begin_layout Subsection*
+Integritní omezení
+\end_layout
+
+\begin_layout Standard
+Integritní omezení jsou taková omezení, která zabraňují poškození databáze
+ a ztrátě konzistence.
+ Tyto omezení testují vkládané hodnoty.
+ Jsou definovány v rámci relačního schématu (pomocí příkazu CREATE TABLE
+ název_tabulky relační_schéma).
+\end_layout
+
+\begin_layout Paragraph*
+Druhy omezení:
+\end_layout
+
+\begin_layout Itemize
+NOT NULL - hodnota nemůže být NULL
+\end_layout
+
+\begin_layout Itemize
+UNIQUE - hodnota je unikátní v rámci atributu
+\end_layout
+
+\begin_layout Itemize
+PRIMARY KEY - NOT NULL 
+\begin_inset Formula $\wedge$
+\end_inset
+
+ UNIQUE
+\end_layout
+
+\begin_layout Itemize
+FOREIGN KEY - zajistí, aby hodnota odpovídala primárnímu klíči v jiné tabulce
+\end_layout
+
+\begin_layout Itemize
+CHECK - hodnota musí splňovat danou podmínku (máme tabulku alkoholiků a
+ integritní omezení je CHECK(age>=18))
+\end_layout
+
+\begin_layout Itemize
+DEFAULT - defaultní hodnota pro sloupec
+\end_layout
+
+\begin_layout Subsubsection*
+Referenční integrita
+\end_layout
+
+\begin_layout Standard
+Máme dvě tabulky, mezi kterými je vztah 1:1, nadřízenou a podřízenou, přičemž
+ záznamy nadřízené odbsahuje cizí klíč záznamu podřízené.
+ Referenční integrita vyžaduje, aby pokud existuje záznam v podřízené tabulce,
+ tak na ni musí odkazovat správný cizí klíč z tabulky nadřízené tak, aby
+ cizí klíč v nadřízené tabulce se rovnal primárnímu klíči tabulky podřízené.
+\end_layout
+
+\begin_layout Standard
+Jednoduše řečeno, cizí klíč v záznamu nadřízené tabulky musí být validní
+ (pokud není NULL) a musí existovat aspoň jeden cizí klíč ke každému záznamu
+ v tabulce podřízené.
+\end_layout
+
+\end_body
+\end_document
