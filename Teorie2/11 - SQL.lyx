@@ -1,4 +1,4 @@
-#LyX 2.3 created this file. For more info see http://www.lyx.org/
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
 \lyxformat 508
 \begin_document
 \begin_header
@@ -85,16 +85,27 @@ Jazyk SQL se dělí do čtyř základních skupin:
 \end_layout
 
 \begin_layout Itemize
-DDL (Data Definition Language) - pro tvorbu, aktualizaci a úpravu tabulek
+
+\series bold
+DDL (Data Definition Language)
+\series default
+ - pro tvorbu, aktualizaci a úpravu tabulek
 \end_layout
 
 \begin_layout Itemize
-DML (Data Manipulation Language) - pro manipulaci s tabulkami
+
+\series bold
+DML (Data Manipulation Language)
+\series default
+ - pro manipulaci s tabulkami
 \end_layout
 
 \begin_layout Itemize
-DCL (Data Control Language) - správa transakcí, řízení a údržba databáze
- (ROLLBACK, COMMIT apod.)
+
+\series bold
+DCL (Data Control Language)
+\series default
+ - správa transakcí, řízení a údržba databáze (ROLLBACK, COMMIT apod.)
 \end_layout
 
 \begin_layout Itemize
@@ -494,19 +505,48 @@ Triggery, nebo-li spouštěče, jsou specifické procedury, které se spustí,
 \end_layout
 
 \begin_layout Standard
-CREATE TRIGGER název_triggeru ON tabulka FOR název_operace AS kód_triggeru
+CREATE TRIGGER název_triggeru ON tabulka FOR název_operace (INSERT, DELETE,
+ SELECT) AS kód_triggeru
 \end_layout
 
 \begin_layout Standard
-Příklad:
+Příklad, jednoduchý logovací trigger:
 \end_layout
 
-\begin_layout Standard
-CREATE TRIGGER smaz_dluhy ON zakaznici FOR 
+\begin_layout Quotation
+CREATE TRIGGER log_insert ON uzivatele FOR INSERT AS
 \end_layout
 
-\begin_layout Standard
-TODO mrknout na internet
+\begin_layout Quotation
+BEGIN
+\end_layout
+
+\begin_layout Quotation
+SELECT @id FROM inserted
+\end_layout
+
+\begin_layout Quotation
+INSERT INTO log_table VALUES (
+\begin_inset Quotes eld
+\end_inset
+
+User with id 
+\begin_inset Quotes eld
+\end_inset
+
+ + id + 
+\begin_inset Quotes eld
+\end_inset
+
+logged into system
+\begin_inset Quotes erd
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Quotation
+END
 \end_layout
 
 \begin_layout Subsection*

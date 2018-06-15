@@ -411,6 +411,45 @@ Tato operace přejmenuje atributy a jméno stávajícího relačního schématu
 Agregační funkce
 \end_layout
 
+\begin_layout Standard
+Nebo-li taky souhrnná funkce.
+ Provádí matematické operace všemi hodnotami specifkovaného atributu.
+ Psáno ve tvaru: 
+\begin_inset Formula $_{GROUP\_BY}G_{AGG(ATRIBUT)}(E)$
+\end_inset
+
+.
+ Je ekvivalentní s SQL dotazem: SELECT AGG(atribut) FROM E GROUP BY GROUP_BY.
+ Neuvádíme-li atribut GROUP_BY (pro skupinkování řádků podle určitého atributu),
+ můžeme agregační funkci psát ve tvaru 
+\begin_inset Formula $AGG_{ATRIBUT}(E)$
+\end_inset
+
+.
+ Agregační funkce jsou AVG, SUM, COUNT, MIN, MAX.
+\end_layout
+
+\begin_layout Standard
+Příklady:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $E=\begin{array}{cccc}
+A & B & C & D\\
+1 & 2 & 5 & 6\\
+1 & 2 & 7 & 8\\
+3 & 4 & 5 & 6\\
+3 & 4 & 7 & 8
+\end{array}$
+\end_inset
+
+, 
+\begin_inset Formula $_{D}G_{SUM(A)}(E)=\{4,4\}$
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection*
 Spojení relace
 \end_layout

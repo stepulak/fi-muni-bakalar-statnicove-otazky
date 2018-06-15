@@ -121,7 +121,7 @@ Lichá
 
 \begin_layout Enumerate
 Prostá (neboli injektivní) 
-\begin_inset Formula $\forall a,b\in D_{f}:\,f(a)\neq f(b)$
+\begin_inset Formula $\forall a,b\in D_{f}:a\neq b\Rightarrow f(a)\neq f(b)$
 \end_inset
 
 .
@@ -510,21 +510,21 @@ Pomocí tohoto pravidla dokážeme vypočítat limitu ve tvaru podílu polynomů
 Vzorce limit
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 \begin_inset Formula $\underset{x\rightarrow0}{lim}\frac{sin(x)}{x}=1$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 \begin_inset Formula $\underset{x\rightarrow0}{lim}\frac{e^{x}-1}{x}=1$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 \begin_inset Formula $\underset{x\rightarrow+\infty}{lim}\frac{sin(x)}{x}=0$
 \end_inset
 
@@ -586,84 +586,84 @@ Parciální derivace funkce f o více proměnných je její derivace vzhledem
 Pravidla derivování
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 \begin_inset Formula $y=c,\,y'=0$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 \begin_inset Formula $y=x,\,y'=1$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 \begin_inset Formula $y=x^{n},\,y'=nx^{n-1}$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 \begin_inset Formula $y=n^{x},\,y'=n^{x}ln(n)$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 \begin_inset Formula $y=ln(x),\,y'=\frac{1}{x}$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 \begin_inset Formula $y=log_{n}(x),\,y'=\frac{1}{x*ln(n)}$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 \begin_inset Formula $y=e^{x},\,y'=e^{x}$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 \begin_inset Formula $y=sin(x),\,y'=cos(x)$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 \begin_inset Formula $y=cos(x),\,y'=-sin(x)$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 \begin_inset Formula $y=sin(x),\,y'=cos(x)$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 \begin_inset Formula $y=arcsin(x),\,y'=\frac{1}{\sqrt{1-x^{2}}}$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 \begin_inset Formula $y=arccos(x),\,y'=-arcsin(x)$
 \end_inset
 
@@ -944,84 +944,84 @@ Výpočet itegrálu
 Vzorce
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 \begin_inset Formula $\intop0dx=C$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 \begin_inset Formula $\intop1dx=x+C$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 \begin_inset Formula $\intop x^{n}dx=\frac{x^{n+1}}{n+1}+C$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 \begin_inset Formula $\intop x^{n}dx=\frac{x^{n+1}}{n+1}+C$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 \begin_inset Formula $\intop\frac{1}{x}dx=ln(x)+C$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 \begin_inset Formula $\intop cos(x)dx=sin(x)+C$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 \begin_inset Formula $\intop sin(x)dx=-cos(x)+C$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset Formula $\intop\frac{1}{sin^{2}(x)}(x)dx=-cotg(x)+C$
+\begin_layout Itemize
+\begin_inset Formula $\intop\frac{1}{sin^{2}(x)}dx=-cotg(x)+C$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset Formula $\intop\frac{1}{cos^{2}(x)}(x)dx=tg(x)+C$
+\begin_layout Itemize
+\begin_inset Formula $\intop\frac{1}{cos^{2}(x)}dx=tg(x)+C$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset Formula $\intop e^{x}(x)dx=e^{x}+C$
+\begin_layout Itemize
+\begin_inset Formula $\intop e^{x}dx=e^{x}+C$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset Formula $\intop a^{x}(x)dx=\frac{a^{x}}{ln(a)}+C$
+\begin_layout Itemize
+\begin_inset Formula $\intop a^{x}dx=\frac{a^{x}}{ln(a)}+C$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 \begin_inset Formula $\int\frac{1}{\sqrt{A^{2}-x^{2}}}dx=arcsin(\frac{x}{A})+C$
 \end_inset
 
