@@ -1,4 +1,4 @@
-#LyX 2.3 created this file. For more info see http://www.lyx.org/
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
 \lyxformat 508
 \begin_document
 \begin_header
@@ -224,10 +224,6 @@ Zrušená
  Transakci můžeme/nemusíme znovu spustit.
 \end_layout
 
-\begin_layout Standard
-TODO obrázek
-\end_layout
-
 \begin_layout Subsubsection*
 Implementace atomičnosti a trvanlivosti
 \end_layout
@@ -417,13 +413,13 @@ Typy indexů:
 husté indexy 
 \series default
 platí, že musí existovat alespoň jeden index pro každý záznam, který má
- stejný primární klíč (například máme tabulku adres, primární klíč je ulice;
- hustá indexace vytvoří indexy pro každou ulici).
+ stejný indexační klíč (například máme tabulku adres, indexační klíč je
+ ulice; hustá indexace vytvoří indexy pro každou ulici).
  U 
 \series bold
 řídkých indexů 
 \series default
-naopak platí, že u záznamů se stejným primárním klíčem nemusí existovat
+naopak platí, že u záznamů se stejným indexační klíčem nemusí existovat
  unikátní index.
  Řídké indexy se používají pouze tam, kde jsou záznamy uspořádány (tzn.
  jeden řídký index odkazuje na skupinu záznamů adres, které jsou uspořádány
