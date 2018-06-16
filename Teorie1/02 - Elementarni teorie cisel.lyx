@@ -1350,8 +1350,10 @@ Lineární kód je typ blokového kódu pro detekci a opravu chyb.
 \end_inset
 
 .
- Neformální definice: Lineární kód je kód, kde lineární kombinace dvou a
- více kódových slov je opět kódové slovo.
+ Neformální definice: 
+\series bold
+Lineární kód je kód, kde lineární kombinace dvou a více kódových slov je
+ opět kódové slovo.
 \end_layout
 
 \begin_layout Standard

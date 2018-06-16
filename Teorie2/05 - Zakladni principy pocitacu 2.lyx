@@ -491,8 +491,146 @@ CISC
  Příklad: Intel x86
 \end_layout
 
+\begin_layout Subsubsection*
+Vyrovnávací paměť (CACHE)
+\end_layout
+
+\begin_layout Standard
+Slouží jako meziodkládání dat mezi pamětí RAM a procesorem (středněrychlá
+ paměť).
+ Odkládají se data, u kterých se předpokládá, že budou v následujících instrukcí
+ch využita (sekvenční zpracování), nebo jsou často využívaná.
+ Realizace pomocí LRU (Least Recenly Used) tabulky.
+\end_layout
+
+\begin_layout Paragraph*
+LRU
+\end_layout
+
+\begin_layout Standard
+Tabulka s velikostí NxN pro N bloků paměti.
+ Je oddělená po diagonále z pravého horního rohu do levého dolního rohu.
+ Pokud je daný blok používaný, zapíšeme jedničky do i-tého řádku, a do i-tého
+ sloupce nuly.
+ Nejdéle nepoužívaný blok paměti je ten, který ma nejvíce nul ve sloupci.
+\end_layout
+
 \begin_layout Subsection*
 Přerušení
+\end_layout
+
+\begin_layout Standard
+Přerušení je jedno z fází procesoru.
+ Je to tedy jakýsi mechanismus pro ošetřování vzniklých událostí.
+ Mezi tyto události patří například stisknutí tlačítka na klávesnici, dokončení
+ určité IO operace skrze DMA, scheduler apod.
+ Pozor, neplést s hardware pollingem (což je automatické zjišťování stavu,
+ například polohy myši apod.).
+\end_layout
+
+\begin_layout Standard
+Procesor má ve svém speciálním registru i tzv.
+ Interrupt table (tabulku přerušení), kde jsou umístěné adresy funkcí, které
+ se pro konkrétní přerušení volají (z hlediska event-driven programování
+ se jedná o callbacky).
+\end_layout
+
+\begin_layout Paragraph*
+Průběh přerušení:
+\end_layout
+
+\begin_layout Enumerate
+Přerušení procesoru, právě prováděné instrukce.
+\end_layout
+
+\begin_layout Enumerate
+Uložení registrů a dalších důležitých dat na zásobník a zakáže další přerušení.
+\end_layout
+
+\begin_layout Enumerate
+Obsloužení přerušení.
+\end_layout
+
+\begin_layout Enumerate
+Návrat z přerušení, načtení registrů a vrácení se do přerušené úlohy.
+\end_layout
+
+\begin_layout Enumerate
+Pokračování v normální práci
+\end_layout
+
+\begin_layout Subsubsection*
+Typy přerušení
+\end_layout
+
+\begin_layout Paragraph*
+Non-maskable interrupt (nemaskovatelné přerušení) - NMI
+\end_layout
+
+\begin_layout Standard
+Hardwarové přerušení.
+ Pocházi z vnějších periferií.
+ Nemůže být ignorováno.
+ Do procesoru jsou doručována skrze řadiče přerušení (speciální obvod, který
+ dokáže priorizovat různé typy přerušení).
+\end_layout
+
+\begin_layout Paragraph*
+Maskable interrupt (maskovatelné přerušení) - IRQ (interrupt request)
+\end_layout
+
+\begin_layout Standard
+Hardwarové přerušení, které však může být ignorováno (CLI).
+ Do procesoru doručováno taky skrze řadič přerušení.
+ Existuje několik typů (IRQ0 - IRQ 16), většinou reprezentují přerušení
+ časovače nebo IO zařízení.
+\end_layout
+
+\begin_layout Paragraph*
+Softwarové přerušení
+\end_layout
+
+\begin_layout Standard
+Vzniká pomocí instrukce INT (interrupt).
+ Toto přerušení může vyvolat programátor (program), slouží pro vyvolání
+ služeb operačního systému, například chceme zavolat určité systémové volaní
+ z API jádra OS.
+ Toto přerušení může být ignorováno (CLI).
+ Po přerušení se zpracování přepne do tzv.
+ kernel mode (privilegovaný stav; můžeme spustit každou instrukci, neexistuje
+ kontrola zápisu do virtuální paměti).
+\end_layout
+
+\begin_layout Subsubsection*
+Průběh hardwarového přerušení
+\end_layout
+
+\begin_layout Enumerate
+Hardware vyžádá přerušení a pošle požadavek na řadič přerušení.
+\end_layout
+
+\begin_layout Enumerate
+Řadič přerušení oznámí procesoru, že je dostupné přerušení.
+\end_layout
+
+\begin_layout Enumerate
+Procesor vyžádá identifikaci zařízení.
+\end_layout
+
+\begin_layout Enumerate
+Řadič vydá identifikaci zařízení, odešle typ přerušení.
+\end_layout
+
+\begin_layout Enumerate
+Uložení stavyvých informací na zásobník, zakaž další přerušení.
+\end_layout
+
+\begin_layout Enumerate
+Najdi v interrupt table callback a vyřiď přerušení.
+\end_layout
+
+\begin_layout Enumerate
+Obnov přerušenou úlohu a pokračuj v práci.
 \end_layout
 
 \end_body

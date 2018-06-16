@@ -1275,7 +1275,7 @@ Diferenciální rovnice
 \end_layout
 
 \begin_layout Standard
-Diferenciální rovnice je rovnice (vztah) mezi funkcí a její derivací.
+Diferenciální rovnice je rovnice, kde se vyskytuje nějaká derivace.
  Pokud má funkce pouze jednu proměnnou, jedná se o 
 \series bold
 obyčejnou
@@ -1292,6 +1292,7 @@ parciální
 
 \series bold
 Za řešení rovnice považujeme každou funkci, která rovnici splňuje.
+ Řešení je tedy integrál.
 
 \series default
  Obecné řešení je rovnice i s konstanou (tzn.
@@ -1313,7 +1314,7 @@ Ta je ve tvaru
 \begin_inset Formula $y'=f(x,y)$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Paragraph*
