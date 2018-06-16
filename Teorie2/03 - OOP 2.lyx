@@ -707,12 +707,925 @@ Vec _vec;
 Spolupráce objektů
 \end_layout
 
+\begin_layout Standard
+Ve Smalltalku, kde každý objekt má svůj stav, komunikace probíhá skrze předávání
+m zpráv.
+ V imperativních jazycích je tato metoda trochu odlišná.
+ Předávat informace můžeme hlavně skrze různé metody objektu, například:
+\end_layout
+
+\begin_layout Quotation
+class A {
+\end_layout
+
+\begin_layout Quotation
+public:
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+void sendMessage(const string& message) { _msg = message; /*Dale zpracuj
+ message*/ }
+\end_layout
+
+\begin_layout Quotation
+private:
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+string _msg;
+\end_layout
+
+\begin_layout Quotation
+};
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quotation
+class B {
+\end_layout
+
+\begin_layout Quotation
+public:
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+string getMessage() const { return 
+\begin_inset Quotes eld
+\end_inset
+
+Zprava z B
+\begin_inset Quotes erd
+\end_inset
+
+; }
+\end_layout
+
+\begin_layout Quotation
+};
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quotation
+class C {
+\end_layout
+
+\begin_layout Quotation
+private:
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+A a;
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+B b;
+\end_layout
+
+\begin_layout Quotation
+public:
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+void changeMessages();
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quotation
+};
+\end_layout
+
+\begin_layout Quotation
+// Predavani neprimo
+\end_layout
+
+\begin_layout Quotation
+A a;
+\end_layout
+
+\begin_layout Quotation
+B b;
+\end_layout
+
+\begin_layout Quotation
+a.sendMessage(b.getMessage());
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quotation
+// Skrz proxy
+\end_layout
+
+\begin_layout Quotation
+C c;
+\end_layout
+
+\begin_layout Quotation
+c.changeMessages();
+\end_layout
+
+\begin_layout Standard
+Jeden objekt může držet instance druhých a následně volat jejich metody:
+\end_layout
+
+\begin_layout Quotation
+class OFile {
+\end_layout
+
+\begin_layout Quotation
+public:
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+OFile& operator<<(const string& m) { /*zapis do souboru*/ } // pretizeny
+ operator
+\end_layout
+
+\begin_layout Quotation
+};
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quotation
+class IFile {
+\end_layout
+
+\begin_layout Quotation
+public:
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+IFile& operator>>(string& m) { /* precti ze souboru */ }
+\end_layout
+
+\begin_layout Quotation
+};
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quotation
+class FileLineSwapper {
+\end_layout
+
+\begin_layout Quotation
+public:
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+void SwapLine() { string s; ifile >> s; ofile << s; }
+\end_layout
+
+\begin_layout Quotation
+private:
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+OFile ofile(...);
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+IFile ifile(...);
+\end_layout
+
+\begin_layout Quotation
+};
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quotation
+FileLineSwapper fls;
+\end_layout
+
+\begin_layout Quotation
+fls.SwapLine();
+\end_layout
+
+\begin_layout Quotation
+...
+\end_layout
+
+\begin_layout Standard
+Nebo předávat objekty skrze reference v rámci metod nebo zapisovat přímo
+ do atributů (nicméně porušujeme zapouzdření):
+\end_layout
+
+\begin_layout Standard
+class B {
+\end_layout
+
+\begin_layout Standard
+public:
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+bool condition = false;
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+string getMessage() const { return 
+\begin_inset Quotes eld
+\end_inset
+
+zprava z B
+\begin_inset Quotes erd
+\end_inset
+
+; }
+\end_layout
+
+\begin_layout Standard
+};
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+class A {
+\end_layout
+
+\begin_layout Standard
+public:
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+void useObj(B& b) { b.getMessage(); b.condition = true; }
+\end_layout
+
+\begin_layout Standard
+};
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A a; B b;
+\end_layout
+
+\begin_layout Standard
+a.useObj(b);
+\end_layout
+
 \begin_layout Subsection*
 Událostmi řízené programování
 \end_layout
 
+\begin_layout Standard
+Neboli event driven programming, je speciální programovací paradigma, kdy
+ se volají uživatelsky (programátorsky) definované 
+\series bold
+callback
+\series default
+ funkce pro různé události (například stisknutí klávesnice, kliknutí na
+ myši, připojení USB zařízení apod.).
+\end_layout
+
+\begin_layout Standard
+Architektura event-driven aplikace je většinou následující: Máme jeden cyklus,
+ který ověřuje různé stavy (tj.
+ pokud chci znát, jestli se stiskla nějaká klávesa, zeptám se operačního
+ systému).
+ Pokud daný stav je platný a existuje pro něj callback funkce, zavolám ji
+ a předám parametr stisklé klávesy.
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Quotation
+while(app.Running()) {
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+int key = OS.PressedKey();
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+if (key >= 0) {
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+keyCallback.Invoke(key);
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+}
+\end_layout
+
+\begin_layout Quotation
+}
+\end_layout
+
+\begin_layout Standard
+Event-driven programování se většinou používá při vývoji GUI aplikací (WinForms,
+ WPF).
+ Programátor si pouze napíše obslužné funkce pro různé eventy aplikační
+ logiky, které potřebuje zpracovat (stisknutí tlačítka v menu, posun vertikálníh
+o scrollbaru myší apod.).
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Jádro
+\begin_inset Quotes erd
+\end_inset
+
+ aplikace již řeší samo, zda-li nějaká definovaná událost nastala.
+\end_layout
+
+\begin_layout Standard
+Callbacky můžeme definovat například i jako lambda funkce:
+\end_layout
+
+\begin_layout Quotation
+App.SetCallback(CallbackType::MouseDown, 
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+[&](int mouseX, int mouseY) { 
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+/* zpracuj mys */
+\end_layout
+
+\begin_layout Quotation
+});
+\end_layout
+
 \begin_layout Subsection*
 Vyjímky
+\end_layout
+
+\begin_layout Standard
+Vyjímky představují mechanismus, jak jednoduše a poměrně rychle (dnes již
+ s konstantní časovou složitostí) zpracovávat chybové stavy a neočekávané
+ stavy programu.
+ Při zpracování vyjímek používáme hlavně dva nejdůležitější konstrukty,
+ a to je 
+\series bold
+throw
+\series default
+ a
+\series bold
+ try-catch
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+Klíčové slovo throw 
+\begin_inset Quotes eld
+\end_inset
+
+vyhodí vyjímku
+\begin_inset Quotes erd
+\end_inset
+
+, tj.
+ nějaký objekt (či primitivní hodnotu).
+ Při vyhození tato vyjímka 
+\begin_inset Quotes eld
+\end_inset
+
+probublává
+\begin_inset Quotes erd
+\end_inset
+
+ (při poderní implementaci vyjímek toto není pravda) stackem zpátky, než
+ narazí na konstrukt try-catch, který zachycuje příslušný typ vyjímky.
+ Pokud na konstrukt nenarazí a 
+\begin_inset Quotes eld
+\end_inset
+
+probublá
+\begin_inset Quotes erd
+\end_inset
+
+ celým programem, tak skončí i program s danou vyjímkou.
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Quotation
+try {
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+FuncThatThrow();
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+// Zde je kod, ktery se nevykona
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+int a = 5;
+\end_layout
+
+\begin_layout Quotation
+}
+\end_layout
+
+\begin_layout Quotation
+catch (const exception& e) {
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+ cout << e.what() << endl;
+\end_layout
+
+\begin_layout Quotation
+}
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quotation
+void FuncThatThrow() {
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset space ~
+\end_inset
+
+throw runtime_error(
+\begin_inset Quotes eld
+\end_inset
+
+error
+\begin_inset Quotes erd
+\end_inset
+
+); // runtime_error je potomek exception
+\end_layout
+
+\begin_layout Quotation
+}
+\end_layout
+
+\begin_layout Standard
+Implementace vyjímek: dříve pomocí longjmp/setjmp instrukcí, dnes pomocí
+ Ithanium Exception ABI (kompilátor generuje tabulku callbacků pro každé
+ místo v programu, kde může vyjímka vzniknout).
+\end_layout
+
+\begin_layout Standard
+Příklady vyjímek:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/cpp_exceptions.jpg
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
 \end_layout
 
 \end_body

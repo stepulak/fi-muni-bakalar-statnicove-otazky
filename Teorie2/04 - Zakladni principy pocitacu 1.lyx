@@ -1,0 +1,1151 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Základní principy počítačů 1
+\end_layout
+
+\begin_layout Subsection*
+Číselné soustavy
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Polyadická
+\series default
+ číselná soustava je ve tvaru polynomu:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $číslo=a_{n}z^{n}+a_{n-1}z^{n-1}+\ldots+a_{0}z^{0}$
+\end_inset
+
+, kde 
+\begin_inset Formula $z$
+\end_inset
+
+ je tzv.
+ základ (10, 2, 16, 8, apod.).
+\end_layout
+
+\begin_layout Paragraph*
+Příklady číselných soustav používající se v IT:
+\end_layout
+
+\begin_layout Itemize
+Dvojková soustava (binární): 
+\begin_inset Quotes eld
+\end_inset
+
+abecedou
+\begin_inset Quotes erd
+\end_inset
+
+ je {0,1}
+\end_layout
+
+\begin_layout Itemize
+Osmičková (oktalová): 0-7
+\end_layout
+
+\begin_layout Itemize
+Šestnáctková (hexadecimální): 0-15 (0-9,A-F)
+\end_layout
+
+\begin_layout Subsection*
+Převody mezi číselnými soustavami
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $BIN\rightarrow OCT$
+\end_inset
+
+: Každou trojici po sobě jdoucích číslic převedeme jednoduše do jedné číslice
+ osmičkové soustavy, příklad: 
+\begin_inset Formula $001011101_{2}\rightarrow135_{8}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $OCT\rightarrow BIN$
+\end_inset
+
+: Inverzní operace, každou číslici z osmičkové soustavy převedeme do tří
+ číslic binární soustavy, příklad: 
+\begin_inset Formula $742_{8}\rightarrow111100010_{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $BIN\rightarrow HEX$
+\end_inset
+
+: Každé čtyři číslice převedeme do jedné číslice hexadecimální, příklad:
+ 
+\begin_inset Formula $1110010111110001_{2}\rightarrow D5F1_{16}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $HEX\rightarrow BIN$
+\end_inset
+
+: Každou číslici hexadecimální soustavy převedeme na čtyři binární číslice,
+ příklad: 
+\begin_inset Formula $FAC9_{16}\rightarrow1111101011001001_{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $OCT\rightarrow HEX$
+\end_inset
+
+: Složený převod z 
+\begin_inset Formula $OCT\rightarrow BIN$
+\end_inset
+
+, 
+\begin_inset Formula $BIN\rightarrow HEX$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $HEX\rightarrow OCT$
+\end_inset
+
+: Složený převod z 
+\begin_inset Formula $HEX\rightarrow BIN$
+\end_inset
+
+, 
+\begin_inset Formula $BIN\rightarrow HEX$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $DEC\rightarrow BIN,OCT,HEX$
+\end_inset
+
+: Do nového čísla přidáme číslici 
+\begin_inset Formula $Č_{10}\,mod\,Z$
+\end_inset
+
+, (Z je základ čísla, na které převádíme, tj.
+ 2,8,16); poté provedeme 
+\begin_inset Formula $Č_{10}=\left\lfloor Č_{10}/Z\right\rfloor $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $BIN,OCT,HEX\rightarrow DEC$
+\end_inset
+
+: Každou číslici vynásobíme základem (čísla, které převádíme) umocněného
+ na pozici číslice.
+ Pak tyto číslice sečteme a máme číslo v decimální soustavě.
+\end_layout
+
+\begin_layout Standard
+Pár příkladů:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $15119_{10}\rightarrow HEX:\,3B0F$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Quotation
+15119 mod 16 = 
+\series bold
+15 (F)
+\series default
+, 15119 / 16 = 944
+\end_layout
+
+\begin_layout Quotation
+944 mod 16 = 
+\series bold
+0
+\series default
+, 944 / 16 = 59
+\end_layout
+
+\begin_layout Quotation
+59 mod 16 =
+\series bold
+ 11 (B)
+\series default
+ 59 / 16 = 3
+\end_layout
+
+\begin_layout Quotation
+3 mod 16 = 
+\series bold
+3
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $5478_{10}\rightarrow BIN:\,1010101100110_{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quotation
+5478 mod 2 = 
+\series bold
+0
+\series default
+, 5478 / 2 = 2739
+\end_layout
+
+\begin_layout Quotation
+2739 mod 2 = 
+\series bold
+1
+\series default
+, 2739 / 2 = 1369
+\end_layout
+
+\begin_layout Quotation
+1396 mod 2 = 
+\series bold
+1
+\series default
+, 1369 / 2 = 684
+\end_layout
+
+\begin_layout Quotation
+684 mod 2 = 
+\series bold
+0
+\series default
+, 684 / 2 = 342
+\end_layout
+
+\begin_layout Quotation
+342 mod 2 = 
+\series bold
+0
+\series default
+, 342 / 2 = 171
+\end_layout
+
+\begin_layout Quotation
+171 mod 2 = 
+\series bold
+1
+\series default
+, 171 / 2 = 85
+\end_layout
+
+\begin_layout Quotation
+85 mod 2 = 
+\series bold
+1
+\series default
+, 85 / 2 = 42
+\end_layout
+
+\begin_layout Quotation
+42 mod 2 = 
+\series bold
+0
+\series default
+, 42 / 2 = 21
+\end_layout
+
+\begin_layout Quotation
+21 mod 2 = 
+\series bold
+1
+\series default
+, 21 / 2 = 10
+\end_layout
+
+\begin_layout Quotation
+10 mod 2 = 
+\series bold
+0
+\series default
+, 10 / 2 = 5
+\end_layout
+
+\begin_layout Quotation
+5 mod 2 = 
+\series bold
+1
+\series default
+, 5 / 2 = 2
+\end_layout
+
+\begin_layout Quotation
+2 mod 2 = 
+\series bold
+0
+\series default
+, 2 / 2 = 1
+\end_layout
+
+\begin_layout Quotation
+1 mod 2 = 
+\series bold
+1
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $AF06_{16}\rightarrow DEC:\,6*16^{0}+0*16^{1}+15*16^{2}+10*16^{3}=44806_{10}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $74561_{8}\rightarrow DEC:\,1*8^{0}+6*8^{1}+5*8^{2}+4*8^{3}+7*8^{4}=31089_{10}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+\begin_inset Formula $EFCAE_{16}\rightarrow OCT:\,011101111110010101110_{2}\rightarrow6256753_{2}^{R}\rightarrow3576526_{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Desetinná čísla u binárního čísla
+\end_layout
+
+\begin_layout Standard
+Máme číslo v desítkové soustavě: 
+\begin_inset Formula $X,Y_{10}$
+\end_inset
+
+, kde X je celočíselná část a Y je desetinná.
+ Pro převod do binární soustavy platí, že celočíselná část X se převádí
+ jak jsme zvyklí (viz výše) a desetinná tak, že se Y násobí dvojkou a pokud
+ násobek přesáhne jedničku, přidáme jedničku na konec binárního rozvoje
+ a od Y ji odečteme, jinak nic neodečítáme a na konec bin.
+ rozvoje přidáme nulu.
+\end_layout
+
+\begin_layout Standard
+Postup odpovídá polyadickému zápisu: 
+\begin_inset Formula $Y=z^{-1}+\ldots+z^{-n}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $12,2_{10}\rightarrow BIN$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Celočíselná část je ve tvaru: 1100
+\end_layout
+
+\begin_layout Standard
+Desetinná: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $0,2*2=0,4\rightarrow0,$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $0,4*2=0,8\rightarrow0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $0,8*2=1,6\rightarrow1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $0,6*2=1,2\rightarrow1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $0,2*2=0,4\rightarrow0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Vidíme periodické opakování 0011, tudíž číslo 
+\begin_inset Formula $12,2_{10}\rightarrow1100,\overline{0011}_{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Další příklad:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $0,40625_{10}\rightarrow BIN:\,0,01101_{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Desetinný rozvoj:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $0,40625*2=0,8125\rightarrow0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $0,8125*2=1.625\rightarrow1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $0,625*2=1,25\rightarrow1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $0,25*2=0,5\rightarrow0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $0,5*2=1\rightarrow1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $0*2=0\rightarrow0...$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Zobrazení čísel v počítači
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Čísla bez znaménka (unsigned)
+\series default
+ zobrazíme klasicky, pro binární číslo s N číslicemi budeme potřebovat N
+ bitů.
+ Takové číslo má rozsah: 
+\begin_inset Formula $<0,2^{n}-1>$
+\end_inset
+
+.
+
+\series bold
+ Čísla se znaménkem (signed)
+\series default
+ můžeme zobrazit několika způsoby: 
+\end_layout
+
+\begin_layout Paragraph*
+Přímý kód
+\end_layout
+
+\begin_layout Standard
+První bit symbolizuje záporné znaménko (0 = +, 1 = -).
+ Rozsah hodnot je tedy 
+\begin_inset Formula $<-2^{n-1}+1,2^{n-1}-1>$
+\end_inset
+
+.
+ Problém dvou nul (-0, +0).
+ Příklad: 11: 01011, -11: 11011.
+ 
+\end_layout
+
+\begin_layout Paragraph*
+Inverzní kód
+\end_layout
+
+\begin_layout Standard
+Záporné číslo získáme inverzí bitů daného kladného čísla (v C se jedná o
+ operátor 
+\begin_inset Formula $\sim$
+\end_inset
+
+).
+ 
+\begin_inset Formula $co-N=-N$
+\end_inset
+
+ (tj například 5: 0101; -5: 1010).
+ Záporné číslo poznáme podle jedničky na začátku.
+ Máme stále dvě nuly (samé binární jedničky nebo samé binární nuly).
+ Rozsah stejný jako u přímého kódu.
+ 
+\end_layout
+
+\begin_layout Paragraph*
+Doplňkový kód
+\end_layout
+
+\begin_layout Standard
+Záporné číslo získáme dvojkovým doplňkem kladného čísla (tj.
+ inverze bitů, přičtení jedničky).
+ Problém dvou nul odpadá.
+ Rozsah zobrazení je 
+\begin_inset Formula $<-2^{n-1},2^{n-1}-1>$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Příklady:
+\end_layout
+
+\begin_layout Standard
+4: 0100, -4: 1011+1=1100
+\end_layout
+
+\begin_layout Standard
+7: 0111, -7: 1000+1=1001
+\end_layout
+
+\begin_layout Subsubsection*
+Reálná čísla ukládaná v počítači
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+IEEE 754
+\series default
+ je standard pro ukládání 32b reálných čísel (C, C++, Java: float) nebo
+ 64b reálných čísel (C, C++, Java: double).
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Číslo je ve tvaru:
+\series default
+ 
+\begin_inset Formula $\pm1,MANTISA*2^{(EXP-127)}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Bitové rozložení 32b bitového čísla:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="7">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\pm$
+\end_inset
+
+1b
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Exponent 8b
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mantisa 23b
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Mantisa je v přímém kódu.
+ Exponent je v kódu s posunutou nulou (aditivní kód), báze posunutí je 
+\begin_inset Formula $2^{7}-1=127$
+\end_inset
+
+.
+ Tudíž z každé hodnoty exponentu musíme odečíst hodnotu 127 (Exponent-127).
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Příklad
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+Chceme převést číslo 45,45 do IEEE 754.
+\end_layout
+
+\begin_layout Standard
+Nejprve převedeme celočíselnou část do binární soustavy:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $45_{10}=101101_{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Desetinná část se převede následovně:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $0,45*2=0,9\rightarrow0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $0,9*2=1,8\rightarrow1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $0,8*2=1,6\rightarrow1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $0,6*2=1,2\rightarrow1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $0,2*2=0,4\rightarrow0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $0,4*2=0,8\rightarrow0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $0,8*2=1,6\rightarrow1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+...
+\end_layout
+
+\begin_layout Standard
+Vidíme, že desetinný rozvoj je ve tvaru: 
+\begin_inset Formula $,01\overline{1100}_{2}$
+\end_inset
+
+, tudíž 
+\begin_inset Formula $45,45_{10}=101101,01\overline{1100}_{2}$
+\end_inset
+
+.
+ Nyní číslo převedeme do IEEE 754.
+\end_layout
+
+\begin_layout Standard
+Víme, že číslo je ve tvaru 
+\begin_inset Formula $\pm1,mantisa*2^{(exp-127)}$
+\end_inset
+
+, tudíž neprve upravíme plovoucí desetinnou čárku.
+ 
+\begin_inset Formula $101101,01\overline{1100}_{2}=1,0110101\overline{1100}_{2}*2^{5}$
+\end_inset
+
+.
+ Mantisu máme, nyní vypočítáme exponent.
+ Musí platit, že 
+\begin_inset Formula $exp-127=5\Rightarrow exp=132$
+\end_inset
+
+.
+ Exponent bude v binární soustavě odpovídat 
+\begin_inset Formula $10000100_{2}$
+\end_inset
+
+.
+ Teď již můžeme zabalit celé číslo dohromady:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula $0_{S}10000100_{EXP}01101011100110011001100_{M}$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Standard
+kde S značí konec znamínkového bitu, EXP konec exponentu a M konec mantisy.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Další příklad
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+Chceme převést číslo -10.75 do IEEE 754.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $10_{10}=1010_{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $0.75*2=1,5\rightarrow1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $0,5*2=1\rightarrow1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $0*2=0\rightarrow0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+...
+\end_layout
+
+\begin_layout Standard
+V binární soustavě je ekvivalentní číslo 
+\begin_inset Formula $-10.75_{10}=-1010,11_{2}$
+\end_inset
+
+.
+ Nyní převedeme do IEEE 754.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $1010,11_{2}=1,01011_{2}*2^{3}$
+\end_inset
+
+.
+ Znaménkový bit je 1, neboť se jedná o záporné číslo.
+ Pro exponent platí: 
+\begin_inset Formula $(exponent-127)=3\Rightarrow exponent=130=10000010_{2}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Finální podoba čísla -10.75 je následující:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula $11000001001011000000000000000000_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Příklad pro opačný převod:
+\end_layout
+
+\begin_layout Standard
+Máme číslo 
+\begin_inset Formula $0_{S}10001100_{E}11001001000000000000000_{M}$
+\end_inset
+
+ v IEEE 754 a chceme převést do desítkové soustavy.
+\end_layout
+
+\begin_layout Standard
+Vidíme, že znaménkový bit je nula, tudíž je číslo kladné.
+ Exponent je 
+\begin_inset Formula $10001100_{2}=128+8+4=140$
+\end_inset
+
+.
+ Nicméně reálné hodnota je jiná, neboť se jedná o aditivní kód.
+ 
+\begin_inset Formula $140-127=13$
+\end_inset
+
+.
+ První čísla mantisy jsou ve tvaru: 
+\begin_inset Formula $,11001001_{2}=1*2^{-1}+1*2^{-2}+1*2^{-5}+1*2^{-8}=,7890625$
+\end_inset
+
+.
+ Výsledné číslo je tedy 
+\begin_inset Formula $1,7890625*2^{13}=14656_{10}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Další příklad pro opačný převod:
+\end_layout
+
+\begin_layout Standard
+Máme číslo v IEEE 754: 
+\begin_inset Formula $00111111111011000000000000000000$
+\end_inset
+
+.
+ Exponent je ekvivalentní 
+\begin_inset Formula $01111111_{2}=127\Rightarrow127-127=0$
+\end_inset
+
+.
+ Mantisa je 
+\begin_inset Formula $,11011_{2}=2^{-1}+2^{-2}+2^{-4}+2^{-5}=,84375$
+\end_inset
+
+.
+ Výsledek v decimální soustavě je tedy ve tvaru: 
+\begin_inset Formula $1,84375*2^{0}=1,84375$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+Principy provádění aritmetických operací
+\end_layout
+
+\begin_layout Subsubsection*
+Sčítání v doplňkovém kódu
+\end_layout
+
+\begin_layout Standard
+Bity sčítáme normálně, přenos bitu ze znaménkové pozice se ignoruje.
+\end_layout
+
+\begin_layout Subsubsection*
+Sčítání v inverzním kódu
+\end_layout
+
+\begin_layout Standard
+Problém dvou nul, nutné provádět tzv.
+ kruhový přenos, tzn.
+ pokud přeteče poslední bit, přičteme ho k výsledku na začátek.
+\end_layout
+
+\begin_layout Subsubsection*
+Sčítání v přímém kódu
+\end_layout
+
+\begin_layout Standard
+Nutné provést explicitní korekci.
+\end_layout
+
+\begin_layout Subsubsection*
+Odčítání
+\end_layout
+
+\begin_layout Standard
+Ekvivalentní součtu se záporným číslem.
+\end_layout
+
+\begin_layout Subsubsection*
+Násobení
+\end_layout
+
+\begin_layout Standard
+Podobně jako v desítkové soustavě (pod sebou).
+ Sčítáme jednotlivé řádky posunutý o jeden bit.
+\end_layout
+
+\begin_layout Subsubsection*
+Dělení
+\end_layout
+
+\begin_layout Standard
+Podobně jako v desítkové soustavě.
+\end_layout
+
+\end_body
+\end_document
