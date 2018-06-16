@@ -1,0 +1,499 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Základní principy počítačů 2
+\end_layout
+
+\begin_layout Subsection*
+Von Neumannova architektura
+\end_layout
+
+\begin_layout Standard
+Tato architektura (koncept) počítače se skládá z nekolik jednotek:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Operační paměť
+\series default
+ - Obsahuje načtený program (jeho instrukce), zpracovávaná data a výsledky
+ výpočtů.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+ALU
+\series default
+ - 
+\series bold
+Aritmeticko Logická Jednotka
+\series default
+ - Obsahuje součástky, provádějící aritmetické a logické výpočty
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Řadič
+\series default
+ - Řídí činnost všech ostatních jednotek.
+ Posílá řídící signály a zpracovává přijaté stavy od ostatních.
+ V jednoduchém případě je realizována např.
+ sekvenčním obvodem.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Vstupní zařízení
+\series default
+ - Obsahuje program a vstupní data, které se nakopírují do operační paměti
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Výstupní zařízení
+\series default
+ - Zde se překopírují výsledky, které program zpracoval
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/von_neumann.png
+	lyxscale 50
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Spojíme-li ALU a řadič do jednoho, vzniká jednotka CPU (Central processing
+ unit).
+ Von Neumannova architektura nepočítá s multitaskingem, nebo s více než
+ jedním procesorem (či více ALU).
+ Tudíž zpracování programů je sekvenční, nedá se paralelizovat.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Harwardská archiktektura
+\series default
+ oproti Von Neumannově fyzicky odděluje program a jeho data.
+ Tím můžeme paralelně přistupovat k programu i datům.
+ V některých vestavěných systémech se používá pro program paměť ROM (read-only-m
+emory), tudíž jej nemůžeme přepsat.
+\end_layout
+
+\begin_layout Standard
+Klasifikace moderních strojů je komplikovaná, víme, že instrukce programu
+ a jeho paměť je logicky oddělené od sebe, nicméně stále sdílí samostatný
+ fyzický prostor.
+ Tudíž nemůžeme moderní stroje klasifikovat jako čistě Harwardskou nebo
+ Von Neumannovu.
+\end_layout
+
+\begin_layout Subsection*
+Principy práce procesoru
+\end_layout
+
+\begin_layout Standard
+Nejjednodušší procesor se skládá z 
+\series bold
+ALU
+\series default
+, 
+\series bold
+řadiče
+\series default
+, 
+\series bold
+registrů
+\series default
+ a 
+\series bold
+sběrnice
+\series default
+.
+ Moderní procesor obsahuje taky FPU (Float point unit), více ALU či dokonce
+ jader (z toho plynou samostatné registry, ALU, FPU apod.
+ pro každé jádro).
+\end_layout
+
+\begin_layout Standard
+Výkon jednojádrového procesoru je většinou charakterizován 
+\series bold
+taktem (frekvencí)
+\series default
+ procesoru, což je ve velmi zjednodušeném principu rychlost provádění instrukcí.
+ Výpočet instrukce však může trvat klidně i několik taktů.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Formát instrukce:
+\series default
+ 
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+název instrukce
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $operand_{1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+...
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Fáze procesoru:
+\end_layout
+
+\begin_layout Itemize
+výběr kódu instrukce z paměti
+\end_layout
+
+\begin_layout Itemize
+výběr operandu/ů z paměti
+\end_layout
+
+\begin_layout Itemize
+provedení instrukce
+\end_layout
+
+\begin_layout Itemize
+přerušení
+\end_layout
+
+\begin_layout Subsubsection*
+Registry procesoru
+\end_layout
+
+\begin_layout Standard
+Registr procesoru je interní, velmi rychlá pamět procesoru, nad kterou může
+ procesor provádět aritmeticko logické operace.
+ Příklady registrů (x86):
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+obecné registry
+\series default
+ (pro různé aritmeticko logické výpočty, práce s pamětí)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+AX
+\series default
+ (accumulate register) - pro AL výpočty
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+DX
+\series default
+ (data register) - pro výpočty a IO
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+CX
+\series default
+ (count register) - pro různé cykly a AL
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+BX
+\series default
+ (base register) - AL a ukazatel na data
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+SP
+\series default
+ (stack pointer) - ukazatel na konec zásobníku
+\end_layout
+
+\begin_layout Itemize
+aj.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+speciální registry
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+IR
+\series default
+ (instruction register) - ukazatel na následující instrukci
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+EFLAGS
+\series default
+ register - obsahuje výsledky AL operací apod.
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection*
+
+\series bold
+Ukládání bytů do paměti
+\end_layout
+
+\begin_layout Itemize
+Big-Endian - hodnotu 
+\begin_inset Formula $ABCDEF_{16}$
+\end_inset
+
+ uloží do paměti tak, jak ji čteme (od největšího po nejmejší): 
+\begin_inset Formula $AB|CD|EF$
+\end_inset
+
+.
+ Architektury: Sparc.
+ 
+\end_layout
+
+\begin_layout Itemize
+Little-Endian - hodnota 
+\begin_inset Formula $ABCDEF_{16}$
+\end_inset
+
+ je v paměti uložena naopak (od nejmenšího po největší): 
+\begin_inset Formula $EF|CD|AB$
+\end_inset
+
+.
+ Architektura: Intel x86.
+\end_layout
+
+\begin_layout Subsubsection*
+Dělení podle šířky sběrnice a velikosti registrů
+\end_layout
+
+\begin_layout Itemize
+16 bitové (8086)
+\end_layout
+
+\begin_layout Itemize
+32 bitové (386 aj)
+\end_layout
+
+\begin_layout Itemize
+64 bitové (x64)
+\end_layout
+
+\begin_layout Subsubsection*
+Instrukce procesoru
+\end_layout
+
+\begin_layout Itemize
+LDA (Load A) - čtení z paměti, LDA 100h
+\end_layout
+
+\begin_layout Itemize
+STA (Store A) - zápis do paměti, STA 120h
+\end_layout
+
+\begin_layout Itemize
+JMP adresa - nepodmíněný skok
+\end_layout
+
+\begin_layout Itemize
+CMP x y - porovnání ekvivalence dvou hodnot, nastavení příznaků do EFLAGS
+ (dále můžeme podmíněně skákat)
+\end_layout
+
+\begin_layout Itemize
+MOV do, z - přesun hodnoty mezi registry
+\end_layout
+
+\begin_layout Itemize
+ADD registr - přičtení registru do registru A
+\end_layout
+
+\begin_layout Itemize
+INR registr - inkrement registru
+\end_layout
+
+\begin_layout Itemize
+PUSH/POP registr - uložení hodnoty na zásobník
+\end_layout
+
+\begin_layout Itemize
+CALL, RET - volání funkce, return
+\end_layout
+
+\begin_layout Itemize
+apod.
+\end_layout
+
+\begin_layout Subsubsection*
+Dělení architektur podle instrukčních sad
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+RISC
+\series default
+ (Reduced Instruction Set Computer) - malá instrukční sada (pouze základy),
+ snadnější implementace, vysoce optimalizovatelné, horší psaní v assembleru.
+ Příklad: ARM, Sparc.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+CISC
+\series default
+ (Complex Instruction Set Computer) - velká instrukční sada, horší implementace,
+ snadnější psaní v assembleru.
+ Příklad: Intel x86
+\end_layout
+
+\begin_layout Subsection*
+Přerušení
+\end_layout
+
+\end_body
+\end_document
