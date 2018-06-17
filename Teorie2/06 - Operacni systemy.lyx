@@ -1,0 +1,535 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Operační systémy
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Operační systém
+\series default
+ - soustava rutin, které komunikují s hardwarem a poskytují API (skrze syscalls)
+ a prostředí pro uživatelské programy.
+\end_layout
+
+\begin_layout Standard
+Operační systém se skládá z jádra (kernelu) a systémových aplikací, jenž
+ jsou nutné pro plné fungování operačního systému.
+\end_layout
+
+\begin_layout Subsection*
+Architektury operačních systémů
+\end_layout
+
+\begin_layout Subsubsection*
+Generické komponenty operačního systému (jádra)
+\end_layout
+
+\begin_layout Itemize
+Správa procesorů - CPU
+\end_layout
+
+\begin_layout Itemize
+Správa procesů - Plánování procesů skrze scheduler, řešení uváznutí.
+\end_layout
+
+\begin_layout Itemize
+Správa (virtuální) paměti - 
+\end_layout
+
+\begin_layout Itemize
+Správa IO - 
+\end_layout
+
+\begin_layout Itemize
+Správa souborů (VFS)
+\end_layout
+
+\begin_layout Itemize
+Networking
+\end_layout
+
+\begin_layout Itemize
+Ovladače
+\end_layout
+
+\begin_layout Itemize
+apod.
+\end_layout
+
+\begin_layout Subsubsection*
+Architektura jader
+\end_layout
+
+\begin_layout Standard
+Jádro = vrstva programů, rutin a algoritmů, které komunikují a řídí hardware
+ a poskytují API a prostředí pro systémové/aplikační programy.
+\end_layout
+
+\begin_layout Paragraph*
+Monolitické
+\end_layout
+
+\begin_layout Standard
+Veškeré generické komponenty jsou součástí jádra a běží v jednom paměťovém
+ prostoru (
+\series bold
+kernel space
+\series default
+; privilegovaný režim).
+ Komunikace mezi jádrem a aplikacemi je řešeno skrze tzv.
+
+\series bold
+ systémové volání
+\series default
+ (fork, open, write, close, exec, exit, kill apod.).
+ Je výkonné, avšak objemné.
+ Náročnější na údržbu.
+ Může být modulárně založené.
+ Příklady monolitických jader: Linux, BSD
+\end_layout
+
+\begin_layout Paragraph*
+Mikrokernel
+\end_layout
+
+\begin_layout Standard
+Součástí jádra je pouze několik základních algoritmů (tj.
+ ty, které běží v kernel space), jako je například IPC (inter process communicat
+ion), správa virtuální paměti, správa procesů.
+ Vše ostatní běží v user-space, například aplikační IPC, ovladače, správa
+ souborového systému apod (označovány jako tzv.
+ servery).
+ Složitější na implementaci.
+ Příklady: GNU Hurd, Minix.
+\end_layout
+
+\begin_layout Paragraph*
+Hybridní jádro
+\end_layout
+
+\begin_layout Standard
+Na pomezí monolitického jádra a mikrojádra.
+ Aplikační IPC a správce ovladačů běží v kernelspace.
+ Příklady: Windows NT, XNU (OS X).
+\end_layout
+
+\begin_layout Subsubsection*
+Virtualizace
+\end_layout
+
+\begin_layout Standard
+Označení pro operační systém, nebo pracovní prostředí, schopné běžet simultálně
+ s dalším virtuálním strojem na jednom fyzickém počítači.
+ Virtuální software (neboli hypervisor) je program, který toto umožňuje.
+\end_layout
+
+\begin_layout Standard
+Máme několik typů virtualizací:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Plná virtualizace
+\series default
+ - několik různých operačních systémů může běžet paralelně na jednom stroji.
+ Nutná podpora hardwaru (Intel VX, AMD V).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Emulace API
+\series default
+ - emulujeme pouze systémové volání daného jádra.
+ Například projekt Wine.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Emulace hardware
+\series default
+ - Stroj emuluje hardware, na kterém pak běží daný operační systém.
+ Například DosBox (x86 emulator).
+\end_layout
+
+\begin_layout Subsection*
+API operačních systémů
+\end_layout
+
+\begin_layout Standard
+API = 
+\series bold
+application programming interface
+\series default
+.
+ Rozhraní funkcí, procedur a tříd, které může programátor využívat.
+ Operační systém poskytuje své API skrze tzv.
+ systémové volání.
+ Na ty jsou nabaleny různé wrappery, například Windows API, libc (glibc)
+ apod.
+ Díky tomu může programátor snadněji psát aplikace a může je taky jednoduše
+ přenášet.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+POSIX
+\series default
+ (portable operating system interface) - rozhraní pro (hlavně) API unixových
+ operačních systémů, které mělo zajistit přenositelnost.
+ Definuje rozhraní pro práci s procesy, vlákny, signály, apod.
+\end_layout
+
+\begin_layout Subsection*
+Periferie, jejich správa a ovladače
+\end_layout
+
+\begin_layout Standard
+Periferie = všechen hardware, který je mimo hlavní komponenty (CPU, paměť,
+ sběrnice apod.).
+ Označuje tedy komponenty jako GPU, disky, aj.
+\end_layout
+
+\begin_layout Subsubsection*
+Ovladač
+\end_layout
+
+\begin_layout Standard
+Speciální software, který zpřístupňuje komunikaci s určitým typem hardwaru
+ s operačním systémem.
+ Ovladač je psán na míru operačního systému, většinou není plně přenositelný.
+ S hardwarem komunikuje pomocí speciálních sběrnic, s operačním systémem
+ skrze předem definované rozhraní.
+\end_layout
+
+\begin_layout Standard
+V Linuxu jsou ovladače součástí jádra (monolitická architektura), tudíž
+ ovladač je v principu jaderný modul (.ko) a běží v kernel space.
+ Potenciální chyba tak může shodit celý systém.
+ Můžou se dynamicky spouštět/zastavovat.
+\end_layout
+
+\begin_layout Subsubsection*
+Proces
+\end_layout
+
+\begin_layout Standard
+Proces je spuštěný program.
+ Jedná se tedy o nějakou instanci programu (aktivní entita) v určitém stavu.
+ Operační systém je zodpovědný za vytváření procesů (fork), přepínání mezi
+ nimi a plánování (scheduling).
+ Proces přepínání procesů po krátkých intervalech na stejném hardwaru se
+ nazývá scheduling.
+ Proces může mít několik vláken - samostatné vnitřní instance výpočtu uvnitř
+ procesu.
+\end_layout
+
+\begin_layout Standard
+Každý proces se skládá z několik částí - 
+\series bold
+sekvence instrukcí (kód programu), statické datové sekce, zásobníku, haldy
+\series default
+ apod.
+\end_layout
+
+\begin_layout Paragraph*
+Přepínání kontextu (context switching)
+\end_layout
+
+\begin_layout Standard
+Přepínání mezi vlákny (procesy) v rámci operačního systému.
+ Realizováno pomocí plánovaných přerušení (maskable) pomocí hardwarového
+ časovače.
+ Plánováno skrze plánovače procesů, scheduler.
+ Při přepínání mezi procesy je nutné uložit stav procesu (registry a instruction
+ pointer) na zásobník a načíst stav procesu nového.
+ Přepínání procesů je realizovatelné jen v rámci kernel-mode režimu.
+\end_layout
+
+\begin_layout Standard
+Context switching je obecně velmi drahé (až 50 000 instrukcí v rámci moderních
+ OS), proto je důležité odhadnout poměr mezi přiděleným časem konkrétnímu
+ procesu a času nutného na přepínání (více viz schedulery).
+\end_layout
+
+\begin_layout Subsubsection*
+Stavy procesu
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+nový (forked)
+\series default
+ - proces je právě vytvořený, ještě nebyl spuštěný
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+ready
+\series default
+ - čeká na přidělení procesorového času
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+waiting
+\series default
+ - čeká na nějakou událost (například na dokončení druhého procesu, zámek,
+ apod.)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+running
+\series default
+ - proces je právě zpracovávaný na CPU
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+ukončený
+\series default
+ - proces je zrušen, však je stále ještě identifikovaný
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/process_state.png
+	lyxscale 50
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Vlákna (thread)
+\end_layout
+
+\begin_layout Standard
+V rámci procesu se jedná o samostatnou instanci výpočtu části programu.
+ Proces může mít několik samostatně běžících vláken, pak hovoříme o multithreadi
+ngu.
+ Pokud má proces pouze jedno vlákno, pak proces=vlákno.
+ Každé vlákno má vlastní zásobník, instruction pointer apod.
+ Tvorba a přepínání vláken v rámci procesu je rychlejší, než mezi samostatnými
+ procesy.
+ Pokud vlákno zrovna neběží, je jeho stav uložen v 
+\series bold
+TBC
+\series default
+ (
+\series bold
+thread control block
+\series default
+).
+\end_layout
+
+\begin_layout Paragraph*
+Struktura TCB:
+\end_layout
+
+\begin_layout Itemize
+id vlákna
+\end_layout
+
+\begin_layout Itemize
+ukazatel na zásobník
+\end_layout
+
+\begin_layout Itemize
+instruction pointer
+\end_layout
+
+\begin_layout Itemize
+stav vlákna
+\end_layout
+
+\begin_layout Itemize
+registry
+\end_layout
+
+\begin_layout Itemize
+ukazatel na process control block (PCB)
+\end_layout
+
+\begin_layout Subsubsection*
+Typy vláken
+\end_layout
+
+\begin_layout Standard
+Modely M:M, M:1, 1:1.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+User-level thread (ULT) 
+\series default
+- Implementováno uživateli (v rámci nějaké knihovny, např.
+ .NET), rychlejší context switching, není potřeba hardwarové podpory, vhodné
+ pro asynchronní operace v rámci aplikace.
+ Příklady: POSIX threads, .NET threads
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Kernel-level thread (KLT) 
+\series default
+- Implementováno v rámci OS, context switching je drahý, plánování skrze
+ scheduler, nutná hardwarové podpora, mohou běžet opravdu paralelně.
+\end_layout
+
+\begin_layout Subsection*
+Synchronizace procesů a vláken
+\end_layout
+
+\begin_layout Standard
+Máme-li proces a více vláken, které přistupují ke sdíleným paměťovým zdrojům
+ (do tzv.
+ 
+\series bold
+kritické sekce
+\series default
+), je nutné vlákna synchronizovat.
+ Pro kritickou sekci platí, že k ní nemůže přistupovat dvě a více procesů
+ současně.
+ Pokud nějaké vlákno žádá o přístup do kritické sekce, operační systém (či
+ knihovna) mu v tom nemůžou bránit nekonečně dlouho.
+ Soupeří-li dva a více vláken o kritickou sekci, musíme zajistit spravedlivé
+ přistupování do KS, tzn.
+ jedno vlákno nemůže přistupovat neustále a druhé jen čekat.
+\end_layout
+
+\begin_layout Standard
+Synchronizace vláken pro kritickou sekci je možné řešit pomocí několika
+ synchronizačních technik:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+lock
+\series default
+ (zámek) - Dokáže uzamknout kritickou sekci tak, že do ní vstoupí pouze
+ jeden proces.
+ Viz.
+ operátor lock z C# nebo lock_guard z C++ (obalený mutex v RAII).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+mutex
+\series default
+ - Stejné jako mutex, avšak může být sdílen v rámci několika procesů.
+ Speciální případ semaforu(1,1).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+semafor
+\series default
+ - Obsahuje čítač, podle kterého povoluje přístup ke KS X procesům současně.
+ Má čítač a nad ním operace 
+\series bold
+up
+\series default
+ a 
+\series bold
+down
+\series default
+.
+ Přistoupí-li nějaký proces ke KS a máme čítač nenulový, snížíme ho pomocí
+ down() a přistoupíme ke kritické sekci.
+ Po vystoupení zase zvýšíme čítač.
+ Pokud je čítač nulový, musí dané vlákno čekat, dokud se neuvolní kritická
+ sekce (čítač je nenulový).
+\end_layout
+
+\end_body
+\end_document
