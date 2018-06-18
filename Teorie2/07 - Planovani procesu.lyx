@@ -1,0 +1,772 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Plánování procesů
+\end_layout
+
+\begin_layout Subsection*
+Podstata a cíle plánování úloh v operačním systému
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Plánování procesů = scheduling
+\series default
+.
+ Je to jedna z úloh jádra operačního systému.
+ Tento 
+\begin_inset Quotes eld
+\end_inset
+
+algoritmus
+\begin_inset Quotes erd
+\end_inset
+
+ vždy běží v kernel space, a to i u mikrojádra.
+ Plánování procesů/úloh má úzkou souvislost s tzv.
+ multitaskingem - rychlé přepínání procesů v rámci operačního systému (uživatel
+ i na jednoprocesorovém PC má dojem, že vše běží paralelně).
+\end_layout
+
+\begin_layout Paragraph*
+Máme několik typů schedulerů:
+\end_layout
+
+\begin_layout Itemize
+Strategický (dlouhodobý) plánovač - Má na starost výběr úlohy, nahrání do
+ paměti a spuštění.
+ Jeho účelem je maximální využití CPU nebo IO.
+ V současnosti se u klasických operačních systémů moc nepoužívá.
+\end_layout
+
+\begin_layout Itemize
+Střednědobý plánovač
+\end_layout
+
+\begin_layout Itemize
+Krátkodobý plánovač - Přidělování procesoru připraveným procesům.
+ Musí být rychlý, je spouštěn často.
+ Problém režie plánovače 
+\begin_inset Formula $\times$
+\end_inset
+
+ čas přidělený procesům.
+\end_layout
+
+\begin_layout Subsection*
+Realizace plánování
+\end_layout
+
+\begin_layout Standard
+Co chceme:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+maximální využití CPU a ostatních zdrojů
+\series default
+ (a rovnoměrné!)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+maximální propustnost
+\series default
+ - chceme, aby co nejvíce procesů skončilo za jednotku času
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+minimalizace doby obrátky
+\series default
+ - doba pro provedení určitého procesu
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+minimalizace doby čekání -
+\series default
+ doba čekání procesu ve frontě
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+minimalizace doby odpovědi
+\series default
+ - doba od zadaní do okamžiku první reakce (jak rychle se spustí proces)
+\end_layout
+
+\begin_layout Paragraph*
+Typy plánovačů
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+preemptivní
+\series default
+ - proces s vyšší prioritou může předběhnout procesy s nižší prioritou
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+nepreemptivní
+\series default
+ - proces s nejvyšší prioritou je vykonáván tak dlouho, dokud svou dávku
+ neskončí, nemůže být předběhnut
+\end_layout
+
+\begin_layout Subsubsection*
+Algoritmy schedulerů
+\end_layout
+
+\begin_layout Paragraph*
+Algoritmus FCFS (First Come First Served)
+\end_layout
+
+\begin_layout Standard
+Procesy jsou řazeny na klasické frontě, nepreemptivní (nepředbíhající) algoritmu
+s.
+ Jakmile se dokončí časová dávka přidelená procesu, jeho výpočet na procesoru
+ se zastaví a je přidělen zpět na konec fronty.
+ Pokud je procesor volný, spustí se vždy první proces ve frontě.
+ Vhodný pro procesy s dlouhými dávkami, jednoduchý na implementaci.
+\end_layout
+
+\begin_layout Standard
+Nevhodný pro krátké procesy - ty dlouhodobé jim brání ve výpočtu.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $P_{1}(3)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $P_{2}(2)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $P_{1}(1)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+První proces má dávku 3 časové jednotky apod.
+ Průměrná doba čekání na proces je 
+\begin_inset Formula $\frac{0+3+5}{3}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Pokud bychom měli procesy seřazené obráceně, tak by průměrná doba čekání
+ byla menší, a to 
+\begin_inset Formula $\frac{0+1+3}{3}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Paragraph*
+Algoritmus SJF (Shortest Job First)
+\end_layout
+
+\begin_layout Standard
+Musíme znát délku dávky jednotlivého procesu.
+ Vybírá se ten, který má menší potřebnou časovou dávku pro výpočet.
+\end_layout
+
+\begin_layout Standard
+Jsou dvě implementace algoritmu Shortes Job First, jedna je 
+\series bold
+nepreemptivní
+\series default
+ (tzn.
+ pokud je proces již přidělen na procesor, nebude předběhnut žádným jiným
+ procesem), druhá je 
+\series bold
+preemptivní
+\series default
+ (je-li zbývající časová dávka procesu na procesoru větší než dávka procesu
+ s nejmenší časovou dávkou, je právě spuštěný proces nahrazen).
+\end_layout
+
+\begin_layout Standard
+Problém SJF algoritmu je tzv.
+ stárnutí procesů - procesor s velkou dávkou je vždy předbíhán procesy s
+ krátkými dávkami.
+ 
+\series bold
+Řešení - plánování s prioritami
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Příklady
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Nepreemptivní
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="7">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $P_{1}(7)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $P_{2}(1)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $P_{3}(2)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $P_{4}(4)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+První proces je již přidělený na procesor, druhý proces ho nemůže předběhnout.
+ Doba čekání je 
+\begin_inset Formula $\frac{0+7+8+10}{4}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Preemptivní
+\series default
+:
+\end_layout
+
+\begin_layout Standard
+První proces je předběhnutý procesem druhým, nicméně to má za následek to,
+ že prvnímu procesu nebude nikdy (tedy dokud se budou vyskytovat procesy
+ s nižší dávkou) přidělen procesorový čas.
+\end_layout
+
+\begin_layout Subsubsection*
+Prioritní plánování
+\end_layout
+
+\begin_layout Standard
+Každému procesu je přiřazeno číslo (obvykle platí, že nejmenší číslo znamená
+ nejvyšší prioritu) a procesorový čas je přiřazen procesům, které mají nejnižší
+ prioritní číslo.
+\end_layout
+
+\begin_layout Standard
+Opět existují dvě varianty, a to 
+\series bold
+preemptivní
+\series default
+ a 
+\series bold
+nepreemptivní
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+TODO
+\end_layout
+
+\begin_layout Subsubsection*
+Round Robin
+\end_layout
+
+\begin_layout Standard
+Velmi používaný, starý a primitivní plánovač, který každému procesu přidělí
+ stejné časové kvantum.
+ Toto časové kvantum (např.
+ 10 ms) je čas každého procesu na procesoru, který stráví každou iteraci
+ scheduleru.
+ Po 10 ms nastane přerušení (a to i přes to, že proces ještě nebyl dokončen)
+ a uvolní se místo pro proces následující (např.
+ ve frontě typu FIFO).
+\end_layout
+
+\begin_layout Subsection*
+Deadlock
+\end_layout
+
+\begin_layout Standard
+Problém uváznutí.
+ Nástává v případech, kdy proces A čeká na dokončení B a B čeká na dokončení
+ A (můžeme přidávat procesy, vztah však bude podobný).
+\end_layout
+
+\begin_layout Standard
+Nastává tehdy, když dva procesy čekají třeba na uvolnění zdroje, dokončení
+ nějaké operace, jeden proces čeká v kritické sekci na druhý proces, který
+ chce přistoupit do stejné KS apod.
+\end_layout
+
+\begin_layout Subsubsection*
+Podmínky uváznutí
+\end_layout
+
+\begin_layout Standard
+K uváznutí dojde pouze, pokud jsou splněny následující podmínky:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+vzájemné vyloučení (mutual exclusion)
+\series default
+ - se sdíleným zdrojem může pracovat právě jeden proces
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+držení zdroje a čekání na další (hold-and-wait)
+\series default
+ - proces A drží zdroj a potřebuje ke své činnosti zdroj B, který je však
+ držen jiným procesem
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+bez předbíhání (no preemption)
+\series default
+ - zdroje lze uvolnit pouze procesem, který jej vlastní, a to dobrovolně
+\end_layout
+
+\begin_layout Standard
+Postačující podmínka:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+cyklické čekání (circular wait)
+\series default
+ - důsledek předchozích podmínke.
+ Proces 
+\begin_inset Formula $P_{0}$
+\end_inset
+
+ čeká na uvolnění zdroje procesu 
+\begin_inset Formula $P_{1}$
+\end_inset
+
+, proces 
+\begin_inset Formula $P_{1}$
+\end_inset
+
+ čeká na uvolnění zdroje 
+\begin_inset Formula $P_{2}$
+\end_inset
+
+, apod., přičemž poslední čeká na uvolnění zdroje 
+\begin_inset Formula $P_{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Resource Allocation Graph (RAG)
+\end_layout
+
+\begin_layout Itemize
+Vrcholy jsou procesy a zdroje.
+\end_layout
+
+\begin_layout Itemize
+Orientované hrany jsou vztahy mezi zdrojem a procesem (hrana se šipkou ze
+ Z do P je vztah proces P vlastní zdroj Z, naopak to značí požadavek k přistoupe
+ní procesu P ke zdroji Z).
+ 
+\end_layout
+
+\begin_layout Standard
+Neexistuje-li kružnice v grafu RAG, neexistuje ani uváznutí procesů.
+\end_layout
+
+\begin_layout Subsection*
+Metody ochrany proti deadlocku
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Prevence
+\series default
+ - zajištění, že se systém nedostane do stavu deadlocku zrušením platnosti
+ některé podmínky (viz výše, podmínky k deadlocku)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Detekce a vyhýbání se 
+\series default
+- detekujeme možný deadlock a snažíme se mu předejít
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Detekce a obnova po uváznutí
+\series default
+ - deadlock může nastat, řešíme pak jeho odstranění
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Ignorování hrozny uváznutí
+\series default
+ - přenecháme starost konkrétní aplikaci, řešeno na mnoha OS
+\end_layout
+
+\begin_layout Subsubsection*
+Prevence
+\end_layout
+
+\begin_layout Itemize
+Vyhnutí se sdílení zdrojů
+\end_layout
+
+\begin_layout Itemize
+Ponechání zdrojů ještě před jeho spuštěním
+\end_layout
+
+\begin_layout Itemize
+Nepřipuštění cyklu v RAG (nerealistický přístup)
+\end_layout
+
+\begin_layout Subsubsection*
+Detekce a obnova uváznutí
+\end_layout
+
+\begin_layout Standard
+Používá se tzv.
+ 
+\series bold
+graf čekání (wait-for graph).
+
+\series default
+ Uzly jsou procesy a hrany vztahy čekání (orientovaná hrana mezi procesem
+ Q a W exituje, pokud Q čeká na W).
+ Používájí se algoritmy pro hledání cyklů (např.
+ modifikace DFS).
+\end_layout
+
+\begin_layout Standard
+Wait-for graph lze vytvořit z RAG (resource allocation grafu; ignorujeme
+ zdroje a převedeme všechny orientované hrany do procesu patřícího danému
+ zdroji).
+\end_layout
+
+\begin_layout Standard
+Nalezneme-li v grafu cyklus, tak máme dvě možnosti:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+ukončení procesu
+\series default
+ - násilný kill
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+nové rozdělení prostředků 
+\series default
+- pokud to jde, vrátíme proces do stavu před deadlockem a pokusíme se o
+ novou alokaci prostředků
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+pozastavení procesu a počkání na uvolnění
+\end_layout
+
+\end_body
+\end_document
