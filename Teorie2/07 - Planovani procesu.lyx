@@ -1,4 +1,4 @@
-#LyX 2.3 created this file. For more info see http://www.lyx.org/
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
 \lyxformat 508
 \begin_document
 \begin_header
@@ -104,18 +104,32 @@ Máme několik typů schedulerů:
 \end_layout
 
 \begin_layout Itemize
-Strategický (dlouhodobý) plánovač - Má na starost výběr úlohy, nahrání do
- paměti a spuštění.
+
+\series bold
+Strategický (dlouhodobý) plánovač
+\series default
+ - Taky se mu říká job scheduler.
+ Má na starost výběr úlohy, nahrání do paměti a spuštění.
  Jeho účelem je maximální využití CPU nebo IO.
- V současnosti se u klasických operačních systémů moc nepoužívá.
+ V současnosti se u klasických operačních systémů moc nepoužívá (mimo realtimové
+ systémy).
 \end_layout
 
 \begin_layout Itemize
+
+\series bold
 Střednědobý plánovač
+\series default
+ - Využívá se při nedostatku FAP při multitaskingu.
+ Slouží k odkládání procesů z FAP na disk a naopak.
 \end_layout
 
 \begin_layout Itemize
-Krátkodobý plánovač - Přidělování procesoru připraveným procesům.
+
+\series bold
+Krátkodobý plánovač
+\series default
+ - Přidělování procesoru připraveným procesům.
  Musí být rychlý, je spouštěn často.
  Problém režie plánovače 
 \begin_inset Formula $\times$
@@ -531,22 +545,8 @@ Prioritní plánování
 Každému procesu je přiřazeno číslo (obvykle platí, že nejmenší číslo znamená
  nejvyšší prioritu) a procesorový čas je přiřazen procesům, které mají nejnižší
  prioritní číslo.
-\end_layout
-
-\begin_layout Standard
-Opět existují dvě varianty, a to 
-\series bold
-preemptivní
-\series default
- a 
-\series bold
-nepreemptivní
-\series default
-.
-\end_layout
-
-\begin_layout Standard
-TODO
+ Při každém výpočtu se dekrementuje priorita ostatních procesů.
+ Řeší problém stárnutí.
 \end_layout
 
 \begin_layout Subsubsection*

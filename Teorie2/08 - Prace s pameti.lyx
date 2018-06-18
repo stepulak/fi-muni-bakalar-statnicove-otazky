@@ -1,4 +1,4 @@
-#LyX 2.3 created this file. For more info see http://www.lyx.org/
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
 \lyxformat 508
 \begin_document
 \begin_header
@@ -107,7 +107,15 @@ Terciální paměti
 \end_layout
 
 \begin_layout Standard
-TODO obrázek
+\align center
+\begin_inset Graphics
+	filename img/memory_hierarchy.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection*
@@ -170,7 +178,217 @@ Energeticky nestálá, volatilní.
  K procesoru připojená pomocí CPU sběrnice.
  Nutné periodicky obnovovat, tvořeny buňkami typu DRAM (dynamic random access
  memory; kondenzátor).
- Dnešní typy DDR (4), frekvence v řádu několika GHz.
+ Dnešní typy DDR (Double Data Rate; 4), frekvence v řádu několika GHz.
+\end_layout
+
+\begin_layout Subsubsection*
+Magnetické disky
+\end_layout
+
+\begin_layout Standard
+V principu se jedná o velké, jednodimenzionální pole.
+ Bloky jsou umístěny sekvenčně, směrem od středu do krajů disku.
+ Chceme minimalizovat pohyb čtecí hlavičky, například pomocí FCFS (First
+ Come First Served), SSTF (Shortest Seek Time First; podobný scheduleru
+ SJB).
+\end_layout
+
+\begin_layout Subsubsection*
+RAID
+\end_layout
+
+\begin_layout Standard
+Technologie, která se využívá při zapojení dvou a více disků.
+ Mimo RAID 0 se jedná o technologie, které umožňují redundanci a zálohu
+ dat.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+RAID 0 
+\series default
+- Rozšíření diskového pole, zrychlení čtení a zápisu (rozdělení bloků dat
+ na jiné disky - block stripping).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+RAID 1 
+\series default
+- Mirroring (IO), při výpadku dokážeme nahradit druhým.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+RAID 5
+\series default
+ - Block stripping (rychlejší IO), počítána bitová parita (na různých discích).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+RAID 6 
+\series default
+- RAID 5 se samoopravovacími kódy (lichá, sudá parita, hammingovy opravné
+ kódy).
+ Řeší výpadek i dvou a více disků.
+\end_layout
+
+\begin_layout Subsection*
+Správa paměti
+\end_layout
+
+\begin_layout Standard
+Každý proces, který běží, je umístěn v paměti.
+ Pro tuto paměť máme několik požadavků:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Možnost relokace programů
+\series default
+ - Programátor neví, ve které FAP bude jeho program spuštěn
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Potřeba ochrana paměti
+\series default
+ - proces A nemůže přistupovat k vnitřní paměti procesu B
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Požadavky na sdílení
+\series default
+ - chceme sdílet paměť mezi X procesy tak, aby 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Logické uspořádání paměti
+\series default
+ - execute-only část, datová část, stack, heap.
+\end_layout
+
+\begin_layout Subsection*
+Adresový prostor
+\end_layout
+
+\begin_layout Standard
+Souhrn adresovatelných buněk v paměti.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+FAP (Fyzický adresovatelný prostor)
+\series default
+ - fyzický paměťový prostor operační paměti (zde se bavíme o RAM).
+ Kapacita je dána šířkou paměťové sběrnice.
+ Rozdělená na rezidentní část OS a sekci pro uživatelské programy.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+LAP (Logický adresovatelný prostor)
+\series default
+ - logický prostor operační paměti.
+ Používaný v době provádění programu.
+ Obvykle platí, že LAP > FAP.
+ Omezena šířkou paměti v instrukci.
+\end_layout
+
+\begin_layout Subsubsection*
+Vázání LAP na FAP
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Statické
+\series default
+ - Známé během kompilace (absolutní program; nepřenositelné) nebo v době
+ zavádění.
+ Používáme u jednoduchých, vestavěných systémech.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Dynamické
+\series default
+ - Program sestavíme pro LAP, program při spuštění zavede LAP z FAP, proces
+ může měniž LAP během různých zavádění, nutná HW podpora.
+\end_layout
+
+\begin_layout Subsubsection*
+Fragmentace
+\end_layout
+
+\begin_layout Standard
+Problém frangmentace - celkové množství paměti je sice větší než požadované
+ množství paměti, avšak neexistuje taková díra (blok volné paměti ve FAP),
+ aby zaplnila požadavak na paměť.
+ Řešení fragmentace - 
+\series bold
+swapping
+\series default
+, nebo
+\series bold
+ virtualizace paměti
+\series default
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Metoda přidělování paměti statické a proměnlivé délky
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+First-fit 
+\series default
+- První dostatečně velký úsek paměti
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Best-fit
+\series default
+ - Nejmenší dostatečně velký úsek paměti.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Worst-fit
+\series default
+ - největší volný usek paměti.
+\end_layout
+
+\begin_layout Subsection*
+Virtualizace paměti
+\end_layout
+
+\begin_layout Subsubsection*
+Segmentace
+\end_layout
+
+\begin_layout Subsubsection*
+Stránkování
 \end_layout
 
 \end_body
