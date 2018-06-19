@@ -387,6 +387,20 @@ Virtualizace paměti
 Segmentace
 \end_layout
 
+\begin_layout Standard
+LAP je rozdělená do tzv.
+ segmentů, což jsou lineární spojité bloky paměti.
+ Každý proces je rozdělen do samostatných segmentů a obsahuje na ně ukazatele
+ (registry - Stack Segment (SS), Code Segment (CS), Data Segment (DS)).
+\end_layout
+
+\begin_layout Standard
+Převod z segmentované LAP (segment + offset) do FAP (adresa) pomocí tzv.
+ Segment Table, obsahuje base pointer a limit (velikost segmentu).
+ Snadná detekce přístupu mimo paměť procesu.
+ Problém fragmentace paměti, vyřešeno až pomocí stránkování.
+\end_layout
+
 \begin_layout Subsubsection*
 Stránkování
 \end_layout

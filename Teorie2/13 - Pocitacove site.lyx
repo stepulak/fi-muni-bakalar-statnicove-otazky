@@ -1,4 +1,4 @@
-#LyX 2.3 created this file. For more info see http://www.lyx.org/
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
 \lyxformat 508
 \begin_document
 \begin_header
@@ -152,12 +152,30 @@ TCP/IP model
 Aplikační vrstva
 \end_layout
 
+\begin_layout Standard
+Vrstva, se kterou pracuje aplikace.
+ Rozhraní mezi uživatelem a počítačem.
+ Zahrnuje síťové aplikace a aplikační protokoly (HTTP, FTP, SSH apod.)
+\end_layout
+
 \begin_layout Subsubsection*
 Prezentační vrstva
 \end_layout
 
+\begin_layout Standard
+Převod kódů mezi EBCDIC a ASCII, řešení problému různé podoby reprezentace
+ dat.
+ V reálných aplikacích je řešena pomocí aplikační vrstvy.
+\end_layout
+
 \begin_layout Subsubsection*
 Relační vrstva
+\end_layout
+
+\begin_layout Standard
+Udržuje spojení (dialog, session, relaci) mezi dvěma počítači v síti.
+ Zajišťuje také synchronizaci.
+ V reálných aplikacích je řešena pomocí aplikační vrstvy.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -330,6 +348,45 @@ sliding window
 Interakce síťové a datové vrstvy (L3, L2)
 \end_layout
 
+\begin_layout Standard
+Při přijmutí L2 rámce se rámec rozbalí, zkontroluje, zda-li je rámec určen
+ jemu (podle MAC adresy).
+ Pokud ano, zprávu již dál neposílá a L3 packet dále zpracuje.
+ Pokud mu nepatří (a nejedná se o MAC adresu zařízení v rámci jeho sítě),
+ rozpozná podle IP adresy cíl, znovu zabalí do rámce a dále směřuje v rámci
+ L3 vrstvy.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Posílání rámců mezi zařízení stejné sítě (LAN), známe IP adresu zařízení:
+\series default
+ Použijeme protokol ARP (Address Resolution Protokol) pro nalezení MAC adresy.
+ Poté stačí vytvářet rámce s MAC adresou cíle.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Posílání rámců mezi zařízení různé sítě:
+\series default
+ ARP protokol se využije pro nalezení MAC adresy brány (gateway), zařízení
+ uvnitř sítě nás nezajímá (je již definováno v rámci IP packetu).
+\end_layout
+
+\begin_layout Paragraph*
+ARP (Address Resolution Protocol)
+\end_layout
+
+\begin_layout Standard
+Broadcastem se pošle dotaz, že hledáme MAC adresu zařízení s konkrétní IP
+ adresou.
+ Je-li zařízení nalezeno, odpoví a vrátí svou MAC adresu.
+ Tyto adresy se většinou ukládají do ARP cache pro dlouhodobější použití
+ (nemusíme se ptát stále dokola).
+\end_layout
+
 \begin_layout Subsubsection*
 Fyzická vrstva
 \end_layout
@@ -353,7 +410,10 @@ Kovový kabel
 \series bold
 Optický kabel 
 \series default
-- světelné signály
+- světelné signály.
+ Máme jednovidový kabel (krátký průměr; použité na dlouhé vzdálenosti) a
+ vícevidové optické vlákno (velký průměr; rychlost přenosu je menší; krátké
+ vzdálenosti)
 \end_layout
 
 \begin_layout Itemize
@@ -416,7 +476,73 @@ Digitální signál
  - diskrétní v čase, signál se kóduje do pravidelných patternů.
  Typy kódování: 
 \series bold
-Přímé, Manchester, Diferenciální Manchester, 4B/5B, NRZ (RZ)
+Přímé, Manchester, Diferenciální Manchester, NRZ (RZ)
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/direct_coding.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Problém synchronizace (velké množstí jedniček a nul)
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/nrz.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Podobné problémy jako u přímého kódování.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/manchester.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Manchester kódování, změna fáze při změně hodnoty bitu.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/dif_manchester.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Diferenciální Manchester kódování, fázový posun při dvou hodnotách rovny
+ 1.
+ Použití: 802.3.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -527,6 +653,28 @@ Token passing (předávání peška)
  peška data a adresu cílové stanice.
  Je-li již obsazený a data nejsou určená jemu, pošle ho dále.
  Využití: IBM Token Ring.
+\end_layout
+
+\begin_layout Subsubsection*
+Multiplexově orientované
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+FDMA (Frequency Division Multiple Access)
+\series default
+ - Rozdělení šířky pásma na několik samostatných pásem.
+ Modulace signálu.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+TDMA (Time Division Multiple Access
+\series default
+) - Jeden frekvenční kanál je rozdělený do časových slotů (velmi malé intervaly)
+, každý časový slot reprezentuje jednu nezávislou komunikaci.
 \end_layout
 
 \begin_layout Subsection*
