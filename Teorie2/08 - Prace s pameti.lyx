@@ -252,7 +252,7 @@ Každý proces, který běží, je umístěn v paměti.
 \series bold
 Možnost relokace programů
 \series default
- - Programátor neví, ve které FAP bude jeho program spuštěn
+ - Programátor neví, ve které FAP bude jeho program spuštěn.
 \end_layout
 
 \begin_layout Itemize
@@ -260,7 +260,7 @@ Možnost relokace programů
 \series bold
 Potřeba ochrana paměti
 \series default
- - proces A nemůže přistupovat k vnitřní paměti procesu B
+ - proces A nemůže přistupovat k vnitřní paměti procesu B.
 \end_layout
 
 \begin_layout Itemize
@@ -268,7 +268,7 @@ Potřeba ochrana paměti
 \series bold
 Požadavky na sdílení
 \series default
- - chceme sdílet paměť mezi X procesy tak, aby 
+ - sdílení paměti mezi X procesů.
 \end_layout
 
 \begin_layout Itemize
@@ -346,7 +346,7 @@ swapping
 \series default
 , nebo
 \series bold
- virtualizace paměti
+ stránkování paměti
 \series default
 .
 \end_layout
@@ -383,6 +383,15 @@ Worst-fit
 Virtualizace paměti
 \end_layout
 
+\begin_layout Standard
+LAP dokážeme nelineárně mapovat na různé části FAP (segmentace, stránkování).
+ Ač se paměť pomocí zápisu logických adres může zdát souvislá, ve FAP to
+ tak nemusí být.
+ Díky virtualizaci paměti dokážeme taky řešit problém nedostatku paměti
+ ve FAP tak, že mapujeme LAP i na jiné fyzické adresové prostory než je
+ operační paměť (například disk).
+\end_layout
+
 \begin_layout Subsubsection*
 Segmentace
 \end_layout
@@ -395,14 +404,168 @@ LAP je rozdělená do tzv.
 \end_layout
 
 \begin_layout Standard
-Převod z segmentované LAP (segment + offset) do FAP (adresa) pomocí tzv.
- Segment Table, obsahuje base pointer a limit (velikost segmentu).
+Převod z segmentované LAP (
+\series bold
+segment + offset
+\series default
+) do FAP (adresa) pomocí tzv.
+
+\series bold
+ Segment Table
+\series default
+, obsahuje
+\series bold
+ base pointer
+\series default
+ (ukazatel na začátek segmentu) a 
+\series bold
+limit
+\series default
+ (velikost segmentu).
  Snadná detekce přístupu mimo paměť procesu.
  Problém fragmentace paměti, vyřešeno až pomocí stránkování.
 \end_layout
 
 \begin_layout Subsubsection*
 Stránkování
+\end_layout
+
+\begin_layout Standard
+FAP je rozdělen do rámců pevné délky (většinou 4KB), LAP do stránek, jejiž
+ délka odpovídá velikosti rámců.
+ LAP může reprezentovat lineárně dlouhou, spojitou paměť, avšak FAP může
+ být fragmentovaná (tak řešíme fragmentaci paměti).
+ Pomocí 
+\series bold
+Page Table
+\series default
+ a hardwarového zařízení 
+\series bold
+MMU
+\series default
+ (memory management unit) mapujeme stránky do rámců (využití
+\series bold
+ TLB - Translation Lookaside Buffer
+\series default
+ pro rychlejší překlad).
+\end_layout
+
+\begin_layout Standard
+Virtuální adresa vypadá následovně:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Page directory
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Page table
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Offset
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Page table je lineární tabulka (1024 položek v x86), která obsahuje ukazatel
+ na tabulku s dalšími 1024 položkami.
+ Je-li stránka 4KB, můžeme tak adresovat až 4GB RAM v x86.
+\end_layout
+
+\begin_layout Standard
+Výběr rámců a stránek je dynamický proces, vytváří se až v době nutnosti
+ (alokace nové paměti apod.).
+\end_layout
+
+\begin_layout Paragraph*
+Co se stane, když potřebujeme další stránky a došly nám rámce v operační
+ paměti?
+\end_layout
+
+\begin_layout Standard
+V rámci procesu máme dvě možnosti - odebereme stránku procesu, který nedostatek
+ paměti způsobil (lokální výběr) a nebo jinému procesu (globální výběr).
+\end_layout
+
+\begin_layout Standard
+Tyto stránky se přesunou na disk.
+ Pokud do nich bylo zapsáno (
+\series bold
+dirty bit
+\series default
+ je roven 1), je nutné překopírovat i obsah rámce (
+\series bold
+swapování
+\series default
+).
+ Pokud je chceme znovu využít, je potřeba je opět přenésení do operační
+ paměti.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Máme několik algoritmů pro výběr oběti:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+FIFO
+\series default
+ - vyřazení stránky, která je v paměti nejdéle.
+ Nepoužitelné v praxi.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+LRU
+\series default
+ - vyřazení v paměti, která je nejméně používaná.
+ Náročná implementace a na CPU (kvadratická složitost).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+NRU
+\series default
+ - zjednodušení LRU, vybereme první stránku z paměti, která nebyla použita
+ (podle dirty bitu).
 \end_layout
 
 \end_body

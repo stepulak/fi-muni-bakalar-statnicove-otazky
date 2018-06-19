@@ -1,0 +1,448 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Počítačové sítě 2
+\end_layout
+
+\begin_layout Subsection*
+Propojování počítačových sítí
+\end_layout
+
+\begin_layout Subsubsection*
+Přepínání okruhů (Circuit Switching)
+\end_layout
+
+\begin_layout Standard
+Pevné, manuální nebo automatické spojování dvou linek, spojení je drženo
+ až do konce komunikace.
+ Využití: analogické telefonní sítě.
+\end_layout
+
+\begin_layout Subsubsection*
+Přepínání packetů (Packet Switching)
+\end_layout
+
+\begin_layout Standard
+Data jsou v síti posílána formou packetů nebo rámců.
+ V Internetu je rozšířen tzv.
+ 
+\series bold
+datagramový přístup
+\series default
+ - packety mohou běžet jinou trasou a příjemce je na konci poskládá.
+ Jinak mohou být využiti tzv.
+ 
+\series bold
+virtuální kanály
+\series default
+ - na začátku vytvořím cestu z A do B pomocí L2 a L3 vrstvy a packety putují
+ vždy stejnou cestou.
+\end_layout
+
+\begin_layout Subsubsection*
+Propojování sítí
+\end_layout
+
+\begin_layout Standard
+Dvě LAN sítě můžeme propojit pomocí 
+\series bold
+směrovačů
+\series default
+ (
+\series bold
+routerů
+\series default
+).
+ Zařízení, které pracuje na třetí vrstvě (L3, síťová vrstva) a má za úkol
+ proces zvaný 
+\series bold
+směrování
+\series default
+.
+ Propojování sítí na nižších úrovních ISO/OSI mají na starost 
+\series bold
+opakovače (repeatery)
+\series default
+ a 
+\series bold
+huby
+\series default
+ - fyzická vrstva,
+\series bold
+ bridge a switche
+\series default
+ - L2 vrstva.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Opakovač
+\series default
+ - obnovuje elektrický signál, jenž podléhá třem faktorům: 
+\series bold
+slábnutí
+\series default
+, 
+\series bold
+zkreslení
+\series default
+ a 
+\series bold
+šum
+\series default
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Huby
+\series default
+ - umožňuje zapojení počítačů do sítě.
+ Pracuje na fyzické vrstvě.
+ Přijatý signál rozposílá všem ostatním.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Switch
+\series default
+ - hub, který pracuje na druhé, datové vrstvě.
+ Rámce posílá cílovým zařízením.
+ Tabulku zařízení tvoří tak, že 
+\begin_inset Quotes eld
+\end_inset
+
+naslouchá
+\begin_inset Quotes erd
+\end_inset
+
+ komunikaci na síti.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Bridge
+\series default
+ - Switch, který má pouze dva fyzické porty (tj.
+ propojuje maximálně dvě sítě).
+ Funguje na datové vrstvě, rozponávání rámců, poští pouze ty, o kterých
+ ví, že do dané sítě patří.
+\end_layout
+
+\begin_layout Subsection*
+Síťové protokoly
+\end_layout
+
+\begin_layout Subsubsection*
+IP protokol
+\end_layout
+
+\begin_layout Standard
+Nejznámější a nejrozšířenější protokol vrstvy L3 (síťová vrstva).
+ Umožňuje 
+\series bold
+směrování
+\series default
+ packetů (tj.
+ hledání cesty napříč sítí; hop-by-hop), uzly L3 protokolu jsou jednoznačně
+ identifikovány pomocí 
+\series bold
+IP adresy 
+\series default
+(v IPv4 se jedná o 32 bitové číslo, oddělené po 1 bytu tečkou).
+ Jedná se o 
+\series bold
+nespolehlivou
+\series default
+ službu, tj.
+ packety se mohou v rámci sítě 
+\series bold
+ztrácet
+\series default
+ (spolehlivost přenosu zajišťuje až protokol TCP; pozor - určitou míru spolehliv
+osti zaručuje i linková vrstva - pokud rámec dojde, je zaručeno, že dojde
+ správný (CRC + vyžádání nových rámců)).
+\end_layout
+
+\begin_layout Standard
+IP protokol existuje ve verzi 4 a 6.
+ Hlavní rozdíl spočívá v délce IP adresy (32 bitů vs 128 bitů) a absence
+ broadcastu v IPv6.
+\end_layout
+
+\begin_layout Paragraph*
+Součásti hlavičky IPv4:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+TTL
+\series default
+ - Time to live.
+ Čítač, kolikrát může projít libovolným směrovačem, než bude zahozena.
+ Využití u záplavového broadcastu, multicastu.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Velikost dat, délka IP packetu
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Zdrojová IP adresa
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Cílová IP adresa
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Protocol
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Data
+\end_layout
+
+\begin_layout Subsubsection*
+IPv4 adresace
+\end_layout
+
+\begin_layout Standard
+32 bitové číslo, oddelěné po jednom bitu tečkou (formát A.B.C.D).
+ V dnešní době se využivá 
+\series bold
+CIDR
+\series default
+ adresace (Classless Inter Domain Routing).
+ K IP adrese máme ještě tzv.
+ 
+\series bold
+masku podsítě
+\series default
+.
+ Abychom zabránili plýtvání adresami, tak část IP adresy identifikuje síť
+ a druhá část uzly v ní.
+ Maska podsítě je v principu binární IP adresa, která má na místě jedničku,
+ pokud tato část IP adresy určuje IP adresu sítě a nulu, pokud již konkrétní
+ uzel v sítí (tj.
+ aplikace logického součinu).
+\end_layout
+
+\begin_layout Paragraph*
+Příklady CIDR:
+\end_layout
+
+\begin_layout Itemize
+IP = 192.168.68.233/20 - prvních dvacet bitů určuje síť, zbylých 12 uzel.
+ Tj.
+ adresa sítě je 192.168.64.0, adresa uzlu je pak +0.0.4.233.
+\end_layout
+
+\begin_layout Paragraph*
+
+\series bold
+Typy posílání IP packetů (a adresace):
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Unicast
+\series default
+ - zaslání IP packetu pouze jednomu adresátovy.
+ Nejpoužívanější varianta.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Broadcast (není v IPv6)
+\series default
+ - IP packet je směrován všem, kteří ho přijmou (a ke kterým dorazí).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Multicast
+\series default
+ - Adresáti packetu jsou pouze vybraní jednotlivci (tj.
+ router musí multicast podporovat a zachytávat IP packety pro určitou tabulku
+ skupin).
+ Pouze pomocí UDP.
+ Využití: TV, rádio apod.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Anycast (pouze IPv6) 
+\series default
+- IP packet pošleme pouze prvnímu vybranému adresátovi (například tomu nejbližší
+mu).
+\end_layout
+
+\begin_layout Subsubsection*
+IPv6 adresace
+\end_layout
+
+\begin_layout Standard
+Hypoteticky máme 
+\begin_inset Formula $2^{128}$
+\end_inset
+
+ adres, proto není potřeba CIDR adresace a veškeré připojené zařízení mají
+ svou veřejnou IP.
+ Zapisuje se pomocí 8 čtveřic hexadecimálních čísel oddělené doutečkami.
+ Možný zkrácený zápis, nepíšeme nuly: 12FA:541A::.
+ Nemá kontrolní součet (Checksum), menší režije směrovačů (kvůli dekrementaci
+ TTL).
+ Neobsahuje broadcast, pouze unicast, multicast a anycast.
+\end_layout
+
+\begin_layout Subsection*
+Směrování
+\end_layout
+
+\begin_layout Subsection*
+Mutlicast
+\end_layout
+
+\begin_layout Subsection*
+Zajištění spolehlivého přenosu
+\end_layout
+
+\begin_layout Standard
+Spolehlivé směrování mezi dvěma komunikujícími uzly zajišťuje transportní
+ vrstva (TCP protokol).
+ Datová (linková) vrstva zajišťuje pouze spolehlivé doručení rámců mezi
+ dvěma sousedními uzly! Spolehlivost je dána pomocí mechanismu potvrzování
+ (acknowledgement).
+\end_layout
+
+\begin_layout Paragraph*
+Stop-And-Wait ARQ (Automatic Repeat reQuest)
+\end_layout
+
+\begin_layout Standard
+Nejjednodušší potvrzovací mechanismus.
+ Odesílatel posílá packety číslované 0,1.
+ Adresát pravidelně posílá potvrzovací ACK packet s číslem dalšího packetu
+ (tj.
+ dostane 0, pošle 1 a naopak).
+ Pokud jej nepošle, nebo se ACK ztratí, tak po určité době (timeout) odesílatel
+ pošle nepotvrzený packet znovu.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/stop_and_wait_ARQ.png
+	lyxscale 60
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph*
+Go-Back-N
+\end_layout
+
+\begin_layout Paragraph*
+Selective-Repeat
+\end_layout
+
+\begin_layout Subsection*
+Transportní protokoly
+\end_layout
+
+\end_body
+\end_document
