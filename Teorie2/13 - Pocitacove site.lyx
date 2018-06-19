@@ -1,0 +1,588 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Počítačové sítě
+\end_layout
+
+\begin_layout Standard
+Počítačová síť = skupina vzájemně propojených počítačů skrze komunikační
+ síť.
+\end_layout
+
+\begin_layout Subsection*
+Modely vrstev počítačových sítí
+\end_layout
+
+\begin_layout Subsubsection*
+ISO/OSI model
+\end_layout
+
+\begin_layout Standard
+Sedmivrstvý model k zajištění kompatibility v komunikaci mezi dvěma různými
+ počítači (různý výrobce HW, různý operační systém i socket).
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Fyzická vrstva
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Datová (linková) vrstva
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Síťová vrstva
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Transportní vrstva
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Relační vrstva
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Prezentační vrstva
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Aplikační vrstva
+\end_layout
+
+\begin_layout Subsubsection*
+TCP/IP model
+\end_layout
+
+\begin_layout Standard
+ISO/OSI je pouze jakýmsi modelem, v reálné síti se využívá 
+\series bold
+TCP/IP model
+\series default
+.
+ Relační, prezenční a aplikační vrstvu zajišťuje samotná aplikace (různé
+ požadavky u různých aplikací).
+\end_layout
+
+\begin_layout Subsubsection*
+Aplikační vrstva
+\end_layout
+
+\begin_layout Subsubsection*
+Prezentační vrstva
+\end_layout
+
+\begin_layout Subsubsection*
+Relační vrstva
+\end_layout
+
+\begin_layout Subsubsection*
+Transportní vrstva
+\end_layout
+
+\begin_layout Standard
+Zajišťuje správnost doručení 
+\series bold
+packetů (TCP)
+\series default
+ nebo 
+\series bold
+datagramů (UDP)
+\series default
+ v správné aplikaci.
+ Neprovádí směrování (zajištěno L3 vrstvou).
+ TCP protokol zajišťuje spolehlivý přenos (potvrzování packetů, vyžádání
+ nedoručených packetů), UDP protokol zajišťuje nespolehlivý přenos.
+\end_layout
+
+\begin_layout Standard
+Identifikace aplikací pomocí tzv.
+ 
+\series bold
+portu
+\series default
+ (číslo 0-65535).
+ Socket operačního systému předá packet aplikaci, která na daném portu naslouchá.
+\end_layout
+
+\begin_layout Subsubsection*
+Síťová vrstva
+\end_layout
+
+\begin_layout Standard
+Má za úkol propojovat lokální (LAN) sítě do větších (WAN) sítí.
+ Jednoznačný identifikátor zařízení v rámci globální sítě - IP adresa.
+ Může být 32 bitová (IPv4) nebo 128 bitová (IPv6).
+ IP protokol zajištujě globální směrování (nalezené vhodné cesty) - 
+\series bold
+Link State a Distance Vector
+\series default
+.
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Datová vrstva (linková vrstva)
+\end_layout
+
+\begin_layout Standard
+Identifikace zařízení pomocí MAC adres (12 hexadecimálních čísel po dvojicích).
+ MAC by měla být celosvětově unikátní, avšak se může stát, že dvě zařízení
+ mají jinou MAC adresu.
+ Datová vrstva získává IP rámce z L3, vytvoří nový rámec L2 a předá jej
+ L1.
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Rámec ve formátu:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+preambule
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+cílová adresa
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+zdrojová adresa
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+typ
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+data
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CRC*
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+* CRC = cyclic redundancy check
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Zajišťuje spolehlivý přenos rámců! Tj.
+ pokud přijde poškozený rámec, vyžádá nový.
+ Možnost korekce chyb.
+ Ovládání toku dat pomocí 
+\series bold
+stop and wait
+\series default
+ a 
+\series bold
+sliding window
+\series default
+ (více kapitole 14.
+ počítačové sítě).
+\end_layout
+
+\begin_layout Paragraph*
+Interakce síťové a datové vrstvy (L3, L2)
+\end_layout
+
+\begin_layout Subsubsection*
+Fyzická vrstva
+\end_layout
+
+\begin_layout Standard
+Představuje fyzické přenosové médium, zprávy posílá v bitech, jenž jsou
+ sdružovány do rámců.
+ Máme několik přenosových médií: 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Kovový kabel
+\series default
+ (coaxial, kroucená dvoulinka) - elektrické signály
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Optický kabel 
+\series default
+- světelné signály
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Vzduch
+\series default
+ - elektromagnetické signály
+\end_layout
+
+\begin_layout Standard
+Nutné řešit problémy: 
+\series bold
+slábnutí
+\series default
+ (vlivem vzdálenosti médií vůči odporu média), 
+\series bold
+zkreslení
+\series default
+ (jiná rychlost frekvencí) a 
+\series bold
+šum
+\series default
+ (vliv třetí energie).
+\end_layout
+
+\begin_layout Standard
+Bity můžeme přenášet skrze analogový a digitální signál:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Analogový signál 
+\series default
+- Spojitý v čase, možnost šíření vodiči i bezdrátově, k přenosu signálu
+ se využívá modulace.
+ Modulace může být:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+amplitudová (změna amplitudy signálu),
+\end_layout
+
+\begin_layout Itemize
+frekvenční (změna frekvence signálu),
+\end_layout
+
+\begin_layout Itemize
+fázová (posunutí signálu po ose X)
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Digitální signál
+\series default
+ - diskrétní v čase, signál se kóduje do pravidelných patternů.
+ Typy kódování: 
+\series bold
+Přímé, Manchester, Diferenciální Manchester, 4B/5B, NRZ (RZ)
+\end_layout
+
+\begin_layout Subsubsection*
+Řízení přístupu k médiu
+\end_layout
+
+\begin_layout Paragraph
+Necentrálně řízené protokoly (neřízené)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Aloha
+\series default
+ - Mám-li připravený rámec, tak vysílám.
+ Kolize je detekována tak, že nedostanu signál potvrzení přijetí.
+ Čekám náhodnou dobu, zkouším znovu.
+ Neefektivní.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+CSMA/CD (Carrier Sence Multiple Access)/(Collision Detection)
+\series default
+ - Máme-li připravený rámec a médium je klidné (nevyužíváno), posílám rámec.
+ Pokud je využívané, čekám.
+ Zjistím-li narušení mého rámce (někdo druhý vyslal ve stejný okamžik),
+ tak posílám tzv.
+ JAM kód, tj.
+ kód pro anulaci právě posílaného rámce.
+ Využitelné pouze pro fyzické spoje.
+ Máme několik variant protokolu:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+persistent
+\series default
+ (naléhající, posílá hned když je klid na sítí)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+non-persistent
+\series default
+ (nenaléhající, čeká náhodnou dobu)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+p-persistent
+\series default
+ (s pravděpodobností p vysílá a s 1-p čeká).
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+CSMA/CA (Carrier Sence Multiple Access)/(Collision Avoidance)
+\series default
+ - Pro šíření vzduchem.
+ Máme-li připravený rámec, který chceme poslat, tak nejprve poslechneme
+ aktivitu v síti.
+ Pokud je klidná, vyšlu signál 
+\series bold
+RTS
+\series default
+ (Request to send).
+ Dostanu-li signál 
+\series bold
+CTS
+\series default
+ (Clear to send), můžu vysílat.
+ Jinak čekám.
+ Využití: Wifi.
+\end_layout
+
+\begin_layout Subsubsection*
+Centrálně řízené protokoly (řízené)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Polling (vyzívání)
+\series default
+ - Máme centrální zařízení, na které jsou připojeny ostatní zařízení.
+ Centrální zařízení periodicky se ptá, zda-li chce zařízení něco poslat.
+ Pokud ano, přijme rámec a pošle jej adresátovi.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Token passing (předávání peška)
+\series default
+ - Zařízení jsou připojené do topologické kružnice.
+ Počítače si předávají peška (první druhému, druhý třetímu apod.).
+ Pokud potřebuje něco poslat a pešek je volný (a dostane ho), zabalí do
+ peška data a adresu cílové stanice.
+ Je-li již obsazený a data nejsou určená jemu, pošle ho dále.
+ Využití: IBM Token Ring.
+\end_layout
+
+\begin_layout Subsection*
+Topologie sítí
+\end_layout
+
+\begin_layout Standard
+Fyzická topologie 
+\begin_inset Formula $\times$
+\end_inset
+
+ logická (mohou se lišit).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Sběrnice (bus)
+\series default
+ - Všechna zařízení jsou připojena k jedné sběrnici.
+ Obvykle reprezentována koaxiálem.
+ Výpadek sběrnice, výpadek sítě.
+ CSMA/CD, Ethernet.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Kruhová
+\series default
+ - Máme 
+\begin_inset Formula $a_{0},...,a_{n}$
+\end_inset
+
+ zařízení, jsou propojeny jako 
+\begin_inset Formula $(a_{0},a_{1}),...,(a_{n-1},a_{n}),(a_{n},a_{0})$
+\end_inset
+
+.
+ Vysílání v jednom směru.
+ Výpadek počítače, výpadek sítě.
+ Využití: Token Passing.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Hvězdicová
+\series default
+ - Máme centrální propojovací hub (hub, switch, bridge), který spojuje všechny
+ počítače.
+ Výpadek sítě nastane při výpadku centrálního zařízení.
+ Dnes jsou takto prakticky zapojeny všechny ethernetové sítě.
+ Využití: Polling.
+\end_layout
+
+\end_body
+\end_document
