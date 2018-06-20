@@ -692,10 +692,6 @@ height "1pt"
 Prvočíselnost
 \end_layout
 
-\begin_layout Standard
-Prvočíslo 
-\end_layout
-
 \begin_layout Subsubsection*
 Malá Fermatova věta
 \end_layout
@@ -1000,7 +996,11 @@ Alice si zvolí dvě prvočísla p a q, nejlépe daleko od sebe.
 \end_layout
 
 \begin_layout Enumerate
-Alice spočítá součin n=p*q.
+Alice spočítá součin 
+\begin_inset Formula $n=p*q$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Enumerate

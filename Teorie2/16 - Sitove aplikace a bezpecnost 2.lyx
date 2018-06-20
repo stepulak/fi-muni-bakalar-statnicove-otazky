@@ -1,0 +1,552 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Síťové aplikace a bezpečnost 2
+\end_layout
+
+\begin_layout Subsection*
+Zabezpečení síťové komunikace
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Autentizace
+\series default
+ - Ověření identity subjektu (na základě toho co zná, co má, nebo co je).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Autorizace
+\series default
+ - Oprávnění použít či provést nějakou operaci, zdroj apod.
+ Subjekt je autorizován na základě autentizace.
+\end_layout
+
+\begin_layout Subsection*
+Autentizace
+\end_layout
+
+\begin_layout Itemize
+Podle toho co uživatel zná: 
+\series bold
+PIN, heslo
+\series default
+.
+ Většinou se zadává ve dvojici
+\series bold
+ login + heslo
+\series default
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Autentizace na základě PIN, hesla
+\end_layout
+
+\begin_layout Standard
+Řetězec znaků, ideálně netriviální.
+ Nejpoužívanější forma autentizace.
+ Heslo by mělo být v databázi síťové aplikace uloženo jako hash (klidně
+ i několikanásobný), aby se zabránilo zneužití (při nabourání, krádeži dat).
+ Pak autentizace probíhá tak, že na straně klienta se heslo zahashuje a
+ pošle v této podobně (zamezíme zneužití při odposlechu sítě).
+ Využití: SMTP, POP3, IMAP, různé webové aplikace.
+\end_layout
+
+\begin_layout Standard
+PIN je většinou čtyřmístné číslo, přičemž počet špatných pokusů při autentizaci
+ je omezen.
+ Poté se autentizace zablokuje.
+ Proto nám relativně slabý PIN nemusí vadit.
+ Využití: SIM karty, kreditní karty apod.
+\end_layout
+
+\begin_layout Paragraph*
+Útoky na autentizaci pomocí hesla:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Bruteforce útok
+\series default
+ - útok hrubou silou.
+ Zkoušíme všechny kombinace hesel.
+ Je-li abeceda velká Q znaků, pak časová složitost je rovna 
+\begin_inset Formula $\mathcal{O}(2^{Q})$
+\end_inset
+
+.
+ Neefektivní pro dlouhé hesla.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Slovníkový útok
+\series default
+ - kombinace slov na základě slovníku.
+\end_layout
+
+\begin_layout Itemize
+Odposlechy apod.
+\end_layout
+
+\begin_layout Subsubsection*
+Autentizace na základě tokenu
+\end_layout
+
+\begin_layout Standard
+Token - hardwarové zařízení, které umožňuje autentizovat (alespoň částečně)
+ daný subjekt.
+ Token většinou obsahuje tajnou informaci, certifikát nebo heslo.
+ Autentizační token se dále může vázat s nutností zadat ještě autentizační
+ heslo (tj.
+ dvoufázová autentizace).
+\end_layout
+
+\begin_layout Paragraph*
+Příklady autentizačních tokenů: 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Čipové karty
+\series default
+ - obsahuje čip, který získá, zpracuje a vrátí informace.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+USB tokeny
+\series default
+ - USB flash disk obsahuje speciální zařízení nebo data, která jsou prověřitelná
+ pomocí speciální aplikace.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Autentizační kalkulátor
+\series default
+ - Zařízení podobné 
+\begin_inset Quotes eld
+\end_inset
+
+kalkulačce
+\begin_inset Quotes erd
+\end_inset
+
+, kterým potvrzujeme a povolujeme různé transakce (většinou použití v e-bankovni
+ctví).
+ Nezáleží na počítači, odkud transakci provádíme.
+\end_layout
+
+\begin_layout Subsubsection*
+Autentizace za použití biometriky
+\end_layout
+
+\begin_layout Subsection*
+Šifrování
+\end_layout
+
+\begin_layout Subsubsection*
+Symetrické šifrování
+\end_layout
+
+\begin_layout Standard
+K šifrování a rozšifrování se používá pouze jeden privátní klíč.
+ Nevýhodou takového přístupu je nižší bezpečnost (máme-li dva a více lidí,
+ kteří znají privátní klíč, je zde větší možnost úniku této informace).
+ Výhodou je však snadný mechanismus a většinou i rychlejší šifrování.
+\end_layout
+
+\begin_layout Paragraph*
+Symetrické šifry se dělí na:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Proudové (streamové)
+\series default
+ - šifrování po jednotlivých bitech.
+ Algoritmy: 
+\series bold
+Fish
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Blokové - šifrování po blocích
+\series default
+ (
+\begin_inset Quotes eld
+\end_inset
+
+proud
+\begin_inset Quotes erd
+\end_inset
+
+ se rozdělí na bloky pevné délky, nad nimi jsou prováděny různé matematické
+ operace).
+ Algoritmy: 
+\series bold
+AES, Blowfish
+\series default
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Asymetrické šifrování
+\end_layout
+
+\begin_layout Standard
+Máme dva klíče, veřejný a privátní.
+ Veřejný klíč (znají všichni) se používá k zašifrování dat, rozšifrovat
+ je může pouze ten, kdo zná klíč privátní (zná pouze vlastník).
+ Nejpouživanější algoritmus 
+\series bold
+RSA
+\series default
+ (založený na principu prvočísel), dále 
+\series bold
+ElGamal
+\series default
+ (diskrétní logaritmus).
+ Asymetrické šifrování se dále používá k digitálnímu podpisu dat.
+\end_layout
+
+\begin_layout Paragraph*
+RSA
+\end_layout
+
+\begin_layout Standard
+Veřejný klíč je ve tvaru: 
+\begin_inset Formula $V=(e,N)$
+\end_inset
+
+.
+ Privátní klíč je ve tvaru 
+\begin_inset Formula $P=(d,N)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Na začátku si zvolíme dvě různá (a dlouhá) prvočísla 
+\begin_inset Formula $p,q$
+\end_inset
+
+, nejlépe co nejdále od sebe.
+ Pak 
+\begin_inset Formula $N=p*q$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Vypočteme Eulerovu funkci 
+\begin_inset Formula $\varphi(N)=\varphi(p)\varphi(q)=(p-1)(q-1)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Pro veřejný klíč zvolíme takové 
+\begin_inset Formula $e$
+\end_inset
+
+, pro které platí 
+\begin_inset Formula $GCD(e,\varphi(N))=1$
+\end_inset
+
+ a 
+\begin_inset Formula $e<\varphi(N)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Pro privátní klíč vypočteme takové d, aby platilo: 
+\begin_inset Formula $1\equiv de\,(mod\,\varphi(N))$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Šifrování zprávy: 
+\begin_inset Formula $c\equiv m^{e}\,(mod\,N)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Rozšifrování zprávy 
+\begin_inset Formula $m\equiv c^{d}\,(mod\,N)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph*
+ElGamal
+\end_layout
+
+\begin_layout Standard
+Máme zadanou bázi 
+\begin_inset Formula $A$
+\end_inset
+
+ a modulo 
+\begin_inset Formula $N$
+\end_inset
+
+.
+ Alice si zvolí číslo 
+\begin_inset Formula $p$
+\end_inset
+
+, Bob si zvolí číslo 
+\begin_inset Formula $q$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Nyní Alice vypočte 
+\begin_inset Formula $r_{A}=a^{p}\,(mod\,N)$
+\end_inset
+
+, Bob podobně 
+\begin_inset Formula $r_{B}=a^{q}\,(mod\,N)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Nyní si čísla 
+\begin_inset Formula $r_{A},r_{B}$
+\end_inset
+
+ vymění (můžeme si všimnout, že si nevyměňují p,q, viz problém diskrétního
+ logaritmu).
+ 
+\end_layout
+
+\begin_layout Standard
+Alice spočítá 
+\begin_inset Formula $r_{AB}=r_{B}^{p}\,(mod\,N)$
+\end_inset
+
+, Bob spočítá 
+\begin_inset Formula $r_{BA}=r_{A}^{q}\,(mod\,N)$
+\end_inset
+
+.
+ Víme, že 
+\begin_inset Formula $r_{AB}=r_{BA}$
+\end_inset
+
+, neboť platí: 
+\begin_inset Formula $(a^{A})^{B}\,(mod\,N)=(a^{B})^{A}\,(mod\,N)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Šifrování zprávy: 
+\begin_inset Formula $c\equiv r_{AB}m\,(mod\,N)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dešifrování zprávy: 
+\begin_inset Formula $m\equiv c*r_{AB}^{-1}\,(mod\,N)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Digitální podpis
+\end_layout
+
+\begin_layout Standard
+Obrácený postup asymetrické kryptografie.
+ Digitálně podepisujeme zprávy, abychom zajistili jejich integritu a autenticitu.
+ Hash zprávy zašifrujeme pomocí privátního klíče a společně se zprávou pošleme.
+ Příjemce šifru rozšifruje pomocí volně přístupného veřejného klíče odesílatele,
+ zahashuje přijatou zprávu pomocí stejné hashovací funkce a porovná dané
+ hashe.
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Certifikát
+\end_layout
+
+\begin_layout Standard
+Certifikát je
+\series bold
+ digitálně podepsaný veřejný šifrovací klíč
+\series default
+.
+ Certifikát vydává tzv.
+ 
+\series bold
+certifikační autorita
+\series default
+ (CA).
+ Slouží k ověření, že zaslaný veřejný klíč pochází od správného subjektu
+ (aby nedošlo k podvrhu; tj.
+ nenastala komunikace se třetí stranou).
+\end_layout
+
+\begin_layout Subsubsection*
+Hashovací funkce
+\end_layout
+
+\begin_layout Standard
+Hashovací funkce je zobrazení, které bere na vstupu řetězec libovolné délky
+ a vrací řetězec pevné délky.
+ Po hashovací funkci požadujeme, aby byla:
+\end_layout
+
+\begin_layout Itemize
+deterministická
+\end_layout
+
+\begin_layout Itemize
+minimální množství kolizí
+\end_layout
+
+\begin_layout Itemize
+rovnoměrně 
+\begin_inset Quotes eld
+\end_inset
+
+rozprostřené
+\begin_inset Quotes erd
+\end_inset
+
+ hashe
+\end_layout
+
+\begin_layout Itemize
+jednosměrná
+\end_layout
+
+\begin_layout Standard
+Více o hashovacích funkcích viz otázka 16 - Základní datové struktury.
+\end_layout
+
+\begin_layout Subsection*
+Zabezpečení na jednotlivých protokolových vrstvách
+\end_layout
+
+\begin_layout Subsubsection*
+SSL
+\end_layout
+
+\begin_layout Paragraph*
+SSL Handshake
+\end_layout
+
+\end_body
+\end_document
