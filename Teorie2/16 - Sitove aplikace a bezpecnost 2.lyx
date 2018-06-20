@@ -221,6 +221,29 @@ ctví).
 Autentizace za použití biometriky
 \end_layout
 
+\begin_layout Itemize
+
+\series bold
+Behaviorální
+\series default
+ - styl psaní, rozpoznání hlasu apod.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Fyziologické
+\series default
+ - otisk prstu, duhovka oka apod.
+\end_layout
+
+\begin_layout Standard
+Nejsou 100% (tj.
+ s jistotou nevíme, že otisk prstu je z uřezané ruky, nebo to opravdu provedla
+ dotyčná osoba).
+ Detekce a sběr dat je komplikované, porovnávání dat v databázi je náročné.
+\end_layout
+
 \begin_layout Subsection*
 Šifrování
 \end_layout
@@ -541,11 +564,87 @@ Zabezpečení na jednotlivých protokolových vrstvách
 \end_layout
 
 \begin_layout Subsubsection*
-SSL
+IPSec
+\end_layout
+
+\begin_layout Standard
+Funguje na třetí vrstvě ISO/OSI modelu (síťová vrstva).
+ Umožňuje šifrování IP packetů.
+ Initializace na základě problému diskrétního logaritmu (viz.
+ ElGamal).
+\end_layout
+
+\begin_layout Subsubsection*
+SSL (Secure Socket Layer)
+\end_layout
+
+\begin_layout Standard
+Poskytuje symetricky šifrovanou komunikaci mezi klientem a serverem v rámci
+ L4 vrstvy.
+ Využití u HTTPS, FTPS apod.
+ Možné zneužití SSL nastane, máme-li v počítači podstrčené nepravé certifikáty.
 \end_layout
 
 \begin_layout Paragraph*
 SSL Handshake
+\end_layout
+
+\begin_layout Enumerate
+Klient kontaktuje server, zažádá jeho veřejný klíč.
+\end_layout
+
+\begin_layout Enumerate
+Server zašle jeho veřejný klíč, podepsaný certifikátem.
+\end_layout
+
+\begin_layout Enumerate
+Klient ověří platnost certifikátu (má-li veřejný klíč Certifikátové autority).
+\end_layout
+
+\begin_layout Enumerate
+Klient vytvoří symetrický klíč, zaširfuje ho pomocí veřejného klíče serveru
+ a pošle ho na server.
+\end_layout
+
+\begin_layout Enumerate
+Server ho rozbalí privátním klíčem, dále již komunikace je symetricky šifrovaná.
+\end_layout
+
+\begin_layout Subsubsection*
+Firewall
+\end_layout
+
+\begin_layout Standard
+Aplikace, fungující na poslední, aplikační vrstvě ISO/OSI modelu.
+ Firewallů máme několik typů:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+packetové filtry
+\series default
+ - Rozbalují a filtrují takové packety, které nesplňují podmínku (např.
+ povolujeme packety pouze na portu X-Y z IP adresy A-B).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+aplikační brány (proxy firewally)
+\series default
+ - Komunikace mezi dvěma zařízeními A,B probíhá skrze proxy firewall, tzn.
+ A komunikuje s firewallem a ten posílá data dále k B a naopak.
+ Funguje jako překlad NAT adres.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+stavové packetové filtry
+\series default
+ - Podobné jako packetové filtry, ale ukládají si informace o povolených
+ (aktivních) spojeních, které již propouští automaticky.
 \end_layout
 
 \end_body
