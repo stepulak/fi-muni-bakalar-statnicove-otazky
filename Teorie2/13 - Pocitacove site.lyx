@@ -336,10 +336,6 @@ Zajišťuje spolehlivý přenos rámců! Tj.
 \series bold
 stop and wait
 \series default
- a 
-\series bold
-sliding window
-\series default
  (více kapitole 14.
  počítačové sítě).
 \end_layout

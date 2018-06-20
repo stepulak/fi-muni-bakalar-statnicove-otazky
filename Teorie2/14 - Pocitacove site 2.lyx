@@ -390,8 +390,201 @@ Hypoteticky máme
 Směrování
 \end_layout
 
+\begin_layout Standard
+Hledání cesty mezi dvěm uzly v síti.
+ Směřujeme na základě 
+\series bold
+IP adresy 
+\series default
+(a podle 
+\series bold
+směrovacích tabulek
+\series default
+ v routerech).
+ Zasílání packetů funguje na principu 
+\series bold
+hop-by-hop
+\series default
+ (uzel po uzlu).
+ Hledíme-li na síť jako na graf, tak směrování je hledání (nejkratší) cesty
+ napříč grafem.
+ Nicméně síť je dynamická (a decentralizovaná), proto si nemůžeme uržovat
+ veškeré uzly někde v paměti.
+ Proto si každý router uržuje tzv.
+ 
+\series bold
+směrovací tabulku
+\series default
+, tj.
+ tabulku některých zařízení, jenž jsou připojeny do sítě (+ jejich metrika,
+ vzdálenost).
+ Tyto záznamy můžeme do tabulky vkládat ručně (
+\series bold
+statické
+\series default
+), nebo probíhá 
+\series bold
+dynamicky
+\series default
+ na základě protokolů 
+\series bold
+RIP
+\series default
+ (využívá 
+\series bold
+Distance Vektor
+\series default
+ mechanismus) a 
+\series bold
+OSPF
+\series default
+ (využívá 
+\series bold
+Link State
+\series default
+ mechanismus).
+\end_layout
+
+\begin_layout Subsubsection*
+Distance Vektor
+\end_layout
+
+\begin_layout Standard
+Každé zařízení posílá všem sousedům vektor známých a dosažitelných zařízení
+ v síti (spolu s metrikou), tj.
+ 
+\series bold
+celou směrovací tabulku
+\series default
+.
+ Tj.
+ posílám všechny informace 
+\series bold
+pouze sousedům
+\series default
+.
+ Menší režie sítě a náročnost na CPU a paměť, neboť žádný uzel si 
+\series bold
+nepamatuje
+\series default
+ celou topologii sítě.
+ Použitelné pro větší sítě.
+ Pro hledání cesty se využívá
+\series bold
+ Bellman-Fordův algoritmus
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Problém cyklení: 
+\series default
+Máme 3 uzly A-B-C.
+ Proběhne výpadek například uzlu A.
+ Pro uzel B je metrika k A neznámá, pro C rovno 2.
+ Uzel B špatně odhadne metriku pro A (3 a ne 1).
+ Uzel C požádá o směrovací tabulku B, přepíše vzdálenost k A na 4 apod.
+ Zacyklení.
+ 
+\series bold
+Řešení
+\series default
+: pamatovat si, od koho jsme již směrovací tabulku získali a tu znovu nežádat.
+\end_layout
+
+\begin_layout Standard
+Protokol: 
+\series bold
+RIP
+\series default
+.
+\end_layout
+
+\begin_layout Subsubsection*
+Link State
+\end_layout
+
+\begin_layout Standard
+Každý uzel posílá seznam svých nejbližších sousedů 
+\series bold
+všem
+\series default
+ 
+\series bold
+uzlům
+\series default
+ v sítí.
+ To znamená, že každý uzel si v určitém čase vybuduje
+\series bold
+ celou topologii sítě
+\series default
+ a dokáže vypočítat nejkratší cestu mezi dvěma uzly.
+ Využívá se 
+\series bold
+Dijkstrův
+\series default
+ 
+\series bold
+algoritmus
+\series default
+.
+ Ačkoli je Dijkstra méně náročný na CPU a paměť, tak jelikož každý uzel
+ udržuje celou topologii sítě, tak prohledáváme více uzlů, proto je Link
+ State 
+\series bold
+nepoužitelný
+\series default
+ pro velké sítě.
+\end_layout
+
+\begin_layout Standard
+Protokol: 
+\series bold
+OSPF
+\series default
+ (Open Shortest Path First).
+\end_layout
+
 \begin_layout Subsection*
 Mutlicast
+\end_layout
+
+\begin_layout Standard
+Multicast je forma jednosměrné komunikace 1 vs vybraní jednotlivci.
+ Aby router mohl zachytávat multicastovou komunikaci, musí ho podporovat.
+ Pokud zachytí multicastový packet (IP adresa zdroje a cílové skupiny),
+ podíve se, jeslti je nakofigurován tak, aby zachytával multicastové packety
+ cílové skupiny (
+\series bold
+skupina D IP adres, 224.0.0.0-239.255.255.255
+\series default
+).
+ Pokud ano, multicast zachytí a přečte.
+\end_layout
+
+\begin_layout Standard
+Využívá se protokol 
+\series bold
+UDP
+\series default
+ (nepotvrzování, nespolehlivá komunikace) a platí, že každý packet (tedy
+ datagram) multicastové komunikace projde směrovačem právě jednou.
+\end_layout
+
+\begin_layout Standard
+Použití protokolu 
+\series bold
+IGMP
+\series default
+.
+ Přihlašování, odhlašování z multicastové skupiny.
+ Posílání datagramů všem členům skupiny.
+\end_layout
+
+\begin_layout Standard
+Využití: Internetová TV, rádio.
 \end_layout
 
 \begin_layout Subsection*
@@ -436,12 +629,142 @@ Nejjednodušší potvrzovací mechanismus.
 Go-Back-N
 \end_layout
 
+\begin_layout Standard
+Odesílatel i příjemce si udržuje tzv.
+ sliding window, což je buffer odeslaných/přijatých packetů, jenž jsou číslovány
+ jako (01230123 apod.).
+ Packety se posílají bez čekání na potvrzení (které se ovšem odesílá!).
+ Potvrzení je ve tvaru ACK + číslo následujícího packetu.
+ Pokud packet nedorazí, nebo ACK nedorazí, vyšlou se všechny packety znovu
+ od toho packetu, jehož zaslání bylo neúspěšné.
+ Při velkých chybách velký network traffic.
+\end_layout
+
 \begin_layout Paragraph*
 Selective-Repeat
 \end_layout
 
+\begin_layout Standard
+Podobné jako Go-Back-N protokol, ovšem zásílá i 
+\begin_inset Quotes eld
+\end_inset
+
+negativní acknowledgement
+\begin_inset Quotes erd
+\end_inset
+
+, musí si pamatovat a zjišťovat tzv.
+ díry, packety které nepřijal.
+ Příjemce vyžádá a odesílatel znovu zasílá pouze ty packety, které byly
+ chybně zpracovány.
+ Menší memory traffic, vyšší režie protokolu.
+\end_layout
+
 \begin_layout Subsection*
 Transportní protokoly
+\end_layout
+
+\begin_layout Subsubsection*
+TCP (Transmission Control Protocol)
+\end_layout
+
+\begin_layout Standard
+Spolehlivá, spojovaná služba, součástí ISO/OSI transportní vrstvy (L4).
+ Protokol TCP zajistí, že všechny packety přijdou 
+\series bold
+korektní
+\series default
+ a ve
+\series bold
+ správném pořadí
+\series default
+.
+ Využití protokolu 
+\series bold
+Go-Back-N
+\series default
+ 
+\series bold
+ARQ
+\series default
+ (TCP příjemce posílá ACK pro přijaté packety).
+ Prováděn kontrolní součet jednotlivých packetů.
+ Identifikace cílové aplikace pomocí zdrojového/cílového portu.
+\end_layout
+
+\begin_layout Standard
+Jak TCP vzniká? Máme prodou (stream) dat, které protokol TCP se štěpí do
+ malých částí, TCP packetů (každému dá pořadové číslo).
+ Tento packet se zabalí do IP packetu a pošle sítí.
+ Příjemce IP packety rozbalí a TCP protokol inverzně seskládá (podle pořadového
+ čísla packetu).
+\end_layout
+
+\begin_layout Paragraph*
+Vytvoření spojení
+\end_layout
+
+\begin_layout Standard
+Trojfázový handshake:
+\end_layout
+
+\begin_layout Standard
+Klient pošle na server SYN s náhodně vygenerovaným číslem sekvence X, a
+ ACK číslo = 0.
+\end_layout
+
+\begin_layout Standard
+Server odpoví ACK a pošle SYN s náhodně vygenerovaným číslem Y, a ACK číslo=ACK+
+1.
+\end_layout
+
+\begin_layout Standard
+Klient odpoví ACK a pošle číslo sekvence X+1 a odpovědi Y+1.
+\end_layout
+
+\begin_layout Paragraph*
+Ukončení spojení
+\end_layout
+
+\begin_layout Enumerate
+Klient pošle požadavek FIN.
+\end_layout
+
+\begin_layout Enumerate
+Server odpoví ACK.
+\end_layout
+
+\begin_layout Enumerate
+Server pošle požadavek FIN.
+\end_layout
+
+\begin_layout Enumerate
+Klient odpoví ACK.
+\end_layout
+
+\begin_layout Subsubsection*
+UDP (User Datagram Protokol)
+\end_layout
+
+\begin_layout Standard
+Nejjednodušší transportní protokol bez potvrzovací režie.
+ 
+\series bold
+Nespolehlivý protokol
+\series default
+ (data nemusí přijít, mohou přijít v jiném pořadí nebo poničená - to však
+ detekujeme).
+ Před vysíláním se nevytvoří spojení mezi aplikacemi (
+\series bold
+žádný handshake
+\series default
+).
+ 
+\series bold
+Malá hlavička UDP datagramu
+\series default
+ (zdrojový a cílový port, délku packetu a kontrolní součet).
+ Využití: real-time (hry, videa), multicast.
 \end_layout
 
 \end_body
