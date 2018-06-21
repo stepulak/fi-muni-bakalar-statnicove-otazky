@@ -1,0 +1,567 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Softwarové inženýrství 1
+\end_layout
+
+\begin_layout Standard
+Náplní softwarového inženýrství jsou všechny aspekty kolem vývoje softwaru.
+\end_layout
+
+\begin_layout Subsection*
+Životní cyklus softwaru a související aktivity
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+Specifikace 
+\begin_inset Formula $\longrightarrow$
+\end_inset
+
+ Analýza a design 
+\begin_inset Formula $\longrightarrow$
+\end_inset
+
+ Implementace 
+\begin_inset Formula $\longrightarrow$
+\end_inset
+
+ Testování
+\end_layout
+
+\begin_layout Paragraph*
+Testování se skládá z:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Verifikace
+\series default
+ - Kontrola, zda-li systém a jeho komponenty fungují správně (Unit testy
+ apod.)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Validace
+\series default
+ - Kontrola softwaru pomocí specifikací a zákazníka, zda-li funguje tak,
+ jak jsme si ho představovali.
+\end_layout
+
+\begin_layout Paragraph*
+Máme několik základních druhů vývoje:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Plan-driven vývoj
+\series default
+ - Máme naplánované různé etapy vývoje (lineární vývoj) tak, že výstupem
+ každé etapy je nějaký funkční celek.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Agilní vývoj (iterativní) 
+\series default
+- Specifikace, analýza, implementace a testování je provázané v cyklech,
+ výstupem každé iterace je určitá část celku.
+\end_layout
+
+\begin_layout Paragraph*
+Tyto druhy mohou dále reprezentovat další následující modely:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Waterfall model
+\series default
+ - vždy plan driven.
+ Již u specifikace si naplánujeme celkový postup vývoje, nutná dobrá analýza
+ (one-go).
+ Velmi těžko se mění specifikace či návrh systému.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Inkrementální model
+\series default
+ - může být agilní (častěji) nebo plan driven.
+ Software budujeme po částech, které testujeme.
+ Nesmíme 
+\begin_inset Quotes eld
+\end_inset
+
+overengineerovat
+\begin_inset Quotes erd
+\end_inset
+
+, tzn.
+ naprogramuj jen to, co potřebuješ.
+ Vhodné pro projekty, kde se specifikace v průběhu vývoje mění.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Boehmův spirálový model
+\series default
+ - Model vývoje je reprezentován pomocí spirály.
+ V každou výseč (sektor) spirály si naplánujeme, co se bude dělat (např.
+ v této výseči je specifikace, v druhé analáza, implementace apod.; číra
+ symbolizuje čas).
+ Jedná se o iterativní přístup.
+\end_layout
+
+\begin_layout Subsection*
+Specifikace požadavků a jejich typy
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Funkční požadavky
+\series default
+ - specifikují CO má daná aplikace umět z hlediska používání (např.
+ Zobrazit formulář pro EET, Vytisknout dokument apod.)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Nefunkční požadavky 
+\series default
+- popisují omezení aplikace, specifické a implementační požadavky (naimplementov
+án v .NET, platformy Windows apod.)
+\end_layout
+
+\begin_layout Paragraph*
+Proces popisu požadavků:
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Nalezení funkčních požadavků
+\series default
+: CO bude systém umět a dělat, ne JAK (toto se jedná už o analýzu a design).
+ Komunikace se zákazníkem.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Klasifikace požadavků
+\series default
+: 
+\series bold
+MoSCoW
+\series default
+ (Must have, Should have, Could have, Want to have)
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Specifikace požadavků
+\series default
+: Například v 
+\series bold
+USE-CASE
+\series default
+ diagramu.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Verifikace a validace požadavků
+\series default
+: Zda-li jsou 
+\series bold
+reálné
+\series default
+ (implementovatelné), 
+\series bold
+konzistentní
+\series default
+ (zda-li se nevylučují dva požadavky), otestovatelné.
+\end_layout
+
+\begin_layout Subsection*
+Analýza a design
+\end_layout
+
+\begin_layout Standard
+Druhá fáze vývoje softwaru.
+ V této fázi popisujeme návrh, fungování a vzájemnou vztahy různých objektů.
+ Nejdeme však až do implementační hloubky (třetí fáze).
+\end_layout
+
+\begin_layout Standard
+Je pravděpodobné, že se analýza a návrh aplikace napoprvé nepovede, a tak
+ je nutné ji celou přepsat.
+ Proto se jedná o iterativní proces.
+\end_layout
+
+\begin_layout Paragraph*
+Máme několik typů analýz:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Datová analýza
+\series default
+ - Analýza dat, různých entit apod.
+ Výsledkem datové analýzy může být například návrh relačních schémat apod.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Objektová analýza
+\series default
+ - Aplikace je rozdělena do samostatných tříd, vztahy mezi nimi a vzájemná
+ komunikace.
+ OOP pohled na aplikaci.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Strukturované analýza
+\series default
+ - viz níže
+\end_layout
+
+\begin_layout Subsection*
+Strukturované vs.
+ objektově orientované metody analýzy a návrhu
+\end_layout
+
+\begin_layout Subsubsection*
+Strukturované analýzy
+\end_layout
+
+\begin_layout Standard
+Prolíná funkční a datový pohled na aplikaci.
+ Tj.
+ jedná se o množinu funkcí, které jsou spolu vzájemně provázány a manipulují
+  s daty tohoto systému.
+ 
+\series bold
+Funkční dekompozice
+\series default
+ je označení pro rozbor aplikace na malé funkce, jež spolu
+\series bold
+ vzájemně spolupracují v určitém pořadí
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+Metody strukturovaných analýz: 
+\series bold
+SASS (Structured Analysis System Specification), LM (Logical Modeling),
+ Yourdon Modern Structured Analysis (YMSA)
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+UML diagramy:
+\end_layout
+
+\begin_layout Paragraph*
+
+\series bold
+Data Flow Diagram (DFD)
+\series default
+ 
+\end_layout
+
+\begin_layout Standard
+Diagram toku dat.
+ Grafické znázornění interakce funkcí nad daty a toku dat.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/data_flow_diagram_symbols.png
+	lyxscale 50
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/data_flow_diagram.png
+	lyxscale 50
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph*
+Context diagram (CD) 
+\end_layout
+
+\begin_layout Standard
+Speciální případ Data Flow Diagramu, který modeluje vnější pohled na celý
+ systém, tj.
+ hranice systému, aktéry a hlavní toky mezi systémem a aktéry.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/context_diagram.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph*
+Entity relationship diagram (ERD)
+\end_layout
+
+\begin_layout Standard
+Modeluje vztahy dat v rámci systému.
+ Většinou se používá pro modelování databáze.
+ Vztahy mezi diagramy: 1:1, 1:N, N:M (v databázi je nutná asociační tabulka).
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/erd1.png
+	lyxscale 70
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Objektově orientované analýzy
+\end_layout
+
+\begin_layout Standard
+Modeluje aplikaci podle OOP pravidel.
+ Tj.
+ systém reprezentují jednotlivé třídy (objekty) a vztahy mezi nimi.
+ Rozdíl mezi strukturovanou analýzou je ten, že u objektového návrhu jsou
+ data a funkce v jedné třídě.
+\end_layout
+
+\begin_layout Standard
+Metody analýz: 
+\series bold
+RUP, UP
+\series default
+ (Unified Process), apod.
+\end_layout
+
+\begin_layout Paragraph*
+Popis objektově orientované analýzy:
+\end_layout
+
+\begin_layout Enumerate
+Vytvoříme USE-CASE diagram, s textovým popisem jednotlivých USE-CASEů.
+\end_layout
+
+\begin_layout Enumerate
+Základní architektura aplikace - pomocí Class diagramu, Package diagramu.
+\end_layout
+
+\begin_layout Enumerate
+Dokončení Class diagramu do detailní podoby (atributy, typy apod.)
+\end_layout
+
+\begin_layout Enumerate
+Popis interakcí s uživatelem pro jednotlivé funkce: Sequence diagram.
+\end_layout
+
+\begin_layout Standard
+UML diagramy:
+\end_layout
+
+\begin_layout Paragraph*
+Class diagram
+\end_layout
+
+\begin_layout Standard
+Grafická reprezentace objektově orientovaného návrhu tříd systému a vztahů
+ mezi nimi.
+ Jedná se o takový 
+\begin_inset Quotes eld
+\end_inset
+
+hrubý náčrt
+\begin_inset Quotes erd
+\end_inset
+
+ systému.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/class_diagram1.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/class_diagram_agg_compo.png
+	lyxscale 70
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/class_diagram_pouziti.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph*
+Use case diagram
+\end_layout
+
+\begin_layout Standard
+Diagram vztahu aktérů s use-casy (funkční požadavky).
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/use_case_diagram.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph*
+Sequence diagram
+\end_layout
+
+\begin_layout Standard
+TODO
+\end_layout
+
+\end_body
+\end_document
