@@ -1,0 +1,521 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Softwarové inženýrství 2
+\end_layout
+
+\begin_layout Subsection*
+Testování, validace, verifikace
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Verifikace
+\series default
+ - Testování, zda-li program funguje korektně (tj.
+ vrací správné výsledky, chová se podle očekávání).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Validace
+\series default
+ - Testování, zda-li je program funkční podle přání a specifikace zákazníka.
+\end_layout
+
+\begin_layout Standard
+Verifikace může být 
+\series bold
+statická
+\series default
+ a 
+\series bold
+dynamická
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Statická verifikace
+\series default
+ nespouští program, jen analyzuje zdrojový kód.
+ Může být 
+\series bold
+prováděna člověkem
+\series default
+, nebo je 
+\series bold
+automatická
+\series default
+ (např.
+ kompilátor řekne, která proměnná nebo metoda je nevyužita).
+ 
+\series bold
+Formální verifikace
+\series default
+ je testování totální korektnosti algoritmů podle matematické specifikace.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Dynamická verifikace
+\series default
+ je založena na spuštení programu.
+ Rozděluje se na:
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Development testování 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+Unit testy
+\series default
+ - Testování jednotlivých metod či tříd, zda-li fungují správně pro různé
+ vstupy.
+ Unit testy mohou být 
+\series bold
+automatické
+\series default
+, tj.
+ IDE nám je spouští všechny naráz a výsledky zobrazí v interaktivní podobě.
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Component testy
+\series default
+ - Sloučíme několik tříd/modulů do jedné komponenty a testujeme rozhraní,
+ jenž s nima komunikuje.
+ Toho rozhraní testujeme nejen pro vyzkoušení, že funguje správně na korektních
+ datech, ale testujeme taky záměrně nekorektní vstupy (SQL injection, XSS,
+ buffer overflow apod.)
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Systémové testování
+\series default
+ - Testování celého systému jako jednoho celku.
+ Náročné.
+ Např.
+ pro GUI aplikce testujeme fungování systémového menu, kombinace různých
+ stavů aplikace apod.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Release testování
+\series default
+ - Testování funkčnosti a korektnosti aplikace před zákazníkem.
+ Testujeme výkon, funkcionalitu apod.
+ Měl by jej testovat tým, který se na vývoji aplikace nepodílel (vyšší pravděpod
+obnost, že aplikace bude otestována správně).
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+User testování
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\series bold
+Alpha
+\series default
+ - Uživatelé testují aplikaci společně s vývojáři (obvykle jen úzký, vybraný
+ okruh uživatelů)
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Beta
+\series default
+ - Aplikace je v provozu, mohou ji otestovat již všichni uživatelé.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection*
+Provoz, údržba a další vývoj systému
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+Vývoj 
+\begin_inset Formula $\longrightarrow$
+\end_inset
+
+ evoluce 
+\begin_inset Formula $\longrightarrow$
+\end_inset
+
+ údržba 
+\begin_inset Formula $\longrightarrow$
+\end_inset
+
+ phase-out
+\end_layout
+
+\begin_layout Standard
+Vývoj se dá dále klasifikovat na: 
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+specifikace 
+\begin_inset Formula $\longrightarrow$
+\end_inset
+
+ analýza a design 
+\begin_inset Formula $\longrightarrow$
+\end_inset
+
+ implementace 
+\begin_inset Formula $\longrightarrow$
+\end_inset
+
+ testování
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Evoluce
+\series default
+: přidávání nových funkcí, oprava chyb
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Údržba
+\series default
+: oprava chyb, udržování funkcionalit
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Phase-out:
+\series default
+ software již není udržovaný ani podporován
+\end_layout
+
+\begin_layout Subsubsection*
+Evoluce
+\end_layout
+
+\begin_layout Standard
+Pro různé vestavěné systémy či aplikace na míru je přidávání nových funkcionalit
+ někdy složitější, než naprogramovat aplikaci novou.
+ Lepší přístup, pokud využíváme agilní metodiku vývoje (pak v principu je
+ evoluce provázána s vývojem).
+\end_layout
+
+\begin_layout Subsubsection*
+Údržba
+\end_layout
+
+\begin_layout Standard
+Oprava chyb a podpora funkčnosti programu.
+ Může být velmi nákladné udržovat starý software (nepodporované technologie,
+ starší kompilátory apod.).
+ Občas je velmi těžké se vyznat v cizím kódu, tj.
+ je lepší, když software udržuje někdo z původních vývojářů.
+\end_layout
+
+\begin_layout Subsubsection*
+Další vývoj
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Reengineering
+\series default
+ - Oprava kódu tak, že neměníme jeho funkcionalitu (zůstává zachována).
+ Např.
+ přepsání algoritmu, aby běžel rychleji.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Refactoring
+\series default
+ - Úprava kódu, aby se zabránilo jeho 
+\begin_inset Quotes eld
+\end_inset
+
+stárnutí
+\begin_inset Quotes erd
+\end_inset
+
+ narůstající s časem.
+ Tj.
+ odstranění duplicitních funkcí, zpřehlednění programovacího stylu apod.
+\end_layout
+
+\begin_layout Subsection*
+Role jazyka UML v podpoře analýzy a návrhu softwaru
+\end_layout
+
+\begin_layout Standard
+UML - Unified Modeling Language.
+ Pomocí tohoto jazyka dokážeme zakreslit a specifikovat například: 
+\end_layout
+
+\begin_layout Itemize
+OOP návrh - Class Diagram, Sequence Diagram, Package Diagram apod.
+\end_layout
+
+\begin_layout Itemize
+Strukturovaný návrh - Data Flow Diagram, Component Diagram (viz otázka č.
+ 17).
+\end_layout
+
+\begin_layout Itemize
+ER diagram aj.
+\end_layout
+
+\begin_layout Subsubsection*
+Class diagram
+\end_layout
+
+\begin_layout Standard
+Slouží k OOP návrhu aplikace.
+ Jedná se o 
+\begin_inset Quotes eld
+\end_inset
+
+hrubý náčrt
+\begin_inset Quotes erd
+\end_inset
+
+ systému, neprovádíme implementaci, pouze popisujeme vztahy, podobu a chování
+ jednotlivých tříd.
+\end_layout
+
+\begin_layout Standard
+Class diagram umožňuje zápis vztahů:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Agregace
+\series default
+ - vztah dvou tříd, obě mohou existovat nezávisle na sobě (návrh počítač,
+ tiskárna).
+ Zapisuje se pomocí čáry s bílým diamantem na konci (diamant je u třídy,
+ která druhou třídu používá).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Kompozice
+\series default
+ - vztah dvou tříd, přičemž druhá nemůže existovat samostatně (návrh počítač,
+ procesor).
+ Zapisuje se podobně jako agregace, ovšem s tím rozdílem, že diamant je
+ černě vyplněný.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/class_diagram_agg_compo.png
+	lyxscale 60
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Asociace
+\series default
+ - Třída využivá druhou třídu jako atribut.
+ Označuje se pomocí plné čáry s šipkou.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Závislost (use)
+\series default
+ - Třídá závisí na druhé třídě (využívá se jako argument metody apod.).
+ Označuje se pomocí přerušované čáry s šipkou.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Dědičnost
+\series default
+ - viz OOP dědičnost.
+ Označení pomocí plné čáry s trojúhelníkovou šipkou.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Implementace
+\series default
+ - viz OOP implementace rozhraní.
+ Označení pomocí přerušované čárky s trojúhelníkovou šipkou.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename img/uml_notations.JPG
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Příklad class diagramu (jednoduchá knihovna):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename img/class_diagram_knihovna.png
+	lyxscale 50
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Sequence diagram
+\end_layout
+
+\begin_layout Standard
+Slouží ke grafické reprezentaci interakce volání metody a dalších objektů.
+ V sequence diagramu máme několik značení:
+\end_layout
+
+\begin_layout Standard
+Objekty -
+\end_layout
+
+\begin_layout Standard
+Lifeline - 
+\end_layout
+
+\begin_layout Standard
+Messages - 
+\end_layout
+
+\begin_layout Subsubsection*
+Activity diagram
+\end_layout
+
+\begin_layout Standard
+Package diagram
+\end_layout
+
+\end_body
+\end_document
