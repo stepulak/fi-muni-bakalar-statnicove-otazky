@@ -105,5 +105,200 @@ P2P (Peer-to-peer)
  
 \end_layout
 
+\begin_layout Subsection*
+Základní aplikační protokoly
+\end_layout
+
+\begin_layout Subsubsection*
+SMTP a POP3/IMAP pro posílání emailů
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+SMTP
+\series default
+ = Simple Mail Transfer Protocol.
+ 
+\end_layout
+
+\begin_layout Standard
+Slouží k posílání emailu od klienta na server.
+ Funguje na portu číslo 25 a na L4 používá transportní protokol.
+\end_layout
+
+\begin_layout Standard
+Ukázka komunikace klient-server (K-S):
+\end_layout
+
+\begin_layout Standard
+Navázání spojení K-S.
+\end_layout
+
+\begin_layout Quotation
+K: HELO název S.
+\end_layout
+
+\begin_layout Quotation
+S: 250 HELLO název S.
+\end_layout
+
+\begin_layout Quotation
+K: MAIL FROM: <email odesílatele>
+\end_layout
+
+\begin_layout Quotation
+S: 250 OK
+\end_layout
+
+\begin_layout Quotation
+K: RCPT TO: <email příjemce>
+\end_layout
+
+\begin_layout Quotation
+S: 250 OK
+\end_layout
+
+\begin_layout Quotation
+K: DATA
+\end_layout
+
+\begin_layout Quotation
+S: OK, END DATA WITH: <ukončovací řetězec>
+\end_layout
+
+\begin_layout Quotation
+K: Subject blabla
+\end_layout
+
+\begin_layout Quotation
+K: From <email odesílatele>
+\end_layout
+
+\begin_layout Quotation
+K: To <email příjemce>
+\end_layout
+
+\begin_layout Quotation
+K:
+\end_layout
+
+\begin_layout Quotation
+K: Text
+\end_layout
+
+\begin_layout Quotation
+K: <ukončovací řetězec>
+\end_layout
+
+\begin_layout Quotation
+S: 250 OK
+\end_layout
+
+\begin_layout Quotation
+K: QUIT
+\end_layout
+
+\begin_layout Standard
+SMTP protokol dále může obsahovat tzv.
+ 
+\series bold
+MIME
+\series default
+ hlavičky, skrze které se posílají odeslané přílohy apod.
+ Například:
+\end_layout
+
+\begin_layout Quotation
+Content-Type: image/jpeg
+\end_layout
+
+\begin_layout Quotation
+Content-Encoding: base64
+\end_layout
+
+\begin_layout Quotation
+\begin_inset space ~
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quotation
+obrázek zakódovaní v base64
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+POP3
+\series default
+ 
+\end_layout
+
+\begin_layout Standard
+Slouží k připojení klienta na server a stažení emailů ze serveru do lokálního
+ adresáře klienta.
+ Pokud není nastaven jinak, tak se při stažení emaily i automaticky mažou.
+ Jinými slovy, neprobíhá synchronizace mezi klientem a serverem.
+ Dva různí klienti připojení na stejnou emailovou adresu mohou mít různé
+ obsahy doručených emailů.
+ Port 110 pro nešifrovanou a 995 pro šifrovanou komunikaci.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+IMAP
+\series default
+ 
+\end_layout
+
+\begin_layout Standard
+Po připojení klienta si udržuje spojení se serverem, ze serveru stahuje
+ pouze kopie doručených emailů (tj.
+ ze serveru je standardně nemaže) a lokálně je neukládá.
+ Probíhá synchronizace mezi klientem a serverem.
+ Pokud se připojíme z více klientů na jeden server, budeme mít vždy stejný
+ obsah emailové schránky.
+ Port 143 pro nešifrovanou komunikaci nebo 993 pro šifrovanou komunikaci.
+\end_layout
+
+\begin_layout Subsubsection*
+
+\series bold
+Přenos souborů skrze FTP
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+FTP - File Transfer protocol
+\series default
+.
+ Slouží k přenosu dat skrze počítačovou síť.
+ Používá TCP pro L4 a běží paralelně na dvou portech.
+ Port 20 slouží k 
+\series bold
+přenosu dat
+\series default
+ (binární nebo textový) a port 21 pro
+\series bold
+ režii řízení a komunikaci
+\series default
+ (tj.
+ přihlašování, dotazování, žádosti apod.).
+ Je-li přenos textový, je prováděna i implicitní konverze CRLF, LF mezi
+ dvěma rozdílnými systémy.
+\end_layout
+
+\begin_layout Standard
+WEB - HTTP
+\end_layout
+
+\begin_layout Standard
+HTTP = HyperText Transfer Protocol.
+\end_layout
+
 \end_body
 \end_document
