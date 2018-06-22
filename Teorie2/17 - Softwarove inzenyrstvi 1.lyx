@@ -478,7 +478,8 @@ Popis interakcí s uživatelem pro jednotlivé funkce: Sequence diagram.
 \end_layout
 
 \begin_layout Standard
-UML diagramy:
+UML diagramy (více viz otázka 18.
+ Softwarové inženýrství 2):
 \end_layout
 
 \begin_layout Paragraph*
@@ -560,7 +561,7 @@ Sequence diagram
 \end_layout
 
 \begin_layout Standard
-TODO
+Diagram 
 \end_layout
 
 \end_body

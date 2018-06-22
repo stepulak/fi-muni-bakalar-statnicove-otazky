@@ -370,6 +370,47 @@ ER diagram aj.
 \end_layout
 
 \begin_layout Subsubsection*
+USE-CASE diagram
+\end_layout
+
+\begin_layout Standard
+Slouží k reprezentaci funkčních požadavků a jejich vztahy k aktérům.
+ Aktér může být například uživatel aplikace, správce, nebo nějaká vnitřní
+ entita (například čas).
+\end_layout
+
+\begin_layout Standard
+U USE-CASEů používáme několik vztahů:
+\end_layout
+
+\begin_layout Itemize
+extend
+\end_layout
+
+\begin_layout Itemize
+include
+\end_layout
+
+\begin_layout Itemize
+generalizace
+\end_layout
+
+\begin_layout Standard
+Příklad (jednoduchá knihovna):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename img/use_case_knihovna.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
 Class diagram
 \end_layout
 
@@ -474,7 +515,7 @@ Implementace
 \end_layout
 
 \begin_layout Standard
-Příklad class diagramu (jednoduchá knihovna):
+Příklad class diagramu (opět jednoduchá knihovna):
 \end_layout
 
 \begin_layout Standard
@@ -497,16 +538,32 @@ Slouží ke grafické reprezentaci interakce volání metody a dalších objekt�
  V sequence diagramu máme několik značení:
 \end_layout
 
-\begin_layout Standard
-Objekty -
+\begin_layout Itemize
+Objekty - instance tříd, v diagramu jsou nahoře v obdélníku.
+\end_layout
+
+\begin_layout Itemize
+Lifeline - svislá čára života - reprezentuje průběh života objektu
+\end_layout
+
+\begin_layout Itemize
+Messages - volání metod, tj.
+ vyměňování zpráv mezi objekty
 \end_layout
 
 \begin_layout Standard
-Lifeline - 
+Příklad (vztahuje ze na class diagram knihovny):
 \end_layout
 
 \begin_layout Standard
-Messages - 
+\begin_inset Graphics
+	filename img/sequence_diagram.png
+	lyxscale 50
+	scale 70
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection*
@@ -514,7 +571,42 @@ Activity diagram
 \end_layout
 
 \begin_layout Standard
+Slouží pro grafické znázornění USE-CASEů.
+ Šipky znázorňují tok 
+\begin_inset Quotes eld
+\end_inset
+
+algoritmu
+\begin_inset Quotes erd
+\end_inset
+
+, vrcholy jsou jednotlivé USE-CASE.
+ Máme taky řídící uzly - startovní uzel (černé kolečko), koncový uzel (černé
+ kolečko uvnitř kružnice), nebo diamant (IF).
+\end_layout
+
+\begin_layout Standard
+Příklad:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename img/activity_diagram.png
+	lyxscale 50
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
 Package diagram
+\end_layout
+
+\begin_layout Standard
+Slouží pro grafickou reprezentaci balíků (v Javě) nebo namespaců (C#, C++).
+ Závislosti by neměly být cyklické.
 \end_layout
 
 \end_body
