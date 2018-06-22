@@ -292,12 +292,128 @@ přenosu dat
  dvěma rozdílnými systémy.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Subsubsection*
 WEB - HTTP
 \end_layout
 
 \begin_layout Standard
-HTTP = HyperText Transfer Protocol.
+
+\series bold
+HTTP = HyperText Transfer Protocol
+\series default
+.
+ Nejpoužívanější protokol na internetu, slouží pro přenos dokumentů a informací
+ (nejčastěji HTML stránky).
+ Běží na TCP, port 80.
+ HTTPS varianta (HTTP + SSL/TSL) běží na portu 443.
+\end_layout
+
+\begin_layout Standard
+Funguje na principu dotaz-odpověď.
+ Dotaz se může skládat z několika možných podob:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+GET
+\series default
+ - pro získání souboru podle URL, obsah se předává v rámci hlavičky URL
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+POST
+\series default
+ - opět pro získání souboru podle URL, ovšem obsah se nepředává skrze hlavičku
+ ale skrze MIME hlavičky (Content-Type, Content-Encoding apod.).
+ Vhodné pro větší data (více jak 512 B)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+PUT
+\series default
+ - Nahrání dat na server.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+DELETE
+\series default
+ - Smazání dat na serveru.
+\end_layout
+
+\begin_layout Itemize
+aj.
+\end_layout
+
+\begin_layout Standard
+Podoba odpovědi serveru se mění v závislosti na výsledku operace.
+ 200 je znamená úspěšné provedení operace, 4XX chyba klienta (404 not found,
+ 403 forbidden), 5XX chyba serveru.
+\end_layout
+
+\begin_layout Standard
+Součástí dotazu-odpovědi jsou například i údaje klienta (prohlížeč, typ
+ OS) nebo serveru (OS, typ běžícího deamonu, jazyka apod.).
+\end_layout
+
+\begin_layout Standard
+Specifikace umístění souboru se v prohlížeci provádí skrze 
+\series bold
+URL
+\series default
+ (Uniform Resource Locator):
+\series bold
+ protokol://uzel:port/cesta.
+\end_layout
+
+\begin_layout Subsubsection*
+Jmenná služba - DNS
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+DNS - Domain Name System
+\series default
+.
+ Služba pro překlad doménových adres na IP adresy (a zpět).
+ Doménová adresa je ve tvaru:
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+...doména druhého řádu.doména prvního řádu
+\series default
+ (iterativně zprava doleva)
+\end_layout
+
+\begin_layout Paragraph*
+Postup:
+\end_layout
+
+\begin_layout Standard
+Každé zařízení připojené k síti má nakonfigurované IP svého lokálního DNS
+ serveru (v rámci sítě).
+ Při překladu se nejprve zeptáme lokálního DNS, zda-li v jeho tabulkách
+ není umístěná IP adresa hledaného serveru (či v cache).
+ Pokud ne, požádá o pomoc jeden z kořenových DNS serverů.
+ Ten většinou odkáže na DNS server Top-Level domény, ty případně na další
+ apod.
+\end_layout
+
+\begin_layout Standard
+Struktura DNS je hierarchická (jako formát domén).
+\end_layout
+
+\begin_layout Subsection*
+Principy zajištění kvality služby
 \end_layout
 
 \end_body
