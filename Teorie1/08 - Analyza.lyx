@@ -1326,27 +1326,10 @@ Jednotlivé proměnné jsou odděleny tak, že na jedná straně rovnice jsou pr
  jednoho typu, na druhé straně proměnné druhého typu.
  Řešíme pomocí integrace obou stran rovnice (tzn.
  
-\begin_inset Formula $\frac{dy}{dx}=\frac{y'}{x'}\Longrightarrow\int y'dy=\int x'dx$
+\begin_inset Formula $\frac{dy}{dx}=\frac{x'}{y'}\Longrightarrow\int y'dy=\int x'dx$
 \end_inset
 
 ).
-\end_layout
-
-\begin_layout Paragraph*
-Homogenní rovnice
-\end_layout
-
-\begin_layout Standard
-Veškeré proměnné se vyskytují ve tvaru 
-\begin_inset Formula $\frac{y}{x}$
-\end_inset
-
-, provede se substituce 
-\begin_inset Formula $z=\frac{y}{x}$
-\end_inset
-
-.
- Po substituci lze proměnné separovat, poté se vyjádří y.
 \end_layout
 
 \end_body
