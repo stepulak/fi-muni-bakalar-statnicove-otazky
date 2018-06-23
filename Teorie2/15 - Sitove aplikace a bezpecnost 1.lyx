@@ -416,5 +416,247 @@ Struktura DNS je hierarchická (jako formát domén).
 Principy zajištění kvality služby
 \end_layout
 
+\begin_layout Standard
+Standardně jsou packety nepriorizované, každý má stejnou šanci pro obsloužení
+ při průchodu směrovačem.
+ Ovšem v některých případech je nutné packety priorizovat.
+\end_layout
+
+\begin_layout Standard
+Tři principy:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Plánování (Scheduling)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Frormování/omezování toků (Traffic shaping)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Prevence zahlcení (Congestion avoidance)
+\end_layout
+
+\begin_layout Subsubsection*
+Plánování (scheduling)
+\end_layout
+
+\begin_layout Standard
+Obsluha vstupních/výstupních front na zařízeních příjemců a odesílatelů.
+ Podobné principy jako v plánování procesů (dokument č.
+ 7).
+\end_layout
+
+\begin_layout Standard
+Několik typů:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+FIFO (FCFS)
+\series default
+ - Klasická fronta, žádne priorizování, packety jsou obsloužené tak, jak
+ příjdou.
+ Fronta má pevnou velikost, pokud je naplněná, packety jsou zamítnuty.
+ Agresivní toky mohou omezit toky slabší.
+ Analogie FCFS schedulingu procesů.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Weighted Queuing
+\series default
+ - Každý packet má vlastní váhu.
+ Jsou prioritně obsluhovány packety s vyšší vahou.
+ Pokud je tok packetů s vyšší vahou kontinuální, packety s nižší vahou nemusí
+ vůbec obslouženy (stárnou).
+ Analogický přístup s SJB schedulingu procesů.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Weighted Fair Queuing
+\series default
+ - Opět má každý packet svou váhu, ovšem výběr packetů je odlišný.
+ Obsluhuje se několik packetů současně, nejvíce je packetů s nejvyšší prioritou,
+ nejméně s nejnižší.
+ Zabraňuje stárnutí.
+\end_layout
+
+\begin_layout Subsubsection*
+Formování/omezování toků (Traffic shaping)
+\end_layout
+
+\begin_layout Standard
+Slouží pro řízení rychlosti a počtu odeslaných packetů.
+ Opět máme několik možných řešení:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Leaky bucket
+\series default
+ (
+\begin_inset Quotes eld
+\end_inset
+
+děravý kyblík
+\begin_inset Quotes erd
+\end_inset
+
+) - Přitékající toky jsou 
+\begin_inset Quotes eld
+\end_inset
+
+vypouštěny
+\begin_inset Quotes erd
+\end_inset
+
+ v konstantním množstvím a konstantní rychlostí.
+ Jako následek jsou všechny toky usměrnovány, tj.
+ toky s vyšší rychlostí jsou zpomalovány.
+ Pokud přeteteče fronta (kyblíček), jsou nově přijaté packety zahazovány.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Token bucket
+\series default
+ - Máme tokeny, které se generují konstantní rychlostí a 
+\begin_inset Quotes eld
+\end_inset
+
+hází
+\begin_inset Quotes erd
+\end_inset
+
+ do token kyblíku.
+ Při každém průchodu packetu se veme jeden token z kyblíku a packet se přepošle
+ dále.
+ Pokud je token kyblíku plný, nezahazují se packety, nýbrž tokeny (rozdíl
+ oproti leaky bucket).
+ Nemáme-li dostatek tokenů, je komunikace pomalá.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename img/leaky_bucket_token_bucket.png
+	lyxscale 60
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Prevence zahlcení (Congestion avoidance)
+\end_layout
+
+\begin_layout Standard
+Přijímací fronta pro packety má většinou konstantní velikost.
+ Jsou-li přicházející toky agresivní a s velkou velikostí, dochází k zahlcení
+ a zamítání příchozích packetů (tím zpomalujeme celkový provoz na lince).
+\end_layout
+
+\begin_layout Standard
+Řešení:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+RED
+\series default
+ (Random Early Detection) - Pokud je fronta zaplněná v určité mezi, začnou
+ se zahazovat packety náhodných toků.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+WRED
+\series default
+ (Weighted Random Early Detection) - Stejná co RED, avšak zahazujeme packety
+ v závislosti na prioritě.
+\end_layout
+
+\begin_layout Subsection*
+Multimediální přenosy v síti
+\end_layout
+
+\begin_layout Standard
+Šíříme-li streamované médium skrze síť, je nutné použít protokol UDP (nepotvrzuj
+e příjem, nežádá nedoručené packety).
+ Lidské oko/ucho dokáže určitou část nedoručených packetů (čístí videa/zvuku)
+ nezaznamenat.
+\end_layout
+
+\begin_layout Subsubsection*
+Ukládání zvuku
+\end_layout
+
+\begin_layout Standard
+Zvuk je standardně šířen v analogové podobě (spojitá funkce), chceme jej
+ převést do digitální podoby.
+ Používá se vzorkování a kvantování.
+\end_layout
+
+\begin_layout Paragraph*
+Vzorkování
+\end_layout
+
+\begin_layout Standard
+Po určitých intervalech zjišťujeme amplitudy analogového signálu
+\end_layout
+
+\begin_layout Paragraph*
+Kvantování
+\end_layout
+
+\begin_layout Standard
+Převádíme neceločíselné hodnoty na celočíselné (tj.
+ diskrétní).
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+Ukládání videa
+\end_layout
+
+\begin_layout Standard
+Mluvíme-li o videu jako o sekvenci obrázků, pak pro každý pixel zaznamenáváme
+ barvu (R,G,B) - 24 bitů.
+ Nemáme-li dostatečnou přenosovou kapacitu, můžeme výsledné video zmenšit
+ (tj.
+ 
+\series bold
+interpolovat
+\series default
+ několik pixelů do jednoho), provést techniku 
+\series bold
+subsamplingu
+\series default
+ (např.
+ máme dva pixely, u jednoho si pamatujeme barvu, u druhého jen jas) nebo
+ snížit 
+\series bold
+framerate
+\series default
+ (počet snímků za sekundu, minimálně 25/sec pro zachování iluze pohybu).
+\end_layout
+
 \end_body
 \end_document
