@@ -1,0 +1,593 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section*
+Datové modelování
+\end_layout
+
+\begin_layout Subsection*
+Návrh datových struktur
+\end_layout
+
+\begin_layout Standard
+Chceme navrhnout datovou strukturu, kde budou data uložena tak, že nad nimi
+ pracující operace budo efektivní (návrh datových struktur v programovacím
+ jazyce).
+ Můžeme taky hovořit o databázovém návrhu datových struktur (v relačním
+ pojetí) - zde se snažíme o vytvoření relačních schémat, které by splňovaly
+ alespoň 3.
+ NF nebo lépe Boyce-Coddovu NF.
+\end_layout
+
+\begin_layout Standard
+Datové struktury dokážeme modelovat například pomocí 
+\series bold
+ER diagramu
+\series default
+ (
+\series bold
+Entity-Relationship
+\series default
+) - diagram slouží pro grafickou reprezentaci vztahů entit (tj.
+ datová struktura bez metod; lépe se mapuje na relační schéma v DB) v systému.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Entita
+\series default
+ je označení pro strukturu, která uchovává informace.
+ V class diagramu hovoříme o entitě jako entitní třídě, která reprezentuje
+ nějakou informaci, má nadřazenou spravující třídu (entity manager) a snadno
+ se mapuje do databáze.
+ Z hlediska databází můžeme o entitě hovořit jako o tabulce v databázi (resp.
+ množině entit).
+ 
+\series bold
+Slabá entita
+\series default
+ je označení pro entitu, která nemá primární klíč (je vázaná na druhou entitu
+ a její primární klíč ji plně definuje).
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Atribut
+\series default
+ je (z databázového hlediska) označení názvu sloupce relačního schématu.
+ Atribut pro všechny prvky ve sloupci definuje doménu (tj.
+ definiční obor, typ atributu - integer, date, string apod.), integritní
+ omezení apod.
+ Z hlediska objektového návrhu hovoříme o proměnné, konstantě apod.
+ třídy (má vlatní typ, vlastní hodnotu apod.).
+\end_layout
+
+\begin_layout Standard
+Klíč, superklíč, kandidátní klíč, primární klíč a cizí klíč viz otázka 9.
+ Databáze 1.
+\end_layout
+
+\begin_layout Subsection*
+Grafické vyjádření ER diagramu
+\end_layout
+
+\begin_layout Standard
+První styl notace:
+\end_layout
+
+\begin_layout Itemize
+V ER diagramu je entita označená pomocí obdélníku.
+ 
+\end_layout
+
+\begin_layout Itemize
+Vztah mezi dvěma entitami se zapisuje pomocí kosodélníku.
+\end_layout
+
+\begin_layout Itemize
+Slabá entita pomocí dvojitého obdélníku.
+ 
+\end_layout
+
+\begin_layout Itemize
+Primární klíč je tučným písmem, cizí klíč je kurzívou.
+\end_layout
+
+\begin_layout Itemize
+Atribut je pomocí elipsy.
+\end_layout
+
+\begin_layout Itemize
+Generalizace a specializace (trojúhelníková komponenta IS-A).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename img/weak_entity_plus_generalization.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename img/er_diagram_notation_1.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Druhá notace - ER diagram taky můžeme reprezentovat tabulkovým návrhem (tj.
+ entity a atributy přijdou do jednoho obdélníku).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename img/er_diagram_notation_2.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Převod do relačního modelu
+\end_layout
+
+\begin_layout Standard
+Pro každou enntitu se vytvoří samostatná tabulka s příslušným relačním schématem
+ (každý atribut je jeden sloupec v tabulce).
+ U slabé relační entity se ještě přidá primární klíč z entity, na kterou
+ je vázána.
+\end_layout
+
+\begin_layout Standard
+Problém nastvává u vztahů, ty řešíme následovně (podlě směru šipek a arity
+ vztahu):
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+1:1, 1:N
+\series default
+ - pro vztahy nepotřebujeme novou tabulku, jen přidáme cizí klíče podle
+ uvedeného vztahu.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+N:M
+\series default
+ - nutné vytvořit novou tabulku, například:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename img/n_m_er_diagram_to_re_schema.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+UML diagram tříd
+\end_layout
+
+\begin_layout Standard
+Umožňuje grafickou reprezentaci pro objektový návrh (tj.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+hrubý náčrt
+\begin_inset Quotes erd
+\end_inset
+
+) aplikace (bez implementace).
+ Více viz otázka č.
+ 18 - softwarové inženýrství.
+\end_layout
+
+\begin_layout Subsection*
+Srování ER diagramu a class diagramu
+\end_layout
+
+\begin_layout Standard
+ER diagram umožňuje zapsat statický datový design aplikace.
+ Lépe se mapuje a používá při návrhu databáze.
+ Explicitní značení pro klíče (primární, sekundární).
+ Class diagram umožňuje objektový návrh, tj.
+ můžeme definovat jak datové položky (atributy), tak metody.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="10" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ER diagram
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Class diagram
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Generalizace, specializace
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ANO
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ANO
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Atributy
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ANO - jen a pouze
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ANO
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Metody
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+NE
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ANO
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Agregace
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ANO
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ANO
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Kompozice
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ANO - vztah silná a slabá entita
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ANO
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Asociace
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ANO
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ANO
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Dependency
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+NE, není potřeba
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ANO
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Explicitní zápis klíčů
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ANO
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+NE
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Snadný převod do relačního schématu
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ANO
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Možná (používáme-li styl entita+entity manager)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
