@@ -1,4 +1,4 @@
-#LyX 2.3 created this file. For more info see http://www.lyx.org/
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
 \lyxformat 508
 \begin_document
 \begin_header
@@ -1104,7 +1104,7 @@ Nechť
 \end_layout
 
 \begin_layout Itemize
-a je maximální prvek, pokud pro 
+a je největší prvek, pokud pro 
 \begin_inset Formula $\forall b\in M$
 \end_inset
 
@@ -1117,7 +1117,7 @@ a je maximální prvek, pokud pro
 \end_layout
 
 \begin_layout Itemize
-a je minimální prvek, pokud pro 
+a je nejmenší prvek, pokud pro 
 \begin_inset Formula $\forall b\in M$
 \end_inset
 
@@ -1130,7 +1130,7 @@ a je minimální prvek, pokud pro
 \end_layout
 
 \begin_layout Itemize
-a je nejmenší prvek, pokud pro 
+a je minimální prvek, pokud pro 
 \begin_inset Formula $\forall b\in M$
 \end_inset
 
@@ -1139,11 +1139,11 @@ a je nejmenší prvek, pokud pro
 \end_inset
 
  (tzn.
- může být více nejmenších prvků)
+ může být více minimálních prvků)
 \end_layout
 
 \begin_layout Itemize
-a je největší prvek, pokud pro 
+a je maximální prvek, pokud pro 
 \begin_inset Formula $\forall b\in M$
 \end_inset
 
@@ -1152,7 +1152,7 @@ a je největší prvek, pokud pro
 \end_inset
 
  (tzn.
- může být více největších prvků)
+ může být více maximálních prvků)
 \end_layout
 
 \begin_layout Itemize
@@ -1200,7 +1200,7 @@ a je infimum množiny
 \begin_inset Formula $A\subseteq M$
 \end_inset
 
-, pokud a je největší horní závora množiny A
+, pokud a je největší dolní závora množiny A
 \end_layout
 
 \begin_layout Itemize
