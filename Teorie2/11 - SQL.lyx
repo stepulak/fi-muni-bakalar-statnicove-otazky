@@ -390,8 +390,8 @@ Přičteme 500Kč na každý účet v bance, který je starší 1 roku:
 \end_layout
 
 \begin_layout Standard
-UPDATE zakaznici SET stav_uctu = stav_uctu + 500 W WHERE datum_zalozeni
- < NOW() - 1 YEAR
+UPDATE zakaznici SET stav_uctu = stav_uctu + 500 WHERE datum_zalozeni <
+ NOW() - 1 YEAR
 \end_layout
 
 \begin_layout Subsubsection*

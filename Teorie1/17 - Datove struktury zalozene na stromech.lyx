@@ -369,7 +369,7 @@ Pro pravé podstromy je situace stejná, jen zrcadlově obrácená.
 
 \begin_layout Standard
 Časová složitost je 
-\begin_inset Formula $\mathcal{O}(n\log_{2}n)$
+\begin_inset Formula $\mathcal{O}(\log_{2}n)$
 \end_inset
 
 , kde n je počet prvků stromu.
@@ -382,7 +382,7 @@ Odebrání uzlu z RB stromu
 \begin_layout Standard
 Moc use-casů, ani prof.
  Černá to nechtěla v testu! Časová složitost jako u vkládání, a to 
-\begin_inset Formula $\mathcal{O}(n\log_{2}n)$
+\begin_inset Formula $\mathcal{O}(\log_{2}n)$
 \end_inset
 
 .

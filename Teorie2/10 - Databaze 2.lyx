@@ -2037,7 +2037,7 @@ zachovává funkční závislosti
 
 \begin_layout Itemize
 bezztrátovost, tudíž platí, že 
-\begin_inset Formula $r=\varPi_{R_{1}}(T)\Join\ldots\Join\varPi_{R_{2}}(T)$
+\begin_inset Formula $r=\varPi_{R_{1}}(T)\times\ldots\times\varPi_{R_{2}}(T)$
 \end_inset
 
 , kdy 
@@ -2244,7 +2244,7 @@ B
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $r=T_{A}\Join T_{B}=$
+\begin_inset Formula $r=T_{A}\times T_{B}=$
 \end_inset
 
 
